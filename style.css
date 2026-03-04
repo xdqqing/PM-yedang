@@ -453,6 +453,39 @@
             border-right: none;
         }
 
+        #batch-upload-table {
+            width: max-content;
+            min-width: 100%;
+        }
+
+        #batch-upload-table .batch-sticky-select {
+            position: sticky;
+            left: 0;
+            z-index: 40;
+            box-sizing: border-box;
+            width: 48px;
+            min-width: 48px;
+            max-width: 48px;
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+        }
+
+        #batch-upload-table .batch-sticky-select input {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #batch-upload-table .batch-sticky-index {
+            position: sticky;
+            left: 48px;
+            z-index: 35;
+            box-sizing: border-box;
+            width: 64px;
+            min-width: 64px;
+            max-width: 64px;
+        }
+
         .data-table tbody tr:hover {
             background-color: #eff6ff;
         }
@@ -898,4 +931,11 @@
             top: -45px;
         }
 
+        .column-order-item {
+            cursor: grab;
+        }
 
+        .column-order-item.column-order-dragging {
+            opacity: 0.6;
+            cursor: grabbing;
+        }
