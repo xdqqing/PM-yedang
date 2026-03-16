@@ -124,6 +124,8 @@
             // 重置 Cascader 显示文本
             const cascaderText = document.getElementById('directory-cascader-text');
             if(cascaderText) cascaderText.innerText = '请选择档案分类';
+            directorySelection = { level1: '', level2: '', level3: '' };
+            updateDirectoryExtraFieldsVisibility();
             
             const projectText = document.getElementById('project-cascader-new-text');
             if(projectText) projectText.innerText = '请选择项目分类';
@@ -232,20 +234,24 @@
             if (secondLine) parts.push(secondLine);
             archiveCategory = parts.join('/');
         }
-        const materialType = cells[2].innerText.trim(); // 资料类型
-        const archiveDimension = cells[3].innerText.trim(); // 归档维度
-        const archiveConfidentiality = cells[4].innerText.trim(); // 档案密级
-        const isRequired = cells[5].querySelector('span').innerText.trim(); // 是否必有
-        const conditionDesc = cells[6].innerText.trim(); // 条件必有说明
-        const retentionPeriod = cells[7].innerText.trim(); // 保管期限
-        const isLinkedProject = cells[8].innerText.trim(); // 是否关联项目
-        const projectCategory = cells[9].innerText.trim(); // 关联项目分类
-        const archiveCarrier = cells[10].innerText.trim(); // 档案载体
-        const isPhysicalArchive = cells[11].innerText.trim(); // 是否应归实体档案
-        const archiveMilestone = cells[12].innerText.trim(); // 归档里程碑
-        const fileSourceSystem = cells[13].innerText.trim(); // 文件来源系统
-        const isBusinessAssessment = cells[14].innerText.trim(); // 是否经营事项考核
-        const status = cells[15].innerText.trim(); // 状态
+        const businessSubfunction = (cells[2] && cells[2].innerText ? cells[2].innerText : '').trim();
+        const businessProcess = (cells[3] && cells[3].innerText ? cells[3].innerText : '').trim();
+        const topicProfessional = (cells[4] && cells[4].innerText ? cells[4].innerText : '').trim();
+
+        const materialType = cells[5].innerText.trim(); // 资料类型
+        const archiveDimension = cells[6].innerText.trim(); // 归档维度
+        const archiveConfidentiality = cells[7].innerText.trim(); // 档案密级
+        const isRequired = cells[8].querySelector('span').innerText.trim(); // 是否必有
+        const conditionDesc = cells[9].innerText.trim(); // 条件必有说明
+        const retentionPeriod = cells[10].innerText.trim(); // 保管期限
+        const isLinkedProject = cells[11].innerText.trim(); // 是否关联项目
+        const projectCategory = cells[12].innerText.trim(); // 关联项目分类
+        const archiveCarrier = cells[13].innerText.trim(); // 档案载体
+        const isPhysicalArchive = cells[14].innerText.trim(); // 是否应归实体档案
+        const archiveMilestone = cells[15].innerText.trim(); // 归档里程碑
+        const fileSourceSystem = cells[16].innerText.trim(); // 文件来源系统
+        const isBusinessAssessment = cells[17].innerText.trim(); // 是否经营事项考核
+        const status = cells[18].innerText.trim(); // 状态
 
         // 填充表单数据
         // 档案分类 (Cascader模拟)
@@ -259,14 +265,29 @@
                 cascaderText.classList.remove('text-gray-400');
             }
         }
+
+        const categoryParts = (archiveCategory || '').split('/').map(v => v.trim()).filter(Boolean);
+        directorySelection = {
+            level1: categoryParts[0] || '',
+            level2: categoryParts[1] || '',
+            level3: categoryParts[2] || ''
+        };
+        updateDirectoryExtraFieldsVisibility();
         
         // 资料类型
-        const materialInput = page.querySelectorAll('input[type="text"]')[0];
+        const materialInput = page.querySelector('input[placeholder="请输入资料名称"]');
         if (materialInput) materialInput.value = materialType;
         
         // 业务含义 (第2个输入框，假设列表中没有，这里留空或模拟)
-        const businessMeaningInput = page.querySelectorAll('input[type="text"]')[1];
+        const businessMeaningInput = page.querySelector('input[placeholder="描述业务含义"]');
         if (businessMeaningInput) businessMeaningInput.value = '';
+
+        const subfunctionInput = document.getElementById('directory-input-subfunction');
+        const processInput = document.getElementById('directory-input-process');
+        const topicInput = document.getElementById('directory-input-topic');
+        if (subfunctionInput) subfunctionInput.value = businessSubfunction === '-' ? '' : businessSubfunction;
+        if (processInput) processInput.value = businessProcess === '-' ? '' : businessProcess;
+        if (topicInput) topicInput.value = topicProfessional === '-' ? '' : topicProfessional;
 
         // 归档层级（列表页不展示，优先从 data-archive-level 读取，如：集团/大区/区域）
         const archiveLevelRaw = (row.dataset && row.dataset.archiveLevel ? row.dataset.archiveLevel : '').trim();
@@ -282,7 +303,7 @@
         if (dimensionSelect) dimensionSelect.value = dimensionSelect.options.length > 0 ? archiveDimension : '';
 
         // 归档规则（列表页不展示，优先从 data-archive-rule 读取）
-        const ruleInput = page.querySelectorAll('input[type="text"]')[2];
+        const ruleInput = page.querySelector('input[placeholder="描述归档规则"]');
         if (ruleInput) {
             const rule = (row.dataset && row.dataset.archiveRule ? row.dataset.archiveRule : '').trim();
             ruleInput.value = rule;
@@ -299,7 +320,7 @@
         }
 
         // 条件必有说明 (第4个输入框)
-        const conditionDescInput = page.querySelectorAll('input[type="text"]')[3];
+        const conditionDescInput = page.querySelector('input[placeholder="描述条件必有说明"]');
         if (conditionDescInput) conditionDescInput.value = conditionDesc;
 
         // 保管期限 (第5个下拉框)
@@ -2630,6 +2651,9 @@
                             <tr>
                                 <th class="sticky left-0 z-30 bg-gray-50 dark:bg-gray-800" style="position: sticky;left: 0;">序号<div class="resize-handle"></div></th>
                                 <th>档案分类<div class="resize-handle"></div></th>
+                                <th>业务/职能细分<div class="resize-handle"></div></th>
+                                <th>业务活动/流程<div class="resize-handle"></div></th>
+                                <th>专题/专业<div class="resize-handle"></div></th>
                                 <th>资料类型<div class="resize-handle"></div></th>
                                 <th>归档维度<div class="resize-handle"></div></th>
                                 <th>档案密级<div class="resize-handle"></div></th>
@@ -2658,6 +2682,9 @@
                                         <option>文书档案-行政文书</option>
                                     </select>
                                 </td>
+                                <td><input type="text" placeholder="搜索"></td>
+                                <td><input type="text" placeholder="搜索"></td>
+                                <td><input type="text" placeholder="搜索"></td>
                                 <td><input type="text" placeholder="资料名称"></td>
                                 <td>
                                     <select class="dark:bg-gray-700">
@@ -2754,9 +2781,12 @@
                             <tr onclick="showDirectoryDetail(this)" class="hover:bg-blue-50 transition dark:hover:bg-blue-900/20">
                                 <td class="text-center font-medium text-gray-900 sticky left-0 bg-white z-10 dark:bg-gray-800 dark:text-white">1</td>
                                 <td class="text-xs">
-                                    <span class="block font-medium dark:text-white">科技档案-基建档案</span>
+                                    <span class="block font-medium dark:text-white">科技档案/基建档案</span>
                                     <span class="text-gray-500 dark:text-gray-400">施工资料</span>
                                 </td>
+                                <td class="text-xs dark:text-gray-400">-</td>
+                                <td class="text-xs dark:text-gray-400">-</td>
+                                <td class="text-xs dark:text-gray-400">施工技术资料</td>
                                 <td class="font-medium text-gray-900 dark:text-white">施工组织设计</td>
                                 <td class="dark:text-gray-300">按项目</td>
                                 <td class="dark:text-gray-300">秘密级</td>
@@ -2777,9 +2807,12 @@
                             <tr onclick="showDirectoryDetail(this)" data-archive-level="集团/大区/区域" data-archive-rule="完成客户识别后" class="hover:bg-blue-50 transition dark:hover:bg-blue-900/20">
                                 <td class="text-center font-medium text-gray-900 sticky left-0 bg-white z-10 dark:bg-gray-800 dark:text-white">2</td>
                                 <td class="text-xs">
-                                    <span class="block font-medium dark:text-white">文书档案-市场投资管理</span>
+                                    <span class="block font-medium dark:text-white">文书档案/市场投资管理</span>
                                     <span class="text-gray-500 dark:text-gray-400">市场与客户管理</span>
                                 </td>
+                                <td class="text-xs dark:text-gray-400">客户识别与洞察</td>
+                                <td class="text-xs dark:text-gray-400">客户识别与洞察</td>
+                                <td class="text-xs dark:text-gray-400">-</td>
                                 <td class="font-medium text-gray-900 dark:text-white">客户信息</td>
                                 <td class="dark:text-gray-300">按组织</td>
                                 <td class="dark:text-gray-300">无密级</td>
@@ -3114,6 +3147,19 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div id="directory-field-subfunction" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">业务/职能细分 <span class="text-danger">*</span></label>
+                        <input id="directory-input-subfunction" type="text" placeholder="请输入业务/职能细分" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                    <div id="directory-field-process" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">业务活动/流程 <span class="text-danger">*</span></label>
+                        <input id="directory-input-process" type="text" placeholder="请输入业务活动/流程" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                    <div id="directory-field-topic" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业 <span class="text-danger">*</span></label>
+                        <input id="directory-input-topic" type="text" placeholder="请输入专题/专业" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
 
                     <div>
@@ -4555,6 +4601,28 @@
         showToast('权限配置已保存', 'success');
     }
     function saveDirectory() {
+        if (!directorySelection.level1) {
+            showToast('请选择档案分类', 'warning');
+            return;
+        }
+
+        if (directorySelection.level1 === '文书档案') {
+            const subfunction = (document.getElementById('directory-input-subfunction')?.value || '').trim();
+            const process = (document.getElementById('directory-input-process')?.value || '').trim();
+            if (!subfunction || !process) {
+                showToast('请填写业务/职能细分、业务活动/流程', 'warning');
+                return;
+            }
+        }
+
+        if (directorySelection.level1 === '科技档案') {
+            const topic = (document.getElementById('directory-input-topic')?.value || '').trim();
+            if (!topic) {
+                showToast('请填写专题/专业', 'warning');
+                return;
+            }
+        }
+
         if (!carrierSelections.includes('电子档案')) {
             ensureElectronicCarrierSelected();
             showToast('档案载体必须选择电子档案', 'warning');
@@ -6096,6 +6164,27 @@ let currentBatchEditId = null; // 当前批量上传编辑的行ID
     };
     
     let directorySelection = { level1: '', level2: '', level3: '' };
+
+    function updateDirectoryExtraFieldsVisibility() {
+        const isWenshu = directorySelection.level1 === '文书档案';
+        const isKeji = directorySelection.level1 === '科技档案';
+
+        const subfunctionField = document.getElementById('directory-field-subfunction');
+        const processField = document.getElementById('directory-field-process');
+        const topicField = document.getElementById('directory-field-topic');
+
+        const subfunctionInput = document.getElementById('directory-input-subfunction');
+        const processInput = document.getElementById('directory-input-process');
+        const topicInput = document.getElementById('directory-input-topic');
+
+        if (subfunctionField) subfunctionField.classList.toggle('hidden', !isWenshu);
+        if (processField) processField.classList.toggle('hidden', !isWenshu);
+        if (topicField) topicField.classList.toggle('hidden', !isKeji);
+
+        if (subfunctionInput) subfunctionInput.required = !!isWenshu;
+        if (processInput) processInput.required = !!isWenshu;
+        if (topicInput) topicInput.required = !!isKeji;
+    }
     
     function selectDirectoryCascader(level, value, element) {
         event.stopPropagation();
@@ -6147,6 +6236,8 @@ let currentBatchEditId = null; // 当前批量上传编辑的行ID
             // 关闭下拉
             container.querySelector('.cascader-dropdown').classList.remove('active');
         }
+
+        updateDirectoryExtraFieldsVisibility();
     }
         // 项目分类多选级联数据
     const projectCategoryData = {
