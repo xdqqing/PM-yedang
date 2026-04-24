@@ -1809,16 +1809,6 @@
                         </div>
                     </div>
 
-                    <!-- 流程提示 -->
-                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 dark:bg-blue-900/20 dark:border-blue-800">
-                        <h3 class="font-semibold text-blue-900 mb-2 flex items-center gap-2 dark:text-blue-200">
-                            <i class="fas fa-info-circle"></i>
-                            审批进度提示
-                        </h3>
-                        <p id="pending-flow-tip-text" class="text-sm text-blue-800 leading-relaxed dark:text-blue-200">
-                            当前申请正在<strong>区域档案管理员</strong>审批中，请耐心等待。如需撤回申请，请联系区域档案管理员或使用"撤回审批"功能。
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -4060,7 +4050,7 @@
             <button onclick="closeAICheckModal()" class="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"><i class="fas fa-times text-xl"></i></button>
         </div>
         <div class="p-4 md:p-6 overflow-y-auto flex-1">
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
                 <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 dark:bg-blue-900/20 dark:border-blue-800">
                     <div class="text-sm text-gray-500 dark:text-gray-400">启用规则数</div>
                     <div id="ai-detail-enabled-count" class="text-3xl font-bold text-primary mt-1">11</div>
@@ -4073,10 +4063,6 @@
                     <div class="text-sm text-gray-500 dark:text-gray-400">不通过项</div>
                     <div id="ai-detail-fail-count" class="text-3xl font-bold text-danger mt-1">0</div>
                 </div>
-                <div class="bg-yellow-50 border border-yellow-100 rounded-xl p-4 dark:bg-yellow-900/20 dark:border-yellow-800">
-                    <div class="text-sm text-gray-500 dark:text-gray-400">强控制拦截项</div>
-                    <div id="ai-detail-strong-block-count" class="text-3xl font-bold text-warning mt-1">0</div>
-                </div>
             </div>
             <div class="table-container mobile-scroll-x">
                 <table class="data-table">
@@ -4087,7 +4073,7 @@
                             <th class="min-w-[180px]">检查项<div class="resize-handle"></div></th>
                             <th class="min-w-[120px]">校验结果<div class="resize-handle"></div></th>
                             <th class="min-w-[90px]">风险等级<div class="resize-handle"></div></th>
-                            <th class="min-w-[100px]">是否强控制<div class="resize-handle"></div></th>
+                            <th class="min-w-[100px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span><div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">结果说明<div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">修改建议<div class="resize-handle"></div></th>
                         </tr>
@@ -4266,7 +4252,7 @@
                             </div>
 
                             <div class="table-container max-h-[560px] overflow-auto border border-gray-200 rounded-xl dark:border-gray-700">
-                                <table class="data-table min-w-[1500px]">
+                                <table class="data-table min-w-[1640px]">
                                     <thead>
                                         <tr>
                                             <th class="min-w-[60px] text-center">
@@ -4277,12 +4263,13 @@
                                             <th class="min-w-[150px]">规则范围</th>
                                             <th class="min-w-[240px]">档案分类</th>
                                             <th class="min-w-[220px]">档案专题或专业/业务职能细分</th>
-                                            <th class="min-w-[160px]">档案资料类型</th>
+                                            <th class="min-w-[160px]">资料类型</th>
                                             <th class="min-w-[130px]">检查维度</th>
                                             <th class="min-w-[160px]">检查项</th>
                                             <th class="min-w-[420px]">Agent判定逻辑</th>
                                             <th class="min-w-[90px]">风险等级</th>
-                                            <th class="min-w-[120px]">是否强控制</th>
+                                            <th class="min-w-[120px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span></th>
+                                            <th class="min-w-[150px]">是否前置到业务系统</th>
                                             <th class="min-w-[120px]">更新人</th>
                                             <th class="min-w-[150px]">更新时间</th>
                                             <th class="min-w-[160px]">操作</th>
@@ -4318,11 +4305,12 @@
                                             <th class="min-w-[130px]">
                                                 <select id="ai-rule-dimension-filter" onchange="aiRuleRenderRuleTable()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                                     <option value="">全部</option>
-                                                    <option value="完备性">完备性</option>
-                                                    <option value="法律效力">法律效力</option>
+                                                    <option value="要素完备性">要素完备性</option>
+                                                    <option value="信息一致性">信息一致性</option>
+                                                    <option value="合规性">合规性</option>
                                                     <option value="时效逻辑">时效逻辑</option>
                                                     <option value="质量规范">质量规范</option>
-                                                    <option value="页码 / 附件完整性">页码 / 附件完整性</option>
+                                                    <option value="页码/附件完整性">页码/附件完整性</option>
                                                 </select>
                                             </th>
                                             <th class="min-w-[160px]"></th>
@@ -4337,6 +4325,13 @@
                                             </th>
                                             <th class="min-w-[120px]">
                                                 <select id="ai-rule-control-filter" onchange="aiRuleRenderRuleTable()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                                    <option value="">全部</option>
+                                                    <option value="是">是</option>
+                                                    <option value="否">否</option>
+                                                </select>
+                                            </th>
+                                            <th class="min-w-[150px]">
+                                                <select id="ai-rule-prepose-filter" onchange="aiRuleRenderRuleTable()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                                     <option value="">全部</option>
                                                     <option value="是">是</option>
                                                     <option value="否">否</option>
@@ -4382,8 +4377,8 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">规则ID</label>
-                                    <input id="ai-rule-create-id" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">规则ID <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden whitespace-nowrap rounded-md bg-gray-900 px-2 py-1 text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">生成规则：规则范围-资料类型代号-流水号</span></span></label>
+                                    <input id="ai-rule-create-id" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-gray-400 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-500" readonly>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">规则范围 <span class="text-danger">*</span></label>
@@ -4397,20 +4392,20 @@
                                     <input id="ai-rule-create-classification" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案专题或专业/业务职能细分</label>
-                                    <input id="ai-rule-create-topic" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="例如：工程建设/施工管理">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">资料类型 <span class="text-danger">*</span></label>
+                                    <select id="ai-rule-create-material" onchange="aiRuleSyncTopicByMaterial('create')" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案资料类型</label>
-                                    <input id="ai-rule-create-material" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="例如：项目建议书">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案专题或专业/业务职能细分</label>
+                                    <input id="ai-rule-create-topic" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-400" value="选择资料类型后自动带出" readonly>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">检查维度 <span class="text-danger">*</span></label>
-                                    <input id="ai-rule-create-dimension" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="例如：完备性">
+                                    <select id="ai-rule-create-dimension" onchange="aiRuleSyncItemOptions('create')" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">检查项 <span class="text-danger">*</span></label>
-                                    <input id="ai-rule-create-item" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="例如：日期合规">
+                                    <select id="ai-rule-create-item" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">风险等级 <span class="text-danger">*</span></label>
@@ -4421,27 +4416,27 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否强控制 <span class="text-danger">*</span></label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span> <span class="text-danger">*</span></label>
                                     <select id="ai-rule-create-control" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                         <option>是</option>
                                         <option selected>否</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新人</label>
-                                    <input id="ai-rule-create-owner" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="例如：张三">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新时间</label>
-                                    <input id="ai-rule-create-updated-at" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否前置到业务系统 <span class="text-danger">*</span></label>
+                                    <select id="ai-rule-create-prepose" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                        <option>是</option>
+                                        <option selected>否</option>
+                                    </select>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">Agent 判定逻辑 <span class="text-danger">*</span></label>
-                                    <textarea id="ai-rule-create-logic" rows="4" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="描述判定口径、证据定位、阈值与输出"></textarea>
+                                    <textarea id="ai-rule-create-logic" rows="4" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500" placeholder="填写规范：识别 [具体要素] ， [量化标准] ， [通过条件] 则通过， [不通过条件] 则不通过；
+优质示例：文件关键页 需有清晰可辨的公章，且印章文字与发文单位名称 一致，两者均满足则通过，缺一则不通过；"></textarea>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">法律法规相关依据</label>
-                                    <textarea id="ai-rule-create-basis" rows="3" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></textarea>
+                                    <textarea id="ai-rule-create-basis" rows="3" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="例如：《建设工程文件归档规范》GB/T 50328-2019 第4.2条"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -4477,20 +4472,20 @@
                                     <input id="ai-rule-edit-classification" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案专题或专业/业务职能细分</label>
-                                    <input id="ai-rule-edit-topic" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">资料类型 <span class="text-danger">*</span></label>
+                                    <select id="ai-rule-edit-material" onchange="aiRuleSyncTopicByMaterial('edit')" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案资料类型</label>
-                                    <input id="ai-rule-edit-material" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案专题或专业/业务职能细分</label>
+                                    <input id="ai-rule-edit-topic" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-400" readonly>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">检查维度 <span class="text-danger">*</span></label>
-                                    <input id="ai-rule-edit-dimension" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                    <select id="ai-rule-edit-dimension" onchange="aiRuleSyncItemOptions('edit')" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">检查项 <span class="text-danger">*</span></label>
-                                    <input id="ai-rule-edit-item" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                    <select id="ai-rule-edit-item" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">风险等级 <span class="text-danger">*</span></label>
@@ -4501,27 +4496,27 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否强控制 <span class="text-danger">*</span></label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span> <span class="text-danger">*</span></label>
                                     <select id="ai-rule-edit-control" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                         <option>是</option>
                                         <option>否</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新人</label>
-                                    <input id="ai-rule-edit-owner" type="text" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新时间</label>
-                                    <input id="ai-rule-edit-updated-at" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否前置到业务系统 <span class="text-danger">*</span></label>
+                                    <select id="ai-rule-edit-prepose" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                        <option>是</option>
+                                        <option>否</option>
+                                    </select>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">Agent 判定逻辑 <span class="text-danger">*</span></label>
-                                    <textarea id="ai-rule-edit-logic" rows="4" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></textarea>
+                                    <textarea id="ai-rule-edit-logic" rows="4" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500" placeholder="填写规范：识别 [具体要素] ， [量化标准] ， [通过条件] 则通过， [不通过条件] 则不通过；
+优质示例：文件关键页 需有清晰可辨的公章，且印章文字与发文单位名称 一致，两者均满足则通过，缺一则不通过；"></textarea>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">法律法规相关依据</label>
-                                    <textarea id="ai-rule-edit-basis" rows="3" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></textarea>
+                                    <textarea id="ai-rule-edit-basis" rows="3" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="例如：《建设工程文件归档规范》GB/T 50328-2019 第4.2条"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -4532,7 +4527,6 @@
                             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">规则详情</h3>
-                                    <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">查看规则字段（原型演示：不接后端）。</p>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <button onclick="aiRuleBackToRuleList()" class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">返回</button>
@@ -4542,7 +4536,7 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">规则ID</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">规则ID <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden whitespace-nowrap rounded-md bg-gray-900 px-2 py-1 text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">生成规则：规则范围-资料类型代号-流水号</span></span></label>
                                     <input id="ai-rule-detail-id" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div>
@@ -4558,7 +4552,7 @@
                                     <input id="ai-rule-detail-topic" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案资料类型</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">资料类型</label>
                                     <input id="ai-rule-detail-material" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div>
@@ -4574,16 +4568,12 @@
                                     <input id="ai-rule-detail-risk" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否强控制</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span></label>
                                     <input id="ai-rule-detail-control" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新人</label>
-                                    <input id="ai-rule-detail-owner" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新时间</label>
-                                    <input id="ai-rule-detail-updated-at" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否前置到业务系统 <span class="text-danger">*</span></label>
+                                    <input id="ai-rule-detail-prepose" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">Agent 判定逻辑</label>
@@ -4652,6 +4642,7 @@
 
 
         function aiRuleInit() {
+            aiRuleNormalizeExistingRules();
             aiRuleRenderOverview();
             aiRuleRenderRuleTable();
             aiRuleUpdateRulePageUI();
@@ -4929,6 +4920,168 @@ const aiRuleRules = [
         let aiRuleCurrentRulePage = 'list';
         let aiRuleEditingRuleId = '';
         let aiRuleDetailRuleId = '';
+        const aiRuleDimensionItemMap = {
+            '要素完备性': ['基础信息齐全', '核心内容齐全'],
+            '信息一致性': ['文档内部一致', '附件与正文一致', '系统录入一致'],
+            '合规性': ['签章合规', '制度合规'],
+            '时效逻辑': ['日期合规', '有效期合规'],
+            '质量规范': ['图像质量达标', '格式完整达标'],
+            '页码/附件完整性': ['页码连续', '附件齐全']
+        };
+        const aiRuleDefaultTopicHint = '选择资料类型后自动带出';
+        const aiRuleBasisPlaceholder = '例如：《建设工程文件归档规范》GB/T 50328-2019 第4.2条';
+        const aiRuleCreateIdHint = '新增规则后系统自动生成';
+        const aiRuleMaterialCodeMap = {
+            '项目建议书': 'KJ·JJ·A1·01',
+            '项目建议书的批复文件': 'KJ·JJ·A1·02',
+            '可行性研究报告': 'KJ·JJ·A1·03'
+        };
+        const aiRuleMaterialTopicMap = {
+            '项目建议书': '工程建设/施工管理',
+            '项目建议书的批复文件': '工程建设/施工管理',
+            '可行性研究报告': '工程建设/施工管理',
+            '初步设计文件': '工程建设/施工管理',
+            '施工组织设计': '工程建设/施工管理',
+            '竣工验收记录': '工程建设/施工管理'
+        };
+
+        function aiRuleGetMaterialOptions() {
+            return ['项目建议书', '项目建议书的批复文件', '可行性研究报告', '初步设计文件', '施工组织设计', '竣工验收记录'];
+        }
+
+        function aiRuleRenderMaterialOptions(prefix, selectedValue = '') {
+            const el = document.getElementById(`ai-rule-${prefix}-material`);
+            if (!el) return;
+            const options = aiRuleGetMaterialOptions();
+            el.innerHTML = `<option value="">请选择</option>${options.map(item => `<option value="${item}">${item}</option>`).join('')}`;
+            if (selectedValue && options.includes(selectedValue)) {
+                el.value = selectedValue;
+            } else {
+                el.value = '';
+            }
+        }
+
+        function aiRuleRenderDimensionOptions(prefix, selectedValue = '要素完备性') {
+            const el = document.getElementById(`ai-rule-${prefix}-dimension`);
+            if (!el) return;
+            const dimensions = Object.keys(aiRuleDimensionItemMap);
+            el.innerHTML = dimensions.map(item => `<option value="${item}">${item}</option>`).join('');
+            el.value = dimensions.includes(selectedValue) ? selectedValue : dimensions[0];
+            aiRuleSyncItemOptions(prefix);
+        }
+
+        function aiRuleSyncItemOptions(prefix, selectedValue) {
+            const dimensionEl = document.getElementById(`ai-rule-${prefix}-dimension`);
+            const itemEl = document.getElementById(`ai-rule-${prefix}-item`);
+            if (!dimensionEl || !itemEl) return;
+            const dimension = dimensionEl.value;
+            const items = aiRuleDimensionItemMap[dimension] || [];
+            itemEl.innerHTML = items.map(item => `<option value="${item}">${item}</option>`).join('');
+            const fallbackValue = items[0] || '';
+            if (selectedValue && items.includes(selectedValue)) {
+                itemEl.value = selectedValue;
+            } else if (items.includes(itemEl.value)) {
+                // Keep existing value when dimension has not changed.
+            } else {
+                itemEl.value = fallbackValue;
+            }
+        }
+
+        function aiRuleSyncTopicByMaterial(prefix) {
+            const topicEl = document.getElementById(`ai-rule-${prefix}-topic`);
+            const materialEl = document.getElementById(`ai-rule-${prefix}-material`);
+            const scopeEl = document.getElementById(`ai-rule-${prefix}-scope`);
+            if (!topicEl || !materialEl) return;
+            const scope = scopeEl?.value || '';
+            if (scope === '通用检查项') {
+                topicEl.value = '-';
+                return;
+            }
+            const topic = aiRuleMaterialTopicMap[materialEl.value] || '';
+            topicEl.value = topic || aiRuleDefaultTopicHint;
+        }
+
+        function aiRuleNormalizeDimensionValue(value) {
+            const source = String(value || '').trim();
+            if (!source) return '要素完备性';
+            if (source === '完备性') return '要素完备性';
+            if (source === '法律效力') return '合规性';
+            if (source === '页码 / 附件完整性') return '页码/附件完整性';
+            const dimensions = Object.keys(aiRuleDimensionItemMap);
+            return dimensions.includes(source) ? source : '要素完备性';
+        }
+
+        function aiRuleNormalizeItemValue(value) {
+            const source = String(value || '').trim();
+            const itemMap = {
+                '1.1. 日期合规': '日期合规',
+                '1.1. 基本要素缺失': '基础信息齐全',
+                '印章 / 签名识别': '签章合规',
+                '批复要素识别': '核心内容齐全',
+                '审批机关印章识别': '制度合规',
+                '日期合理性': '日期合规',
+                '资质章及编制签字': '签章合规',
+                '文件可打开且页数大于0': '格式完整达标',
+                '4.1. 日期合规': '日期合规',
+                '5.1. 图像质量达标': '图像质量达标',
+                '5.2. 格式完整达标': '格式完整达标',
+                '6.1. 页码连续': '页码连续',
+                '6.2. 附件齐全': '附件齐全'
+            };
+            const formatted = source.replace(/^\s*\d+(?:\.\d+)*\.\s*/u, match => match.replace(/\.\s*$/u, ' ')).trim();
+            return itemMap[source] || itemMap[formatted] || formatted;
+        }
+
+        function aiRuleNormalizeExistingRules() {
+            aiRuleRules.forEach(rule => {
+                rule.dimension = aiRuleNormalizeDimensionValue(rule.dimension);
+                rule.item = aiRuleNormalizeItemValue(rule.item);
+                if (!rule.preposeToBusinessSystem) {
+                    rule.preposeToBusinessSystem = '否';
+                }
+            });
+            aiRuleRebuildRuleIds();
+        }
+
+        function aiRuleGetScopeCode(scope) {
+            return scope === '通用检查项' ? 'TY' : 'ZD';
+        }
+
+        function aiRuleGetMaterialCode(scope, material) {
+            if (scope === '通用检查项') return 'default';
+            return aiRuleMaterialCodeMap[String(material || '').trim()] || 'default';
+        }
+
+        function aiRuleGenerateRuleId(scope, material) {
+            const scopeCode = aiRuleGetScopeCode(scope);
+            const materialCode = aiRuleGetMaterialCode(scope, material);
+            const prefix = `${scopeCode}-${materialCode}-`;
+            let maxSeq = 0;
+
+            aiRuleRules.forEach(rule => {
+                const ruleId = String(rule.id || '');
+                if (!ruleId.startsWith(prefix)) return;
+                const seqPart = ruleId.slice(prefix.length);
+                const seqNum = Number.parseInt(seqPart, 10);
+                if (Number.isInteger(seqNum) && seqNum > maxSeq) {
+                    maxSeq = seqNum;
+                }
+            });
+
+            return `${scopeCode}-${materialCode}-${String(maxSeq + 1).padStart(3, '0')}`;
+        }
+
+        function aiRuleRebuildRuleIds() {
+            const sequenceMap = new Map();
+            aiRuleRules.forEach(rule => {
+                const scopeCode = aiRuleGetScopeCode(rule.scope);
+                const materialCode = aiRuleGetMaterialCode(rule.scope, rule.material);
+                const prefix = `${scopeCode}-${materialCode}`;
+                const nextSeq = (sequenceMap.get(prefix) || 0) + 1;
+                sequenceMap.set(prefix, nextSeq);
+                rule.id = `${prefix}-${String(nextSeq).padStart(3, '0')}`;
+            });
+        }
 
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
@@ -4971,6 +5124,7 @@ const aiRuleRules = [
             const dimension = document.getElementById('ai-rule-dimension-filter')?.value || '';
             const risk = document.getElementById('ai-rule-risk-filter')?.value || '';
             const control = document.getElementById('ai-rule-control-filter')?.value || '';
+            const prepose = document.getElementById('ai-rule-prepose-filter')?.value || '';
             const enabled = document.getElementById('ai-rule-enabled-filter')?.value || '';
             const material = (document.getElementById('ai-rule-material-filter')?.value || '').trim().toLowerCase();
             const owner = (document.getElementById('ai-rule-owner-filter')?.value || '').trim().toLowerCase();
@@ -4992,6 +5146,7 @@ const aiRuleRules = [
                     && (!dimension || rule.dimension === dimension)
                     && (!risk || rule.risk === risk)
                     && (!control || rule.strongControl === control)
+                    && (!prepose || rule.preposeToBusinessSystem === prepose)
                     && (!enabled || (enabled === '启用' ? rule.enabled : !rule.enabled))
                     && (!owner || String(rule.owner || '').toLowerCase().includes(owner));
             });
@@ -5004,7 +5159,7 @@ const aiRuleRules = [
             if (!filteredRules.length) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="15" class="text-center py-10 text-gray-500 dark:text-gray-400">
+                        <td colspan="16" class="text-center py-10 text-gray-500 dark:text-gray-400">
                             <div class="flex flex-col items-center gap-3">
                                 <i class="fas fa-inbox text-3xl text-gray-300 dark:text-gray-600"></i>
                                 <p>暂无匹配规则</p>
@@ -5038,6 +5193,7 @@ const aiRuleRules = [
                     <td class="rule-logic-cell max-w-[320px] leading-5">${rule.logic}</td>
                     <td>${aiRuleRenderRiskBadge(rule.risk)}</td>
                     <td>${rule.strongControl}</td>
+                    <td>${rule.preposeToBusinessSystem || '否'}</td>
                     <td>${rule.owner || '-'}</td>
                     <td>${rule.updatedAt}</td>
                     <td>
@@ -5063,7 +5219,7 @@ const aiRuleRules = [
 
         function aiRuleGetTopicDisplay(rule) {
             if (rule.scope === '通用检查项') return '-';
-            return rule.topic || '工程建设/施工管理';
+            return rule.topic || rule.specialty || aiRuleMaterialTopicMap[rule.material] || aiRuleDefaultTopicHint;
         }
 
         function aiRuleGetMaterialTypeDisplay(rule) {
@@ -5096,10 +5252,12 @@ const aiRuleRules = [
             const fieldMap = [
                 ['scope', '规则范围'],
                 ['classification', '档案分类'],
+                ['material', '资料类型'],
                 ['dimension', '检查维度'],
                 ['item', '检查项'],
                 ['risk', '风险等级'],
                 ['control', '是否强控制'],
+                ['prepose', '是否前置到业务系统'],
                 ['logic', 'Agent 判定逻辑']
             ];
 
@@ -5167,19 +5325,15 @@ const aiRuleRules = [
         function aiRuleOpenCreatePage() {
             aiRuleCurrentRulePage = 'create';
             aiRuleEditingRuleId = '';
-            const now = aiRuleGetCurrentTimestamp();
-            const nextId = `R-NEW-${String(aiRuleRules.length + 1).padStart(3, '0')}`;
-            document.getElementById('ai-rule-create-id').value = nextId;
+            document.getElementById('ai-rule-create-id').value = aiRuleCreateIdHint;
             document.getElementById('ai-rule-create-scope').value = '指定档案资料类型检查项';
             aiRuleUpdateCreateDerivedFields();
-            document.getElementById('ai-rule-create-topic').value = '';
-            document.getElementById('ai-rule-create-material').value = '';
-            document.getElementById('ai-rule-create-dimension').value = '完备性';
-            document.getElementById('ai-rule-create-item').value = '';
+            aiRuleRenderMaterialOptions('create');
+            aiRuleRenderDimensionOptions('create', '要素完备性');
+            document.getElementById('ai-rule-create-topic').value = aiRuleDefaultTopicHint;
             document.getElementById('ai-rule-create-risk').value = '中';
             document.getElementById('ai-rule-create-control').value = '否';
-            document.getElementById('ai-rule-create-owner').value = 'Agent';
-            document.getElementById('ai-rule-create-updated-at').value = now;
+            document.getElementById('ai-rule-create-prepose').value = '否';
             document.getElementById('ai-rule-create-logic').value = '';
             document.getElementById('ai-rule-create-basis').value = '';
             aiRuleUpdateRulePageUI();
@@ -5197,14 +5351,15 @@ const aiRuleRules = [
             document.getElementById('ai-rule-edit-id').value = rule.id || '';
             document.getElementById('ai-rule-edit-scope').value = rule.scope || '通用检查项';
             aiRuleUpdateEditDerivedFields();
-            document.getElementById('ai-rule-edit-topic').value = rule.topic || '';
-            document.getElementById('ai-rule-edit-material').value = rule.material || '';
-            document.getElementById('ai-rule-edit-dimension').value = rule.dimension || '';
-            document.getElementById('ai-rule-edit-item').value = rule.item || '';
+            aiRuleRenderMaterialOptions('edit', rule.material || '');
+            const dimensionValue = aiRuleNormalizeDimensionValue(rule.dimension || '');
+            const itemValue = aiRuleNormalizeItemValue(rule.item || '');
+            aiRuleRenderDimensionOptions('edit', dimensionValue);
+            aiRuleSyncItemOptions('edit', itemValue);
+            document.getElementById('ai-rule-edit-topic').value = aiRuleGetTopicDisplay(rule);
             document.getElementById('ai-rule-edit-risk').value = rule.risk || '中';
             document.getElementById('ai-rule-edit-control').value = rule.strongControl || '否';
-            document.getElementById('ai-rule-edit-owner').value = rule.owner || '';
-            document.getElementById('ai-rule-edit-updated-at').value = rule.updatedAt || '';
+            document.getElementById('ai-rule-edit-prepose').value = rule.preposeToBusinessSystem || '否';
             document.getElementById('ai-rule-edit-logic').value = rule.logic || '';
             document.getElementById('ai-rule-edit-basis').value = rule.basis || '';
             aiRuleUpdateRulePageUI();
@@ -5235,35 +5390,37 @@ const aiRuleRules = [
             document.getElementById('ai-rule-detail-item').value = aiRuleFormatRuleItem(rule.item || '');
             document.getElementById('ai-rule-detail-risk').value = rule.risk || '';
             document.getElementById('ai-rule-detail-control').value = rule.strongControl || '';
-            document.getElementById('ai-rule-detail-owner').value = rule.owner || '-';
-            document.getElementById('ai-rule-detail-updated-at').value = rule.updatedAt || '-';
+            document.getElementById('ai-rule-detail-prepose').value = rule.preposeToBusinessSystem || '否';
             document.getElementById('ai-rule-detail-logic').value = rule.logic || '';
-            document.getElementById('ai-rule-detail-basis').value = rule.basis || '';
+            document.getElementById('ai-rule-detail-basis').value = rule.basis || aiRuleBasisPlaceholder;
         }
 
         function aiRuleSaveCreateRule() {
             if (!aiRuleValidateForm('create')) return;
             const now = aiRuleGetCurrentTimestamp();
             const scope = document.getElementById('ai-rule-create-scope').value;
-            const topic = document.getElementById('ai-rule-create-topic').value.trim();
+            const material = document.getElementById('ai-rule-create-material').value.trim();
+            const topicRaw = document.getElementById('ai-rule-create-topic').value.trim();
+            const topic = topicRaw === aiRuleDefaultTopicHint ? '' : topicRaw;
             const levels = scope === '通用检查项'
                 ? { level1: '', level2: '', level3: '' }
                 : { level1: '科技档案', level2: '基建档案', level3: '施工资料' };
             const newRule = {
-                id: document.getElementById('ai-rule-create-id').value.trim(),
+                id: aiRuleGenerateRuleId(scope, material),
                 scope,
                 level1: levels.level1,
                 level2: levels.level2,
                 level3: levels.level3,
                 topic,
-                material: document.getElementById('ai-rule-create-material').value.trim(),
+                material,
                 archivePath: '',
-                dimension: document.getElementById('ai-rule-create-dimension').value.trim(),
-                item: document.getElementById('ai-rule-create-item').value.trim(),
+                dimension: aiRuleNormalizeDimensionValue(document.getElementById('ai-rule-create-dimension').value.trim()),
+                item: aiRuleNormalizeItemValue(document.getElementById('ai-rule-create-item').value.trim()),
                 logic: document.getElementById('ai-rule-create-logic').value.trim(),
                 risk: document.getElementById('ai-rule-create-risk').value,
                 strongControl: document.getElementById('ai-rule-create-control').value,
-                owner: document.getElementById('ai-rule-create-owner').value.trim() || 'Agent',
+                preposeToBusinessSystem: document.getElementById('ai-rule-create-prepose').value,
+                owner: 'Agent',
                 status: '待发布',
                 version: 'v2026.04-RC1',
                 updatedAt: now,
@@ -5287,7 +5444,8 @@ const aiRuleRules = [
             if (!aiRuleValidateForm('edit')) return;
             const now = aiRuleGetCurrentTimestamp();
             rule.scope = document.getElementById('ai-rule-edit-scope').value;
-            rule.topic = document.getElementById('ai-rule-edit-topic').value.trim();
+            const topicRaw = document.getElementById('ai-rule-edit-topic').value.trim();
+            rule.topic = topicRaw === aiRuleDefaultTopicHint ? '' : topicRaw;
             rule.material = document.getElementById('ai-rule-edit-material').value.trim();
             if (rule.scope === '通用检查项') {
                 rule.level1 = '';
@@ -5298,12 +5456,12 @@ const aiRuleRules = [
                 rule.level2 = '基建档案';
                 rule.level3 = '施工资料';
             }
-            rule.dimension = document.getElementById('ai-rule-edit-dimension').value.trim();
-            rule.item = document.getElementById('ai-rule-edit-item').value.trim();
+            rule.dimension = aiRuleNormalizeDimensionValue(document.getElementById('ai-rule-edit-dimension').value.trim());
+            rule.item = aiRuleNormalizeItemValue(document.getElementById('ai-rule-edit-item').value.trim());
             rule.logic = document.getElementById('ai-rule-edit-logic').value.trim();
             rule.risk = document.getElementById('ai-rule-edit-risk').value;
             rule.strongControl = document.getElementById('ai-rule-edit-control').value;
-            rule.owner = document.getElementById('ai-rule-edit-owner').value.trim() || 'Agent';
+            rule.preposeToBusinessSystem = document.getElementById('ai-rule-edit-prepose').value;
             rule.basis = document.getElementById('ai-rule-edit-basis').value.trim();
             rule.updatedAt = now;
             aiRuleRenderOverview();
@@ -5338,6 +5496,7 @@ const aiRuleRules = [
             const classification = scope === '通用检查项' ? '-' : '科技档案/基建档案/施工资料';
             const el = document.getElementById('ai-rule-create-classification');
             if (el) el.value = classification;
+            aiRuleSyncTopicByMaterial('create');
         }
 
         function aiRuleUpdateEditDerivedFields() {
@@ -5345,6 +5504,7 @@ const aiRuleRules = [
             const classification = scope === '通用检查项' ? '-' : '科技档案/基建档案/施工资料';
             const el = document.getElementById('ai-rule-edit-classification');
             if (el) el.value = classification;
+            aiRuleSyncTopicByMaterial('edit');
         }
 
         function aiRuleToggleRuleEnabled(ruleId, enabled) {
@@ -5840,6 +6000,39 @@ const aiRuleRules = [
             return typeof validationReport !== 'undefined' ? validationReport : null;
         }
 
+        function aiRuleInferFallbackScopeCode(itemName = '') {
+            const text = String(itemName || '');
+            const generalKeywords = ['文件可打开', '日期格式', '页码连续', '附件齐全', '图像质量', '文件命名'];
+            return generalKeywords.some(keyword => text.includes(keyword)) ? 'TY' : 'ZD';
+        }
+
+        function aiRuleInferFallbackMaterialCode(fileName = '', itemName = '') {
+            const text = `${fileName} ${itemName}`;
+            if (text.includes('项目建议书')) return 'KJ·JJ·A1·01';
+            if (text.includes('批复')) return 'KJ·JJ·A1·02';
+            if (text.includes('可研')) return 'KJ·JJ·A1·03';
+            return 'default';
+        }
+
+        function aiRuleNormalizeFallbackResults(results) {
+            const prefixSeqMap = new Map();
+            return results.map(item => {
+                const currentRuleId = String(item.ruleId || '');
+                if (/^(TY|ZD)-/.test(currentRuleId)) return item;
+                const scopeCode = aiRuleInferFallbackScopeCode(item.item || '');
+                const materialCode = scopeCode === 'TY'
+                    ? 'default'
+                    : aiRuleInferFallbackMaterialCode(item.fileName || '', item.item || '');
+                const prefix = `${scopeCode}-${materialCode}`;
+                const nextSeq = (prefixSeqMap.get(prefix) || 0) + 1;
+                prefixSeqMap.set(prefix, nextSeq);
+                return {
+                    ...item,
+                    ruleId: `${prefix}-${String(nextSeq).padStart(3, '0')}`
+                };
+            });
+        }
+
         function getFallbackValidationResults(pageTab) {
             const archivedResults = [
                 { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开，页数识别为3页。', advice: '' },
@@ -5892,10 +6085,10 @@ const aiRuleRules = [
                 { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-008', item: '图像质量检查', result: 'FAIL', risk: '中', strongControl: '否', message: '图像模糊影响识别准确度。', advice: '请重新扫描上传清晰版本。' }
             ];
 
-            if (pageTab === 'archive-detail-archived') return archivedResults;
-            if (pageTab === 'archive-detail-rejected') return rejectedResults;
-            if (pageTab === 'archive-detail-pending' && currentPendingDetailMode === 'pending-block') return pendingBlockResults;
-            return pendingNormalResults;
+            if (pageTab === 'archive-detail-archived') return aiRuleNormalizeFallbackResults(archivedResults);
+            if (pageTab === 'archive-detail-rejected') return aiRuleNormalizeFallbackResults(rejectedResults);
+            if (pageTab === 'archive-detail-pending' && currentPendingDetailMode === 'pending-block') return aiRuleNormalizeFallbackResults(pendingBlockResults);
+            return aiRuleNormalizeFallbackResults(pendingNormalResults);
         }
 
         function getAICheckSummary(report) {
@@ -5965,13 +6158,11 @@ const aiRuleRules = [
             const enabledEl = document.getElementById('ai-detail-enabled-count');
             const passEl = document.getElementById('ai-detail-pass-count');
             const failEl = document.getElementById('ai-detail-fail-count');
-            const strongBlockEl = document.getElementById('ai-detail-strong-block-count');
             const tbody = document.getElementById('ai-detail-result-body');
 
             if (enabledEl) enabledEl.textContent = String(summary.enabledRuleCount);
             if (passEl) passEl.textContent = String(summary.passCount);
             if (failEl) failEl.textContent = String(summary.notPassCount);
-            if (strongBlockEl) strongBlockEl.textContent = String(summary.strongBlockCount);
 
             if (!tbody) return;
             const fileFilter = (document.getElementById('ai-detail-filter-file')?.value || '').trim().toLowerCase();
@@ -6014,14 +6205,18 @@ const aiRuleRules = [
                     const resultBadge = pass
                         ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">通过</span>'
                         : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">不通过</span>';
+                    const riskText = pass ? '-' : aiRuleRenderRiskBadge(item.risk);
+                    const strongControlText = item.strongControl === '是'
+                        ? '<span class="font-medium text-danger">是</span>'
+                        : escapeHtml(item.strongControl || '-');
                     return `
                         <tr>
                             <td>${escapeHtml(item.fileName)}</td>
                             <td class="font-medium text-primary">${escapeHtml(item.ruleId)}</td>
                             <td>${escapeHtml(item.item)}</td>
                             <td>${resultBadge}</td>
-                            <td>${aiRuleRenderRiskBadge(item.risk)}</td>
-                            <td>${escapeHtml(item.strongControl || '-')}</td>
+                            <td>${riskText}</td>
+                            <td>${strongControlText}</td>
                             <td class="whitespace-normal">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
                             <td class="whitespace-normal">${pass ? '-' : escapeHtml(item.advice || '请根据不通过原因修正后重新提交。')}</td>
                         </tr>
@@ -6053,14 +6248,18 @@ const aiRuleRules = [
                 const resultBadge = pass
                     ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">通过</span>'
                     : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">不通过</span>';
+                const riskText = pass ? '-' : aiRuleRenderRiskBadge(item.risk);
+                const strongControlText = item.strongControl === '是'
+                    ? '<span class="font-medium text-danger">是</span>'
+                    : escapeHtml(item.strongControl || '-');
                 return `
                     <tr>
                         <td>${escapeHtml(item.fileName)}</td>
                         <td class="font-medium text-primary">${escapeHtml(item.ruleId)}</td>
                         <td>${escapeHtml(item.item)}</td>
                         <td>${resultBadge}</td>
-                        <td>${aiRuleRenderRiskBadge(item.risk)}</td>
-                        <td>${escapeHtml(item.strongControl || '-')}</td>
+                        <td>${riskText}</td>
+                        <td>${strongControlText}</td>
                         <td class="whitespace-normal">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
                         <td class="whitespace-normal">${pass ? '-' : escapeHtml(item.advice || '请根据不通过原因修正后重新提交。')}</td>
                     </tr>
