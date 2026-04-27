@@ -400,6 +400,19 @@
             border-spacing: 0;
         }
 
+        .sticky-action-table {
+            width: max-content;
+            min-width: 100%;
+        }
+
+        .data-table colgroup col {
+            /* 基础样式 */
+        }
+
+        .table-sticky-action-col {
+            width: 140px;
+        }
+
         .data-table thead {
             position: sticky;
             top: 0;
@@ -1001,4 +1014,157 @@
         .column-order-item.column-order-dragging {
             opacity: 0.6;
             cursor: grabbing;
+        }
+
+        .batch-action-group {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.125rem;
+            white-space: nowrap;
+        }
+
+        .batch-action-btn {
+            width: 1.5rem;
+            height: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.25rem;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            background-color: transparent;
+            font-size: 0.75rem;
+        }
+
+        .batch-action-btn.is-disabled {
+            color: #cbd5e1 !important;
+            border-color: transparent !important;
+            background-color: transparent !important;
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .dark .batch-action-btn.is-disabled {
+            color: #6b7280 !important;
+        }
+
+        .batch-action-view {
+            color: #60a5fa;
+        }
+
+        .batch-action-view:hover {
+            color: #2563eb;
+            background-color: #eff6ff;
+            border-color: #dbeafe;
+        }
+
+        .batch-action-edit {
+            color: #f59e0b;
+        }
+
+        .batch-action-edit:hover {
+            color: #d97706;
+            background-color: #fffbeb;
+            border-color: #fde68a;
+        }
+
+        .batch-action-replace {
+            color: #fbbf24;
+        }
+
+        .batch-action-replace:hover {
+            color: #d97706;
+            background-color: #fffbeb;
+            border-color: #fde68a;
+        }
+
+        .batch-action-delete {
+            color: #f87171;
+        }
+
+        .batch-action-delete:hover {
+            color: #dc2626;
+            background-color: #fef2f2;
+            border-color: #fecaca;
+        }
+
+        .dark .batch-action-view:hover {
+            background-color: rgba(37, 99, 235, 0.2);
+            border-color: rgba(147, 197, 253, 0.3);
+        }
+
+        .dark .batch-action-edit:hover {
+            background-color: rgba(217, 119, 6, 0.2);
+            border-color: rgba(253, 230, 138, 0.3);
+        }
+
+        .dark .batch-action-replace:hover {
+            background-color: rgba(124, 58, 237, 0.2);
+            border-color: rgba(196, 181, 253, 0.3);
+        }
+
+        .dark .batch-action-delete:hover {
+            background-color: rgba(220, 38, 38, 0.2);
+            border-color: rgba(252, 165, 165, 0.3);
+        }
+
+        .table-sticky-action {
+            position: sticky;
+            right: 0;
+            z-index: 30;
+            background-color: #f9fafb;
+            box-shadow: -6px 0 8px -8px rgba(15, 23, 42, 0.2);
+            width: 140px;
+            min-width: 140px;
+            max-width: 140px;
+            box-sizing: border-box;
+            background-clip: padding-box;
+        }
+
+        /* 确保表头的操作列在层级上更高，防止滚动时被表头本身的其他元素覆盖 */
+        .data-table thead th.table-sticky-action,
+        .data-table thead td.table-sticky-action {
+            position: sticky;
+            right: 0;
+            z-index: 40;
+            background-color: #f9fafb;
+            box-shadow: -6px 0 8px -8px rgba(15, 23, 42, 0.2);
+            background-clip: padding-box;
+        }
+        
+        .dark .data-table thead th.table-sticky-action,
+        .dark .data-table thead td.table-sticky-action {
+            background-color: #1f2937;
+            box-shadow: -6px 0 8px -8px rgba(0, 0, 0, 0.5);
+        }
+
+        .data-table thead tr:first-child .table-sticky-action {
+            z-index: 45;
+        }
+
+        .table-sticky-action-cell {
+            position: sticky;
+            right: 0;
+            z-index: 25;
+            background-color: white;
+            box-shadow: -6px 0 8px -8px rgba(15, 23, 42, 0.2);
+            width: 140px;
+            min-width: 140px;
+            max-width: 140px;
+            box-sizing: border-box;
+            background-clip: padding-box;
+        }
+
+        .dark .table-sticky-action {
+            background-color: #1f2937;
+            box-shadow: -6px 0 8px -8px rgba(0, 0, 0, 0.5);
+            background-clip: padding-box;
+        }
+
+        .dark .table-sticky-action-cell {
+            background-color: #1f2937;
+            box-shadow: -6px 0 8px -8px rgba(0, 0, 0, 0.5);
+            background-clip: padding-box;
         }

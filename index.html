@@ -441,7 +441,7 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="style.css?v=20260423-2">
+    <link rel="stylesheet" href="style.css?v=20260427-1">
 </head>
 <body class="bg-gray-50 text-gray-800 overflow-hidden dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
 
@@ -813,9 +813,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- 审批中（AI校验中） -->
+                            <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20" onclick="openArchiveDetail('pending-ai-processing')">
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">1</td>
+                                <td class="font-medium text-primary">20260128-G001-000003</td>
+                                <td class="text-xs">
+                                    <span class="block font-medium dark:text-white">科技档案</span>
+                                    <span class="text-gray-500 dark:text-gray-400">基建档案</span>
+                                </td>
+                                <td class="text-gray-600 dark:text-gray-300">成都某水厂改扩建项目（三期）</td>
+                                <td class="text-gray-600 dark:text-gray-300">北控水务发展有限公司</td>
+                                <td class="text-gray-600 dark:text-gray-300">手工录入移交</td>
+                                <td class="text-gray-600 dark:text-gray-300">非结构化数据统一服务</td>
+                                <td class="dark:text-gray-300">刘敏</td>
+                                <td class="text-gray-500 dark:text-gray-400">2026-01-28</td>
+                                <td class="text-center dark:text-gray-300">4</td>
+                                <td>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                        <span class="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-1.5 animate-pulse"></span>
+                                        审批中
+                                    </span>
+                                </td>
+                            </tr>
                             <!-- 审批中（AI强校验拦截） -->
                             <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20" onclick="openArchiveDetail('pending-block')">
-                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">1</td>
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">2</td>
                                 <td class="font-medium text-primary">20260128-G001-000002</td>
                                 <td class="text-xs">
                                     <span class="block font-medium dark:text-white">科技档案</span>
@@ -837,7 +859,7 @@
                             </tr>
                             <!-- 审批中 -->
                             <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20" onclick="openArchiveDetail('pending-normal')">
-                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">2</td>
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">3</td>
                                 <td class="font-medium text-primary">20260128-G001-000001</td>
                                 <td class="text-xs">
                                     <span class="block font-medium dark:text-white">科技档案</span>
@@ -860,7 +882,7 @@
 
                             <!-- 已归档：点击跳转已归档详情页 -->
                             <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20" onclick="showPage('archive-detail-archived')">
-                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">3</td>
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">4</td>
                                 <td class="font-medium text-primary">20260127-WS002-000045</td>
                                 <td class="text-xs">
                                     <span class="block font-medium dark:text-white">文书档案</span>
@@ -883,7 +905,7 @@
 
                             <!-- 已拒绝：点击跳转已拒绝详情页（可编辑） -->
                             <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20" onclick="showPage('archive-detail-rejected')">
-                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">4</td>
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">5</td>
                                 <td class="font-medium text-primary">20260126-KJ003-000012</td>
                                 <td class="text-xs">
                                     <span class="block font-medium dark:text-white">科技档案</span>
@@ -905,7 +927,7 @@
                             </tr>
                             <!-- 新建：点击进入新增文件上传申请页面 -->
                             <tr class="hover:bg-blue-50 transition cursor-pointer border-2 border-dashed border-primary dark:border-blue-500 dark:hover:bg-blue-900/20" onclick="showPage('upload-files')">
-                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">5</td>
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">6</td>
                                 <td class="font-medium text-primary">20260126-KJ003-000013</td>
                                 <td class="text-xs">
                                     <span class="block font-medium dark:text-white">科技档案</span>
@@ -1053,7 +1075,11 @@
                         <h3 class="text-base md:text-lg font-semibold text-gray-900 mb-4 dark:text-white">文件清单 (7份)</h3>
 
                         <div class="table-container mobile-scroll-x">
-                            <table class="data-table readonly-table" id="file-list-archived-table">
+                            <table class="data-table readonly-table sticky-action-table" id="file-list-archived-table">
+                                <colgroup>
+                                    <col span="11">
+                                    <col class="table-sticky-action-col">
+                                </colgroup>
                                 <thead>
                                     <tr>
                                         <th class="sticky sticky-fixed-column left-0 z-30 bg-gray-50 dark:bg-gray-800">序号<div class="resize-handle"></div></th>
@@ -1067,6 +1093,7 @@
                                         <th>责任者<div class="resize-handle"></div></th>
                                         <th>文号<div class="resize-handle"></div></th>
                                         <th>页数<div class="resize-handle"></div></th>
+                                        <th class="min-w-[140px] text-center table-sticky-action">操作<div class="resize-handle"></div></th>
                                     </tr>
                                     <tr class="header-filter">
                                         <td class="sticky left-0 z-30 bg-gray-50 dark:bg-gray-800 text-center">-</td>
@@ -1079,8 +1106,8 @@
                                         <td><input type="text" placeholder="搜索"></td>
                                         <td><input type="text" placeholder="搜索"></td>
                                         <td><input type="text" placeholder="搜索"></td>
-                                                                                <td><input type="text" placeholder="搜索"></td>
-
+                                        <td><input type="text" placeholder="搜索"></td>
+                                        <td class="text-center table-sticky-action">-</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1096,9 +1123,17 @@
                                         <td class="dark:text-gray-300">行政部</td>
                                         <td class="dark:text-gray-300">北水行〔2026〕15号</td>
                                         <td class="text-center dark:text-gray-300">3</td>
+                                        <td class="text-center table-sticky-action-cell">
+                                            <div class="batch-action-group">
+                                                <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览"><i class="fas fa-eye"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-edit is-disabled" title="编辑"><i class="fas fa-pen-to-square"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-replace is-disabled" title="替换文件"><i class="fas fa-right-left"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-delete is-disabled" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
                                     </tr>
-                                     <tr>
-                                        <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10">1</td>
+                                    <tr>
+                                        <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10">2</td>
                                         <td><a href="#" onclick="openPreview(); return false;" class="text-primary hover:underline">关于加强档案管理的通知.pdf</a></td>
                                         <td class="font-medium dark:text-white">关于加强档案管理的通知</td>
                                         <td class="dark:text-gray-300">行政发文</td>
@@ -1109,8 +1144,17 @@
                                         <td class="dark:text-gray-300">行政部</td>
                                         <td class="dark:text-gray-300">北水行〔2026〕15号</td>
                                         <td class="text-center dark:text-gray-300">3</td>
-                                          <tr>
-                                        <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10">1</td>
+                                        <td class="text-center table-sticky-action-cell">
+                                            <div class="batch-action-group">
+                                                <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览"><i class="fas fa-eye"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-edit is-disabled" title="编辑"><i class="fas fa-pen-to-square"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-replace is-disabled" title="替换文件"><i class="fas fa-right-left"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-delete is-disabled" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10">3</td>
                                         <td><a href="#" onclick="openPreview(); return false;" class="text-primary hover:underline">关于加强档案管理的通知.pdf</a></td>
                                         <td class="font-medium dark:text-white">关于加强档案管理的通知</td>
                                         <td class="dark:text-gray-300">行政发文</td>
@@ -1121,6 +1165,14 @@
                                         <td class="dark:text-gray-300">行政部</td>
                                         <td class="dark:text-gray-300">北水行〔2026〕15号</td>
                                         <td class="text-center dark:text-gray-300">3</td>
+                                        <td class="text-center table-sticky-action-cell">
+                                            <div class="batch-action-group">
+                                                <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览"><i class="fas fa-eye"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-edit is-disabled" title="编辑"><i class="fas fa-pen-to-square"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-replace is-disabled" title="替换文件"><i class="fas fa-right-left"></i></button>
+                                                <button type="button" class="batch-action-btn batch-action-delete is-disabled" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1188,10 +1240,13 @@
                     <!-- AI 校验报告（可点击查看详情） -->
                     <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
                         <div class="flex items-center justify-between gap-3 mb-3">
-                            <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
-                                <i class="fas fa-robot text-primary"></i>
-                                AI校验说明
-                            </h3>
+                            <div>
+                                <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                                    <i class="fas fa-robot text-primary"></i>
+                                    AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示不通过项）</span>
+                                </h3>
+                                <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
+                            </div>
                             <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
                         </div>
                         <div class="text-sm text-blue-800 dark:text-blue-200">
@@ -1388,7 +1443,11 @@
                         </div>
 
                         <div class="table-container mobile-scroll-x">
-                            <table class="data-table editable-table" id="file-list-rejected-table">
+                            <table class="data-table editable-table sticky-action-table" id="file-list-rejected-table">
+                                <colgroup>
+                                    <col span="9">
+                                    <col class="table-sticky-action-col">
+                                </colgroup>
                                 <thead>
                                     <tr>
                                         <th class="sticky sticky-fixed-column left-0 z-30 bg-gray-50 dark:bg-gray-800">序号<div class="resize-handle"></div></th>
@@ -1401,7 +1460,7 @@
                                         <th>责任者 <span class="text-danger">*</span><div class="resize-handle"></div></th>
                                         <th>文号<div class="resize-handle"></div></th>
                                         <!-- <th>页数 <span class="text-danger">*</span><div class="resize-handle"></div></th> -->
-                                        <th>操作<div class="resize-handle"></div></th>
+                                        <th class="min-w-[140px] text-center table-sticky-action">操作<div class="resize-handle"></div></th>
                                     </tr>
                                     <tr class="header-filter">
                                         <td class="sticky left-0 z-30 bg-gray-50 dark:bg-gray-800 text-center">-</td>
@@ -1411,11 +1470,9 @@
                                         <td><input type="text" placeholder="搜索"></td>
                                         <td><input type="text" placeholder="搜索"></td>
                                         <td><input type="text" placeholder="搜索"></td>
-                                        <!-- <td><input type="text" placeholder="搜索"></td> -->
                                         <td><input type="text" placeholder="搜索"></td>
-                                                                                <td><input type="text" placeholder="搜索"></td>
-
-                                        <td class="text-center">-</td>
+                                        <td><input type="text" placeholder="搜索"></td>
+                                        <td class="text-center table-sticky-action">-</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1456,14 +1513,27 @@
                                         <td><input type="date" value="2026-01-20" class="w-full"></td>
                                         <td><input type="text" value="投资并购部" class="w-full"></td>
                                         <td><input type="text" class="w-full"></td>
-                                        <td><input type="number" value="12" class="w-full text-center"></td>
-                                        <td class="text-center">
-                                            <button onclick="removeTableRow(this)" class="text-gray-400 hover:text-danger"><i class="fas fa-trash-alt"></i></button>
+                                        <td class="text-center table-sticky-action-cell">
+                                            <div class="batch-action-group">
+                                                <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button type="button" onclick="triggerEditRejectedFile(this)" class="batch-action-btn batch-action-edit" title="编辑">
+                                                    <i class="fas fa-pen-to-square"></i>
+                                                </button>
+                                                <button type="button" onclick="triggerReplaceRejectedFile(this)" class="batch-action-btn batch-action-replace" title="替换文件">
+                                                    <i class="fas fa-right-left"></i>
+                                                </button>
+                                                <button type="button" onclick="removeTableRow(this)" class="batch-action-btn batch-action-delete" title="删除">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <input id="rejected-replace-file-input" type="file" class="hidden" onchange="handleReplaceRejectedFile(this)">
 
                     </div>
                 </div>
@@ -1531,10 +1601,13 @@
                     <!-- AI 智能检查报告 -->
                     <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
                         <div class="flex items-center justify-between gap-3 mb-3">
-                            <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
-                                <i class="fas fa-robot text-primary"></i>
-                                AI校验说明
-                            </h3>
+                            <div>
+                                <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                                    <i class="fas fa-robot text-primary"></i>
+                                    AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示不通过项）</span>
+                                </h3>
+                                <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
+                            </div>
                             <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
                         </div>
                         <div class="text-sm text-blue-800 dark:text-blue-200">
@@ -1641,7 +1714,11 @@
                         <h3 class="text-base md:text-lg font-semibold text-gray-900 mb-4 dark:text-white">文件清单 (7份)</h3>
 
                         <div class="table-container mobile-scroll-x">
-                            <table class="data-table readonly-table" id="file-list-pending-table">
+                            <table class="data-table readonly-table sticky-action-table" id="file-list-pending-table">
+                                <colgroup>
+                                    <col span="11">
+                                    <col class="table-sticky-action-col">
+                                </colgroup>
                                 <thead>
                                     <tr>
                                         <th class="sticky sticky-fixed-column left-0 z-30 bg-gray-50 dark:bg-gray-800">序号<div class="resize-handle"></div></th>
@@ -1656,6 +1733,7 @@
                                         <th>责任者<div class="resize-handle"></div></th>
                                         <th>文号<div class="resize-handle"></div></th>
                                         <th>页数<div class="resize-handle"></div></th>
+                                        <th class="min-w-[140px] text-center table-sticky-action">操作<div class="resize-handle"></div></th>
                                     </tr>
                                     <tr class="header-filter">
                                         <td class="sticky left-0 z-30 bg-gray-50 dark:bg-gray-800 text-center">-</td>
@@ -1668,7 +1746,8 @@
                                         <td><input type="text" placeholder="搜索"></td>
                                         <td><input type="text" placeholder="搜索"></td>
                                         <td><input type="text" placeholder="搜索"></td>
-                                         <td><input type="text" placeholder="搜索"></td>
+                                        <td><input type="text" placeholder="搜索"></td>
+                                        <td class="text-center table-sticky-action">-</td>
 
                                     </tr>
                                 </thead>
@@ -1685,6 +1764,22 @@
                                         <td class="dark:text-gray-300">南京某建筑公司</td>
                                         <td class="dark:text-gray-300">施组-2026-001</td>
                                         <td class="text-center dark:text-gray-300">45</td>
+                                        <td class="text-center table-sticky-action-cell">
+                                            <div class="batch-action-group">
+                                                <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button type="button" onclick="editPendingFile(this)" class="batch-action-btn batch-action-edit" title="编辑">
+                                                    <i class="fas fa-pen-to-square"></i>
+                                                </button>
+                                                <button type="button" onclick="triggerReplacePendingFile(this)" class="batch-action-btn batch-action-replace" title="替换文件">
+                                                    <i class="fas fa-right-left"></i>
+                                                </button>
+                                                <button type="button" onclick="removeTableRow(this)" class="batch-action-btn batch-action-delete" title="删除">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10">2</td>
@@ -1698,6 +1793,22 @@
                                         <td class="dark:text-gray-300">南京某建筑公司</td>
                                         <td class="dark:text-gray-300">施组-2026-001</td>
                                         <td class="text-center dark:text-gray-300">45</td>
+                                        <td class="text-center table-sticky-action-cell">
+                                            <div class="batch-action-group">
+                                                <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button type="button" onclick="editPendingFile(this)" class="batch-action-btn batch-action-edit" title="编辑">
+                                                    <i class="fas fa-pen-to-square"></i>
+                                                </button>
+                                                <button type="button" onclick="triggerReplacePendingFile(this)" class="batch-action-btn batch-action-replace" title="替换文件">
+                                                    <i class="fas fa-right-left"></i>
+                                                </button>
+                                                <button type="button" onclick="removeTableRow(this)" class="batch-action-btn batch-action-delete" title="删除">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10">3</td>
@@ -1711,10 +1822,27 @@
                                         <td class="dark:text-gray-300">南京某建筑公司</td>
                                         <td class="dark:text-gray-300">施组-2026-001</td>
                                         <td class="text-center dark:text-gray-300">45</td>
+                                        <td class="text-center table-sticky-action-cell">
+                                            <div class="batch-action-group">
+                                                <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button type="button" onclick="editPendingFile(this)" class="batch-action-btn batch-action-edit" title="编辑">
+                                                    <i class="fas fa-pen-to-square"></i>
+                                                </button>
+                                                <button type="button" onclick="triggerReplacePendingFile(this)" class="batch-action-btn batch-action-replace" title="替换文件">
+                                                    <i class="fas fa-right-left"></i>
+                                                </button>
+                                                <button type="button" onclick="removeTableRow(this)" class="batch-action-btn batch-action-delete" title="删除">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <input id="pending-replace-file-input" type="file" class="hidden" onchange="handleReplacePendingFile(this)">
                     </div>
                 </div>
 
@@ -1790,12 +1918,15 @@
                     </div>
 
                     <!-- AI 校验报告 -->
-                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
+                    <div id="pending-ai-card" class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
                         <div class="flex items-center justify-between gap-3 mb-3">
-                            <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
-                                <i class="fas fa-robot text-primary"></i>
-                                AI校验说明
-                            </h3>
+                            <div>
+                                <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                                    <i class="fas fa-robot text-primary"></i>
+                                    AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示不通过项）</span>
+                                </h3>
+                                <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
+                            </div>
                             <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
                         </div>
                         <div id="pending-ai-fail-list" class="space-y-3">
@@ -1850,7 +1981,11 @@
                 </div>
 
                 <div class="table-container mobile-scroll-x">
-                    <table class="data-table" id="file-list-table">
+                    <table class="data-table sticky-action-table" id="file-list-table">
+                        <colgroup>
+                            <col span="9">
+                            <col class="table-sticky-action-col">
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th class="sticky left-0 z-30 bg-gray-50 dark:bg-gray-800 w-10">
@@ -1864,7 +1999,7 @@
                                 <th>密级<div class="resize-handle"></div></th>
                                 <th>上传时间<div class="resize-handle"></div></th>
                                 <th>审批状态<div class="resize-handle"></div></th>
-                                <th class="text-center">操作<div class="resize-handle"></div></th>
+                                <th class="min-w-[140px] text-center table-sticky-action">操作<div class="resize-handle"></div></th>
                             </tr>
                             <!-- 筛选条件行 - 所有字段均可筛选 -->
                             <tr class="header-filter">
@@ -1899,7 +2034,7 @@
                                         <option>已拒绝</option>
                                     </select>
                                 </td>
-                                <td class="text-center">-</td>
+                                <td class="text-center table-sticky-action">-</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -1926,11 +2061,12 @@
                                         待提交
                                     </span>
                                 </td>
-                                <td class="text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <button onclick="editFile(1)" class="text-gray-400 hover:text-primary dark:hover:text-blue-400" title="编辑"><i class="fas fa-edit"></i></button>
-                                        <button onclick="submitSingleFile(1)" class="text-success hover:text-green-700" title="提交审批"><i class="fas fa-paper-plane"></i></button>
-                                        <button onclick="deleteFile(1)" class="text-danger hover:text-red-700" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                <td class="text-center table-sticky-action-cell">
+                                    <div class="batch-action-group">
+                                        <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览"><i class="fas fa-eye"></i></button>
+                                        <button type="button" onclick="editFile(1)" class="batch-action-btn batch-action-edit" title="编辑"><i class="fas fa-pen-to-square"></i></button>
+                                        <button type="button" onclick="triggerReplaceFileList(1)" class="batch-action-btn batch-action-replace" title="替换文件"><i class="fas fa-right-left"></i></button>
+                                        <button type="button" onclick="deleteFile(1)" class="batch-action-btn batch-action-delete" title="删除"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1957,10 +2093,12 @@
                                         审批中
                                     </span>
                                 </td>
-                                <td class="text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <button onclick="previewFile(2)" class="text-gray-400 hover:text-primary dark:hover:text-blue-400" title="预览"><i class="fas fa-eye"></i></button>
-                                        <button onclick="withdrawFile(2)" class="text-warning hover:text-yellow-700" title="撤回"><i class="fas fa-undo"></i></button>
+                                <td class="text-center table-sticky-action-cell">
+                                    <div class="batch-action-group">
+                                        <button type="button" onclick="previewFile(2)" class="batch-action-btn batch-action-view" title="预览"><i class="fas fa-eye"></i></button>
+                                        <button type="button" class="batch-action-btn batch-action-edit is-disabled" title="编辑"><i class="fas fa-pen-to-square"></i></button>
+                                        <button type="button" class="batch-action-btn batch-action-replace is-disabled" title="替换文件"><i class="fas fa-right-left"></i></button>
+                                        <button type="button" class="batch-action-btn batch-action-delete is-disabled" title="删除"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -1987,10 +2125,12 @@
                                         已通过
                                     </span>
                                 </td>
-                                <td class="text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <button onclick="previewFile(3)" class="text-gray-400 hover:text-primary dark:hover:text-blue-400" title="预览"><i class="fas fa-eye"></i></button>
-                                        <button onclick="viewArchiveDetail(3)" class="text-success hover:text-green-700" title="查看归档详情"><i class="fas fa-folder-open"></i></button>
+                                <td class="text-center table-sticky-action-cell">
+                                    <div class="batch-action-group">
+                                        <button type="button" onclick="previewFile(3)" class="batch-action-btn batch-action-view" title="预览"><i class="fas fa-eye"></i></button>
+                                        <button type="button" class="batch-action-btn batch-action-edit is-disabled" title="编辑"><i class="fas fa-pen-to-square"></i></button>
+                                        <button type="button" class="batch-action-btn batch-action-replace is-disabled" title="替换文件"><i class="fas fa-right-left"></i></button>
+                                        <button type="button" class="batch-action-btn batch-action-delete is-disabled" title="删除"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -2017,11 +2157,12 @@
                                         已拒绝
                                     </span>
                                 </td>
-                                <td class="text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <button onclick="editFile(4)" class="text-gray-400 hover:text-primary dark:hover:text-blue-400" title="编辑"><i class="fas fa-edit"></i></button>
-                                        <button onclick="submitSingleFile(4)" class="text-success hover:text-green-700" title="重新提交"><i class="fas fa-redo"></i></button>
-                                        <button onclick="deleteFile(4)" class="text-danger hover:text-red-700" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                <td class="text-center table-sticky-action-cell">
+                                    <div class="batch-action-group">
+                                        <button type="button" onclick="openPreview(); return false;" class="batch-action-btn batch-action-view" title="预览"><i class="fas fa-eye"></i></button>
+                                        <button type="button" onclick="editFile(4)" class="batch-action-btn batch-action-edit" title="编辑"><i class="fas fa-pen-to-square"></i></button>
+                                        <button type="button" onclick="triggerReplaceFileList(4)" class="batch-action-btn batch-action-replace" title="替换文件"><i class="fas fa-right-left"></i></button>
+                                        <button type="button" onclick="deleteFile(4)" class="batch-action-btn batch-action-delete" title="删除"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -3661,7 +3802,7 @@
         </button>
     </div>
     <div class="table-container mobile-scroll-x dark:bg-gray-800 width-100pct" onclick="event.stopPropagation()">
-        <table class="data-table editable-table table-min-1400" id="file-list-expanded-table">
+        <table class="data-table editable-table table-min-1400 sticky-action-table" id="file-list-expanded-table">
             <!-- 表格内容将由JS复制 -->
         </table>
     </div>
@@ -3982,7 +4123,11 @@
                 </div>
 
                 <div class="table-container mobile-scroll-x">
-                    <table class="data-table editable-table" id="batch-upload-table">
+                    <table class="data-table editable-table sticky-action-table" id="batch-upload-table">
+                        <colgroup>
+                            <col span="14">
+                            <col class="table-sticky-action-col">
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th class="batch-sticky-select bg-gray-50 dark:bg-gray-800">
@@ -4001,7 +4146,7 @@
                                 <th class="min-w-[80px]">密级<div class="resize-handle"></div></th>
                                 <th class="min-w-[60px]">页数<div class="resize-handle"></div></th>
                                 <th class="min-w-[100px]">匹配档案分类<div class="resize-handle"></div></th>
-                                <th class="min-w-[80px] text-center">操作<div class="resize-handle"></div></th>
+                                <th class="min-w-[140px] text-center table-sticky-action">操作<div class="resize-handle"></div></th>
                             </tr>
                         </thead>
 
@@ -4017,6 +4162,7 @@
                         </tbody>
                     </table>
                 </div>
+                <input id="batch-replace-file-input" type="file" class="hidden" onchange="handleReplaceBatchFile(this)">
 
                 <!-- 智能提示 -->
                 <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4 dark:bg-blue-900/20 dark:border-blue-800">
@@ -4070,7 +4216,6 @@
                             <th class="min-w-[100px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span><div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">结果说明<div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">修改建议<div class="resize-handle"></div></th>
-                            <th class="min-w-[280px]">提交说明 <span title="当不通过项认为无需修改时，填写原因说明并继续提交审批。" class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute right-0 top-6 z-20 hidden w-[260px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">当不通过项认为无需修改时，填写原因说明并继续提交审批。</span></span><div class="resize-handle"></div></th>
                         </tr>
                         <tr>
                             <th><input id="ai-detail-filter-file" oninput="aiDetailApplyFilters()" placeholder="文件名称" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
@@ -4100,7 +4245,6 @@
                             </th>
                             <th><input id="ai-detail-filter-message" oninput="aiDetailApplyFilters()" placeholder="结果说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                             <th><input id="ai-detail-filter-advice" oninput="aiDetailApplyFilters()" placeholder="修改建议" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
-                            <th><input id="ai-detail-filter-submit-remark" oninput="aiDetailApplyFilters()" placeholder="提交说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                         </tr>
                     </thead>
                     <tbody id="ai-detail-result-body"></tbody>
@@ -4108,7 +4252,6 @@
             </div>
         </div>
         <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-xl flex justify-end gap-3 dark:bg-gray-800 dark:border-gray-700">
-            <button onclick="saveAICheckRemarks()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">保存</button>
             <button onclick="closeAICheckModal()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">关闭</button>
         </div>
     </div>
@@ -4265,7 +4408,7 @@
                                             <th class="min-w-[160px]">检查项</th>
                                             <th class="min-w-[420px]">Agent判定逻辑</th>
                                             <th class="min-w-[90px]">风险等级</th>
-                                            <th class="min-w-[120px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span></th>
+                                            <th class="min-w-[120px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span><div class="resize-handle"></div></th>
                                             <th class="min-w-[150px]">是否前置到业务系统</th>
                                             <th class="min-w-[120px]">更新人</th>
                                             <th class="min-w-[150px]">更新时间</th>
@@ -5189,7 +5332,7 @@ const aiRuleRules = [
                     <td>${aiRuleFormatRuleItem(rule.item)}</td>
                     <td class="rule-logic-cell max-w-[320px] leading-5">${rule.logic}</td>
                     <td>${aiRuleRenderRiskBadge(rule.risk)}</td>
-                    <td>${rule.strongControl}</td>
+                    <td>${rule.strongControl === '是' ? '<span class="font-medium text-danger">是</span>' : rule.strongControl}</td>
                     <td>${rule.preposeToBusinessSystem || '否'}</td>
                     <td>${rule.owner || '-'}</td>
                     <td>${rule.updatedAt}</td>
@@ -6050,7 +6193,7 @@ const aiRuleRules = [
                 rejected: aiRuleNormalizeFallbackResults([
                     { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '', submissionRemark: '' },
                     { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '日期格式符合要求。', advice: '', submissionRemark: '' },
-                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '否', message: '文号字段缺失。', advice: '补充文号后重新提交。', submissionRemark: '' },
+                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '文号字段缺失。', advice: '补充文号后重新提交。', submissionRemark: '' },
                     { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '否', message: '识别为投资档案，与所选基建档案不一致。', advice: '调整为科技档案/投资档案。', submissionRemark: '' },
                     { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', advice: '', submissionRemark: '' },
                     { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '', submissionRemark: '' },
@@ -6062,7 +6205,7 @@ const aiRuleRules = [
                 pendingNormal: aiRuleNormalizeFallbackResults([
                     { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '', submissionRemark: '' },
                     { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', advice: '', submissionRemark: '' },
-                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '否', message: '责任者信息缺失。', advice: '补齐责任者字段并重新提交。', submissionRemark: '' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '责任者信息缺失。', advice: '补齐责任者字段并重新提交。', submissionRemark: '' },
                     { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-004', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料分类匹配通过。', advice: '', submissionRemark: '' },
                     { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', advice: '', submissionRemark: '' },
                     { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '', submissionRemark: '' },
@@ -6129,19 +6272,45 @@ const aiRuleRules = [
             const nodeFailEl = document.getElementById('pending-ai-node-fail-text');
             const nodeTimeEl = document.getElementById('pending-ai-node-time');
             const failListEl = document.getElementById('pending-ai-fail-list');
+            const aiCard = document.getElementById('pending-ai-card');
             const report = getValidationReportSafe();
             const fallbackResults = getFallbackValidationResults(currentTab);
             const allResults = report && Array.isArray(report.results) && report.results.length ? report.results : fallbackResults;
             const failResults = allResults.filter(item => item.result !== 'PASS');
+            const isAIProcessingMode = currentPendingDetailMode === 'pending-ai-processing';
+
+            if (isAIProcessingMode) {
+                if (aiCard) aiCard.classList.add('hidden');
+                if (nodeResultEl) {
+                    nodeResultEl.className = 'text-xs text-danger mt-1';
+                    nodeResultEl.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i>AI校验中';
+                }
+                if (nodeTimeEl) {
+                    const now = new Date();
+                    const pad = value => String(value).padStart(2, '0');
+                    nodeTimeEl.textContent = `${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+                }
+                return;
+            }
+
+            if (aiCard) aiCard.classList.remove('hidden');
 
             if (nodeResultEl) {
                 nodeResultEl.className = 'flex items-center gap-4 flex-wrap text-xs mt-1';
+                if (!document.getElementById('pending-ai-node-pass-text') || !document.getElementById('pending-ai-node-fail-text')) {
+                    nodeResultEl.innerHTML = `
+                        <span id="pending-ai-node-pass-text" class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 0项</span>
+                        <span id="pending-ai-node-fail-text" class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 0项</span>
+                    `;
+                }
             }
-            if (nodePassEl) {
-                nodePassEl.innerHTML = `<i class="fas fa-check-circle"></i> 通过 ${summary.passCount}项`;
+            const latestNodePassEl = document.getElementById('pending-ai-node-pass-text');
+            const latestNodeFailEl = document.getElementById('pending-ai-node-fail-text');
+            if (latestNodePassEl) {
+                latestNodePassEl.innerHTML = `<i class="fas fa-check-circle"></i> 通过 ${summary.passCount}项`;
             }
-            if (nodeFailEl) {
-                nodeFailEl.innerHTML = `<i class="fas fa-times-circle"></i> 不通过 ${summary.notPassCount}项`;
+            if (latestNodeFailEl) {
+                latestNodeFailEl.innerHTML = `<i class="fas fa-times-circle"></i> 不通过 ${summary.notPassCount}项`;
             }
 
             if (failListEl) {
@@ -6174,7 +6343,12 @@ const aiRuleRules = [
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <label class="block text-sm text-gray-500 mb-1 dark:text-gray-400">提交说明</label>
+                                    <label class="block text-sm text-gray-500 mb-1 dark:text-gray-400">
+                                        提交说明
+                                        <span title="当不通过项认为无需修改时，填写原因说明并继续提交审批。" class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-gray-300 text-gray-500 text-[10px] cursor-help align-middle group ml-1">?
+                                            <span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[260px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">当不通过项认为无需修改时，填写原因说明并继续提交审批。</span>
+                                        </span>
+                                    </label>
                                     <textarea data-ai-fail-index="${index}" oninput="updatePendingAIFailRemark(${index}, this.value)" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500" rows="2" placeholder="校验不通过，请填写提交说明。">${escapeHtml(advice)}</textarea>
                                 </div>
                             </div>
@@ -6232,10 +6406,6 @@ const aiRuleRules = [
             return `<textarea ${onInput} ${disabled} class="${commonClass}" rows="2" placeholder="${placeholder}">${value}</textarea>`;
         }
 
-        function saveAICheckRemarks() {
-            showToast('AI校验说明已保存', 'success');
-        }
-
         function renderValidationReport() {
             const report = getValidationReportSafe();
             const summary = getAICheckSummary(report);
@@ -6258,7 +6428,6 @@ const aiRuleRules = [
             const strongFilter = document.getElementById('ai-detail-filter-strong')?.value || '';
             const messageFilter = (document.getElementById('ai-detail-filter-message')?.value || '').trim().toLowerCase();
             const adviceFilter = (document.getElementById('ai-detail-filter-advice')?.value || '').trim().toLowerCase();
-            const submitRemarkFilter = (document.getElementById('ai-detail-filter-submit-remark')?.value || '').trim().toLowerCase();
             const results = report && Array.isArray(report.results) && report.results.length
                 ? report.results
                 : getFallbackValidationResults(currentTab);
@@ -6275,11 +6444,6 @@ const aiRuleRules = [
                 const resultText = item.result === 'PASS' ? '通过' : '不通过';
                 const messageText = String(item.message || '').toLowerCase();
                 const adviceText = String(item.advice || '').toLowerCase();
-                const submitRemarkText = String(
-                    item.result === 'PASS'
-                        ? '校验通过项无需填写'
-                        : (item.submissionRemark || '校验不通过，请填写提交说明。')
-                ).toLowerCase();
                 return (!fileFilter || String(item.fileName || '').toLowerCase().includes(fileFilter))
                     && (!ruleFilter || String(item.ruleId || '').toLowerCase().includes(ruleFilter))
                     && (!itemFilter || String(item.item || '').toLowerCase().includes(itemFilter))
@@ -6287,11 +6451,10 @@ const aiRuleRules = [
                     && (!riskFilter || String(item.risk || '') === riskFilter)
                     && (!strongFilter || String(item.strongControl || '') === strongFilter)
                     && (!messageFilter || messageText.includes(messageFilter))
-                    && (!adviceFilter || adviceText.includes(adviceFilter))
-                    && (!submitRemarkFilter || submitRemarkText.includes(submitRemarkFilter));
+                    && (!adviceFilter || adviceText.includes(adviceFilter));
             });
             if (!filteredResults.length) {
-                tbody.innerHTML = '<tr><td colspan="9" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
                 return;
             }
             tbody.innerHTML = filteredResults.map(item => {
@@ -6313,7 +6476,6 @@ const aiRuleRules = [
                         <td>${strongControlText}</td>
                         <td class="whitespace-normal leading-5 py-2">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
                         <td class="whitespace-normal leading-5 py-2">${pass ? '-' : escapeHtml(item.advice || '请根据不通过原因修正后重新提交。')}</td>
-                        <td>${renderValidationSubmitRemarkCell(item)}</td>
                     </tr>
                 `;
             }).join('');
@@ -7247,6 +7409,8 @@ let currentMaterialTypeInput = null;
 let selectedMaterialTypeValue = null;
 let selectedMaterialTypeRow = null;
 let currentBatchEditId = null; // 当前批量上传编辑的行ID
+let currentReplacingRejectedRow = null;
+let currentReplacingPendingRow = null;
 
     // 打开资料类型选择弹窗（带1秒延时动态效果）
     function openMaterialTypeModal(inputElement) {
@@ -7820,6 +7984,7 @@ let currentBatchEditId = null; // 当前批量上传编辑的行ID
     // AI智能上传相关变量
     let batchFiles = [];
     let aiProcessing = false;
+    let currentReplacingBatchFileId = null;
     let currentPendingDetailMode = 'pending-normal';
     let validationReport = null;
     let validationSnapshotKey = '';
@@ -7840,18 +8005,54 @@ let currentBatchEditId = null; // 当前批量上传编辑的行ID
     function refreshPendingDetailByMode() {
         if (currentTab !== 'archive-detail-pending') return;
         const isBlockMode = currentPendingDetailMode === 'pending-block';
+        const isAIProcessingMode = currentPendingDetailMode === 'pending-ai-processing';
 
         const deptNode = document.getElementById('pending-node-dept');
         const areaNode = document.getElementById('pending-node-area');
         const groupNode = document.getElementById('pending-node-group');
         const tipText = document.getElementById('pending-flow-tip-text');
+        const aiNode = document.getElementById('pending-node-ai');
+        const aiNodeResult = document.getElementById('pending-ai-node-result');
+        const aiNodeTime = document.getElementById('pending-ai-node-time');
+        const aiCard = document.getElementById('pending-ai-card');
 
-        if (deptNode) deptNode.classList.toggle('hidden', isBlockMode);
-        if (areaNode) areaNode.classList.toggle('hidden', isBlockMode);
-        if (groupNode) groupNode.classList.toggle('hidden', isBlockMode);
+        if (deptNode) deptNode.classList.toggle('hidden', isBlockMode || isAIProcessingMode);
+        if (areaNode) areaNode.classList.toggle('hidden', isBlockMode || isAIProcessingMode);
+        if (groupNode) groupNode.classList.toggle('hidden', isBlockMode || isAIProcessingMode);
+
+        if (aiCard) aiCard.classList.toggle('hidden', isAIProcessingMode);
+
+        if (aiNode) {
+            const aiIcon = aiNode.querySelector('.w-8.h-8');
+            const aiHeader = aiNode.querySelector('.flex.items-center.justify-between');
+            if (aiIcon) {
+                aiIcon.className = 'w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white text-xs flex-shrink-0 animate-pulse';
+            }
+            if (aiHeader) {
+                aiHeader.className = 'flex items-center justify-between bg-red-50 border border-red-200 rounded px-2 py-1 dark:bg-red-900/20 dark:border-red-800';
+            }
+        }
+
+        if (aiNodeTime) {
+            aiNodeTime.className = 'text-xs text-red-600 dark:text-red-300';
+        }
+
+        if (aiNodeResult && isAIProcessingMode) {
+            aiNodeResult.className = 'text-xs text-danger mt-1';
+            aiNodeResult.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i>AI校验中';
+        } else if (aiNodeResult) {
+            aiNodeResult.className = 'flex items-center gap-4 flex-wrap text-xs mt-1';
+            aiNodeResult.innerHTML = `
+                <span id="pending-ai-node-pass-text" class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 0项</span>
+                <span id="pending-ai-node-fail-text" class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 0项</span>
+            `;
+        }
 
         if (tipText) {
-            if (isBlockMode) {
+            if (isAIProcessingMode) {
+                tipText.innerHTML = '当前申请正在进行 <strong>AI校验</strong>，请等待校验完成后再进入后续审批节点。';
+                tipText.className = 'text-sm text-red-700 leading-relaxed dark:text-red-300';
+            } else if (isBlockMode) {
                 tipText.innerHTML = '当前 AI 校验命中拦截规则，请先返回修改后再次提交审批。';
                 tipText.className = 'text-sm text-red-700 leading-relaxed dark:text-red-300';
             } else {
@@ -8032,8 +8233,21 @@ let currentBatchEditId = null; // 当前批量上传编辑的行ID
                 </td>
                 <td><input type="number" value="${item.pages}" class="w-full text-center border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
                 <td class="text-xs text-gray-500 dark:text-gray-400">${item.category}</td>
-                <td class="text-center">
-                    <button onclick="removeBatchFile(${item.id})" class="text-gray-400 hover:text-danger"><i class="fas fa-trash-alt"></i></button>
+                <td class="text-center table-sticky-action-cell">
+                    <div class="batch-action-group">
+                        <button type="button" onclick="previewBatchFile(${item.id})" class="batch-action-btn batch-action-view" title="预览">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button type="button" onclick="editBatchFile(${item.id})" class="batch-action-btn batch-action-edit" title="编辑">
+                            <i class="fas fa-pen-to-square"></i>
+                        </button>
+                        <button type="button" onclick="triggerReplaceBatchFile(${item.id})" class="batch-action-btn batch-action-replace" title="替换文件">
+                            <i class="fas fa-right-left"></i>
+                        </button>
+                        <button type="button" onclick="removeBatchFile(${item.id})" class="batch-action-btn batch-action-delete" title="删除">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </td>
             </tr>
         `).join('');
@@ -8063,7 +8277,124 @@ let currentBatchEditId = null; // 当前批量上传编辑的行ID
         renderBatchTable();
         updateBatchSubmitCount();
     }
+
+    function previewBatchFile(id) {
+        const fileItem = batchFiles.find(f => f.id === id);
+        if (!fileItem) return;
+        openPreview();
+    }
+
+    function editBatchFile(id) {
+        openMaterialTypeModalForBatch(id);
+    }
+
+    function triggerReplaceBatchFile(id) {
+        currentReplacingBatchFileId = id;
+        const input = document.getElementById('batch-replace-file-input');
+        if (!input) return;
+        input.value = '';
+        input.click();
+    }
+
+    function handleReplaceBatchFile(input) {
+        const file = input.files && input.files[0];
+        if (!file || !currentReplacingBatchFileId) return;
+        const targetIndex = batchFiles.findIndex(item => item.id === currentReplacingBatchFileId);
+        if (targetIndex === -1) {
+            currentReplacingBatchFileId = null;
+            input.value = '';
+            return;
+        }
+
+        const oldItem = batchFiles[targetIndex];
+        const updatedItem = {
+            ...oldItem,
+            file,
+            name: file.name,
+            aiType: '',
+            title: '',
+            author: '',
+            date: '',
+            pages: 0,
+            category: '',
+            confidence: Math.floor(Math.random() * 10) + 90
+        };
+        batchFiles[targetIndex] = updatedItem;
+        simulateAIRecognition(targetIndex);
+        resetAICheckState();
+        renderBatchTable();
+        showToast(`已替换文件为：${file.name}`, 'success');
+        currentReplacingBatchFileId = null;
+        input.value = '';
+    }
+
+    function triggerEditRejectedFile(btn) {
+        const row = btn.closest('tr');
+        if (!row) return;
+        const targetInput = row.querySelector('input[placeholder="点击选择资料类型"]');
+        if (targetInput) openMaterialTypeModal(targetInput);
+    }
+
+    function triggerReplaceRejectedFile(btn) {
+        currentReplacingRejectedRow = btn.closest('tr');
+        const input = document.getElementById('rejected-replace-file-input');
+        if (!input) return;
+        input.value = '';
+        input.click();
+    }
+
+    function handleReplaceRejectedFile(input) {
+        const file = input.files && input.files[0];
+        if (!file || !currentReplacingRejectedRow) return;
+        const link = currentReplacingRejectedRow.querySelector('td:nth-child(2) a');
+        const titleInput = currentReplacingRejectedRow.querySelector('td:nth-child(3) input');
+        if (link) link.textContent = file.name;
+        if (titleInput && !titleInput.value.trim()) {
+            titleInput.value = file.name.replace(/\.[^/.]+$/, '');
+        }
+        showToast(`已替换文件为：${file.name}`, 'success');
+        currentReplacingRejectedRow = null;
+        input.value = '';
+    }
+
+    function editPendingFile(btn) {
+        const row = btn.closest('tr');
+        if (!row) return;
+        const fileName = row.querySelector('td:nth-child(2) a')?.textContent?.trim() || '当前文件';
+        showToast(`可在当前节点继续人工处理：${fileName}`, 'success');
+    }
+
+    function triggerReplacePendingFile(btn) {
+        currentReplacingPendingRow = btn.closest('tr');
+        const input = document.getElementById('pending-replace-file-input');
+        if (!input) return;
+        input.value = '';
+        input.click();
+    }
+
+    function handleReplacePendingFile(input) {
+        const file = input.files && input.files[0];
+        if (!file || !currentReplacingPendingRow) return;
+        const link = currentReplacingPendingRow.querySelector('td:nth-child(2) a');
+        if (link) link.textContent = file.name;
+        showToast(`已替换文件为：${file.name}`, 'success');
+        currentReplacingPendingRow = null;
+        input.value = '';
+    }
     
+    // File List "替换文件" 功能
+    function triggerReplaceFileList(id) {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.onchange = function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                showToast(`文件已替换：${file.name}`, 'success');
+            }
+        };
+        input.click();
+    }
+
     // 清空所有文件
     function clearAllFiles() {
         if (confirm('确定清空所有已上传的文件吗？')) {
