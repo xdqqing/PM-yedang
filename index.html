@@ -1156,7 +1156,10 @@
                                         <span class="text-sm font-semibold text-red-700 dark:text-red-300">AI校验</span>
                                         <span class="text-xs text-red-600 dark:text-red-300">01-27 09:05</span>
                                     </div>
-                                    <p class="text-xs text-success mt-1"><i class="fas fa-check-circle mr-1"></i>校验10项通过 0项不通过</p>
+                                    <div class="flex items-center gap-4 flex-wrap text-xs mt-1">
+                                        <span class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 10项</span>
+                                        <span class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 0项</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex gap-3">
@@ -1183,21 +1186,16 @@
                     </div>
 
                     <!-- AI 校验报告（可点击查看详情） -->
-                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 cursor-pointer hover:shadow-md transition dark:bg-blue-900/20 dark:border-blue-800" onclick="showAICheckDetail()">
-                        <h3 class="font-semibold text-blue-900 mb-2 flex items-center gap-2 dark:text-blue-200">
-                            <i class="fas fa-robot text-primary"></i>
-                            AI校验报告
-                        </h3>
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm text-blue-800 dark:text-blue-200">启用 10 条检查规则</span>
-                            <span class="text-xs text-primary bg-white px-2 py-1 rounded dark:bg-blue-800 dark:text-blue-200">查看详情</span>
+                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                                <i class="fas fa-robot text-primary"></i>
+                                AI校验说明
+                            </h3>
+                            <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
                         </div>
-                        <div class="w-full bg-blue-200 rounded-full h-2 mb-2 dark:bg-blue-800">
-                            <div class="bg-success h-2 rounded-full" class="width-100pct"></div>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <span class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 10项</span>
-                            <span class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 0项</span>
+                        <div class="text-sm text-blue-800 dark:text-blue-200">
+                            当前无不通过项
                         </div>
                     </div>
 
@@ -1498,7 +1496,10 @@
                                         <span class="text-sm font-semibold text-red-700 dark:text-red-300">AI校验</span>
                                         <span class="text-xs text-red-600 dark:text-red-300">01-26 14:05</span>
                                     </div>
-                                    <p class="text-xs text-danger mt-1"><i class="fas fa-times-circle mr-1"></i>校验8项通过 2项不通过</p>
+                                    <div class="flex items-center gap-4 flex-wrap text-xs mt-1">
+                                        <span class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 8项</span>
+                                        <span class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 2项</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex gap-3">
@@ -1528,21 +1529,16 @@
                     </div>
 
                     <!-- AI 智能检查报告 -->
-                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 cursor-pointer hover:shadow-md transition dark:bg-blue-900/20 dark:border-blue-800" onclick="showAICheckDetail()">
-                        <h3 class="font-semibold text-blue-900 mb-2 flex items-center gap-2 dark:text-blue-200">
-                            <i class="fas fa-robot text-primary"></i>
-                            AI校验报告
-                        </h3>
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm text-blue-800 dark:text-blue-200">启用 10 条检查规则</span>
-                            <span class="text-xs text-primary bg-white px-2 py-1 rounded dark:bg-blue-800 dark:text-blue-200">查看详情</span>
+                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                                <i class="fas fa-robot text-primary"></i>
+                                AI校验说明
+                            </h3>
+                            <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
                         </div>
-                        <div class="w-full bg-blue-200 rounded-full h-2 mb-2 dark:bg-blue-800">
-                            <div class="bg-warning h-2 rounded-full" class="width-80pct"></div>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <span class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 8项</span>
-                            <span class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 2项</span>
+                        <div class="text-sm text-blue-800 dark:text-blue-200">
+                            当前无不通过项
                         </div>
                     </div>
 
@@ -1751,7 +1747,10 @@
                                         <span class="text-sm font-semibold text-red-700 dark:text-red-300">AI校验</span>
                                         <span id="pending-ai-node-time" class="text-xs text-red-600 dark:text-red-300">01-28 09:05</span>
                                     </div>
-                                    <p id="pending-ai-node-result" class="text-xs text-danger mt-1"><i class="fas fa-exclamation-triangle mr-1"></i>校验8项通过 3项不通过</p>
+                                    <div id="pending-ai-node-result" class="flex items-center gap-4 flex-wrap text-xs mt-1">
+                                        <span id="pending-ai-node-pass-text" class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 8项</span>
+                                        <span id="pending-ai-node-fail-text" class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 3项</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex gap-3" id="pending-node-dept">
@@ -1791,21 +1790,16 @@
                     </div>
 
                     <!-- AI 校验报告 -->
-                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 cursor-pointer hover:shadow-md transition dark:bg-blue-900/20 dark:border-blue-800" onclick="showAICheckDetail()">
-                        <h3 class="font-semibold text-blue-900 mb-2 flex items-center gap-2 dark:text-blue-200">
-                            <i class="fas fa-robot text-primary"></i>
-                            AI校验报告
-                        </h3>
-                        <div class="flex items-center justify-between mb-2">
-                            <span id="pending-ai-enabled-rules" class="text-sm text-blue-800 dark:text-blue-200">启用 11 条检查规则</span>
-                            <span class="text-xs text-primary bg-white px-2 py-1 rounded dark:bg-blue-800 dark:text-blue-200">查看详情</span>
+                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                                <i class="fas fa-robot text-primary"></i>
+                                AI校验说明
+                            </h3>
+                            <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
                         </div>
-                        <div class="w-full bg-blue-200 rounded-full h-2 mb-2 dark:bg-blue-800">
-                            <div id="pending-ai-progress-bar" class="bg-success h-2 rounded-full width-90pct"></div>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <span id="pending-ai-pass-text" class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 10项</span>
-                            <span id="pending-ai-fail-text" class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 0项</span>
+                        <div id="pending-ai-fail-list" class="space-y-3">
+                            <div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>
                         </div>
                     </div>
 
@@ -4076,6 +4070,7 @@
                             <th class="min-w-[100px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span><div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">结果说明<div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">修改建议<div class="resize-handle"></div></th>
+                            <th class="min-w-[280px]">提交说明 <span title="当不通过项认为无需修改时，填写原因说明并继续提交审批。" class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute right-0 top-6 z-20 hidden w-[260px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">当不通过项认为无需修改时，填写原因说明并继续提交审批。</span></span><div class="resize-handle"></div></th>
                         </tr>
                         <tr>
                             <th><input id="ai-detail-filter-file" oninput="aiDetailApplyFilters()" placeholder="文件名称" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
@@ -4105,13 +4100,15 @@
                             </th>
                             <th><input id="ai-detail-filter-message" oninput="aiDetailApplyFilters()" placeholder="结果说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                             <th><input id="ai-detail-filter-advice" oninput="aiDetailApplyFilters()" placeholder="修改建议" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                            <th><input id="ai-detail-filter-submit-remark" oninput="aiDetailApplyFilters()" placeholder="提交说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                         </tr>
                     </thead>
                     <tbody id="ai-detail-result-body"></tbody>
                 </table>
             </div>
         </div>
-        <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-xl flex justify-end dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-xl flex justify-end gap-3 dark:bg-gray-800 dark:border-gray-700">
+            <button onclick="saveAICheckRemarks()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">保存</button>
             <button onclick="closeAICheckModal()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">关闭</button>
         </div>
     </div>
@@ -5873,7 +5870,7 @@ const aiRuleRules = [
             refreshPendingAICheckPanel();
             if (openModal) openValidationReportModal();
             if (withToast) {
-                showToast(validationReport.blocked ? 'AI校验完成，存在强控拦截项' : 'AI校验完成，可查看校验报告', validationReport.blocked ? 'warning' : 'success');
+                showToast(validationReport.blocked ? 'AI校验完成，存在强控拦截项' : 'AI校验完成，可查看AI校验说明', validationReport.blocked ? 'warning' : 'success');
             }
         }
 
@@ -5965,7 +5962,8 @@ const aiRuleRules = [
                 risk: rule.risk,
                 strongControl: rule.strongControl,
                 message,
-                advice: rule.advice || '请按规则提示补充或修正后重新提交。'
+                advice: rule.advice || '请按规则提示补充或修正后重新提交。',
+                submissionRemark: ''
             };
         }
 
@@ -6033,62 +6031,68 @@ const aiRuleRules = [
             });
         }
 
+        let fallbackValidationResultsMap = null;
+
+        function buildFallbackValidationResultsMap() {
+            return {
+                archived: aiRuleNormalizeFallbackResults([
+                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开，页数识别为3页。', advice: '', submissionRemark: '' },
+                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式符合要求。', advice: '', submissionRemark: '' },
+                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-003', item: '基础字段完整性', result: 'PASS', risk: '高', strongControl: '是', message: '题名、责任者、文号等字段完整。', advice: '', submissionRemark: '' },
+                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-004', item: '文件格式完整性', result: 'PASS', risk: '中', strongControl: '否', message: '文档结构完整，内容可解析。', advice: '', submissionRemark: '' },
+                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续，未发现缺页。', advice: '', submissionRemark: '' },
+                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件清单齐全。', advice: '', submissionRemark: '' },
+                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-007', item: '签字盖章识别', result: 'PASS', risk: '高', strongControl: '是', message: '已识别签字盖章要素。', advice: '', submissionRemark: '' },
+                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-008', item: '图像质量检查', result: 'PASS', risk: '中', strongControl: '否', message: '图像清晰，满足归档要求。', advice: '', submissionRemark: '' },
+                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-009', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料类型与档案分类一致。', advice: '', submissionRemark: '' },
+                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '关键批复要素识别完整。', advice: '', submissionRemark: '' }
+                ]),
+                rejected: aiRuleNormalizeFallbackResults([
+                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '', submissionRemark: '' },
+                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '日期格式符合要求。', advice: '', submissionRemark: '' },
+                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '否', message: '文号字段缺失。', advice: '补充文号后重新提交。', submissionRemark: '' },
+                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '否', message: '识别为投资档案，与所选基建档案不一致。', advice: '调整为科技档案/投资档案。', submissionRemark: '' },
+                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', advice: '', submissionRemark: '' },
+                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '', submissionRemark: '' },
+                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-007', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '识别到签字信息。', advice: '', submissionRemark: '' },
+                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-008', item: '图像质量检查', result: 'PASS', risk: '低', strongControl: '否', message: '图像质量正常。', advice: '', submissionRemark: '' },
+                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-009', item: '印章完整性', result: 'PASS', risk: '中', strongControl: '否', message: '印章识别完整。', advice: '', submissionRemark: '' },
+                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '批复要素识别正常。', advice: '', submissionRemark: '' }
+                ]),
+                pendingNormal: aiRuleNormalizeFallbackResults([
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '', submissionRemark: '' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', advice: '', submissionRemark: '' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '否', message: '责任者信息缺失。', advice: '补齐责任者字段并重新提交。', submissionRemark: '' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-004', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料分类匹配通过。', advice: '', submissionRemark: '' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', advice: '', submissionRemark: '' },
+                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '', submissionRemark: '' },
+                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-007', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '签字盖章识别通过。', advice: '', submissionRemark: '' },
+                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-008', item: '图像质量检查', result: 'PASS', risk: '低', strongControl: '否', message: '图像清晰。', advice: '', submissionRemark: '' },
+                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-009', item: '印章完整性', result: 'FAIL', risk: '中', strongControl: '否', message: '印章缺失。', advice: '补充盖章后重新上传。', submissionRemark: '' },
+                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '批复要素识别完整。', advice: '', submissionRemark: '' },
+                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-011', item: '文件命名规范', result: 'PASS', risk: '低', strongControl: '否', message: '命名符合规范。', advice: '', submissionRemark: '' }
+                ]),
+                pendingBlock: aiRuleNormalizeFallbackResults([
+                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '', submissionRemark: '' },
+                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', advice: '', submissionRemark: '' },
+                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '责任者信息缺失，触发强控制拦截。', advice: '补齐责任者字段后再次提交。', submissionRemark: '' },
+                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '是', message: '资料分类与识别结果不一致，触发强控制拦截。', advice: '返回调整档案分类后重新提交。', submissionRemark: '' },
+                    { fileName: '批复文件_补充件.pdf', ruleId: 'R-PB-005', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '', submissionRemark: '' },
+                    { fileName: '批复文件_补充件.pdf', ruleId: 'R-PB-006', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '签字盖章识别通过。', advice: '', submissionRemark: '' },
+                    { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-007', item: '印章完整性', result: 'PASS', risk: '中', strongControl: '否', message: '印章识别完整。', advice: '', submissionRemark: '' },
+                    { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-008', item: '图像质量检查', result: 'FAIL', risk: '中', strongControl: '否', message: '图像模糊影响识别准确度。', advice: '请重新扫描上传清晰版本。', submissionRemark: '' }
+                ])
+            };
+        }
+
         function getFallbackValidationResults(pageTab) {
-            const archivedResults = [
-                { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开，页数识别为3页。', advice: '' },
-                { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式符合要求。', advice: '' },
-                { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-003', item: '基础字段完整性', result: 'PASS', risk: '高', strongControl: '是', message: '题名、责任者、文号等字段完整。', advice: '' },
-                { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-004', item: '文件格式完整性', result: 'PASS', risk: '中', strongControl: '否', message: '文档结构完整，内容可解析。', advice: '' },
-                { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续，未发现缺页。', advice: '' },
-                { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件清单齐全。', advice: '' },
-                { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-007', item: '签字盖章识别', result: 'PASS', risk: '高', strongControl: '是', message: '已识别签字盖章要素。', advice: '' },
-                { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-008', item: '图像质量检查', result: 'PASS', risk: '中', strongControl: '否', message: '图像清晰，满足归档要求。', advice: '' },
-                { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-009', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料类型与档案分类一致。', advice: '' },
-                { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '关键批复要素识别完整。', advice: '' }
-            ];
-
-            const rejectedResults = [
-                { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '' },
-                { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '日期格式符合要求。', advice: '' },
-                { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '否', message: '文号字段缺失。', advice: '补充文号后重新提交。' },
-                { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '否', message: '识别为投资档案，与所选基建档案不一致。', advice: '调整为科技档案/投资档案。' },
-                { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', advice: '' },
-                { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '' },
-                { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-007', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '识别到签字信息。', advice: '' },
-                { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-008', item: '图像质量检查', result: 'PASS', risk: '低', strongControl: '否', message: '图像质量正常。', advice: '' },
-                { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-009', item: '印章完整性', result: 'PASS', risk: '中', strongControl: '否', message: '印章识别完整。', advice: '' },
-                { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '批复要素识别正常。', advice: '' }
-            ];
-
-            const pendingNormalResults = [
-                { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '' },
-                { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', advice: '' },
-                { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '否', message: '责任者信息缺失。', advice: '补齐责任者字段并重新提交。' },
-                { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-004', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料分类匹配通过。', advice: '' },
-                { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', advice: '' },
-                { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '' },
-                { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-007', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '签字盖章识别通过。', advice: '' },
-                { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-008', item: '图像质量检查', result: 'PASS', risk: '低', strongControl: '否', message: '图像清晰。', advice: '' },
-                { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-009', item: '印章完整性', result: 'FAIL', risk: '中', strongControl: '否', message: '印章缺失。', advice: '补充盖章后重新上传。' },
-                { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '批复要素识别完整。', advice: '' },
-                { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-011', item: '文件命名规范', result: 'PASS', risk: '低', strongControl: '否', message: '命名符合规范。', advice: '' }
-            ];
-
-            const pendingBlockResults = [
-                { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '' },
-                { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', advice: '' },
-                { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '责任者信息缺失，触发强控制拦截。', advice: '补齐责任者字段后再次提交。' },
-                { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '是', message: '资料分类与识别结果不一致，触发强控制拦截。', advice: '返回调整档案分类后重新提交。' },
-                { fileName: '批复文件_补充件.pdf', ruleId: 'R-PB-005', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '' },
-                { fileName: '批复文件_补充件.pdf', ruleId: 'R-PB-006', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '签字盖章识别通过。', advice: '' },
-                { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-007', item: '印章完整性', result: 'PASS', risk: '中', strongControl: '否', message: '印章识别完整。', advice: '' },
-                { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-008', item: '图像质量检查', result: 'FAIL', risk: '中', strongControl: '否', message: '图像模糊影响识别准确度。', advice: '请重新扫描上传清晰版本。' }
-            ];
-
-            if (pageTab === 'archive-detail-archived') return aiRuleNormalizeFallbackResults(archivedResults);
-            if (pageTab === 'archive-detail-rejected') return aiRuleNormalizeFallbackResults(rejectedResults);
-            if (pageTab === 'archive-detail-pending' && currentPendingDetailMode === 'pending-block') return aiRuleNormalizeFallbackResults(pendingBlockResults);
-            return aiRuleNormalizeFallbackResults(pendingNormalResults);
+            if (!fallbackValidationResultsMap) {
+                fallbackValidationResultsMap = buildFallbackValidationResultsMap();
+            }
+            if (pageTab === 'archive-detail-archived') return fallbackValidationResultsMap.archived;
+            if (pageTab === 'archive-detail-rejected') return fallbackValidationResultsMap.rejected;
+            if (pageTab === 'archive-detail-pending' && currentPendingDetailMode === 'pending-block') return fallbackValidationResultsMap.pendingBlock;
+            return fallbackValidationResultsMap.pendingNormal;
         }
 
         function getAICheckSummary(report) {
@@ -6120,28 +6124,62 @@ const aiRuleRules = [
 
         function refreshPendingAICheckPanel() {
             const summary = getAICheckSummary();
-            const enabledEl = document.getElementById('pending-ai-enabled-rules');
-            const passEl = document.getElementById('pending-ai-pass-text');
-            const failEl = document.getElementById('pending-ai-fail-text');
-            const progressEl = document.getElementById('pending-ai-progress-bar');
             const nodeResultEl = document.getElementById('pending-ai-node-result');
+            const nodePassEl = document.getElementById('pending-ai-node-pass-text');
+            const nodeFailEl = document.getElementById('pending-ai-node-fail-text');
             const nodeTimeEl = document.getElementById('pending-ai-node-time');
-
-            const total = Math.max(summary.passCount + summary.notPassCount, 1);
-            const percent = Math.round((summary.passCount / total) * 100);
-
-            if (enabledEl) enabledEl.textContent = `启用 ${summary.enabledRuleCount} 条检查规则`;
-            if (passEl) passEl.innerHTML = `<i class="fas fa-check-circle"></i> 通过 ${summary.passCount}项`;
-            if (failEl) failEl.innerHTML = `<i class="fas fa-times-circle"></i> 不通过 ${summary.notPassCount}项`;
-            if (progressEl) progressEl.style.width = `${percent}%`;
+            const failListEl = document.getElementById('pending-ai-fail-list');
+            const report = getValidationReportSafe();
+            const fallbackResults = getFallbackValidationResults(currentTab);
+            const allResults = report && Array.isArray(report.results) && report.results.length ? report.results : fallbackResults;
+            const failResults = allResults.filter(item => item.result !== 'PASS');
 
             if (nodeResultEl) {
-                if (summary.blocked || summary.notPassCount > 0) {
-                    nodeResultEl.className = 'text-xs text-danger mt-1';
-                    nodeResultEl.innerHTML = `<i class="fas fa-times-circle mr-1"></i>校验${summary.passCount}项通过 ${summary.notPassCount}项不通过`;
+                nodeResultEl.className = 'flex items-center gap-4 flex-wrap text-xs mt-1';
+            }
+            if (nodePassEl) {
+                nodePassEl.innerHTML = `<i class="fas fa-check-circle"></i> 通过 ${summary.passCount}项`;
+            }
+            if (nodeFailEl) {
+                nodeFailEl.innerHTML = `<i class="fas fa-times-circle"></i> 不通过 ${summary.notPassCount}项`;
+            }
+
+            if (failListEl) {
+                if (!failResults.length) {
+                    failListEl.innerHTML = '<div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>';
                 } else {
-                    nodeResultEl.className = 'text-xs text-success mt-1';
-                    nodeResultEl.innerHTML = `<i class="fas fa-check-circle mr-1"></i>校验${summary.passCount}项通过 ${summary.notPassCount}项不通过`;
+                    failListEl.innerHTML = failResults.map((item, index) => {
+                        const riskBadge = aiRuleRenderRiskBadge(item.risk || '-');
+                        const advice = item.submissionRemark || item.submissionComment || '';
+                        return `
+                            <div class="bg-white border border-blue-100 rounded-lg p-3 dark:bg-gray-800/80 dark:border-blue-900/40">
+                                <div class="flex items-start justify-between gap-3 mb-3">
+                                    <div class="min-w-0">
+                                        <div class="text-xs text-gray-500 dark:text-gray-400">文件名称</div>
+                                        <div class="text-sm font-medium text-gray-900 break-all dark:text-white">${escapeHtml(item.fileName || '-')}</div>
+                                    </div>
+                                    <div class="shrink-0">
+                                        <div class="text-xs text-gray-500 mb-1 text-right dark:text-gray-400">风险等级</div>
+                                        <div class="flex justify-end">${riskBadge}</div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="text-xs text-gray-500 mb-1 dark:text-gray-400">检查项</div>
+                                        <div class="text-sm text-gray-900 break-words dark:text-white">${escapeHtml(item.item || '-')}</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-gray-500 mb-1 dark:text-gray-400">结果说明</div>
+                                        <div class="text-sm text-gray-900 leading-6 break-words dark:text-white">${escapeHtml(item.message || '校验未通过。')}</div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <label class="block text-sm text-gray-500 mb-1 dark:text-gray-400">提交说明</label>
+                                    <textarea data-ai-fail-index="${index}" oninput="updatePendingAIFailRemark(${index}, this.value)" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500" rows="2" placeholder="校验不通过，请填写提交说明。">${escapeHtml(advice)}</textarea>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
                 }
             }
             if (nodeTimeEl) {
@@ -6149,6 +6187,53 @@ const aiRuleRules = [
                 const pad = value => String(value).padStart(2, '0');
                 nodeTimeEl.textContent = `${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
             }
+        }
+
+        function updatePendingAIFailRemark(index, value) {
+            const report = getValidationReportSafe();
+            if (report && Array.isArray(report.results) && report.results.length) {
+                const failResults = report.results.filter(item => item.result !== 'PASS');
+                const target = failResults[index];
+                if (target) target.submissionRemark = value;
+                return;
+            }
+            const fallbackResults = getFallbackValidationResults(currentTab);
+            const failResults = fallbackResults.filter(item => item.result !== 'PASS');
+            const target = failResults[index];
+            if (target) target.submissionRemark = value;
+        }
+
+        function updateValidationResultSubmissionRemark(fileName, ruleId, itemName, value) {
+            const report = getValidationReportSafe();
+            const results = report && Array.isArray(report.results) && report.results.length
+                ? report.results
+                : getFallbackValidationResults(currentTab);
+            const target = results.find(item =>
+                String(item.fileName || '') === String(fileName || '')
+                && String(item.ruleId || '') === String(ruleId || '')
+                && String(item.item || '') === String(itemName || '')
+            );
+            if (target) target.submissionRemark = value;
+        }
+
+        function renderValidationSubmitRemarkCell(item) {
+            const pass = item.result === 'PASS';
+            const value = escapeHtml(item.submissionRemark || '');
+            const commonClass = pass
+                ? 'w-full bg-gray-100 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-500'
+                : 'w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500';
+            const placeholder = pass
+                ? '校验通过项无需填写'
+                : '校验不通过，请填写提交说明。';
+            const disabled = pass ? 'disabled' : '';
+            const onInput = pass
+                ? ''
+                : `oninput="updateValidationResultSubmissionRemark('${escapeHtml(item.fileName || '')}', '${escapeHtml(item.ruleId || '')}', '${escapeHtml(item.item || '')}', this.value)"`;
+            return `<textarea ${onInput} ${disabled} class="${commonClass}" rows="2" placeholder="${placeholder}">${value}</textarea>`;
+        }
+
+        function saveAICheckRemarks() {
+            showToast('AI校验说明已保存', 'success');
         }
 
         function renderValidationReport() {
@@ -6173,62 +6258,28 @@ const aiRuleRules = [
             const strongFilter = document.getElementById('ai-detail-filter-strong')?.value || '';
             const messageFilter = (document.getElementById('ai-detail-filter-message')?.value || '').trim().toLowerCase();
             const adviceFilter = (document.getElementById('ai-detail-filter-advice')?.value || '').trim().toLowerCase();
-            if (!report || !Array.isArray(report.results) || !report.results.length) {
-                const fallbackResults = getFallbackValidationResults(currentTab);
-                if (!fallbackResults.length) {
-                    tbody.innerHTML = `
-                        <tr>
-                            <td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无可展示的 AI 校验明细</td>
-                        </tr>
-                    `;
-                    return;
-                }
-                const filteredFallbackResults = fallbackResults.filter(item => {
-                    const resultText = item.result === 'PASS' ? '通过' : '不通过';
-                    const messageText = String(item.message || '').toLowerCase();
-                    const adviceText = String(item.advice || '').toLowerCase();
-                    return (!fileFilter || String(item.fileName || '').toLowerCase().includes(fileFilter))
-                        && (!ruleFilter || String(item.ruleId || '').toLowerCase().includes(ruleFilter))
-                        && (!itemFilter || String(item.item || '').toLowerCase().includes(itemFilter))
-                        && (!resultFilter || resultText === resultFilter)
-                        && (!riskFilter || String(item.risk || '') === riskFilter)
-                        && (!strongFilter || String(item.strongControl || '') === strongFilter)
-                        && (!messageFilter || messageText.includes(messageFilter))
-                        && (!adviceFilter || adviceText.includes(adviceFilter));
-                });
-                if (!filteredFallbackResults.length) {
-                    tbody.innerHTML = '<tr><td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
-                    return;
-                }
-                tbody.innerHTML = filteredFallbackResults.map(item => {
-                    const pass = item.result === 'PASS';
-                    const resultBadge = pass
-                        ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">通过</span>'
-                        : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">不通过</span>';
-                    const riskText = pass ? '-' : aiRuleRenderRiskBadge(item.risk);
-                    const strongControlText = item.strongControl === '是'
-                        ? '<span class="font-medium text-danger">是</span>'
-                        : escapeHtml(item.strongControl || '-');
-                    return `
-                        <tr>
-                            <td>${escapeHtml(item.fileName)}</td>
-                            <td class="font-medium text-primary">${escapeHtml(item.ruleId)}</td>
-                            <td>${escapeHtml(item.item)}</td>
-                            <td>${resultBadge}</td>
-                            <td>${riskText}</td>
-                            <td>${strongControlText}</td>
-                            <td class="whitespace-normal">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
-                            <td class="whitespace-normal">${pass ? '-' : escapeHtml(item.advice || '请根据不通过原因修正后重新提交。')}</td>
-                        </tr>
-                    `;
-                }).join('');
+            const submitRemarkFilter = (document.getElementById('ai-detail-filter-submit-remark')?.value || '').trim().toLowerCase();
+            const results = report && Array.isArray(report.results) && report.results.length
+                ? report.results
+                : getFallbackValidationResults(currentTab);
+            if (!results.length) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无可展示的 AI 校验明细</td>
+                    </tr>
+                `;
                 return;
             }
 
-            const filteredReportResults = report.results.filter(item => {
+            const filteredResults = results.filter(item => {
                 const resultText = item.result === 'PASS' ? '通过' : '不通过';
                 const messageText = String(item.message || '').toLowerCase();
                 const adviceText = String(item.advice || '').toLowerCase();
+                const submitRemarkText = String(
+                    item.result === 'PASS'
+                        ? '校验通过项无需填写'
+                        : (item.submissionRemark || '校验不通过，请填写提交说明。')
+                ).toLowerCase();
                 return (!fileFilter || String(item.fileName || '').toLowerCase().includes(fileFilter))
                     && (!ruleFilter || String(item.ruleId || '').toLowerCase().includes(ruleFilter))
                     && (!itemFilter || String(item.item || '').toLowerCase().includes(itemFilter))
@@ -6236,15 +6287,15 @@ const aiRuleRules = [
                     && (!riskFilter || String(item.risk || '') === riskFilter)
                     && (!strongFilter || String(item.strongControl || '') === strongFilter)
                     && (!messageFilter || messageText.includes(messageFilter))
-                    && (!adviceFilter || adviceText.includes(adviceFilter));
+                    && (!adviceFilter || adviceText.includes(adviceFilter))
+                    && (!submitRemarkFilter || submitRemarkText.includes(submitRemarkFilter));
             });
-            if (!filteredReportResults.length) {
-                tbody.innerHTML = '<tr><td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
+            if (!filteredResults.length) {
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
                 return;
             }
-            tbody.innerHTML = filteredReportResults.map(item => {
+            tbody.innerHTML = filteredResults.map(item => {
                 const pass = item.result === 'PASS';
-                const resultText = pass ? '通过' : '不通过';
                 const resultBadge = pass
                     ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">通过</span>'
                     : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">不通过</span>';
@@ -6260,8 +6311,9 @@ const aiRuleRules = [
                         <td>${resultBadge}</td>
                         <td>${riskText}</td>
                         <td>${strongControlText}</td>
-                        <td class="whitespace-normal">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
-                        <td class="whitespace-normal">${pass ? '-' : escapeHtml(item.advice || '请根据不通过原因修正后重新提交。')}</td>
+                        <td class="whitespace-normal leading-5 py-2">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
+                        <td class="whitespace-normal leading-5 py-2">${pass ? '-' : escapeHtml(item.advice || '请根据不通过原因修正后重新提交。')}</td>
+                        <td>${renderValidationSubmitRemarkCell(item)}</td>
                     </tr>
                 `;
             }).join('');
