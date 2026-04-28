@@ -851,9 +851,9 @@
                                 <td class="text-gray-500 dark:text-gray-400">2026-01-28</td>
                                 <td class="text-center dark:text-gray-300">5</td>
                                 <td>
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                                        <span class="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-1.5 animate-pulse"></span>
-                                        审批中
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">
+                                        <span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-1.5"></span>
+                                        已拒绝
                                     </span>
                                 </td>
                             </tr>
@@ -1276,8 +1276,8 @@
                     </div>
                 </div>
                 <div class="flex gap-2 md:gap-3 flex-wrap">
-                    <button onclick="showPage('archive-list')" class="px-4 md:px-5 py-2 md:py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 text-sm md:text-base">
-                        返回列表
+                    <button onclick="showWithdrawModal()" class="px-4 md:px-5 py-2 md:py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 text-sm md:text-base">
+                        <i class="fas fa-undo mr-2"></i>撤回审批
                     </button>
                     <button onclick="saveDraft()" class="px-4 md:px-5 py-2 md:py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 text-sm md:text-base">
                         <i class="fas fa-save mr-2"></i>保存草稿
@@ -1286,21 +1286,6 @@
                         <i class="fas fa-paper-plane"></i>
                         重新提交
                     </button>
-                </div>
-            </div>
-
-            <!-- 拒绝原因（醒目提示） -->
-            <div class="bg-red-50 border-l-4 border-red-500 rounded-r-xl p-4 dark:bg-red-900/20 dark:border-red-600">
-                <div class="flex items-start gap-3">
-                    <i class="fas fa-exclamation-circle text-danger text-xl mt-0.5"></i>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-red-900 dark:text-red-200">审批拒绝原因</h4>
-                        <p class="text-sm text-red-800 mt-1 dark:text-red-300">档案分类选择错误，投资档案应属于"科技档案-投资档案"分类，而非"基建档案"。请调整后重新提交。</p>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-2 text-xs text-red-600 dark:text-red-400">
-                            <span><i class="fas fa-user mr-1"></i>拒绝人：区域档案管理员</span>
-                            <span><i class="fas fa-clock mr-1"></i>时间：2026-01-26 15:30</span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -1417,17 +1402,6 @@
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
                             <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (2份)</h3>
-                            <div class="flex gap-2">
-                              <button onclick="toggleFileListExpand()" class="px-3 md:px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-sm font-medium hover:bg-purple-200 transition dark:bg-purple-900 dark:text-purple-300">
-                                  <i class="fas fa-expand mr-1"></i>放大编辑
-                              </button>
-                                <button class="px-3 md:px-4 py-2 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-blue-50 transition dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30">
-                                    <i class="fas fa-folder-open mr-1"></i>选择文件
-                                </button>
-                                <button onclick="toggleDragZone('rejected')" class="px-3 md:px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
-                                    <i class="fas fa-upload mr-1"></i>拖拽文件
-                                </button>
-                            </div>
                         </div>
 
                         <!-- 拖拽区域 -->
@@ -1610,8 +1584,8 @@
                             </div>
                             <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
                         </div>
-                        <div class="text-sm text-blue-800 dark:text-blue-200">
-                            当前无不通过项
+                        <div id="rejected-ai-fail-list" class="space-y-3">
+                            <div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>
                         </div>
                     </div>
 
@@ -1630,23 +1604,25 @@
                     <div>
                         <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
                             <h2 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">上传文件详情
-                            <span class="px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 border border-yellow-200 w-fit dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-800">
+                            <span id="pending-detail-status-badge" class="px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 border border-yellow-200 w-fit dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-800">
                                 审批中
                             </span>
                         </div>
-                        <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">申请单号：20260128-G001-000001</p>
+                        <p id="pending-detail-application-no" class="text-sm text-gray-500 mt-1 dark:text-gray-400">申请单号：20260128-G001-000001</p>
                     </div>
                 </div>
                 <div class="flex gap-2 md:gap-3 flex-wrap">
-                    <button onclick="saveDraft()" class="px-3 md:px-5 py-2 md:py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 text-sm md:text-base">
-                        <i class="fas fa-save mr-2"></i>保存
+                    <button id="pending-detail-return-btn" onclick="showPage('archive-list')" class="px-3 md:px-5 py-2 md:py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 text-sm md:text-base">
+                        <i class="fas fa-arrow-left mr-2"></i>返回列表
                     </button>
                     <button onclick="showWithdrawModal()" class="px-3 md:px-5 py-2 md:py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 text-sm md:text-base">
                         <i class="fas fa-undo mr-2"></i>撤回审批
                     </button>
-                    <button onclick="submitApproval()" class="px-3 md:px-5 py-2 md:py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 shadow-lg shadow-blue-200 transition flex items-center gap-2 dark:shadow-blue-900/30 text-sm md:text-base">
-                        <i class="fas fa-paper-plane"></i>
-                        重新提交
+                    <button id="pending-detail-save-draft-btn" onclick="saveDraft()" class="hidden px-3 md:px-5 py-2 md:py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 text-sm md:text-base">
+                        <i class="fas fa-save mr-2"></i>保存草稿
+                    </button>
+                    <button id="pending-detail-resubmit-btn" onclick="submitApproval()" class="hidden px-3 md:px-5 py-2 md:py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 shadow-lg shadow-blue-200 transition flex items-center gap-2 dark:shadow-blue-900/30 text-sm md:text-base">
+                        <i class="fas fa-paper-plane"></i>重新提交
                     </button>
                 </div>
             </div>
@@ -4215,7 +4191,6 @@
                             <th class="min-w-[90px]">风险等级<div class="resize-handle"></div></th>
                             <th class="min-w-[100px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span><div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">结果说明<div class="resize-handle"></div></th>
-                            <th class="min-w-[260px]">修改建议<div class="resize-handle"></div></th>
                         </tr>
                         <tr>
                             <th><input id="ai-detail-filter-file" oninput="aiDetailApplyFilters()" placeholder="文件名称" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
@@ -4244,7 +4219,6 @@
                                 </select>
                             </th>
                             <th><input id="ai-detail-filter-message" oninput="aiDetailApplyFilters()" placeholder="结果说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
-                            <th><input id="ai-detail-filter-advice" oninput="aiDetailApplyFilters()" placeholder="修改建议" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                         </tr>
                     </thead>
                     <tbody id="ai-detail-result-body"></tbody>
@@ -4371,10 +4345,7 @@
                                 <p id="ai-rule-page-desc" class="text-sm text-gray-500 mt-2 max-w-4xl dark:text-gray-400">统一维护 AI 校验规则（通用/资料类型），支持筛选、启停与批量导入。</p>
                             </div>
                             <div id="ai-rule-header-actions" class="flex flex-wrap gap-3">
-                                <button onclick="showToast('批量导入：待对接模板导入能力', 'warning')" class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition flex items-center gap-2 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
-                                    <i class="fas fa-file-arrow-up"></i>
-                                    <span>批量导入</span>
-                                </button>
+
                                 <button onclick="aiRuleOpenCreatePage()" class="px-4 py-2.5 border border-primary text-primary rounded-lg font-medium hover:bg-blue-50 transition flex items-center gap-2 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30">
                                     <i class="fas fa-plus"></i>
                                     <span>新增规则</span>
@@ -4392,17 +4363,18 @@
                             </div>
 
                             <div class="table-container max-h-[560px] overflow-auto border border-gray-200 rounded-xl dark:border-gray-700">
-                                <table class="data-table min-w-[1640px]">
+                                <table class="data-table min-w-[1780px]">
                                     <thead>
                                         <tr>
                                             <th class="min-w-[60px] text-center">
                                                 <input type="checkbox" id="ai-rule-select-all" class="w-4 h-4 text-primary rounded focus:ring-primary" onchange="aiRuleToggleSelectAllRules(this)">
                                             </th>
                                             <th class="min-w-[120px]">规则ID</th>
-                                            <th class="min-w-[90px] text-center">启用</th>
+                                            <th class="min-w-[100px] text-center">启用状态</th>
                                             <th class="min-w-[150px]">规则范围</th>
                                             <th class="min-w-[240px]">档案分类</th>
-                                            <th class="min-w-[220px]">档案专题或专业/业务职能细分</th>
+                                            <th class="min-w-[180px]">专题/专业</th>
+                                            <th class="min-w-[180px]">业务/职能细分</th>
                                             <th class="min-w-[160px]">资料类型</th>
                                             <th class="min-w-[130px]">检查维度</th>
                                             <th class="min-w-[160px]">检查项</th>
@@ -4419,11 +4391,11 @@
                                             <th class="min-w-[120px]">
                                                 <input id="ai-rule-search" oninput="aiRuleRenderRuleTable()" type="text" placeholder="关键字" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                             </th>
-                                            <th class="min-w-[90px]">
+                                            <th class="min-w-[100px]">
                                                 <select id="ai-rule-enabled-filter" onchange="aiRuleRenderRuleTable()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                                     <option value="">全部</option>
                                                     <option value="启用">启用</option>
-                                                    <option value="停用">停用</option>
+                                                    <option value="禁用">禁用</option>
                                                 </select>
                                             </th>
                                             <th class="min-w-[150px]">
@@ -4436,8 +4408,11 @@
                                             <th class="min-w-[240px]">
                                                 <input id="ai-rule-classification-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="档案分类" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                             </th>
-                                            <th class="min-w-[220px]">
+                                            <th class="min-w-[180px]">
                                                 <input id="ai-rule-topic-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="专题/专业" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                            </th>
+                                            <th class="min-w-[180px]">
+                                                <input id="ai-rule-subfunction-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="业务/职能细分" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                             </th>
                                             <th class="min-w-[160px]">
                                                 <input id="ai-rule-material-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="资料类型" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
@@ -4529,15 +4504,28 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案分类 <span class="text-danger">*</span></label>
-                                    <input id="ai-rule-create-classification" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
+                                    <input id="ai-rule-create-classification" type="hidden">
+                                    <div class="cascader-container" id="ai-rule-create-classification-cascader">
+                                        <div class="cascader-input" onclick="aiRuleToggleClassificationCascader('create')">
+                                            <span id="ai-rule-create-classification-text">请选择档案分类</span>
+                                            <i class="fas fa-chevron-down text-gray-400"></i>
+                                        </div>
+                                        <div class="cascader-dropdown">
+                                            <div class="cascader-menu">
+                                                <div class="cascader-column" id="ai-rule-create-classification-level1"></div>
+                                                <div class="cascader-column" id="ai-rule-create-classification-level2"></div>
+                                                <div class="cascader-column" id="ai-rule-create-classification-level3"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">资料类型 <span class="text-danger">*</span></label>
                                     <select id="ai-rule-create-material" onchange="aiRuleSyncTopicByMaterial('create')" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案专题或专业/业务职能细分</label>
-                                    <input id="ai-rule-create-topic" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-400" value="选择资料类型后自动带出" readonly>
+                                <div id="ai-rule-create-special-field" class="hidden">
+                                    <label id="ai-rule-create-special-label" class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业</label>
+                                    <input id="ai-rule-create-topic" type="text" class="w-full bg-gray-100 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400" value="根据所选资料类型自动带出" placeholder="根据所选资料类型自动带出" readonly disabled>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">检查维度 <span class="text-danger">*</span></label>
@@ -4568,6 +4556,16 @@
                                         <option>是</option>
                                         <option selected>否</option>
                                     </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">启用开关 <span class="text-danger">*</span></label>
+                                    <div class="flex items-center">
+                                        <label class="switch">
+                                            <input type="checkbox" id="ai-rule-create-enabled" checked onchange="aiRuleHandleEnabledChange('create')">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <span id="ai-rule-create-enabled-text" class="ml-3 text-sm text-gray-700 dark:text-gray-300">启用</span>
+                                    </div>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">Agent 判定逻辑 <span class="text-danger">*</span></label>
@@ -4609,15 +4607,28 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案分类 <span class="text-danger">*</span></label>
-                                    <input id="ai-rule-edit-classification" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
+                                    <input id="ai-rule-edit-classification" type="hidden">
+                                    <div class="cascader-container" id="ai-rule-edit-classification-cascader">
+                                        <div class="cascader-input" onclick="aiRuleToggleClassificationCascader('edit')">
+                                            <span id="ai-rule-edit-classification-text">请选择档案分类</span>
+                                            <i class="fas fa-chevron-down text-gray-400"></i>
+                                        </div>
+                                        <div class="cascader-dropdown">
+                                            <div class="cascader-menu">
+                                                <div class="cascader-column" id="ai-rule-edit-classification-level1"></div>
+                                                <div class="cascader-column" id="ai-rule-edit-classification-level2"></div>
+                                                <div class="cascader-column" id="ai-rule-edit-classification-level3"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">资料类型 <span class="text-danger">*</span></label>
                                     <select id="ai-rule-edit-material" onchange="aiRuleSyncTopicByMaterial('edit')" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案专题或专业/业务职能细分</label>
-                                    <input id="ai-rule-edit-topic" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-400" readonly>
+                                <div id="ai-rule-edit-special-field" class="hidden">
+                                    <label id="ai-rule-edit-special-label" class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业</label>
+                                    <input id="ai-rule-edit-topic" type="text" class="w-full bg-gray-100 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400" value="根据所选资料类型自动带出" placeholder="根据所选资料类型自动带出" readonly disabled>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">检查维度 <span class="text-danger">*</span></label>
@@ -4648,6 +4659,16 @@
                                         <option>是</option>
                                         <option>否</option>
                                     </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">启用开关 <span class="text-danger">*</span></label>
+                                    <div class="flex items-center">
+                                        <label class="switch">
+                                            <input type="checkbox" id="ai-rule-edit-enabled" checked onchange="aiRuleHandleEnabledChange('edit')">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <span id="ai-rule-edit-enabled-text" class="ml-3 text-sm text-gray-700 dark:text-gray-300">启用</span>
+                                    </div>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">Agent 判定逻辑 <span class="text-danger">*</span></label>
@@ -4687,8 +4708,8 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案分类</label>
                                     <input id="ai-rule-detail-classification" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案专题或专业/业务职能细分</label>
+                                <div id="ai-rule-detail-special-field" class="hidden">
+                                    <label id="ai-rule-detail-special-label" class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业</label>
                                     <input id="ai-rule-detail-topic" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
                                 </div>
                                 <div>
@@ -4714,6 +4735,10 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否前置到业务系统 <span class="text-danger">*</span></label>
                                     <input id="ai-rule-detail-prepose" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">启用状态</label>
+                                    <div id="ai-rule-detail-enabled" class="w-full min-h-[42px] flex items-center"></div>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">Agent 判定逻辑</label>
@@ -4783,6 +4808,8 @@
 
         function aiRuleInit() {
             aiRuleNormalizeExistingRules();
+            aiRuleSetClassificationSelection('create', { level1: '', level2: '', level3: '' }, false);
+            aiRuleSetClassificationSelection('edit', { level1: '', level2: '', level3: '' }, false);
             aiRuleRenderOverview();
             aiRuleRenderRuleTable();
             aiRuleUpdateRulePageUI();
@@ -5052,6 +5079,75 @@ const aiRuleRules = [
                 advice: '请重新上传可正常打开的文件，确保非空文件再提交归档。',
                 enabled: true,
                 specialty: '-'
+            },
+            {
+                id: 'R-WS-601-01',
+                scope: '指定档案资料类型检查项',
+                level1: '文书档案',
+                level2: '行政文书',
+                level3: '行政发文',
+                material: '行政发文',
+                archivePath: '文书档案 / 行政文书 / 行政发文 / 行政发文',
+                dimension: '合规性',
+                item: '签章合规',
+                logic: '识别行政发文首页及落款页，检查发文机关、发文字号、成文日期及签章信息是否齐全，任一关键要素缺失则判定不通过。',
+                risk: '高',
+                strongControl: '是',
+                owner: 'Agent',
+                status: '已发布',
+                version: 'v2026.04',
+                updatedAt: '2026-03-28 10:10',
+                basis: '行政公文管理制度',
+                advice: '请补齐发文机关、发文字号和签章信息。',
+                enabled: true,
+                topic: '公文管理',
+                subfunction: ''
+            },
+            {
+                id: 'R-WS-602-01',
+                scope: '指定档案资料类型检查项',
+                level1: '文书档案',
+                level2: '行政文书',
+                level3: '行政收文',
+                material: '行政收文',
+                archivePath: '文书档案 / 行政文书 / 行政收文 / 行政收文',
+                dimension: '信息一致性',
+                item: '系统录入一致',
+                logic: '检查收文登记信息与文件首页中的来文单位、文号、收文日期是否一致，若关键信息存在不一致则提示异常。',
+                risk: '中',
+                strongControl: '否',
+                owner: 'Agent',
+                status: '已发布',
+                version: 'v2026.04',
+                updatedAt: '2026-03-28 10:25',
+                basis: '公文收文管理规范',
+                advice: '请核对收文登记信息与原文是否一致。',
+                enabled: true,
+                topic: '公文管理',
+                subfunction: ''
+            },
+            {
+                id: 'R-WS-603-01',
+                scope: '指定档案资料类型检查项',
+                level1: '文书档案',
+                level2: '党群工作',
+                level3: '党委文件',
+                material: '党委文件',
+                archivePath: '文书档案 / 党群工作 / 党委文件 / 党委文件',
+                dimension: '要素完备性',
+                item: '核心内容齐全',
+                logic: '校验党委文件是否包含会议主题、发文机关、审议结论及落款信息，缺少关键决策内容时判定不通过。',
+                risk: '中',
+                strongControl: '否',
+                owner: 'Agent',
+                status: '待发布',
+                version: 'v2026.04-RC1',
+                updatedAt: '2026-03-28 10:40',
+                basis: '党务文件归档要求',
+                advice: '请补齐党委会议决议和落款信息。',
+                enabled: true,
+                topic: '党务管理',
+                subfunction: ''
             }
         ];
 
@@ -5068,33 +5164,51 @@ const aiRuleRules = [
             '质量规范': ['图像质量达标', '格式完整达标'],
             '页码/附件完整性': ['页码连续', '附件齐全']
         };
-        const aiRuleDefaultTopicHint = '选择资料类型后自动带出';
+        const aiRuleDefaultTopicHint = '请选择档案分类后填写';
         const aiRuleBasisPlaceholder = '例如：《建设工程文件归档规范》GB/T 50328-2019 第4.2条';
         const aiRuleCreateIdHint = '新增规则后系统自动生成';
+        const aiRuleClassificationSelections = {
+            create: { level1: '', level2: '', level3: '' },
+            edit: { level1: '', level2: '', level3: '' }
+        };
         const aiRuleMaterialCodeMap = {
             '项目建议书': 'KJ·JJ·A1·01',
             '项目建议书的批复文件': 'KJ·JJ·A1·02',
-            '可行性研究报告': 'KJ·JJ·A1·03'
+            '可行性研究报告': 'KJ·JJ·A1·03',
+            '行政发文': 'WS·XZ·01',
+            '行政收文': 'WS·XZ·02',
+            '党委文件': 'WS·DQ·01',
+            '工会文件': 'WS·DQ·02'
         };
-        const aiRuleMaterialTopicMap = {
-            '项目建议书': '工程建设/施工管理',
-            '项目建议书的批复文件': '工程建设/施工管理',
-            '可行性研究报告': '工程建设/施工管理',
-            '初步设计文件': '工程建设/施工管理',
-            '施工组织设计': '工程建设/施工管理',
-            '竣工验收记录': '工程建设/施工管理'
+        const aiRuleMaterialSpecialFieldMap = {
+            '科技档案': {
+                '项目建议书': '工程建设/施工管理',
+                '项目建议书的批复文件': '工程建设/施工管理',
+                '可行性研究报告': '工程建设/施工管理',
+                '初步设计文件': '工程建设/施工管理',
+                '施工组织设计': '工程建设/施工管理',
+                '竣工验收记录': '工程建设/施工管理'
+            },
+            '文书档案': {
+                '行政发文': '公文管理',
+                '行政收文': '公文管理',
+                '党委文件': '党务管理',
+                '工会文件': '群团事务',
+                '市场与客户管理': '市场客户'
+            }
         };
 
         function aiRuleGetMaterialOptions() {
-            return ['项目建议书', '项目建议书的批复文件', '可行性研究报告', '初步设计文件', '施工组织设计', '竣工验收记录'];
+            return ['项目建议书', '项目建议书的批复文件', '可行性研究报告', '初步设计文件', '施工组织设计', '竣工验收记录', '行政发文', '行政收文', '党委文件', '工会文件', '市场与客户管理'];
         }
 
         function aiRuleRenderMaterialOptions(prefix, selectedValue = '') {
             const el = document.getElementById(`ai-rule-${prefix}-material`);
             if (!el) return;
             const options = aiRuleGetMaterialOptions();
-            el.innerHTML = `<option value="">请选择</option>${options.map(item => `<option value="${item}">${item}</option>`).join('')}`;
-            if (selectedValue && options.includes(selectedValue)) {
+            const finalOptions = selectedValue && !options.includes(selectedValue) ? [selectedValue, ...options] : options;
+            el.innerHTML = `<option value="">请选择</option>${finalOptions.map(item => `<option value="${item}">${item}</option>`).join('')}`;
+            if (selectedValue && finalOptions.includes(selectedValue)) {
                 el.value = selectedValue;
             } else {
                 el.value = '';
@@ -5127,18 +5241,185 @@ const aiRuleRules = [
             }
         }
 
-        function aiRuleSyncTopicByMaterial(prefix) {
-            const topicEl = document.getElementById(`ai-rule-${prefix}-topic`);
-            const materialEl = document.getElementById(`ai-rule-${prefix}-material`);
-            const scopeEl = document.getElementById(`ai-rule-${prefix}-scope`);
-            if (!topicEl || !materialEl) return;
-            const scope = scopeEl?.value || '';
-            if (scope === '通用检查项') {
-                topicEl.value = '-';
+        function aiRuleGetSpecialFieldMeta(level1) {
+            if (level1 === '科技档案') {
+                return { key: 'subfunction', label: '业务/职能细分', placeholder: '根据所选资料类型自动带出' };
+            }
+            if (level1 === '文书档案') {
+                return { key: 'topic', label: '专题/专业', placeholder: '根据所选资料类型自动带出' };
+            }
+            return null;
+        }
+
+        function aiRuleGetSpecialAutoValue(level1, material) {
+            if (!level1 || !material) return '';
+            return aiRuleMaterialSpecialFieldMap[level1]?.[material] || '';
+        }
+
+        function aiRuleGetClassificationDisplay(rule) {
+            if (rule.scope === '通用检查项' || !rule.level1) return '-';
+            return [rule.level1, rule.level2, rule.level3].filter(Boolean).join(' / ');
+        }
+
+        function aiRuleGetTopicDisplay(rule) {
+            return rule.level1 === '文书档案' ? (rule.topic || '-') : '-';
+        }
+
+        function aiRuleGetSubfunctionDisplay(rule) {
+            return rule.level1 === '科技档案' ? (rule.subfunction || '-') : '-';
+        }
+
+        function aiRuleGetCurrentClassificationSelection(prefix) {
+            return aiRuleClassificationSelections[prefix] || { level1: '', level2: '', level3: '' };
+        }
+
+        function aiRuleGetClassificationValueByPrefix(prefix) {
+            const selection = aiRuleGetCurrentClassificationSelection(prefix);
+            return [selection.level1, selection.level2, selection.level3].filter(Boolean).join(' / ');
+        }
+
+        function aiRuleUpdateSpecialField(prefix, preserveValue = true) {
+            const selection = aiRuleGetCurrentClassificationSelection(prefix);
+            const meta = aiRuleGetSpecialFieldMeta(selection.level1);
+            const fieldEl = document.getElementById(`ai-rule-${prefix}-special-field`);
+            const labelEl = document.getElementById(`ai-rule-${prefix}-special-label`);
+            const inputEl = document.getElementById(`ai-rule-${prefix}-topic`);
+            if (!fieldEl || !labelEl || !inputEl) return;
+            if (!meta) {
+                fieldEl.classList.add('hidden');
+                inputEl.value = '根据所选资料类型自动带出';
+                inputEl.placeholder = '根据所选资料类型自动带出';
                 return;
             }
-            const topic = aiRuleMaterialTopicMap[materialEl.value] || '';
-            topicEl.value = topic || aiRuleDefaultTopicHint;
+            fieldEl.classList.remove('hidden');
+            labelEl.textContent = meta.label;
+            inputEl.placeholder = meta.placeholder;
+            if (!preserveValue) {
+                inputEl.value = '根据所选资料类型自动带出';
+            }
+        }
+
+        function aiRuleRenderClassificationColumns(prefix) {
+            const data = directoryCascaderData || {};
+            const selection = aiRuleGetCurrentClassificationSelection(prefix);
+            const level1El = document.getElementById(`ai-rule-${prefix}-classification-level1`);
+            const level2El = document.getElementById(`ai-rule-${prefix}-classification-level2`);
+            const level3El = document.getElementById(`ai-rule-${prefix}-classification-level3`);
+            const level1Keys = Object.keys(data);
+
+            if (level1El) {
+                level1El.innerHTML = level1Keys.map(item => `
+                    <div class="cascader-item ${selection.level1 === item ? 'active' : ''}" onclick="aiRuleSelectClassification('${prefix}', 1, '${item}', this)">
+                        ${item} <i class="fas fa-chevron-right"></i>
+                    </div>
+                `).join('');
+            }
+
+            const level2Keys = selection.level1 ? Object.keys(data[selection.level1] || {}) : [];
+            if (level2El) {
+                level2El.innerHTML = level2Keys.length
+                    ? level2Keys.map(item => `
+                        <div class="cascader-item ${selection.level2 === item ? 'active' : ''}" onclick="aiRuleSelectClassification('${prefix}', 2, '${item}', this)">
+                            ${item} <i class="fas fa-chevron-right"></i>
+                        </div>
+                    `).join('')
+                    : '<div class="text-xs text-gray-400 italic p-3 dark:text-gray-500">请先选择一级分类</div>';
+            }
+
+            const level3Keys = selection.level1 && selection.level2 ? (data[selection.level1]?.[selection.level2] || []) : [];
+            if (level3El) {
+                level3El.innerHTML = level3Keys.length
+                    ? level3Keys.map(item => `
+                        <div class="cascader-item ${selection.level3 === item ? 'active' : ''}" onclick="aiRuleSelectClassification('${prefix}', 3, '${item}', this)">${item}</div>
+                    `).join('')
+                    : '<div class="text-xs text-gray-400 italic p-3 dark:text-gray-500">请先选择二级分类</div>';
+            }
+        }
+
+        function aiRuleSyncClassificationDisplay(prefix, preserveValue = true) {
+            const textEl = document.getElementById(`ai-rule-${prefix}-classification-text`);
+            const valueEl = document.getElementById(`ai-rule-${prefix}-classification`);
+            const text = aiRuleGetClassificationValueByPrefix(prefix);
+            if (textEl) textEl.textContent = text || '请选择档案分类';
+            if (valueEl) valueEl.value = text;
+            aiRuleUpdateSpecialField(prefix, preserveValue);
+            aiRuleSyncTopicByMaterial(prefix);
+        }
+
+        function aiRuleSetClassificationSelection(prefix, selection, preserveValue = true) {
+            aiRuleClassificationSelections[prefix] = {
+                level1: selection?.level1 || '',
+                level2: selection?.level2 || '',
+                level3: selection?.level3 || ''
+            };
+            aiRuleRenderClassificationColumns(prefix);
+            aiRuleSyncClassificationDisplay(prefix, preserveValue);
+        }
+
+        function aiRuleToggleClassificationCascader(prefix) {
+            toggleCascader(`ai-rule-${prefix}-classification-cascader`);
+        }
+
+        function aiRuleSelectClassification(prefix, level, value) {
+            event.stopPropagation();
+            const selection = { ...aiRuleGetCurrentClassificationSelection(prefix) };
+            if (level === 1) {
+                selection.level1 = value;
+                selection.level2 = '';
+                selection.level3 = '';
+                aiRuleSetClassificationSelection(prefix, selection, false);
+                return;
+            }
+            if (level === 2) {
+                selection.level2 = value;
+                selection.level3 = '';
+                aiRuleSetClassificationSelection(prefix, selection, true);
+                return;
+            }
+            selection.level3 = value;
+            aiRuleSetClassificationSelection(prefix, selection, true);
+            const container = document.getElementById(`ai-rule-${prefix}-classification-cascader`);
+            container?.querySelector('.cascader-dropdown')?.classList.remove('active');
+        }
+
+        function aiRuleApplySpecialValue(prefix, rule) {
+            const inputEl = document.getElementById(`ai-rule-${prefix}-topic`);
+            if (!inputEl) return;
+            if (rule.level1 === '科技档案') {
+                inputEl.value = rule.subfunction || rule.specialty || aiRuleGetSpecialAutoValue(rule.level1, rule.material) || '根据所选资料类型自动带出';
+                return;
+            }
+            if (rule.level1 === '文书档案') {
+                inputEl.value = rule.topic || aiRuleGetSpecialAutoValue(rule.level1, rule.material) || '根据所选资料类型自动带出';
+                return;
+            }
+            inputEl.value = '根据所选资料类型自动带出';
+        }
+
+        function aiRuleGetSpecialFieldValues(prefix, level1) {
+            const inputEl = document.getElementById(`ai-rule-${prefix}-topic`);
+            const rawValue = String(inputEl?.value || '').trim();
+            const value = rawValue === '根据所选资料类型自动带出' ? '' : rawValue;
+            return {
+                topic: level1 === '文书档案' ? value : '',
+                subfunction: level1 === '科技档案' ? value : ''
+            };
+        }
+
+        function aiRuleBuildArchivePath(scope, levels, material) {
+            if (scope === '通用检查项') {
+                return `全部档案 / ${material || '全资料类型'}`;
+            }
+            return [...[levels.level1, levels.level2, levels.level3].filter(Boolean), material].filter(Boolean).join(' / ');
+        }
+
+        function aiRuleSyncTopicByMaterial(prefix) {
+            const selection = aiRuleGetCurrentClassificationSelection(prefix);
+            const inputEl = document.getElementById(`ai-rule-${prefix}-topic`);
+            const materialEl = document.getElementById(`ai-rule-${prefix}-material`);
+            if (!inputEl || !materialEl) return;
+            const autoValue = aiRuleGetSpecialAutoValue(selection.level1, materialEl.value);
+            inputEl.value = autoValue || '根据所选资料类型自动带出';
         }
 
         function aiRuleNormalizeDimensionValue(value) {
@@ -5176,6 +5457,15 @@ const aiRuleRules = [
             aiRuleRules.forEach(rule => {
                 rule.dimension = aiRuleNormalizeDimensionValue(rule.dimension);
                 rule.item = aiRuleNormalizeItemValue(rule.item);
+                if (rule.level2 === '基建') rule.level2 = '基建档案';
+                if (!rule.topic) rule.topic = '';
+                if (!rule.subfunction) {
+                    rule.subfunction = rule.level1 === '科技档案' ? (rule.specialty || rule.topic || '') : '';
+                }
+                if (rule.level1 !== '文书档案' && rule.level1 !== '科技档案') {
+                    rule.topic = '';
+                    rule.subfunction = '';
+                }
                 if (!rule.preposeToBusinessSystem) {
                     rule.preposeToBusinessSystem = '否';
                 }
@@ -5261,6 +5551,7 @@ const aiRuleRules = [
             const scope = document.getElementById('ai-rule-scope-filter')?.value || '';
             const classification = (document.getElementById('ai-rule-classification-filter')?.value || '').trim().toLowerCase();
             const topic = (document.getElementById('ai-rule-topic-filter')?.value || '').trim().toLowerCase();
+            const subfunction = (document.getElementById('ai-rule-subfunction-filter')?.value || '').trim().toLowerCase();
             const dimension = document.getElementById('ai-rule-dimension-filter')?.value || '';
             const risk = document.getElementById('ai-rule-risk-filter')?.value || '';
             const control = document.getElementById('ai-rule-control-filter')?.value || '';
@@ -5282,6 +5573,7 @@ const aiRuleRules = [
                     && (!scope || rule.scope === scope)
                     && (!classification || aiRuleGetClassificationDisplay(rule).toLowerCase().includes(classification))
                     && (!topic || aiRuleGetTopicDisplay(rule).toLowerCase().includes(topic))
+                    && (!subfunction || aiRuleGetSubfunctionDisplay(rule).toLowerCase().includes(subfunction))
                     && (!material || String(rule.material || '').toLowerCase().includes(material))
                     && (!dimension || rule.dimension === dimension)
                     && (!risk || rule.risk === risk)
@@ -5299,7 +5591,7 @@ const aiRuleRules = [
             if (!filteredRules.length) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="16" class="text-center py-10 text-gray-500 dark:text-gray-400">
+                        <td colspan="17" class="text-center py-10 text-gray-500 dark:text-gray-400">
                             <div class="flex flex-col items-center gap-3">
                                 <i class="fas fa-inbox text-3xl text-gray-300 dark:text-gray-600"></i>
                                 <p>暂无匹配规则</p>
@@ -5318,15 +5610,11 @@ const aiRuleRules = [
                     <td class="font-medium text-primary">
                         <button onclick="event.stopPropagation(); aiRuleOpenDetailPage('${rule.id}')" class="text-primary hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-2">${rule.id}</button>
                     </td>
-                    <td class="text-center" onclick="event.stopPropagation()">
-                        <label class="switch">
-                            <input type="checkbox" ${rule.enabled ? 'checked' : ''} onchange="aiRuleToggleRuleEnabled('${rule.id}', this.checked)">
-                            <span class="slider"></span>
-                        </label>
-                    </td>
+                    <td class="text-center">${aiRuleRenderEnabledBadge(rule.enabled)}</td>
                     <td>${aiRuleFormatScope(rule.scope)}</td>
                     <td>${aiRuleGetClassificationDisplay(rule)}</td>
                     <td>${aiRuleGetTopicDisplay(rule)}</td>
+                    <td>${aiRuleGetSubfunctionDisplay(rule)}</td>
                     <td>${aiRuleGetMaterialTypeDisplay(rule)}</td>
                     <td>${rule.dimension}</td>
                     <td>${aiRuleFormatRuleItem(rule.item)}</td>
@@ -5353,18 +5641,29 @@ const aiRuleRules = [
             return scope || '-';
         }
 
-        function aiRuleGetClassificationDisplay(rule) {
-            return rule.scope === '通用检查项' ? '-' : '科技档案/基建档案/施工资料';
-        }
-
-        function aiRuleGetTopicDisplay(rule) {
-            if (rule.scope === '通用检查项') return '-';
-            return rule.topic || rule.specialty || aiRuleMaterialTopicMap[rule.material] || aiRuleDefaultTopicHint;
-        }
-
         function aiRuleGetMaterialTypeDisplay(rule) {
             if (rule.scope === '通用检查项') return '-';
             return rule.material || '-';
+        }
+
+        function aiRuleRenderEnabledBadge(enabled) {
+            return enabled
+                ? '<span class="inline-flex items-center px-4 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">启用</span>'
+                : '<span class="inline-flex items-center px-4 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">禁用</span>';
+        }
+
+        function aiRuleSetEnabledField(prefix, enabled) {
+            const checkbox = document.getElementById(`ai-rule-${prefix}-enabled`);
+            const textEl = document.getElementById(`ai-rule-${prefix}-enabled-text`);
+            if (checkbox) checkbox.checked = !!enabled;
+            if (textEl) textEl.textContent = enabled ? '启用' : '禁用';
+        }
+
+        function aiRuleHandleEnabledChange(prefix) {
+            const checkbox = document.getElementById(`ai-rule-${prefix}-enabled`);
+            const textEl = document.getElementById(`ai-rule-${prefix}-enabled-text`);
+            if (!checkbox || !textEl) return;
+            textEl.textContent = checkbox.checked ? '启用' : '禁用';
         }
 
         function aiRuleFormatRuleItem(item) {
@@ -5389,9 +5688,25 @@ const aiRuleRules = [
         }
 
         function aiRuleValidateForm(prefix) {
+            const scopeEl = document.getElementById(`ai-rule-${prefix}-scope`);
+            const scopeValue = String(scopeEl?.value || '').trim();
+            if (!scopeValue) {
+                showToast('规则范围为必填项', 'warning');
+                if (scopeEl && typeof scopeEl.focus === 'function') scopeEl.focus();
+                return false;
+            }
+
+            if (scopeValue !== '通用检查项') {
+                const classificationEl = document.getElementById(`ai-rule-${prefix}-classification`);
+                const classificationValue = String(classificationEl?.value || '').trim();
+                const selection = aiRuleGetCurrentClassificationSelection(prefix);
+                if (!classificationValue || !selection.level1 || !selection.level2 || !selection.level3) {
+                    showToast('档案分类为必填项', 'warning');
+                    return false;
+                }
+            }
+
             const fieldMap = [
-                ['scope', '规则范围'],
-                ['classification', '档案分类'],
                 ['material', '资料类型'],
                 ['dimension', '检查维度'],
                 ['item', '检查项'],
@@ -5467,15 +5782,17 @@ const aiRuleRules = [
             aiRuleEditingRuleId = '';
             document.getElementById('ai-rule-create-id').value = aiRuleCreateIdHint;
             document.getElementById('ai-rule-create-scope').value = '指定档案资料类型检查项';
-            aiRuleUpdateCreateDerivedFields();
+            aiRuleSetClassificationSelection('create', { level1: '', level2: '', level3: '' }, false);
             aiRuleRenderMaterialOptions('create');
             aiRuleRenderDimensionOptions('create', '要素完备性');
-            document.getElementById('ai-rule-create-topic').value = aiRuleDefaultTopicHint;
+            document.getElementById('ai-rule-create-topic').value = '';
             document.getElementById('ai-rule-create-risk').value = '中';
             document.getElementById('ai-rule-create-control').value = '否';
             document.getElementById('ai-rule-create-prepose').value = '否';
+            aiRuleSetEnabledField('create', true);
             document.getElementById('ai-rule-create-logic').value = '';
             document.getElementById('ai-rule-create-basis').value = '';
+            aiRuleUpdateCreateDerivedFields();
             aiRuleUpdateRulePageUI();
         }
 
@@ -5490,18 +5807,24 @@ const aiRuleRules = [
             aiRuleDetailRuleId = '';
             document.getElementById('ai-rule-edit-id').value = rule.id || '';
             document.getElementById('ai-rule-edit-scope').value = rule.scope || '通用检查项';
-            aiRuleUpdateEditDerivedFields();
+            aiRuleSetClassificationSelection('edit', {
+                level1: rule.level1 || '',
+                level2: rule.level2 || '',
+                level3: rule.level3 || ''
+            }, false);
             aiRuleRenderMaterialOptions('edit', rule.material || '');
             const dimensionValue = aiRuleNormalizeDimensionValue(rule.dimension || '');
             const itemValue = aiRuleNormalizeItemValue(rule.item || '');
             aiRuleRenderDimensionOptions('edit', dimensionValue);
             aiRuleSyncItemOptions('edit', itemValue);
-            document.getElementById('ai-rule-edit-topic').value = aiRuleGetTopicDisplay(rule);
+            aiRuleApplySpecialValue('edit', rule);
             document.getElementById('ai-rule-edit-risk').value = rule.risk || '中';
             document.getElementById('ai-rule-edit-control').value = rule.strongControl || '否';
             document.getElementById('ai-rule-edit-prepose').value = rule.preposeToBusinessSystem || '否';
+            aiRuleSetEnabledField('edit', !!rule.enabled);
             document.getElementById('ai-rule-edit-logic').value = rule.logic || '';
             document.getElementById('ai-rule-edit-basis').value = rule.basis || '';
+            aiRuleUpdateEditDerivedFields();
             aiRuleUpdateRulePageUI();
         }
 
@@ -5524,13 +5847,37 @@ const aiRuleRules = [
             document.getElementById('ai-rule-detail-id').value = rule.id || '';
             document.getElementById('ai-rule-detail-scope').value = aiRuleFormatScope(rule.scope || '');
             document.getElementById('ai-rule-detail-classification').value = aiRuleGetClassificationDisplay(rule);
-            document.getElementById('ai-rule-detail-topic').value = aiRuleGetTopicDisplay(rule);
+            const meta = aiRuleGetSpecialFieldMeta(rule.level1 || '');
+            const detailField = document.getElementById('ai-rule-detail-special-field');
+            const detailLabel = document.getElementById('ai-rule-detail-special-label');
+            const detailInput = document.getElementById('ai-rule-detail-topic');
+            if (detailField && detailLabel && detailInput) {
+                if (meta) {
+                    detailField.classList.remove('hidden');
+                    detailLabel.textContent = meta.label;
+                    detailInput.value = meta.key === 'subfunction'
+                        ? (rule.subfunction || rule.specialty || '-')
+                        : (rule.topic || '-');
+                } else {
+                    detailField.classList.add('hidden');
+                    detailInput.value = '';
+                }
+            }
             document.getElementById('ai-rule-detail-material').value = aiRuleGetMaterialTypeDisplay(rule);
             document.getElementById('ai-rule-detail-dimension').value = rule.dimension || '';
             document.getElementById('ai-rule-detail-item').value = aiRuleFormatRuleItem(rule.item || '');
             document.getElementById('ai-rule-detail-risk').value = rule.risk || '';
             document.getElementById('ai-rule-detail-control').value = rule.strongControl || '';
             document.getElementById('ai-rule-detail-prepose').value = rule.preposeToBusinessSystem || '否';
+            const enabledEl = document.getElementById('ai-rule-detail-enabled');
+            if (enabledEl) {
+                enabledEl.innerHTML = `
+                    <label class="switch cursor-not-allowed opacity-70">
+                        <input type="checkbox" ${rule.enabled !== false ? 'checked' : ''} disabled>
+                        <span class="slider round"></span>
+                    </label>
+                `;
+            }
             document.getElementById('ai-rule-detail-logic').value = rule.logic || '';
             document.getElementById('ai-rule-detail-basis').value = rule.basis || aiRuleBasisPlaceholder;
         }
@@ -5540,32 +5887,32 @@ const aiRuleRules = [
             const now = aiRuleGetCurrentTimestamp();
             const scope = document.getElementById('ai-rule-create-scope').value;
             const material = document.getElementById('ai-rule-create-material').value.trim();
-            const topicRaw = document.getElementById('ai-rule-create-topic').value.trim();
-            const topic = topicRaw === aiRuleDefaultTopicHint ? '' : topicRaw;
             const levels = scope === '通用检查项'
                 ? { level1: '', level2: '', level3: '' }
-                : { level1: '科技档案', level2: '基建档案', level3: '施工资料' };
+                : { ...aiRuleGetCurrentClassificationSelection('create') };
+            const specialValues = aiRuleGetSpecialFieldValues('create', levels.level1);
             const newRule = {
                 id: aiRuleGenerateRuleId(scope, material),
                 scope,
                 level1: levels.level1,
                 level2: levels.level2,
                 level3: levels.level3,
-                topic,
+                topic: specialValues.topic,
+                subfunction: specialValues.subfunction,
                 material,
-                archivePath: '',
+                archivePath: aiRuleBuildArchivePath(scope, levels, material),
                 dimension: aiRuleNormalizeDimensionValue(document.getElementById('ai-rule-create-dimension').value.trim()),
                 item: aiRuleNormalizeItemValue(document.getElementById('ai-rule-create-item').value.trim()),
                 logic: document.getElementById('ai-rule-create-logic').value.trim(),
                 risk: document.getElementById('ai-rule-create-risk').value,
                 strongControl: document.getElementById('ai-rule-create-control').value,
                 preposeToBusinessSystem: document.getElementById('ai-rule-create-prepose').value,
+                enabled: !!document.getElementById('ai-rule-create-enabled')?.checked,
                 owner: 'Agent',
                 status: '待发布',
                 version: 'v2026.04-RC1',
                 updatedAt: now,
-                basis: document.getElementById('ai-rule-create-basis').value.trim(),
-                enabled: true
+                basis: document.getElementById('ai-rule-create-basis').value.trim()
             };
 
             aiRuleRules.unshift(newRule);
@@ -5584,24 +5931,30 @@ const aiRuleRules = [
             if (!aiRuleValidateForm('edit')) return;
             const now = aiRuleGetCurrentTimestamp();
             rule.scope = document.getElementById('ai-rule-edit-scope').value;
-            const topicRaw = document.getElementById('ai-rule-edit-topic').value.trim();
-            rule.topic = topicRaw === aiRuleDefaultTopicHint ? '' : topicRaw;
             rule.material = document.getElementById('ai-rule-edit-material').value.trim();
+            const levels = rule.scope === '通用检查项'
+                ? { level1: '', level2: '', level3: '' }
+                : { ...aiRuleGetCurrentClassificationSelection('edit') };
+            const specialValues = aiRuleGetSpecialFieldValues('edit', levels.level1);
             if (rule.scope === '通用检查项') {
                 rule.level1 = '';
                 rule.level2 = '';
                 rule.level3 = '';
             } else {
-                rule.level1 = '科技档案';
-                rule.level2 = '基建档案';
-                rule.level3 = '施工资料';
+                rule.level1 = levels.level1;
+                rule.level2 = levels.level2;
+                rule.level3 = levels.level3;
             }
+            rule.topic = specialValues.topic;
+            rule.subfunction = specialValues.subfunction;
+            rule.archivePath = aiRuleBuildArchivePath(rule.scope, levels, rule.material);
             rule.dimension = aiRuleNormalizeDimensionValue(document.getElementById('ai-rule-edit-dimension').value.trim());
             rule.item = aiRuleNormalizeItemValue(document.getElementById('ai-rule-edit-item').value.trim());
             rule.logic = document.getElementById('ai-rule-edit-logic').value.trim();
             rule.risk = document.getElementById('ai-rule-edit-risk').value;
             rule.strongControl = document.getElementById('ai-rule-edit-control').value;
             rule.preposeToBusinessSystem = document.getElementById('ai-rule-edit-prepose').value;
+            rule.enabled = !!document.getElementById('ai-rule-edit-enabled')?.checked;
             rule.basis = document.getElementById('ai-rule-edit-basis').value.trim();
             rule.updatedAt = now;
             aiRuleRenderOverview();
@@ -5633,18 +5986,20 @@ const aiRuleRules = [
 
         function aiRuleUpdateCreateDerivedFields() {
             const scope = document.getElementById('ai-rule-create-scope')?.value || '';
-            const classification = scope === '通用检查项' ? '-' : '科技档案/基建档案/施工资料';
-            const el = document.getElementById('ai-rule-create-classification');
-            if (el) el.value = classification;
-            aiRuleSyncTopicByMaterial('create');
+            if (scope === '通用检查项') {
+                aiRuleSetClassificationSelection('create', { level1: '', level2: '', level3: '' }, false);
+                return;
+            }
+            aiRuleSyncClassificationDisplay('create', true);
         }
 
         function aiRuleUpdateEditDerivedFields() {
             const scope = document.getElementById('ai-rule-edit-scope')?.value || '';
-            const classification = scope === '通用检查项' ? '-' : '科技档案/基建档案/施工资料';
-            const el = document.getElementById('ai-rule-edit-classification');
-            if (el) el.value = classification;
-            aiRuleSyncTopicByMaterial('edit');
+            if (scope === '通用检查项') {
+                aiRuleSetClassificationSelection('edit', { level1: '', level2: '', level3: '' }, false);
+                return;
+            }
+            aiRuleSyncClassificationDisplay('edit', true);
         }
 
         function aiRuleToggleRuleEnabled(ruleId, enabled) {
@@ -6105,7 +6460,6 @@ const aiRuleRules = [
                 risk: rule.risk,
                 strongControl: rule.strongControl,
                 message,
-                advice: rule.advice || '请按规则提示补充或修正后重新提交。',
                 submissionRemark: ''
             };
         }
@@ -6179,51 +6533,51 @@ const aiRuleRules = [
         function buildFallbackValidationResultsMap() {
             return {
                 archived: aiRuleNormalizeFallbackResults([
-                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开，页数识别为3页。', advice: '', submissionRemark: '' },
-                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式符合要求。', advice: '', submissionRemark: '' },
-                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-003', item: '基础字段完整性', result: 'PASS', risk: '高', strongControl: '是', message: '题名、责任者、文号等字段完整。', advice: '', submissionRemark: '' },
-                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-004', item: '文件格式完整性', result: 'PASS', risk: '中', strongControl: '否', message: '文档结构完整，内容可解析。', advice: '', submissionRemark: '' },
-                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续，未发现缺页。', advice: '', submissionRemark: '' },
-                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件清单齐全。', advice: '', submissionRemark: '' },
-                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-007', item: '签字盖章识别', result: 'PASS', risk: '高', strongControl: '是', message: '已识别签字盖章要素。', advice: '', submissionRemark: '' },
-                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-008', item: '图像质量检查', result: 'PASS', risk: '中', strongControl: '否', message: '图像清晰，满足归档要求。', advice: '', submissionRemark: '' },
-                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-009', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料类型与档案分类一致。', advice: '', submissionRemark: '' },
-                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '关键批复要素识别完整。', advice: '', submissionRemark: '' }
+                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开，页数识别为3页。', submissionRemark: '' },
+                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式符合要求。', submissionRemark: '' },
+                    { fileName: '关于加强档案管理的通知.pdf', ruleId: 'R-AR-003', item: '基础字段完整性', result: 'PASS', risk: '高', strongControl: '是', message: '题名、责任者、文号等字段完整。', submissionRemark: '' },
+                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-004', item: '文件格式完整性', result: 'PASS', risk: '中', strongControl: '否', message: '文档结构完整，内容可解析。', submissionRemark: '' },
+                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续，未发现缺页。', submissionRemark: '' },
+                    { fileName: '项目进展汇报文档.docx', ruleId: 'R-AR-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件清单齐全。', submissionRemark: '' },
+                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-007', item: '签字盖章识别', result: 'PASS', risk: '高', strongControl: '是', message: '已识别签字盖章要素。', submissionRemark: '' },
+                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-008', item: '图像质量检查', result: 'PASS', risk: '中', strongControl: '否', message: '图像清晰，满足归档要求。', submissionRemark: '' },
+                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-009', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料类型与档案分类一致。', submissionRemark: '' },
+                    { fileName: '竣工验收记录.pdf', ruleId: 'R-AR-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '关键批复要素识别完整。', submissionRemark: '' }
                 ]),
                 rejected: aiRuleNormalizeFallbackResults([
-                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '', submissionRemark: '' },
-                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '日期格式符合要求。', advice: '', submissionRemark: '' },
-                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '文号字段缺失。', advice: '补充文号后重新提交。', submissionRemark: '' },
-                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '否', message: '识别为投资档案，与所选基建档案不一致。', advice: '调整为科技档案/投资档案。', submissionRemark: '' },
-                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', advice: '', submissionRemark: '' },
-                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '', submissionRemark: '' },
-                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-007', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '识别到签字信息。', advice: '', submissionRemark: '' },
-                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-008', item: '图像质量检查', result: 'PASS', risk: '低', strongControl: '否', message: '图像质量正常。', advice: '', submissionRemark: '' },
-                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-009', item: '印章完整性', result: 'PASS', risk: '中', strongControl: '否', message: '印章识别完整。', advice: '', submissionRemark: '' },
-                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '批复要素识别正常。', advice: '', submissionRemark: '' }
+                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', submissionRemark: '' },
+                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '日期格式符合要求。', submissionRemark: '' },
+                    { fileName: '施工组织设计_终版.pdf', ruleId: 'R-RJ-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '文号字段缺失。', submissionRemark: '' },
+                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '否', message: '识别为投资档案，与所选基建档案不一致。', submissionRemark: '' },
+                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', submissionRemark: '' },
+                    { fileName: '投资估算表.xlsx', ruleId: 'R-RJ-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', submissionRemark: '' },
+                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-007', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '识别到签字信息。', submissionRemark: '' },
+                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-008', item: '图像质量检查', result: 'PASS', risk: '低', strongControl: '否', message: '图像质量正常。', submissionRemark: '' },
+                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-009', item: '印章完整性', result: 'PASS', risk: '中', strongControl: '否', message: '印章识别完整。', submissionRemark: '' },
+                    { fileName: '会议纪要_修改版.docx', ruleId: 'R-RJ-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '批复要素识别正常。', submissionRemark: '' }
                 ]),
                 pendingNormal: aiRuleNormalizeFallbackResults([
-                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '', submissionRemark: '' },
-                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', advice: '', submissionRemark: '' },
-                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '责任者信息缺失。', advice: '补齐责任者字段并重新提交。', submissionRemark: '' },
-                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-004', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料分类匹配通过。', advice: '', submissionRemark: '' },
-                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', advice: '', submissionRemark: '' },
-                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '', submissionRemark: '' },
-                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-007', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '签字盖章识别通过。', advice: '', submissionRemark: '' },
-                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-008', item: '图像质量检查', result: 'PASS', risk: '低', strongControl: '否', message: '图像清晰。', advice: '', submissionRemark: '' },
-                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-009', item: '印章完整性', result: 'FAIL', risk: '中', strongControl: '否', message: '印章缺失。', advice: '补充盖章后重新上传。', submissionRemark: '' },
-                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '批复要素识别完整。', advice: '', submissionRemark: '' },
-                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-011', item: '文件命名规范', result: 'PASS', risk: '低', strongControl: '否', message: '命名符合规范。', advice: '', submissionRemark: '' }
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', submissionRemark: '' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', submissionRemark: '' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '责任者信息缺失。', submissionRemark: '没有责任者，无需修改。' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-004', item: '资料分类一致性', result: 'PASS', risk: '中', strongControl: '否', message: '资料分类匹配通过。', submissionRemark: '' },
+                    { fileName: '可研报告_一期.pdf', ruleId: 'R-PD-005', item: '页码连续性', result: 'PASS', risk: '中', strongControl: '否', message: '页码连续。', submissionRemark: '' },
+                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-006', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', submissionRemark: '' },
+                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-007', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '签字盖章识别通过。', submissionRemark: '' },
+                    { fileName: '批复文件_市发改委.pdf', ruleId: 'R-PD-008', item: '图像质量检查', result: 'PASS', risk: '低', strongControl: '否', message: '图像清晰。', submissionRemark: '' },
+                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-009', item: '印章完整性', result: 'FAIL', risk: '中', strongControl: '否', message: '印章缺失。', submissionRemark: '原文件已修改并替换。' },
+                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-010', item: '批复要素识别', result: 'PASS', risk: '低', strongControl: '否', message: '批复要素识别完整。', submissionRemark: '' },
+                    { fileName: '施工组织设计_v2.docx', ruleId: 'R-PD-011', item: '文件命名规范', result: 'PASS', risk: '低', strongControl: '否', message: '命名符合规范。', submissionRemark: '' }
                 ]),
                 pendingBlock: aiRuleNormalizeFallbackResults([
-                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', advice: '', submissionRemark: '' },
-                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', advice: '', submissionRemark: '' },
-                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '责任者信息缺失，触发强控制拦截。', advice: '补齐责任者字段后再次提交。', submissionRemark: '' },
-                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '是', message: '资料分类与识别结果不一致，触发强控制拦截。', advice: '返回调整档案分类后重新提交。', submissionRemark: '' },
-                    { fileName: '批复文件_补充件.pdf', ruleId: 'R-PB-005', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', advice: '', submissionRemark: '' },
-                    { fileName: '批复文件_补充件.pdf', ruleId: 'R-PB-006', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '签字盖章识别通过。', advice: '', submissionRemark: '' },
-                    { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-007', item: '印章完整性', result: 'PASS', risk: '中', strongControl: '否', message: '印章识别完整。', advice: '', submissionRemark: '' },
-                    { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-008', item: '图像质量检查', result: 'FAIL', risk: '中', strongControl: '否', message: '图像模糊影响识别准确度。', advice: '请重新扫描上传清晰版本。', submissionRemark: '' }
+                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-001', item: '文件可打开且页数大于0', result: 'PASS', risk: '中', strongControl: '否', message: '文件可正常打开。', submissionRemark: '' },
+                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-002', item: '日期格式校验', result: 'PASS', risk: '低', strongControl: '否', message: '成文日期格式正确。', submissionRemark: '' },
+                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-003', item: '基础字段完整性', result: 'FAIL', risk: '高', strongControl: '是', message: '责任者信息缺失，触发强控制拦截。', submissionRemark: '' },
+                    { fileName: '可研报告_二期.pdf', ruleId: 'R-PB-004', item: '资料分类一致性', result: 'FAIL', risk: '高', strongControl: '是', message: '资料分类与识别结果不一致，触发强控制拦截。', submissionRemark: '' },
+                    { fileName: '批复文件_补充件.pdf', ruleId: 'R-PB-005', item: '附件齐全性', result: 'PASS', risk: '低', strongControl: '否', message: '附件齐全。', submissionRemark: '' },
+                    { fileName: '批复文件_补充件.pdf', ruleId: 'R-PB-006', item: '签字盖章识别', result: 'PASS', risk: '中', strongControl: '否', message: '签字盖章识别通过。', submissionRemark: '' },
+                    { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-007', item: '印章完整性', result: 'PASS', risk: '中', strongControl: '否', message: '印章识别完整。', submissionRemark: '' },
+                    { fileName: '施工组织设计_v3.docx', ruleId: 'R-PB-008', item: '图像质量检查', result: 'FAIL', risk: '中', strongControl: '否', message: '图像模糊影响识别准确度。', submissionRemark: '' }
                 ])
             };
         }
@@ -6271,13 +6625,16 @@ const aiRuleRules = [
             const nodePassEl = document.getElementById('pending-ai-node-pass-text');
             const nodeFailEl = document.getElementById('pending-ai-node-fail-text');
             const nodeTimeEl = document.getElementById('pending-ai-node-time');
-            const failListEl = document.getElementById('pending-ai-fail-list');
-            const aiCard = document.getElementById('pending-ai-card');
+            const isPendingDetailPage = currentTab === 'archive-detail-pending';
+            const failListEl = isPendingDetailPage
+                ? document.getElementById('pending-ai-fail-list')
+                : document.getElementById('rejected-ai-fail-list');
+            const aiCard = isPendingDetailPage ? document.getElementById('pending-ai-card') : null;
             const report = getValidationReportSafe();
             const fallbackResults = getFallbackValidationResults(currentTab);
             const allResults = report && Array.isArray(report.results) && report.results.length ? report.results : fallbackResults;
             const failResults = allResults.filter(item => item.result !== 'PASS');
-            const isAIProcessingMode = currentPendingDetailMode === 'pending-ai-processing';
+            const isAIProcessingMode = isPendingDetailPage && currentPendingDetailMode === 'pending-ai-processing';
 
             if (isAIProcessingMode) {
                 if (aiCard) aiCard.classList.add('hidden');
@@ -6317,9 +6674,18 @@ const aiRuleRules = [
                 if (!failResults.length) {
                     failListEl.innerHTML = '<div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>';
                 } else {
+                    const isPendingNormalReadonly = isPendingDetailPage && currentPendingDetailMode === 'pending-normal';
+                    const isRejectedDetailReadonly = currentTab === 'archive-detail-rejected';
+                    const isReadonlySubmissionRemark = isPendingNormalReadonly || isRejectedDetailReadonly;
                     failListEl.innerHTML = failResults.map((item, index) => {
                         const riskBadge = aiRuleRenderRiskBadge(item.risk || '-');
                         const advice = item.submissionRemark || item.submissionComment || '';
+                        const textareaClass = isReadonlySubmissionRemark
+                            ? 'w-full bg-gray-100 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400'
+                            : 'w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500';
+                        const textareaDisabled = isReadonlySubmissionRemark ? 'disabled' : '';
+                        const textareaPlaceholder = isReadonlySubmissionRemark ? '' : '校验不通过，请填写提交说明。';
+                        const textareaOnInput = isReadonlySubmissionRemark ? '' : `oninput="updatePendingAIFailRemark(${index}, this.value)"`;
                         return `
                             <div class="bg-white border border-blue-100 rounded-lg p-3 dark:bg-gray-800/80 dark:border-blue-900/40">
                                 <div class="flex items-start justify-between gap-3 mb-3">
@@ -6349,7 +6715,7 @@ const aiRuleRules = [
                                             <span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[260px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">当不通过项认为无需修改时，填写原因说明并继续提交审批。</span>
                                         </span>
                                     </label>
-                                    <textarea data-ai-fail-index="${index}" oninput="updatePendingAIFailRemark(${index}, this.value)" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500" rows="2" placeholder="校验不通过，请填写提交说明。">${escapeHtml(advice)}</textarea>
+                                    <textarea data-ai-fail-index="${index}" ${textareaOnInput} ${textareaDisabled} class="${textareaClass}" rows="2" placeholder="${textareaPlaceholder}">${escapeHtml(advice)}</textarea>
                                 </div>
                             </div>
                         `;
@@ -6427,14 +6793,13 @@ const aiRuleRules = [
             const riskFilter = document.getElementById('ai-detail-filter-risk')?.value || '';
             const strongFilter = document.getElementById('ai-detail-filter-strong')?.value || '';
             const messageFilter = (document.getElementById('ai-detail-filter-message')?.value || '').trim().toLowerCase();
-            const adviceFilter = (document.getElementById('ai-detail-filter-advice')?.value || '').trim().toLowerCase();
             const results = report && Array.isArray(report.results) && report.results.length
                 ? report.results
                 : getFallbackValidationResults(currentTab);
             if (!results.length) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="9" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无可展示的 AI 校验明细</td>
+                        <td colspan="7" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无可展示的 AI 校验明细</td>
                     </tr>
                 `;
                 return;
@@ -6443,18 +6808,16 @@ const aiRuleRules = [
             const filteredResults = results.filter(item => {
                 const resultText = item.result === 'PASS' ? '通过' : '不通过';
                 const messageText = String(item.message || '').toLowerCase();
-                const adviceText = String(item.advice || '').toLowerCase();
                 return (!fileFilter || String(item.fileName || '').toLowerCase().includes(fileFilter))
                     && (!ruleFilter || String(item.ruleId || '').toLowerCase().includes(ruleFilter))
                     && (!itemFilter || String(item.item || '').toLowerCase().includes(itemFilter))
                     && (!resultFilter || resultText === resultFilter)
                     && (!riskFilter || String(item.risk || '') === riskFilter)
                     && (!strongFilter || String(item.strongControl || '') === strongFilter)
-                    && (!messageFilter || messageText.includes(messageFilter))
-                    && (!adviceFilter || adviceText.includes(adviceFilter));
+                    && (!messageFilter || messageText.includes(messageFilter));
             });
             if (!filteredResults.length) {
-                tbody.innerHTML = '<tr><td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
                 return;
             }
             tbody.innerHTML = filteredResults.map(item => {
@@ -6475,7 +6838,6 @@ const aiRuleRules = [
                         <td>${riskText}</td>
                         <td>${strongControlText}</td>
                         <td class="whitespace-normal leading-5 py-2">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
-                        <td class="whitespace-normal leading-5 py-2">${pass ? '-' : escapeHtml(item.advice || '请根据不通过原因修正后重新提交。')}</td>
                     </tr>
                 `;
             }).join('');
@@ -6595,6 +6957,10 @@ const aiRuleRules = [
         currentTab = pageId;
         renderTabs();
 
+        if (pageId === 'archive-detail-pending' || pageId === 'archive-detail-rejected') {
+            refreshPendingAICheckPanel();
+        }
+
         // 更新侧边栏状态（仅高亮，不改变行为）
         document.querySelectorAll('.sidebar-item').forEach(el => {
             el.classList.remove('bg-blue-50', 'text-primary', 'border-l-4', 'border-primary');
@@ -6659,6 +7025,10 @@ const aiRuleRules = [
         }
 
         renderTabs();
+
+        if (tabId === 'archive-detail-pending' || tabId === 'archive-detail-rejected') {
+            refreshPendingAICheckPanel();
+        }
 
         // 更新侧边栏
         document.querySelectorAll('.sidebar-item').forEach(el => {
@@ -7986,6 +8356,23 @@ let currentReplacingPendingRow = null;
     let aiProcessing = false;
     let currentReplacingBatchFileId = null;
     let currentPendingDetailMode = 'pending-normal';
+    const pendingDetailConfigs = {
+        'pending-ai-processing': {
+            applicationNo: '20260128-G001-000003',
+            statusText: '审批中',
+            badgeClassName: 'px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 border border-yellow-200 w-fit dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-800'
+        },
+        'pending-block': {
+            applicationNo: '20260128-G001-000002',
+            statusText: '已拒绝',
+            badgeClassName: 'px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 border border-red-200 w-fit dark:bg-red-900/30 dark:text-red-200 dark:border-red-800'
+        },
+        'pending-normal': {
+            applicationNo: '20260128-G001-000001',
+            statusText: '审批中',
+            badgeClassName: 'px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 border border-yellow-200 w-fit dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-800'
+        }
+    };
     let validationReport = null;
     let validationSnapshotKey = '';
 
@@ -8006,6 +8393,7 @@ let currentReplacingPendingRow = null;
         if (currentTab !== 'archive-detail-pending') return;
         const isBlockMode = currentPendingDetailMode === 'pending-block';
         const isAIProcessingMode = currentPendingDetailMode === 'pending-ai-processing';
+        const detailConfig = pendingDetailConfigs[currentPendingDetailMode] || pendingDetailConfigs['pending-normal'];
 
         const deptNode = document.getElementById('pending-node-dept');
         const areaNode = document.getElementById('pending-node-area');
@@ -8015,6 +8403,40 @@ let currentReplacingPendingRow = null;
         const aiNodeResult = document.getElementById('pending-ai-node-result');
         const aiNodeTime = document.getElementById('pending-ai-node-time');
         const aiCard = document.getElementById('pending-ai-card');
+        const applicationNoEl = document.getElementById('pending-detail-application-no');
+        const statusBadgeEl = document.getElementById('pending-detail-status-badge');
+        const resubmitBtn = document.getElementById('pending-detail-resubmit-btn');
+        const returnBtn = document.getElementById('pending-detail-return-btn');
+        const saveDraftBtn = document.getElementById('pending-detail-save-draft-btn');
+        const pendingTable = document.getElementById('file-list-pending-table');
+
+        if (applicationNoEl) {
+            applicationNoEl.textContent = `申请单号：${detailConfig.applicationNo}`;
+        }
+
+        if (statusBadgeEl) {
+            statusBadgeEl.className = detailConfig.badgeClassName;
+            statusBadgeEl.textContent = detailConfig.statusText;
+        }
+
+        if (resubmitBtn) {
+            resubmitBtn.classList.toggle('hidden', currentPendingDetailMode !== 'pending-block');
+        }
+
+        if (returnBtn) {
+            returnBtn.classList.toggle('hidden', currentPendingDetailMode === 'pending-block');
+        }
+
+        if (saveDraftBtn) {
+            saveDraftBtn.classList.toggle('hidden', currentPendingDetailMode !== 'pending-block');
+        }
+
+        if (pendingTable) {
+            const shouldDisablePendingActions = currentPendingDetailMode !== 'pending-block';
+            pendingTable.querySelectorAll('.batch-action-edit, .batch-action-replace, .batch-action-delete').forEach(btn => {
+                btn.classList.toggle('is-disabled', shouldDisablePendingActions);
+            });
+        }
 
         if (deptNode) deptNode.classList.toggle('hidden', isBlockMode || isAIProcessingMode);
         if (areaNode) areaNode.classList.toggle('hidden', isBlockMode || isAIProcessingMode);
