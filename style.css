@@ -529,6 +529,34 @@
             vertical-align: top;
         }
 
+        .data-table .ai-detail-logic-cell {
+            min-width: 420px;
+            max-width: 420px;
+            line-height: 1.6;
+            min-height: 88px;
+            max-height: 120px;
+            display: -webkit-box;
+            line-clamp: 4;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            vertical-align: top;
+            padding-top: 0.875rem;
+            padding-bottom: 0.875rem;
+        }
+
+        .data-table tr:hover .ai-detail-logic-cell {
+            background-color: rgba(59, 130, 246, 0.04);
+        }
+
+        .dark .data-table tr:hover .ai-detail-logic-cell {
+            background-color: rgba(59, 130, 246, 0.08);
+        }
+
         #batch-upload-table {
             width: max-content;
             min-width: 100%;
