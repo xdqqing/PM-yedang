@@ -4191,6 +4191,7 @@
                             <th class="min-w-[90px]">风险等级<div class="resize-handle"></div></th>
                             <th class="min-w-[100px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span><div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">结果说明<div class="resize-handle"></div></th>
+                            <th class="min-w-[260px]">修改建议<div class="resize-handle"></div></th>
                         </tr>
                         <tr>
                             <th><input id="ai-detail-filter-file" oninput="aiDetailApplyFilters()" placeholder="文件名称" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
@@ -4219,6 +4220,7 @@
                                 </select>
                             </th>
                             <th><input id="ai-detail-filter-message" oninput="aiDetailApplyFilters()" placeholder="结果说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                            <th><input id="ai-detail-filter-advice" oninput="aiDetailApplyFilters()" placeholder="修改建议" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                         </tr>
                     </thead>
                     <tbody id="ai-detail-result-body"></tbody>
@@ -6795,13 +6797,14 @@ const aiRuleRules = [
             const riskFilter = document.getElementById('ai-detail-filter-risk')?.value || '';
             const strongFilter = document.getElementById('ai-detail-filter-strong')?.value || '';
             const messageFilter = (document.getElementById('ai-detail-filter-message')?.value || '').trim().toLowerCase();
+            const adviceFilter = (document.getElementById('ai-detail-filter-advice')?.value || '').trim().toLowerCase();
             const results = report && Array.isArray(report.results) && report.results.length
                 ? report.results
                 : getFallbackValidationResults(currentTab);
             if (!results.length) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无可展示的 AI 校验明细</td>
+                        <td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无可展示的 AI 校验明细</td>
                     </tr>
                 `;
                 return;
@@ -6860,25 +6863,81 @@ const aiRuleRules = [
                 return '未在规则库中匹配到对应 Agent 校验逻辑。';
             }
 
+            function getValidationAdvice(item) {
+                const ruleId = String(item?.ruleId || '').trim();
+                const itemName = aiRuleFormatRuleItem(item?.item || '');
+                const directRule = aiRuleRules.find(rule => rule.id === ruleId);
+                if (directRule?.advice) return directRule.advice;
+
+                const normalizedItem = aiRuleFormatRuleItem(itemName);
+                const matchedByItem = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === normalizedItem);
+                if (matchedByItem?.advice) return matchedByItem.advice;
+
+                if (normalizedItem.includes('资料分类一致性')) {
+                    const fallback = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === '系统录入一致');
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('印章完整性') || normalizedItem.includes('签字盖章识别')) {
+                    const fallback = aiRuleRules.find(rule => ['印章 / 签名识别', '签章合规', '审批机关印章识别'].includes(rule.item));
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('基础字段完整性')) {
+                    const fallback = aiRuleRules.find(rule => ['1.1. 基本要素缺失', '核心内容齐全'].includes(rule.item));
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('文件格式完整性') || normalizedItem.includes('文件命名规范')) {
+                    const fallback = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === '格式完整达标');
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('图像质量检查')) {
+                    const fallback = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === '图像质量达标');
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('日期格式校验')) {
+                    const fallback = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === '日期合规');
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('页码连续性')) {
+                    const fallback = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === '页码连续');
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('附件齐全性')) {
+                    const fallback = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === '附件齐全');
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('文件可打开且页数大于0')) {
+                    const fallback = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === '文件可打开且页数大于0');
+                    if (fallback?.advice) return fallback.advice;
+                }
+                if (normalizedItem.includes('批复要素识别')) {
+                    const fallback = aiRuleRules.find(rule => aiRuleFormatRuleItem(rule.item || '') === '批复要素识别');
+                    if (fallback?.advice) return fallback.advice;
+                }
+                return '请根据校验结果核对原文件内容后修正，再重新提交。';
+            }
+
             const filteredResults = results.filter(item => {
                 const resultText = item.result === 'PASS' ? '通过' : '不通过';
                 const messageText = String(item.message || '').toLowerCase();
                 const logicText = String(getValidationAgentLogic(item) || '').toLowerCase();
+                const adviceText = String(getValidationAdvice(item) || '').toLowerCase();
                 return (!fileFilter || String(item.fileName || '').toLowerCase().includes(fileFilter))
                     && (!itemFilter || String(item.item || '').toLowerCase().includes(itemFilter))
                     && (!logicFilter || logicText.includes(logicFilter))
                     && (!resultFilter || resultText === resultFilter)
                     && (!riskFilter || String(item.risk || '') === riskFilter)
                     && (!strongFilter || String(item.strongControl || '') === strongFilter)
-                    && (!messageFilter || messageText.includes(messageFilter));
+                    && (!messageFilter || messageText.includes(messageFilter))
+                    && (!adviceFilter || adviceText.includes(adviceFilter));
             });
             if (!filteredResults.length) {
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
                 return;
             }
             tbody.innerHTML = filteredResults.map(item => {
                 const pass = item.result === 'PASS';
                 const agentLogic = getValidationAgentLogic(item);
+                const advice = pass ? '' : getValidationAdvice(item);
                 const resultBadge = pass
                     ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">通过</span>'
                     : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">不通过</span>';
@@ -6895,6 +6954,7 @@ const aiRuleRules = [
                         <td>${riskText}</td>
                         <td>${strongControlText}</td>
                         <td class="whitespace-normal leading-5 py-2">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
+                        <td class="whitespace-normal leading-5 py-2">${escapeHtml(advice)}</td>
                     </tr>
                 `;
             }).join('');
