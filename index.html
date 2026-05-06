@@ -6934,10 +6934,6 @@ const aiRuleRules = [
                 showToast('存在强控拦截项，当前不可提交审批', 'warning');
                 return;
             }
-            if (validationReport.reviewCount > 0 && !fromReport) {
-                const confirmed = confirm(`当前有 ${validationReport.reviewCount} 项待人工复核，确认继续提交吗？`);
-                if (!confirmed) return;
-            }
             showToast(`成功提交 ${count} 个文件，已携带 AI 校验结果`, 'success');
             closeValidationReportModal();
         }
@@ -8986,21 +8982,9 @@ let currentReplacingPendingRow = null;
             showToast('AI校验存在强控制拦截项，当前不可提交审批', 'warning');
             return;
         }
-
-        if (validationReport.notPassCount > 0 && !fromReport) {
-            const confirmed = confirm(`当前有 ${validationReport.notPassCount} 项不通过，是否仍继续提交审批？`);
-            if (!confirmed) {
-                renderValidationReport();
-                showAICheckDetail();
-                return;
-            }
-        }
-
-        if (confirm(`确定提交 ${count} 个文件进行审批吗？`)) {
-            showToast('提交审批成功，进行AI校验中。', 'success');
-            refreshPendingAICheckPanel();
-            setTimeout(() => openArchiveDetail('pending-ai-processing'), 700);
-        }
+        showToast('提交审批成功，进行AI校验中。', 'success');
+        refreshPendingAICheckPanel();
+        setTimeout(() => openArchiveDetail('pending-ai-processing'), 700);
     }
     
     // 文件审批页相关函数
