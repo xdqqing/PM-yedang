@@ -1009,6 +1009,23 @@
                 </div>
             </div>
 
+            <!-- AI 校验报告（可点击查看详情） -->
+            <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
+                <div class="flex items-center justify-between gap-3 mb-3">
+                    <div>
+                        <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                            <i class="fas fa-robot text-primary"></i>
+                            AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示部分不通过项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>展示全部检查项并填写提交说明）</span>
+                        </h3>
+                        <div class="mt-1 text-xs text-primary dark:text-blue-300">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
+                    </div>
+                    <button type="button" onclick="showAICheckDetail()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-blue-200 bg-white text-primary text-sm font-medium shadow-sm hover:bg-blue-50 hover:border-blue-300 hover:shadow transition dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200 dark:hover:bg-blue-800/40 dark:hover:border-blue-500"><i class="fas fa-arrow-up-right-from-square text-[11px]"></i>查看详情</button>
+                </div>
+                <div class="text-sm text-blue-800 dark:text-blue-200">
+                    当前无不通过项
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
                 <div class="lg:col-span-2 space-y-4 md:space-y-6">
                       <!-- 基本信息（全部只读） -->
@@ -1237,23 +1254,6 @@
                         </div>
                     </div>
 
-                    <!-- AI 校验报告（可点击查看详情） -->
-                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
-                        <div class="flex items-center justify-between gap-3 mb-3">
-                            <div>
-                                <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
-                                    <i class="fas fa-robot text-primary"></i>
-                                    AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示不通过项）</span>
-                                </h3>
-                                <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
-                            </div>
-                            <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
-                        </div>
-                        <div class="text-sm text-blue-800 dark:text-blue-200">
-                            当前无不通过项
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -1286,6 +1286,23 @@
                         <i class="fas fa-paper-plane"></i>
                         重新提交
                     </button>
+                </div>
+            </div>
+
+            <!-- AI 智能检查报告 -->
+            <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
+                <div class="flex items-center justify-between gap-3 mb-3">
+                    <div>
+                        <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                            <i class="fas fa-robot text-primary"></i>
+                            AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示部分不通过项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>展示全部检查项并填写提交说明）</span>
+                        </h3>
+                        <div class="mt-1 text-xs text-primary dark:text-blue-300">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
+                    </div>
+                    <button type="button" onclick="showAICheckDetail()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-blue-200 bg-white text-primary text-sm font-medium shadow-sm hover:bg-blue-50 hover:border-blue-300 hover:shadow transition dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200 dark:hover:bg-blue-800/40 dark:hover:border-blue-500"><i class="fas fa-arrow-up-right-from-square text-[11px]"></i>查看详情</button>
+                </div>
+                <div id="rejected-ai-fail-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+                    <div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>
                 </div>
             </div>
 
@@ -1572,24 +1589,6 @@
                         </div>
                     </div>
 
-                    <!-- AI 智能检查报告 -->
-                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
-                        <div class="flex items-center justify-between gap-3 mb-3">
-                            <div>
-                                <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
-                                    <i class="fas fa-robot text-primary"></i>
-                                    AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示不通过项）</span>
-                                </h3>
-                                <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
-                            </div>
-                            <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
-                        </div>
-                        <div id="rejected-ai-fail-list" class="space-y-3">
-                            <div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>
-                        </div>
-                    </div>
-
-                  
                 </div>
             </div>
         </div>
@@ -1624,6 +1623,23 @@
                     <button id="pending-detail-resubmit-btn" onclick="submitApproval()" class="hidden px-3 md:px-5 py-2 md:py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 shadow-lg shadow-blue-200 transition flex items-center gap-2 dark:shadow-blue-900/30 text-sm md:text-base">
                         <i class="fas fa-paper-plane"></i>重新提交
                     </button>
+                </div>
+            </div>
+
+            <!-- AI 校验报告 -->
+            <div id="pending-ai-card" class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
+                <div class="flex items-center justify-between gap-3 mb-3">
+                    <div>
+                        <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
+                            <i class="fas fa-robot text-primary"></i>
+                            AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示部分不通过项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>展示全部检查项并填写提交说明）</span>
+                        </h3>
+                        <div class="mt-1 text-xs text-primary dark:text-blue-300">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
+                    </div>
+                    <button type="button" onclick="showAICheckDetail()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-blue-200 bg-white text-primary text-sm font-medium shadow-sm hover:bg-blue-50 hover:border-blue-300 hover:shadow transition dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200 dark:hover:bg-blue-800/40 dark:hover:border-blue-500"><i class="fas fa-arrow-up-right-from-square text-[11px]"></i>查看详情</button>
+                </div>
+                <div id="pending-ai-fail-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+                    <div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>
                 </div>
             </div>
 
@@ -1890,23 +1906,6 @@
                                     <p class="text-xs text-gray-500 mt-1 dark:text-gray-400">等待前置流程完成</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- AI 校验报告 -->
-                    <div id="pending-ai-card" class="bg-blue-50 rounded-xl border border-blue-200 p-4 md:p-5 transition dark:bg-blue-900/20 dark:border-blue-800">
-                        <div class="flex items-center justify-between gap-3 mb-3">
-                            <div>
-                                <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
-                                    <i class="fas fa-robot text-primary"></i>
-                                    AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示不通过项）</span>
-                                </h3>
-                                <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
-                            </div>
-                            <button type="button" onclick="showAICheckDetail()" class="text-xs text-primary bg-white px-2 py-1 rounded hover:bg-blue-100 dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700">查看详情</button>
-                        </div>
-                        <div id="pending-ai-fail-list" class="space-y-3">
-                            <div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>
                         </div>
                     </div>
 
@@ -4168,14 +4167,14 @@
         <div class="p-4 md:p-6 overflow-y-auto flex-1">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
                 <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 dark:bg-blue-900/20 dark:border-blue-800">
-                    <div class="text-sm text-gray-500 dark:text-gray-400">启用规则数</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">总检查项</div>
                     <div id="ai-detail-enabled-count" class="text-3xl font-bold text-primary mt-1">11</div>
                 </div>
-                <div class="bg-green-50 border border-green-100 rounded-xl p-4 dark:bg-green-900/20 dark:border-green-800">
+                <div id="ai-detail-pass-card" onclick="setAIDetailResultFilter('通过')" class="bg-green-50 border border-green-100 rounded-xl p-4 cursor-pointer transition hover:border-green-300 hover:shadow-sm dark:bg-green-900/20 dark:border-green-800 dark:hover:border-green-600">
                     <div class="text-sm text-gray-500 dark:text-gray-400">通过项</div>
                     <div id="ai-detail-pass-count" class="text-3xl font-bold text-success mt-1">10</div>
                 </div>
-                <div class="bg-red-50 border border-red-100 rounded-xl p-4 dark:bg-red-900/20 dark:border-red-800">
+                <div id="ai-detail-fail-card" onclick="setAIDetailResultFilter('不通过')" class="bg-red-50 border border-red-100 rounded-xl p-4 cursor-pointer transition hover:border-red-300 hover:shadow-sm dark:bg-red-900/20 dark:border-red-800 dark:hover:border-red-600">
                     <div class="text-sm text-gray-500 dark:text-gray-400">不通过项</div>
                     <div id="ai-detail-fail-count" class="text-3xl font-bold text-danger mt-1">0</div>
                 </div>
@@ -4185,17 +4184,16 @@
                     <thead>
                         <tr>
                             <th class="min-w-[180px]">文件名称<div class="resize-handle"></div></th>
-                            <th class="min-w-[180px]">检查项<div class="resize-handle"></div></th>
                             <th class="min-w-[420px]">Agent校验逻辑<div class="resize-handle"></div></th>
                             <th class="min-w-[120px]">校验结果<div class="resize-handle"></div></th>
+                            <th class="min-w-[240px]">提交说明 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验不通过且认为无需修改时，可填写原因说明后继续提交审批；校验通过项无需填写。</span></span><div class="resize-handle"></div></th>
                             <th class="min-w-[90px]">风险等级<div class="resize-handle"></div></th>
-                            <th class="min-w-[100px]">是否强控制 <span class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-300 text-blue-600 text-[10px] cursor-help align-middle group">?<span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[320px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">校验结果不通过，强控制不允许提交审批流。<br>选择“是”：系统在提交审批时自动拦截，触达红线不允许归档，强制要求整改后方可重新提交。<br>选择“否”：人工填写说明即可再次提交审批，不强制必须整改。</span></span><div class="resize-handle"></div></th>
+                            <th class="min-w-[180px]">校验定位<div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">结果说明<div class="resize-handle"></div></th>
                             <th class="min-w-[260px]">修改建议<div class="resize-handle"></div></th>
                         </tr>
                         <tr>
                             <th><input id="ai-detail-filter-file" oninput="aiDetailApplyFilters()" placeholder="文件名称" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
-                            <th><input id="ai-detail-filter-item" oninput="aiDetailApplyFilters()" placeholder="检查项" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                             <th><input id="ai-detail-filter-logic" oninput="aiDetailApplyFilters()" placeholder="Agent校验逻辑" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                             <th>
                                 <select id="ai-detail-filter-result" onchange="aiDetailApplyFilters()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
@@ -4204,6 +4202,7 @@
                                     <option value="不通过">不通过</option>
                                 </select>
                             </th>
+                            <th><input id="ai-detail-filter-submit-remark" oninput="aiDetailApplyFilters()" placeholder="提交说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                             <th>
                                 <select id="ai-detail-filter-risk" onchange="aiDetailApplyFilters()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                     <option value="">全部</option>
@@ -4212,13 +4211,7 @@
                                     <option value="低">低</option>
                                 </select>
                             </th>
-                            <th>
-                                <select id="ai-detail-filter-strong" onchange="aiDetailApplyFilters()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
-                                    <option value="">全部</option>
-                                    <option value="是">是</option>
-                                    <option value="否">否</option>
-                                </select>
-                            </th>
+                            <th><input id="ai-detail-filter-location" oninput="aiDetailApplyFilters()" placeholder="校验定位" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                             <th><input id="ai-detail-filter-message" oninput="aiDetailApplyFilters()" placeholder="结果说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                             <th><input id="ai-detail-filter-advice" oninput="aiDetailApplyFilters()" placeholder="修改建议" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                         </tr>
@@ -4228,6 +4221,7 @@
             </div>
         </div>
         <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-xl flex justify-end gap-3 dark:bg-gray-800 dark:border-gray-700">
+            <button onclick="saveAICheckRemarks()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">保存</button>
             <button onclick="closeAICheckModal()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">关闭</button>
         </div>
     </div>
@@ -4375,8 +4369,10 @@
                                             <th class="min-w-[100px] text-center">启用状态</th>
                                             <th class="min-w-[150px]">规则范围</th>
                                             <th class="min-w-[240px]">档案分类</th>
-                                            <th class="min-w-[180px]">业务/职能细分</th>
-                                            <th class="min-w-[180px]">专题/专业</th>
+                                            <th class="min-w-[220px]">
+                                                <div>专题/专业</div>
+                                                <div>业务/职能细分</div>
+                                            </th>
                                             <th class="min-w-[160px]">资料类型</th>
                                             <th class="min-w-[130px]">检查维度</th>
                                             <th class="min-w-[160px]">检查项</th>
@@ -4410,11 +4406,8 @@
                                             <th class="min-w-[240px]">
                                                 <input id="ai-rule-classification-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="档案分类" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                             </th>
-                                            <th class="min-w-[180px]">
-                                                <input id="ai-rule-topic-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="业务/职能细分" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
-                                            </th>
-                                            <th class="min-w-[180px]">
-                                                <input id="ai-rule-subfunction-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="专题/专业" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                            <th class="min-w-[220px]">
+                                                <input id="ai-rule-special-combined-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                             </th>
                                             <th class="min-w-[160px]">
                                                 <input id="ai-rule-material-filter" oninput="aiRuleRenderRuleTable()" type="text" placeholder="资料类型" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
@@ -4430,7 +4423,11 @@
                                                     <option value="页码/附件完整性">页码/附件完整性</option>
                                                 </select>
                                             </th>
-                                            <th class="min-w-[160px]"></th>
+                                            <th class="min-w-[160px]">
+                                                <select id="ai-rule-item-filter" onchange="aiRuleRenderRuleTable()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                                    <option value="">全部</option>
+                                                </select>
+                                            </th>
                                             <th class="min-w-[420px]"></th>
                                             <th class="min-w-[90px]">
                                                 <select id="ai-rule-risk-filter" onchange="aiRuleRenderRuleTable()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white">
@@ -5161,7 +5158,7 @@ const aiRuleRules = [
         const aiRuleDimensionItemMap = {
             '要素完备性': ['基础信息齐全', '核心内容齐全'],
             '信息一致性': ['文档内部一致', '附件与正文一致', '系统录入一致'],
-            '合规性': ['签章合规', '制度合规'],
+            '合规性': ['签章合规', '制度合规', '文本相似度'],
             '时效逻辑': ['日期合规', '有效期合规'],
             '质量规范': ['图像质量达标', '格式完整达标'],
             '页码/附件完整性': ['页码连续', '附件齐全']
@@ -5548,13 +5545,29 @@ const aiRuleRules = [
             document.getElementById('ai-rule-chip-strong').textContent = aiRuleRules.filter(rule => rule.strongControl === '是').length;
         }
 
+        function aiRuleRenderItemFilterOptions() {
+            const select = document.getElementById('ai-rule-item-filter');
+            if (!select) return;
+            const currentValue = select.value || '';
+            const itemOptions = Array.from(new Set(
+                aiRuleRules
+                    .map(rule => aiRuleFormatRuleItem(rule.item))
+                    .filter(Boolean)
+            )).sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'));
+            select.innerHTML = [
+                '<option value="">全部</option>',
+                ...itemOptions.map(item => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
+            ].join('');
+            select.value = itemOptions.includes(currentValue) ? currentValue : '';
+        }
+
         function aiRuleGetFilteredRules() {
             const search = (document.getElementById('ai-rule-search')?.value || '').trim().toLowerCase();
             const scope = document.getElementById('ai-rule-scope-filter')?.value || '';
             const classification = (document.getElementById('ai-rule-classification-filter')?.value || '').trim().toLowerCase();
-            const topic = (document.getElementById('ai-rule-topic-filter')?.value || '').trim().toLowerCase();
-            const subfunction = (document.getElementById('ai-rule-subfunction-filter')?.value || '').trim().toLowerCase();
+            const specialCombined = (document.getElementById('ai-rule-special-combined-filter')?.value || '').trim().toLowerCase();
             const dimension = document.getElementById('ai-rule-dimension-filter')?.value || '';
+            const item = document.getElementById('ai-rule-item-filter')?.value || '';
             const risk = document.getElementById('ai-rule-risk-filter')?.value || '';
             const control = document.getElementById('ai-rule-control-filter')?.value || '';
             const prepose = document.getElementById('ai-rule-prepose-filter')?.value || '';
@@ -5574,10 +5587,10 @@ const aiRuleRules = [
                 return matchesSearch
                     && (!scope || rule.scope === scope)
                     && (!classification || aiRuleGetClassificationDisplay(rule).toLowerCase().includes(classification))
-                    && (!topic || aiRuleGetTopicDisplay(rule).toLowerCase().includes(topic))
-                    && (!subfunction || aiRuleGetSubfunctionDisplay(rule).toLowerCase().includes(subfunction))
+                    && (!specialCombined || `${aiRuleGetSubfunctionDisplay(rule)} ${aiRuleGetTopicDisplay(rule)}`.toLowerCase().includes(specialCombined))
                     && (!material || String(rule.material || '').toLowerCase().includes(material))
                     && (!dimension || rule.dimension === dimension)
+                    && (!item || aiRuleFormatRuleItem(rule.item) === item)
                     && (!risk || rule.risk === risk)
                     && (!control || rule.strongControl === control)
                     && (!prepose || rule.preposeToBusinessSystem === prepose)
@@ -5588,6 +5601,7 @@ const aiRuleRules = [
 
         function aiRuleRenderRuleTable() {
             const tbody = document.getElementById('ai-rule-table-body');
+            aiRuleRenderItemFilterOptions();
             const filteredRules = aiRuleGetFilteredRules();
 
             if (!filteredRules.length) {
@@ -5615,8 +5629,7 @@ const aiRuleRules = [
                     <td class="text-center">${aiRuleRenderEnabledBadge(rule.enabled)}</td>
                     <td>${aiRuleFormatScope(rule.scope)}</td>
                     <td>${aiRuleGetClassificationDisplay(rule)}</td>
-                    <td>${aiRuleGetTopicDisplay(rule)}</td>
-                    <td>${aiRuleGetSubfunctionDisplay(rule)}</td>
+                    <td>${aiRuleGetSpecialCombinedDisplay(rule)}</td>
                     <td>${aiRuleGetMaterialTypeDisplay(rule)}</td>
                     <td>${rule.dimension}</td>
                     <td>${aiRuleFormatRuleItem(rule.item)}</td>
@@ -5636,6 +5649,15 @@ const aiRuleRules = [
             `).join('');
 
             aiRuleUpdateRuleSelectionBar();
+        }
+
+        function aiRuleGetSpecialCombinedDisplay(rule) {
+            const primary = aiRuleGetSubfunctionDisplay(rule);
+            const secondary = aiRuleGetTopicDisplay(rule);
+            if (primary === '-' && secondary === '-') return '-';
+            if (primary === '-') return secondary;
+            if (secondary === '-') return primary;
+            return `${primary}<br>${secondary}`;
         }
 
         function aiRuleFormatScope(scope) {
@@ -6483,17 +6505,24 @@ const aiRuleRules = [
             const summary = document.getElementById('ai-validation-summary');
             const text = document.getElementById('ai-validation-summary-text');
             if (!summary || !text) return;
-            if (!validationReport) {
+            const report = getValidationReportSafe();
+            if (!report) {
                 summary.classList.add('hidden');
                 return;
             }
             summary.classList.remove('hidden');
-            text.textContent = validationReport.blocked
-                ? `本次启用 ${validationReport.enabledRuleCount} 条规则，命中 ${validationReport.strongBlockCount} 条强控拦截项，提交将被阻止。`
-                : `本次启用 ${validationReport.enabledRuleCount} 条规则，通过 ${validationReport.passCount} 项，待人工复核 ${validationReport.reviewCount} 项，可查看详细报告。`;
+            text.textContent = report.blocked
+                ? `本次启用 ${report.enabledRuleCount} 条规则，命中 ${report.strongBlockCount} 条强控拦截项，提交将被阻止。`
+                : `本次启用 ${report.enabledRuleCount} 条规则，通过 ${report.passCount} 项，待人工复核 ${report.reviewCount} 项，可查看详细报告。`;
+        }
+
+        function shouldUseLiveValidationReport() {
+            return currentTab === 'upload-files'
+                || (currentTab === 'archive-detail-pending' && currentPendingDetailMode === 'pending-ai-processing');
         }
 
         function getValidationReportSafe() {
+            if (!shouldUseLiveValidationReport()) return null;
             return typeof validationReport !== 'undefined' ? validationReport : null;
         }
 
@@ -6683,15 +6712,8 @@ const aiRuleRules = [
                     const isReadonlySubmissionRemark = isPendingNormalReadonly || isRejectedDetailReadonly;
                     failListEl.innerHTML = failResults.map((item, index) => {
                         const riskBadge = aiRuleRenderRiskBadge(item.risk || '-');
-                        const advice = item.submissionRemark || item.submissionComment || '';
-                        const textareaClass = isReadonlySubmissionRemark
-                            ? 'w-full bg-gray-100 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400'
-                            : 'w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500';
-                        const textareaDisabled = isReadonlySubmissionRemark ? 'disabled' : '';
-                        const textareaPlaceholder = isReadonlySubmissionRemark ? '' : '校验不通过，请填写提交说明。';
-                        const textareaOnInput = isReadonlySubmissionRemark ? '' : `oninput="updatePendingAIFailRemark(${index}, this.value)"`;
                         return `
-                            <div class="bg-white border border-blue-100 rounded-lg p-3 dark:bg-gray-800/80 dark:border-blue-900/40">
+                            <div onclick="showAICheckDetail()" class="bg-white border border-blue-100 rounded-lg p-3 cursor-pointer transition hover:border-primary hover:shadow-sm dark:bg-gray-800/80 dark:border-blue-900/40 dark:hover:border-blue-500">
                                 <div class="flex items-start justify-between gap-3 mb-3">
                                     <div class="min-w-0">
                                         <div class="text-xs text-gray-500 dark:text-gray-400">文件名称</div>
@@ -6711,15 +6733,6 @@ const aiRuleRules = [
                                         <div class="text-xs text-gray-500 mb-1 dark:text-gray-400">结果说明</div>
                                         <div class="text-sm text-gray-900 leading-6 break-words dark:text-white">${escapeHtml(item.message || '校验未通过。')}</div>
                                     </div>
-                                </div>
-                                <div class="mt-3">
-                                    <label class="block text-sm text-gray-500 mb-1 dark:text-gray-400">
-                                        提交说明
-                                        <span title="当不通过项认为无需修改时，填写原因说明并继续提交审批。" class="relative inline-flex items-center justify-center w-4 h-4 rounded-full border border-gray-300 text-gray-500 text-[10px] cursor-help align-middle group ml-1">?
-                                            <span class="pointer-events-none absolute left-0 top-6 z-20 hidden w-[260px] whitespace-normal rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">当不通过项认为无需修改时，填写原因说明并继续提交审批。</span>
-                                        </span>
-                                    </label>
-                                    <textarea data-ai-fail-index="${index}" ${textareaOnInput} ${textareaDisabled} class="${textareaClass}" rows="2" placeholder="${textareaPlaceholder}">${escapeHtml(advice)}</textarea>
                                 </div>
                             </div>
                         `;
@@ -6762,18 +6775,70 @@ const aiRuleRules = [
 
         function renderValidationSubmitRemarkCell(item) {
             const pass = item.result === 'PASS';
-            const value = escapeHtml(item.submissionRemark || '');
+            const isPendingNormalReadonly = currentTab === 'archive-detail-pending' && currentPendingDetailMode === 'pending-normal';
+            const rejectedApplicationNo = (document.getElementById('rejected-detail-application-no')?.textContent || '').trim();
+            const isRejectedDetailReadonly = currentTab === 'archive-detail-rejected'
+                && !rejectedApplicationNo.includes('20260126-KJ003-000012');
+            const readonly = pass || isPendingNormalReadonly || isRejectedDetailReadonly;
+            const value = escapeHtml(item.submissionRemark || item.submissionComment || '');
             const commonClass = pass
                 ? 'w-full bg-gray-100 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-500'
                 : 'w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500';
+            const readonlyClass = readonly && !pass
+                ? 'w-full bg-gray-100 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400'
+                : commonClass;
             const placeholder = pass
                 ? '校验通过项无需填写'
-                : '校验不通过，请填写提交说明。';
-            const disabled = pass ? 'disabled' : '';
-            const onInput = pass
+                : readonly
+                    ? ''
+                    : '校验不通过，请填写提交说明。';
+            const disabled = readonly ? 'disabled' : '';
+            const onInput = readonly
                 ? ''
                 : `oninput="updateValidationResultSubmissionRemark('${escapeHtml(item.fileName || '')}', '${escapeHtml(item.ruleId || '')}', '${escapeHtml(item.item || '')}', this.value)"`;
-            return `<textarea ${onInput} ${disabled} class="${commonClass}" rows="2" placeholder="${placeholder}">${value}</textarea>`;
+            return `<textarea ${onInput} ${disabled} class="${readonlyClass}" rows="2" placeholder="${placeholder}">${value}</textarea>`;
+        }
+
+        function getValidationLocation(item) {
+            const itemName = aiRuleFormatRuleItem(item?.item || '');
+            const pass = item?.result === 'PASS';
+            if (itemName.includes('文件可打开且页数大于0')) return pass ? '系统预检/文件全文' : '系统预检/文件首页加载区';
+            if (itemName.includes('日期格式校验')) return pass ? '文件第1页右上角日期区' : '文件第1页顶部日期区';
+            if (itemName.includes('基础字段完整性')) return pass ? '文件第1页顶部基础信息区' : '文件第1页顶部责任者字段区';
+            if (itemName.includes('资料分类一致性')) return pass ? '文件封面中部资料类型区' : '文件封面中部分类标识区';
+            if (itemName.includes('页码连续性')) return pass ? '文件各页底部页码区' : '文件末页底部页码区';
+            if (itemName.includes('附件齐全性')) return pass ? '文件末页附件清单区' : '文件末页附件说明区';
+            if (itemName.includes('签字盖章识别')) return pass ? '文件末页底部签章区' : '文件末页右下角签章区';
+            if (itemName.includes('图像质量检查')) return pass ? '文件全文图像区域' : '文件第2页顶部扫描图区';
+            if (itemName.includes('印章完整性')) return pass ? '文件末页右下角盖章区' : '文件末页右下角印章区';
+            if (itemName.includes('批复要素识别')) return pass ? '文件首页正文及落款区' : '文件首页正文批复要素区';
+            if (itemName.includes('文件命名规范')) return pass ? '文件名称及首页标题区' : '文件名称栏及首页标题区';
+            return pass ? '文件第1页顶部内容区' : '文件第1页重点校验区域';
+        }
+
+        function updateAIDetailSummaryCardState() {
+            const resultFilter = document.getElementById('ai-detail-filter-result')?.value || '';
+            const passCard = document.getElementById('ai-detail-pass-card');
+            const failCard = document.getElementById('ai-detail-fail-card');
+            if (passCard) {
+                passCard.classList.toggle('ring-2', resultFilter === '通过');
+                passCard.classList.toggle('ring-green-400', resultFilter === '通过');
+            }
+            if (failCard) {
+                failCard.classList.toggle('ring-2', resultFilter === '不通过');
+                failCard.classList.toggle('ring-red-400', resultFilter === '不通过');
+            }
+        }
+
+        function setAIDetailResultFilter(value) {
+            const filterEl = document.getElementById('ai-detail-filter-result');
+            if (!filterEl) return;
+            filterEl.value = filterEl.value === value ? '' : value;
+            aiDetailApplyFilters();
+        }
+
+        function saveAICheckRemarks() {
+            showToast('提交说明已保存', 'success');
         }
 
         function renderValidationReport() {
@@ -6788,14 +6853,15 @@ const aiRuleRules = [
             if (enabledEl) enabledEl.textContent = String(summary.enabledRuleCount);
             if (passEl) passEl.textContent = String(summary.passCount);
             if (failEl) failEl.textContent = String(summary.notPassCount);
+            updateAIDetailSummaryCardState();
 
             if (!tbody) return;
             const fileFilter = (document.getElementById('ai-detail-filter-file')?.value || '').trim().toLowerCase();
-            const itemFilter = (document.getElementById('ai-detail-filter-item')?.value || '').trim().toLowerCase();
             const logicFilter = (document.getElementById('ai-detail-filter-logic')?.value || '').trim().toLowerCase();
             const resultFilter = document.getElementById('ai-detail-filter-result')?.value || '';
+            const submitRemarkFilter = (document.getElementById('ai-detail-filter-submit-remark')?.value || '').trim().toLowerCase();
             const riskFilter = document.getElementById('ai-detail-filter-risk')?.value || '';
-            const strongFilter = document.getElementById('ai-detail-filter-strong')?.value || '';
+            const locationFilter = (document.getElementById('ai-detail-filter-location')?.value || '').trim().toLowerCase();
             const messageFilter = (document.getElementById('ai-detail-filter-message')?.value || '').trim().toLowerCase();
             const adviceFilter = (document.getElementById('ai-detail-filter-advice')?.value || '').trim().toLowerCase();
             const results = report && Array.isArray(report.results) && report.results.length
@@ -6918,15 +6984,17 @@ const aiRuleRules = [
 
             const filteredResults = results.filter(item => {
                 const resultText = item.result === 'PASS' ? '通过' : '不通过';
+                const submitRemarkText = String(item.submissionRemark || item.submissionComment || '').toLowerCase();
+                const locationText = String(getValidationLocation(item) || '').toLowerCase();
                 const messageText = String(item.message || '').toLowerCase();
                 const logicText = String(getValidationAgentLogic(item) || '').toLowerCase();
                 const adviceText = String(getValidationAdvice(item) || '').toLowerCase();
                 return (!fileFilter || String(item.fileName || '').toLowerCase().includes(fileFilter))
-                    && (!itemFilter || String(item.item || '').toLowerCase().includes(itemFilter))
                     && (!logicFilter || logicText.includes(logicFilter))
                     && (!resultFilter || resultText === resultFilter)
+                    && (!submitRemarkFilter || submitRemarkText.includes(submitRemarkFilter))
                     && (!riskFilter || String(item.risk || '') === riskFilter)
-                    && (!strongFilter || String(item.strongControl || '') === strongFilter)
+                    && (!locationFilter || locationText.includes(locationFilter))
                     && (!messageFilter || messageText.includes(messageFilter))
                     && (!adviceFilter || adviceText.includes(adviceFilter));
             });
@@ -6934,25 +7002,57 @@ const aiRuleRules = [
                 tbody.innerHTML = '<tr><td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
                 return;
             }
-            tbody.innerHTML = filteredResults.map(item => {
+            const fileOrderMap = new Map();
+            results.forEach((item, index) => {
+                const fileName = String(item.fileName || '');
+                if (!fileOrderMap.has(fileName)) {
+                    fileOrderMap.set(fileName, index);
+                }
+            });
+            const resultPriorityMap = {
+                FAIL: 0,
+                REVIEW: 1,
+                PASS: 2
+            };
+            const riskPriorityMap = {
+                高: 0,
+                中: 1,
+                低: 2,
+                '-': 3,
+                '': 4
+            };
+            const sortedResults = filteredResults
+                .map((item, index) => ({ item, index }))
+                .sort((a, b) => {
+                    const fileOrderDiff = (fileOrderMap.get(String(a.item.fileName || '')) || 0) - (fileOrderMap.get(String(b.item.fileName || '')) || 0);
+                    if (fileOrderDiff !== 0) return fileOrderDiff;
+
+                    const resultDiff = (resultPriorityMap[String(a.item.result || '')] ?? 99) - (resultPriorityMap[String(b.item.result || '')] ?? 99);
+                    if (resultDiff !== 0) return resultDiff;
+
+                    const riskDiff = (riskPriorityMap[String(a.item.risk || '')] ?? 99) - (riskPriorityMap[String(b.item.risk || '')] ?? 99);
+                    if (riskDiff !== 0) return riskDiff;
+
+                    return a.index - b.index;
+                })
+                .map(entry => entry.item);
+            tbody.innerHTML = sortedResults.map(item => {
                 const pass = item.result === 'PASS';
                 const agentLogic = getValidationAgentLogic(item);
                 const advice = pass ? '' : getValidationAdvice(item);
+                const location = getValidationLocation(item);
                 const resultBadge = pass
                     ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">通过</span>'
                     : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">不通过</span>';
                 const riskText = pass ? '-' : aiRuleRenderRiskBadge(item.risk);
-                const strongControlText = item.strongControl === '是'
-                    ? '<span class="font-medium text-danger">是</span>'
-                    : escapeHtml(item.strongControl || '-');
                 return `
                     <tr>
                         <td>${escapeHtml(item.fileName)}</td>
-                        <td>${escapeHtml(item.item)}</td>
                         <td class="rule-logic-cell ai-detail-logic-cell">${escapeHtml(agentLogic)}</td>
                         <td>${resultBadge}</td>
+                        <td>${renderValidationSubmitRemarkCell(item)}</td>
                         <td>${riskText}</td>
-                        <td>${strongControlText}</td>
+                        <td class="whitespace-normal leading-5 py-2">${escapeHtml(location)}</td>
                         <td class="whitespace-normal leading-5 py-2">${escapeHtml(item.message || (pass ? '校验通过。' : '校验不通过。'))}</td>
                         <td class="whitespace-normal leading-5 py-2">${escapeHtml(advice)}</td>
                     </tr>
