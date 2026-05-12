@@ -553,6 +553,10 @@
             background-color: rgba(59, 130, 246, 0.04);
         }
 
+        .ai-card-click-through {
+            pointer-events: none;
+        }
+
         .dark .data-table tr:hover .ai-detail-logic-cell {
             background-color: rgba(59, 130, 246, 0.08);
         }
