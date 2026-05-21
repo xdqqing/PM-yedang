@@ -95,10 +95,12 @@
     }
 
     // 档案目录管理相关函数
+    let currentDirectoryRow = null;
 
     // 打开新增目录页面
     function openAddDirectory() {
         showPage('archive-directory-new');
+        currentDirectoryRow = null;
         
         // 修改标题
         const page = document.getElementById('page-archive-directory-new');
@@ -206,6 +208,7 @@
     // 打开目录详情页面
     function showDirectoryDetail(row) {
         showPage('archive-directory-new');
+        currentDirectoryRow = row;
         
         // 修改标题
         const page = document.getElementById('page-archive-directory-new');
@@ -251,7 +254,8 @@
         const archiveMilestone = cells[15].innerText.trim(); // 归档里程碑
         const fileSourceSystem = cells[16].innerText.trim(); // 文件来源系统
         const isBusinessAssessment = cells[17].innerText.trim(); // 是否经营事项考核
-        const status = cells[18].innerText.trim(); // 状态
+        const fileAlias = (cells[18] && cells[18].innerText ? cells[18].innerText : '').trim(); // 文件别名
+        const status = cells[19].innerText.trim(); // 状态
 
         // 填充表单数据
         // 档案分类 (Cascader模拟)
@@ -307,6 +311,15 @@
         if (ruleInput) {
             const rule = (row.dataset && row.dataset.archiveRule ? row.dataset.archiveRule : '').trim();
             ruleInput.value = rule;
+        }
+
+        const fileAliasInput = document.getElementById('directory-file-alias');
+        if (fileAliasInput) fileAliasInput.value = fileAlias === '-' ? '' : fileAlias;
+
+        const conflictRuleInput = document.getElementById('directory-conflict-rule');
+        if (conflictRuleInput) {
+            const conflictRule = (row.dataset && row.dataset.conflictRule ? row.dataset.conflictRule : '').trim();
+            conflictRuleInput.value = conflictRule;
         }
 
         // 档案密级 (第3个下拉框)
@@ -651,7 +664,7 @@
 
             <!-- 快捷入口 -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                <div onclick="showPage('upload-files')" class="group bg-gradient-to-r from-primary to-blue-600 rounded-xl p-4 md:p-6 text-white cursor-pointer hover:shadow-lg hover:shadow-blue-200 transition transform hover:-translate-y-1 dark:hover:shadow-blue-900/30">
+                <div onclick="openUploadDraftDetail('empty')" class="group bg-gradient-to-r from-primary to-blue-600 rounded-xl p-4 md:p-6 text-white cursor-pointer hover:shadow-lg hover:shadow-blue-200 transition transform hover:-translate-y-1 dark:hover:shadow-blue-900/30">
                     <div class="flex items-center justify-between">
                         <div>
                             <h3 class="text-base md:text-lg font-semibold mb-2">批量上传文件</h3>
@@ -723,7 +736,7 @@
                     <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">管理您的文件上传申请，支持批量操作与状态追踪（含已上传、已拒绝状态）</p>
                 </div>
                 <div class="flex gap-3">
-                    <button onclick="showPage('upload-files')" class="bg-primary hover:bg-blue-700 text-white px-4 md:px-6 py-2.5 rounded-lg font-medium flex items-center gap-2 shadow-lg shadow-blue-200 transition transform hover:scale-105 dark:shadow-blue-900/30 text-sm md:text-base">
+                    <button onclick="openUploadDraftDetail('empty')" class="bg-primary hover:bg-blue-700 text-white px-4 md:px-6 py-2.5 rounded-lg font-medium flex items-center gap-2 shadow-lg shadow-blue-200 transition transform hover:scale-105 dark:shadow-blue-900/30 text-sm md:text-base">
                         <i class="fas fa-plus"></i>
                         <span class="hidden sm:inline">上传文件</span>
                         <span class="sm:hidden">新增</span>
@@ -849,7 +862,7 @@
                                 <td class="text-gray-600 dark:text-gray-300">非结构化数据统一服务</td>
                                 <td class="dark:text-gray-300">周强</td>
                                 <td class="text-gray-500 dark:text-gray-400">2026-01-28</td>
-                                <td class="text-center dark:text-gray-300">5</td>
+                                <td class="text-center dark:text-gray-300">2</td>
                                 <td>
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">
                                         <span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-1.5"></span>
@@ -926,7 +939,7 @@
                                 </td>
                             </tr>
                             <!-- 新建：点击进入新增文件上传申请页面 -->
-                            <tr class="hover:bg-blue-50 transition cursor-pointer border-2 border-dashed border-primary dark:border-blue-500 dark:hover:bg-blue-900/20" onclick="showPage('upload-files')">
+                            <tr class="hover:bg-blue-50 transition cursor-pointer border-2 border-dashed border-primary dark:border-blue-500 dark:hover:bg-blue-900/20" onclick="openUploadDraftDetail('empty')">
                                 <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">6</td>
                                 <td class="font-medium text-primary">20260126-KJ003-000013</td>
                                 <td class="text-xs">
@@ -939,7 +952,50 @@
                                 <td class="text-gray-600 dark:text-gray-300">非结构化数据统一服务</td>
                                 <td class="dark:text-gray-300">赵六</td>
                                 <td class="text-gray-500 dark:text-gray-400">2026-01-30</td>
-                                <td class="text-center dark:text-gray-300">10</td>
+                                <td class="text-center dark:text-gray-300">0</td>
+                                <td>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                        <i class="fas fa-plus-circle mr-1"></i>
+                                        新建
+                                    </span>
+                                </td>
+                            </tr>
+                            <!-- 新建（已上传文件）：点击进入文件清单页 -->
+                            <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20" onclick="openUploadDraftDetail('draft-uploaded-1')">
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">7</td>
+                                <td class="font-medium text-primary">20260130-KJ003-000014</td>
+                                <td class="text-xs">
+                                    <span class="block font-medium dark:text-white">科技档案</span>
+                                    <span class="text-gray-500 dark:text-gray-400">基建档案</span>
+                                </td>
+                                <td class="text-gray-600 dark:text-gray-300">南京某污水厂提标改造项目</td>
+                                <td class="text-gray-600 dark:text-gray-300">南京清润水务有限公司</td>
+                                <td class="text-gray-600 dark:text-gray-300">手工录入移交</td>
+                                <td class="text-gray-600 dark:text-gray-300">非结构化数据统一服务</td>
+                                <td class="dark:text-gray-300">陈晓</td>
+                                <td class="text-gray-500 dark:text-gray-400">2026-01-30</td>
+                                <td class="text-center dark:text-gray-300">3</td>
+                                <td>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                        <i class="fas fa-plus-circle mr-1"></i>
+                                        新建
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20" onclick="openUploadDraftDetail('draft-uploaded-2')">
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">8</td>
+                                <td class="font-medium text-primary">20260130-KJ003-000015</td>
+                                <td class="text-xs">
+                                    <span class="block font-medium dark:text-white">科技档案</span>
+                                    <span class="text-gray-500 dark:text-gray-400">投资档案</span>
+                                </td>
+                                <td class="text-gray-600 dark:text-gray-300">苏州工业园区供水管网完善工程</td>
+                                <td class="text-gray-600 dark:text-gray-300">苏州清源环境发展有限公司</td>
+                                <td class="text-gray-600 dark:text-gray-300">手工录入移交</td>
+                                <td class="text-gray-600 dark:text-gray-300">非结构化数据统一服务</td>
+                                <td class="dark:text-gray-300">林悦</td>
+                                <td class="text-gray-500 dark:text-gray-400">2026-01-30</td>
+                                <td class="text-center dark:text-gray-300">4</td>
                                 <td>
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                                         <i class="fas fa-plus-circle mr-1"></i>
@@ -1974,13 +2030,13 @@
                     </div>
                 </div>
                 <div class="flex gap-2 md:gap-3 flex-wrap">
-                    <button onclick="showPage('upload-files')" class="px-4 md:px-5 py-2 md:py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 shadow-lg shadow-blue-200 transition flex items-center gap-2 dark:shadow-blue-900/30 text-sm md:text-base">
+                    <button onclick="openUploadDraftDetail('empty')" class="px-4 md:px-5 py-2 md:py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 shadow-lg shadow-blue-200 transition flex items-center gap-2 dark:shadow-blue-900/30 text-sm md:text-base">
                         <i class="fas fa-cloud-upload-alt"></i>
                         上传文件
                     </button>
                     <button onclick="batchSubmitFileList()" class="px-4 md:px-5 py-2 md:py-2.5 border border-primary text-primary rounded-lg font-medium hover:bg-blue-50 transition flex items-center gap-2 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed" id="batch-submit-file-list-btn" disabled>
                         <i class="fas fa-paper-plane"></i>
-                        批量提交审批 (<span id="batch-submit-file-count">0</span>)
+                        提交审批 (<span id="batch-submit-file-count">0</span>)
                     </button>
                 </div>
             </div>
@@ -2873,6 +2929,7 @@
                                 <th>归档里程碑<div class="resize-handle"></div></th>
                                 <th>文件来源系统<div class="resize-handle"></div></th>
                                 <th>是否经营事项考核<div class="resize-handle"></div></th>
+                                <th>文件别名<div class="resize-handle"></div></th>
                                 <th>启用状态<div class="resize-handle"></div></th>
                                 <th>更新人<div class="resize-handle"></div></th>
                                 <th>更新时间<div class="resize-handle"></div></th>
@@ -2973,6 +3030,7 @@
                                         <option>否</option>
                                     </select>
                                 </td>
+                                <td><input type="text" placeholder="文件别名"></td>
                                 <td>
                                     <select class="dark:bg-gray-700">
                                         <option value="">全部</option>
@@ -2985,7 +3043,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr onclick="showDirectoryDetail(this)" class="hover:bg-blue-50 transition dark:hover:bg-blue-900/20">
+                            <tr onclick="showDirectoryDetail(this)" data-archive-level="集团/项目公司" data-archive-rule="项目开工后归档，竣工前完成补录" data-conflict-rule="当资料类型命中“施工组织设计”和“施工方案”时，优先归类到施工组织设计" class="hover:bg-blue-50 transition dark:hover:bg-blue-900/20">
                                 <td class="text-center font-medium text-gray-900 sticky left-0 bg-white z-10 dark:bg-gray-800 dark:text-white">1</td>
                                 <td class="text-xs">
                                     <span class="block font-medium dark:text-white">科技档案/基建档案</span>
@@ -3007,11 +3065,12 @@
                                 <td class="dark:text-gray-300">交付项目开工</td>
                                 <td class="dark:text-gray-300">OA系统</td>
                                 <td><span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs dark:bg-blue-900 dark:text-blue-200">是</span></td>
+                                <td class="text-xs dark:text-gray-300">施工组织总设</td>
                                 <td><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">启用</span></td>
                                 <td class="text-gray-600 dark:text-gray-400">张三</td>
                                 <td class="text-gray-500 dark:text-gray-400">2026-01-28 10:30:25</td>
                             </tr>
-                            <tr onclick="showDirectoryDetail(this)" data-archive-level="集团/大区/区域" data-archive-rule="完成客户识别后" class="hover:bg-blue-50 transition dark:hover:bg-blue-900/20">
+                            <tr onclick="showDirectoryDetail(this)" data-archive-level="集团/大区/区域" data-archive-rule="完成客户识别后" data-conflict-rule="与“客户档案”同时命中时，优先按客户信息归档" class="hover:bg-blue-50 transition dark:hover:bg-blue-900/20">
                                 <td class="text-center font-medium text-gray-900 sticky left-0 bg-white z-10 dark:bg-gray-800 dark:text-white">2</td>
                                 <td class="text-xs">
                                     <span class="block font-medium dark:text-white">文书档案/市场投资管理</span>
@@ -3033,6 +3092,7 @@
                                 <td class="dark:text-gray-300">无</td>
                                 <td class="dark:text-gray-300">OA系统</td>
                                 <td><span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs dark:bg-gray-700 dark:text-gray-300">否</span></td>
+                                <td class="text-xs dark:text-gray-300">客户主数据</td>
                                 <td><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">启用</span></td>
                                 <td class="text-gray-600 dark:text-gray-400">张三</td>
                                 <td class="text-gray-500 dark:text-gray-400">2026-02-11 10:30:25</td>
@@ -3647,6 +3707,20 @@
 
                 </div>
             </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
+                <h3 class="text-base md:text-lg font-semibold text-gray-900 mb-6 border-b border-gray-200 pb-4 dark:text-white dark:border-gray-700">AI分类信息</h3>
+                <div class="grid grid-cols-1 gap-4 md:gap-6">
+                    <div class="lg:w-1/2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">文件别名</label>
+                        <input id="directory-file-alias" type="text" placeholder="请填写该资料类型的常见别称或非标准名称" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                    <div class="lg:w-1/2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">冲突规则</label>
+                        <textarea id="directory-conflict-rule" rows="2" placeholder="请填写最容易混淆的类目，并说明区分方式" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white resize-y"></textarea>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -3984,6 +4058,11 @@
                     <div>
                         <h2 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">批量上传文件</h2>
                         <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">支持分批上传文件并发起审批流程</p>
+                        <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">
+                            <span id="upload-detail-application-no">申请单号：20260126-KJ003-000013</span>
+                            <span class="mx-2">|</span>
+                            <span id="upload-detail-file-count">已上传文件：0份</span>
+                        </p>
                     </div>
                 </div>
                 <div class="flex gap-2 md:gap-3 flex-wrap">
@@ -3992,7 +4071,7 @@
                     </button>
                     <button onclick="submitBatchApproval()" class="px-4 md:px-5 py-2 md:py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 shadow-lg shadow-blue-200 transition flex items-center gap-2 dark:shadow-blue-900/30 text-sm md:text-base">
                         <i class="fas fa-paper-plane"></i>
-                        批量提交审批
+                        提交审批
                     </button>
                 </div>
             </div>
@@ -4041,7 +4120,7 @@
                              <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">所属项目 <span class="text-danger">*</span></label>
                                 <div class="relative">
-                                    <input type="text" value="成都某水厂改扩建项目" readonly
+                                    <input id="upload-detail-project" type="text" value="成都某水厂改扩建项目" readonly
                                         class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white project-select-input"
                                         onclick="openProjectSelectModal(this)"
                                         placeholder="点击选择项目">
@@ -4051,35 +4130,44 @@
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">管理组织 <span class="text-danger">*</span></label>
-                                <select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <select id="upload-detail-manage-org" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                     <option selected>东部大区-枣庄区域公司-枣庄台儿庄区污水处理厂</option>
+                                    <option>华东大区-南京区域公司-江宁污水处理厂</option>
+                                    <option>华东大区-苏州区域公司-园区供水项目部</option>
+                                    <option>华中大区-武汉区域公司-再生水项目组</option>
                                 </select>
                             </div>
 
                          
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">法人组织 <span class="text-danger">*</span></label>
-                                <select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <select id="upload-detail-legal-org" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                     <option selected>北控水务（中国）投资有限公司</option>
                                     <option>北控水务发展有限公司</option>
                                     <option>北京清源污水净化有限公司</option>
+                                    <option>南京清润水务有限公司</option>
+                                    <option>苏州清源环境发展有限公司</option>
+                                    <option>武汉碧源水务有限公司</option>
                                 </select>
                             </div>
    <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">上传部门 <span class="text-danger">*</span></label>
-                                <select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <select id="upload-detail-upload-dept" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                     <option selected>枣庄台儿庄区污水处理厂-综合部</option>
+                                    <option>南京清润水务有限公司-工程管理部</option>
+                                    <option>苏州清源环境发展有限公司-投资发展部</option>
+                                    <option>武汉碧源水务有限公司-项目技术部</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">上传人 <span class="text-danger">*</span></label>
-                                <input type="text" value="张三（东部大区-档案管理岗）" disabled class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400">
+                                <input id="upload-detail-uploader" type="text" value="张三（东部大区-档案管理岗）" disabled class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">申请单创建日期</label>
-                                <input type="text" value="2026-01-28 13:20:00" disabled class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400">
+                                <input id="upload-detail-created-date" type="text" value="2026-01-28 13:20:00" disabled class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400">
                             </div>
                         </div>
 
@@ -4131,24 +4219,13 @@
             <!-- 批量文件列表（AI分类结果） -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
-                    <h3 class="text-base md:text-lg font-semibold text-gray-900 flex items-center gap-2 dark:text-white">
-                        <i class="fas fa-magic text-purple-500"></i>
-                        AI识别结果 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">(已识别 <span id="ai-recognized-count">0</span> 个文件)</span>
-                    </h3>
-                    <div class="flex gap-2">
-                        <button onclick="reAnalyzeAll()" class="px-3 py-2 bg-purple-100 text-purple-700 rounded-lg text-sm font-medium hover:bg-purple-200 transition dark:bg-purple-900 dark:text-purple-300">
-                            <i class="fas fa-redo mr-1"></i>重新识别
-                        </button>
-                        <button onclick="clearAllFiles()" class="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
-                            <i class="fas fa-trash-alt mr-1"></i>清空
-                        </button>
-                    </div>
+                    <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (<span id="ai-recognized-count">0</span>份)</h3>
                 </div>
 
                 <div class="table-container mobile-scroll-x">
                     <table class="data-table editable-table sticky-action-table" id="batch-upload-table">
                         <colgroup>
-                            <col span="14">
+                            <col span="12">
                             <col class="table-sticky-action-col">
                         </colgroup>
                         <thead>
@@ -4158,17 +4235,15 @@
                                 </th>
                                 <th class="batch-sticky-index bg-gray-50 dark:bg-gray-800">序号<div class="resize-handle"></div></th>
                                 <th class="min-w-[120px]">附件名称<div class="resize-handle"></div></th>
-                                <th class="min-w-[120px]">AI识别资料类型<div class="resize-handle"></div></th>
+                                <th class="min-w-[120px]">资料类型<div class="resize-handle"></div></th>
+                                <th class="min-w-[100px]">三级分类<div class="resize-handle"></div></th>
                                 <th class="min-w-[150px]">档案题名 <span class="text-danger">*</span><div class="resize-handle"></div></th>
-                                <th class="min-w-[100px]">责任者 <span class="text-danger">*</span><div class="resize-handle"></div></th>
-                                <th class="min-w-[100px]">成文日期 <span class="text-danger">*</span><div class="resize-handle"></div></th>
-                                <th class="min-w-[80px]">文号<div class="resize-handle"></div></th>
                                 <th class="min-w-[100px]">项目名称<div class="resize-handle"></div></th>
-                                <th class="min-w-[80px]">会议<div class="resize-handle"></div></th>
-                                <th class="min-w-[80px]">议题<div class="resize-handle"></div></th>
                                 <th class="min-w-[80px]">密级<div class="resize-handle"></div></th>
+                                <th class="min-w-[100px]">成文日期 <span class="text-danger">*</span><div class="resize-handle"></div></th>
+                                <th class="min-w-[100px]">责任者 <span class="text-danger">*</span><div class="resize-handle"></div></th>
+                                <th class="min-w-[80px]">文号<div class="resize-handle"></div></th>
                                 <th class="min-w-[60px]">页数<div class="resize-handle"></div></th>
-                                <th class="min-w-[100px]">匹配档案分类<div class="resize-handle"></div></th>
                                 <th class="min-w-[140px] text-center table-sticky-action">操作<div class="resize-handle"></div></th>
                             </tr>
                         </thead>
@@ -4177,7 +4252,7 @@
                         <tbody id="batch-upload-tbody">
                             <!-- AI识别结果将动态插入此处 -->
                             <tr class="text-center text-gray-500 dark:text-gray-400" id="empty-batch-tip">
-                                <td colspan="15" class="py-8">
+                                <td colspan="13" class="py-8">
                                     <i class="fas fa-inbox text-4xl mb-2 text-gray-300 dark:text-gray-600"></i>
                                     <p>请上传文件，AI将自动识别分类</p>
                                 </td>
@@ -6252,6 +6327,50 @@ const aiRuleRules = [
             fileData.date = `2026-01-${day.toString().padStart(2, '0')}`;
         }
 
+        function getBatchCategoryLevel3(categoryPath) {
+            const parts = String(categoryPath || '').split('/').map(part => part.trim()).filter(Boolean);
+            return parts.length ? parts[parts.length - 1] : '-';
+        }
+
+        function getBatchMaterialTypeDisplay(item) {
+            if (item?.aiType) return item.aiType;
+            if (item?.materialTypePendingText) return item.materialTypePendingText;
+            return '';
+        }
+
+        function isBatchMaterialTypePending(item) {
+            return !item?.aiType && !!item?.materialTypePendingText;
+        }
+
+        function getBatchMaterialTypeInputClass(item) {
+            return isBatchMaterialTypePending(item) ? 'text-primary dark:text-blue-400' : 'dark:text-white';
+        }
+
+        function getBatchMaterialTypeInputStyle(item) {
+            return isBatchMaterialTypePending(item)
+                ? 'width: 114px; padding-left: 20px;'
+                : 'width: 114px;';
+        }
+
+        function getBatchMaterialTypeTagHtml(item) {
+            if (item?.showManualTypeTag && item?.materialTypeSource === 'manual') {
+                return '<span class="inline-flex items-center px-1 py-0.5 rounded border border-gray-200 bg-gray-50 text-[10px] leading-none text-gray-500 whitespace-nowrap dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400">人工</span>';
+            }
+            if (!item?.materialTypeTagText) return '';
+
+            const toneClassMap = {
+                green: 'border-green-200 bg-green-50 text-green-600 dark:border-green-800 dark:bg-green-900/30 dark:text-green-300',
+                yellow: 'border-yellow-200 bg-yellow-50 text-yellow-700 dark:border-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300',
+                red: 'border-red-200 bg-red-50 text-red-600 dark:border-red-800 dark:bg-red-900/30 dark:text-red-300'
+            };
+            const toneClass = toneClassMap[item.materialTypeTagTone] || toneClassMap.green;
+            const tooltipText = escapeHtml(item.materialTypeTagTooltip || '');
+            return `<span class="relative inline-flex group">
+                <span class="inline-flex items-center px-1 py-0.5 rounded border text-[10px] leading-none whitespace-nowrap cursor-help ${toneClass}">${escapeHtml(item.materialTypeTagText)}</span>
+                <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-2 hidden -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 px-2 py-1 text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">${tooltipText}</span>
+            </span>`;
+        }
+
         function renderBatchTable() {
             const tbody = document.getElementById('batch-upload-tbody');
             if (!tbody) return;
@@ -6261,7 +6380,7 @@ const aiRuleRules = [
             if (!batchFiles.length) {
                 tbody.innerHTML = `
                     <tr class="text-center text-gray-500 dark:text-gray-400" id="empty-batch-tip">
-                        <td colspan="12" class="py-8">
+                        <td colspan="13" class="py-8">
                             <i class="fas fa-inbox text-4xl mb-2 text-gray-300 dark:text-gray-600"></i>
                             <p>请上传文件，AI将自动识别分类</p>
                         </td>
@@ -6280,18 +6399,36 @@ const aiRuleRules = [
                         <a href="#" onclick="openPreview(); return false;" class="text-primary hover:underline text-xs">${item.name}</a>
                     </td>
                     <td class="dark:text-gray-300">
-                        <div class="flex items-center gap-1 cursor-pointer hover:opacity-80" onclick="editBatchMaterialType(${item.id})" title="点击修改资料类型">
-                            <span class="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-xs dark:bg-purple-900 dark:text-purple-300" id="batch-ai-type-${item.id}">
-                                <i class="fas fa-robot mr-1"></i>${item.aiType}
-                            </span>
-                            <span class="text-xs text-success">${item.confidence}%</span>
-                            <i class="fas fa-edit text-xs text-gray-400 ml-1 dark:text-gray-500"></i>
+                        <div class="flex items-center gap-2">
+                            <div class="relative">
+                                ${isBatchMaterialTypePending(item) ? '<span class="absolute left-2 inset-y-0 flex items-center pointer-events-none"><i class="fas fa-spinner fa-spin text-xs text-primary dark:text-blue-400"></i></span>' : ''}
+                                <input
+                                    type="text"
+                                    value="${escapeHtml(getBatchMaterialTypeDisplay(item))}"
+                                    readonly
+                                    id="batch-ai-type-${item.id}"
+                                    class="max-w-full bg-white border border-gray-300 rounded-lg px-3 py-2 pr-8 text-xs cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 ${getBatchMaterialTypeInputClass(item)}"
+                                    style="${getBatchMaterialTypeInputStyle(item)}"
+                                    onclick="openMaterialTypeModalForBatch(${item.id})"
+                                    placeholder="点击选择">
+                                <i class="fas fa-search absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-400 dark:text-gray-500 pointer-events-none"></i>
+                            </div>
+                            ${getBatchMaterialTypeTagHtml(item)}
                         </div>
                     </td>
-                    <td><input type="text" value="${escapeHtml(item.title)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                    <td><input type="text" value="${escapeHtml(item.author)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                    <td><input type="date" value="${item.date}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                    <td><input type="text" placeholder="请输入文号" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
+                    <td class="text-xs text-gray-500 dark:text-gray-400">${escapeHtml(item.categoryLevel3 !== undefined ? item.categoryLevel3 : getBatchCategoryLevel3(item.category))}</td>
+                    <td class="dark:text-gray-300">
+                        <input type="text" value="${escapeHtml(item.title)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </td>
+                    <td>
+                        <div class="relative">
+                            <input type="text" value="${escapeHtml(item.projectName || currentUploadDraftContext?.project || '成都某水厂改扩建项目')}" readonly 
+                                class="w-full bg-white border border-gray-300 rounded px-2 py-1 text-xs cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white project-select-input"
+                                onclick="openProjectSelectModal(this)"
+                                placeholder="点击选择项目">
+                            <i class="fas fa-search absolute right-2 top-1.5 text-gray-400 text-xs"></i>
+                        </div>
+                    </td>
                     <td>
                         <select class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                             <option ${item.level === '无密级' ? 'selected' : ''}>无密级</option>
@@ -6299,8 +6436,10 @@ const aiRuleRules = [
                             <option ${item.level === '机密级' ? 'selected' : ''}>机密级</option>
                         </select>
                     </td>
+                    <td><input type="date" value="${item.date}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
+                    <td><input type="text" value="${escapeHtml(item.author)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
+                    <td><input type="text" placeholder="请输入文号" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
                     <td><input type="number" value="${item.pages}" class="w-full text-center border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                    <td class="text-xs text-gray-500 dark:text-gray-400">${item.category}</td>
                     <td class="text-center">
                         <button onclick="removeBatchFile(${item.id})" class="text-gray-400 hover:text-danger"><i class="fas fa-trash-alt"></i></button>
                     </td>
@@ -7242,13 +7381,7 @@ const aiRuleRules = [
         }
 
         function editBatchMaterialType(id) {
-            const file = batchFiles.find(f => f.id === id);
-            if (!file) return;
-            const next = prompt('请输入资料类型（用于模拟修改AI识别结果）', file.aiType || '');
-            if (next === null) return;
-            file.aiType = (next || '').trim() || file.aiType;
-            renderBatchTable();
-            showToast('已更新资料类型', 'success');
+            openMaterialTypeModalForBatch(id);
         }
 
         function escapeHtml(value) {
@@ -7705,6 +7838,144 @@ const aiRuleRules = [
     function savePermission() {
         showToast('权限配置已保存', 'success');
     }
+    function getDirectoryProjectCategoryValue() {
+        const selection = projectCategorySelections['project-cascader-new'] || { level1: [], level2: [], level3: [] };
+        const allSelections = [...selection.level1, ...selection.level2, ...selection.level3].filter(Boolean);
+        if (allSelections.length > 0) return allSelections.join('/');
+        const text = document.getElementById('project-cascader-new-text')?.innerText?.trim() || '';
+        return text === '请选择项目分类' ? '' : text;
+    }
+
+    function getDirectoryArchiveCategoryValue() {
+        return [directorySelection.level1, directorySelection.level2, directorySelection.level3].filter(Boolean).join('/');
+    }
+
+    function formatDirectoryCategoryCell(archiveCategory) {
+        const parts = (archiveCategory || '').split('/').map(v => v.trim()).filter(Boolean);
+        const primary = parts.slice(0, 2).join('/') || '-';
+        const secondary = parts[2] || '-';
+        return `
+            <td class="text-xs">
+                <span class="block font-medium dark:text-white">${primary}</span>
+                <span class="text-gray-500 dark:text-gray-400">${secondary}</span>
+            </td>
+        `;
+    }
+
+    function createDirectoryStatusBadge(status) {
+        if (status === '启用') {
+            return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">启用</span>';
+        }
+        return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">停用</span>';
+    }
+
+    function createDirectoryYesNoBadge(value) {
+        if (value === '是') {
+            return '<span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs dark:bg-blue-900 dark:text-blue-200">是</span>';
+        }
+        return '<span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs dark:bg-gray-700 dark:text-gray-300">否</span>';
+    }
+
+    function createDirectoryRequiredBadge(value) {
+        if (value === '必有') {
+            return '<span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs dark:bg-red-900 dark:text-red-200">必有</span>';
+        }
+        if (value === '条件必有') {
+            return '<span class="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs dark:bg-amber-900 dark:text-amber-200">条件必有</span>';
+        }
+        return '<span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs dark:bg-gray-700 dark:text-gray-300">或有</span>';
+    }
+
+    function collectDirectoryFormData() {
+        const page = document.getElementById('page-archive-directory-new');
+        const selects = page ? page.querySelectorAll('select') : [];
+        const materialType = page?.querySelector('input[placeholder="请输入资料名称"]')?.value?.trim() || '';
+        const conditionDesc = page?.querySelector('input[placeholder="描述条件必有说明"]')?.value?.trim() || '';
+        const rule = page?.querySelector('input[placeholder="描述归档规则"]')?.value?.trim() || '';
+        const fileAlias = document.getElementById('directory-file-alias')?.value?.trim() || '';
+        const conflictRule = document.getElementById('directory-conflict-rule')?.value?.trim() || '';
+        const isRequiredMap = { must: '必有', optional: '或有', conditional: '条件必有' };
+        const assessmentMap = { yes: '是', no: '否' };
+
+        return {
+            archiveCategory: getDirectoryArchiveCategoryValue(),
+            businessSubfunction: document.getElementById('directory-input-subfunction')?.value?.trim() || '',
+            businessProcess: document.getElementById('directory-input-process')?.value?.trim() || '',
+            topicProfessional: document.getElementById('directory-input-topic')?.value?.trim() || '',
+            materialType,
+            archiveLevel: archiveLevelSelections.join('/'),
+            archiveDimension: selects[1]?.value?.trim() || '',
+            archiveRule: rule,
+            archiveConfidentiality: selects[2]?.value?.trim() || '',
+            isRequired: isRequiredMap[document.getElementById('is-required-select')?.value] || '必有',
+            conditionDesc,
+            retentionPeriod: selects[4]?.value?.trim() || '',
+            isLinkedProject: selects[5]?.value?.trim() || '否',
+            projectCategory: getDirectoryProjectCategoryValue(),
+            archiveCarrier: carrierSelections.join('/'),
+            isPhysicalArchive: selects[6]?.value?.trim() || '否',
+            archiveMilestone: selects[7]?.value?.trim() || '无',
+            fileSourceSystem: selects[8]?.selectedOptions?.[0]?.text?.trim() || '',
+            isBusinessAssessment: assessmentMap[selects[9]?.value] || '否',
+            fileAlias,
+            conflictRule,
+            status: document.getElementById('toggle')?.checked ? '启用' : '停用',
+            updater: '张三',
+            updateTime: new Date().toLocaleString('sv-SE').replace(' ', ' ')
+        };
+    }
+
+    function renderDirectoryRow(row, data, index) {
+        row.setAttribute('onclick', 'showDirectoryDetail(this)');
+        row.className = 'hover:bg-blue-50 transition dark:hover:bg-blue-900/20';
+        row.dataset.archiveLevel = data.archiveLevel || '';
+        row.dataset.archiveRule = data.archiveRule || '';
+        row.dataset.conflictRule = data.conflictRule || '';
+
+        const businessSubfunction = data.businessSubfunction || '-';
+        const businessProcess = data.businessProcess || '-';
+        const topicProfessional = data.topicProfessional || '-';
+        const materialType = data.materialType || '-';
+        const conditionDesc = data.conditionDesc || '无';
+        const projectCategory = data.isLinkedProject === '是' ? (data.projectCategory || '-') : '-';
+        const archiveCarrier = data.archiveCarrier || '电子档案';
+        const archiveMilestone = data.archiveMilestone || '无';
+        const fileSourceSystem = data.fileSourceSystem || '-';
+        const fileAlias = data.fileAlias || '-';
+
+        row.innerHTML = `
+            <td class="text-center font-medium text-gray-900 sticky left-0 bg-white z-10 dark:bg-gray-800 dark:text-white">${index}</td>
+            ${formatDirectoryCategoryCell(data.archiveCategory)}
+            <td class="text-xs dark:text-gray-400">${businessSubfunction}</td>
+            <td class="text-xs dark:text-gray-400">${businessProcess}</td>
+            <td class="text-xs dark:text-gray-400">${topicProfessional}</td>
+            <td class="font-medium text-gray-900 dark:text-white">${materialType}</td>
+            <td class="dark:text-gray-300">${data.archiveDimension || '-'}</td>
+            <td class="dark:text-gray-300">${data.archiveConfidentiality || '-'}</td>
+            <td>${createDirectoryRequiredBadge(data.isRequired)}</td>
+            <td class="text-xs dark:text-gray-400">${conditionDesc}</td>
+            <td class="dark:text-gray-300">${data.retentionPeriod || '-'}</td>
+            <td>${createDirectoryYesNoBadge(data.isLinkedProject)}</td>
+            <td class="text-xs dark:text-gray-400">${projectCategory}</td>
+            <td class="dark:text-gray-300">${archiveCarrier}</td>
+            <td>${createDirectoryYesNoBadge(data.isPhysicalArchive)}</td>
+            <td class="dark:text-gray-300">${archiveMilestone}</td>
+            <td class="dark:text-gray-300">${fileSourceSystem}</td>
+            <td>${createDirectoryYesNoBadge(data.isBusinessAssessment)}</td>
+            <td class="text-xs dark:text-gray-300">${fileAlias}</td>
+            <td>${createDirectoryStatusBadge(data.status)}</td>
+            <td class="text-gray-600 dark:text-gray-400">${data.updater}</td>
+            <td class="text-gray-500 dark:text-gray-400">${data.updateTime}</td>
+        `;
+    }
+
+    function syncDirectoryRowIndexes() {
+        document.querySelectorAll('#directory-table tbody tr').forEach((row, index) => {
+            const firstCell = row.querySelector('td');
+            if (firstCell) firstCell.textContent = String(index + 1);
+        });
+    }
+
     function saveDirectory() {
         if (!directorySelection.level1) {
             showToast('请选择档案分类', 'warning');
@@ -7733,6 +8004,21 @@ const aiRuleRules = [
             showToast('档案载体必须选择电子档案', 'warning');
             return;
         }
+
+        const data = collectDirectoryFormData();
+        const tbody = document.querySelector('#directory-table tbody');
+        if (!tbody) return;
+
+        if (currentDirectoryRow) {
+            renderDirectoryRow(currentDirectoryRow, data, Array.from(tbody.children).indexOf(currentDirectoryRow) + 1);
+        } else {
+            const newRow = document.createElement('tr');
+            renderDirectoryRow(newRow, data, tbody.children.length + 1);
+            tbody.appendChild(newRow);
+            currentDirectoryRow = newRow;
+        }
+
+        syncDirectoryRowIndexes();
         showToast('档案目录保存成功', 'success');
         setTimeout(() => showPage('archive-directory'), 800);
     }
@@ -8230,15 +8516,21 @@ let currentReplacingPendingRow = null;
                 currentMaterialTypeInput.value = selectedMaterialTypeValue;
             } else if (currentBatchEditId !== null) {
                 // 批量上传页面模式
-                const typeSpan = document.getElementById(`batch-ai-type-${currentBatchEditId}`);
-                if (typeSpan) {
-                    typeSpan.innerHTML = `<i class="fas fa-robot mr-1"></i>${selectedMaterialTypeValue}`;
+                const typeInput = document.getElementById(`batch-ai-type-${currentBatchEditId}`);
+                if (typeInput) {
+                    typeInput.value = selectedMaterialTypeValue;
                     // 更新数据模型
                     const fileData = batchFiles.find(f => f.id === currentBatchEditId);
                     if (fileData) {
                         fileData.aiType = selectedMaterialTypeValue;
+                        if (fileData.showManualTypeTag) fileData.materialTypeSource = 'manual';
+                        fileData.materialTypePendingText = '';
+                        fileData.materialTypeTagText = '';
+                        fileData.materialTypeTagTone = '';
+                        fileData.materialTypeTagTooltip = '';
                     }
                 }
+                renderBatchTable();
                 currentBatchEditId = null;
             }
             closeMaterialTypeModal();
@@ -8705,6 +8997,51 @@ let currentReplacingPendingRow = null;
 
     // AI智能上传相关变量
     let batchFiles = [];
+    let currentUploadDraftContext = null;
+    const uploadDraftPresets = {
+        empty: {
+            applicationNo: '20260126-KJ003-000013',
+            categoryText: '科技档案 / 基建档案',
+            project: '北京某TOT项目',
+            manageOrg: '东部大区-枣庄区域公司-枣庄台儿庄区污水处理厂',
+            legalOrg: '北京清源污水净化有限公司',
+            uploadDept: '枣庄台儿庄区污水处理厂-综合部',
+            uploader: '赵六',
+            createdDate: '2026-01-30 09:15:00',
+            files: []
+        },
+        'draft-uploaded-1': {
+            applicationNo: '20260130-KJ003-000014',
+            categoryText: '科技档案 / 基建档案',
+            project: '南京某污水厂提标改造项目',
+            manageOrg: '华东大区-南京区域公司-江宁污水处理厂',
+            legalOrg: '南京清润水务有限公司',
+            uploadDept: '南京清润水务有限公司-工程管理部',
+            uploader: '陈晓',
+            createdDate: '2026-01-30 10:20:00',
+            files: [
+                { name: '可研报告_提标改造一期.pdf', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/前期立项', categoryLevel3: '-', title: '南京某污水厂提标改造项目可行性研究报告', author: '华东市政设计院', date: '2026-01-18', pages: 46, level: '无密级' },
+                { name: '立项批复_发改委.pdf', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/前期立项', categoryLevel3: '-', title: '关于南京某污水厂提标改造项目立项的批复', author: '南京市发展和改革委员会', date: '2026-01-20', pages: 8, level: '无密级' },
+                { name: '初设评审意见.docx', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/设计文件', categoryLevel3: '-', title: '南京某污水厂提标改造项目初步设计评审意见', author: '项目管理部', date: '2026-01-22', pages: 12, level: '无密级' }
+            ]
+        },
+        'draft-uploaded-2': {
+            applicationNo: '20260130-KJ003-000015',
+            categoryText: '科技档案 / 投资档案',
+            project: '苏州工业园区供水管网完善工程',
+            manageOrg: '华东大区-苏州区域公司-园区供水项目部',
+            legalOrg: '苏州清源环境发展有限公司',
+            uploadDept: '苏州清源环境发展有限公司-投资发展部',
+            uploader: '林悦',
+            createdDate: '2026-01-30 11:05:00',
+            files: [
+                { name: '项目建议书_供水管网完善.pdf', aiType: '项目建议书', showManualTypeTag: true, materialTypeTagText: 'AI: 95%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度95%', category: '科技档案/投资档案/项目决策', title: '苏州工业园区供水管网完善工程项目建议书', author: '投资发展部', date: '2026-01-12', pages: 25, level: '无密级' },
+                { name: '建议书批复_园区管委会.pdf', aiType: '项目建议书的批复文件', showManualTypeTag: true, materialTypeTagText: 'AI: 88%', materialTypeTagTone: 'yellow', materialTypeTagTooltip: 'AI分类结果，置信度88%', category: '科技档案/投资档案/项目决策', title: '关于苏州工业园区供水管网完善工程项目建议书的批复', author: '苏州工业园区管理委员会', date: '2026-01-15', pages: 6, level: '无密级' },
+                { name: '可研报告_供水管网完善工程.pdf', aiType: '可行性研究报告', showManualTypeTag: true, materialTypeTagText: 'AI: 73%', materialTypeTagTone: 'red', materialTypeTagTooltip: 'AI分类结果，置信度73%', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可行性研究报告', author: '华东市政设计研究院', date: '2026-01-18', pages: 38, level: '无密级' },
+                { name: '专家评审意见_供水管网项目.docx', aiType: '专家评审意见', showManualTypeTag: true, materialTypeSource: 'manual', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可研专家评审意见', author: '项目评审专家组', date: '2026-01-21', pages: 11, level: '无密级' }
+            ]
+        }
+    };
     let aiProcessing = false;
     let currentReplacingBatchFileId = null;
     let currentPendingDetailMode = 'pending-normal';
@@ -8771,6 +9108,83 @@ let currentReplacingPendingRow = null;
         validationReport = null;
         validationSnapshotKey = '';
         refreshPendingAICheckPanel();
+    }
+
+    function createMockUploadFile(fileName) {
+        const extension = String(fileName).split('.').pop().toLowerCase();
+        const mimeMap = {
+            pdf: 'application/pdf',
+            doc: 'application/msword',
+            docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            xls: 'application/vnd.ms-excel',
+            xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        };
+        return new File(['mock'], fileName, { type: mimeMap[extension] || 'application/octet-stream' });
+    }
+
+    function applyUploadDraftContext(context) {
+        currentUploadDraftContext = context || uploadDraftPresets.empty;
+        const applicationNoEl = document.getElementById('upload-detail-application-no');
+        const categoryTextEl = document.getElementById('archive-cascader-new-text');
+        const projectEl = document.getElementById('upload-detail-project');
+        const manageOrgEl = document.getElementById('upload-detail-manage-org');
+        const legalOrgEl = document.getElementById('upload-detail-legal-org');
+        const uploadDeptEl = document.getElementById('upload-detail-upload-dept');
+        const uploaderEl = document.getElementById('upload-detail-uploader');
+        const createdDateEl = document.getElementById('upload-detail-created-date');
+
+        if (applicationNoEl) applicationNoEl.textContent = `申请单号：${currentUploadDraftContext.applicationNo || '-'}`;
+        if (categoryTextEl) categoryTextEl.textContent = currentUploadDraftContext.categoryText || '科技档案 / 基建档案';
+        if (projectEl) projectEl.value = currentUploadDraftContext.project || '';
+        if (manageOrgEl) manageOrgEl.value = currentUploadDraftContext.manageOrg || manageOrgEl.value;
+        if (legalOrgEl) legalOrgEl.value = currentUploadDraftContext.legalOrg || legalOrgEl.value;
+        if (uploadDeptEl) uploadDeptEl.value = currentUploadDraftContext.uploadDept || uploadDeptEl.value;
+        if (uploaderEl) uploaderEl.value = currentUploadDraftContext.uploader || '';
+        if (createdDateEl) createdDateEl.value = currentUploadDraftContext.createdDate || '';
+    }
+
+    function updateUploadDraftSummary() {
+        const fileCountEl = document.getElementById('upload-detail-file-count');
+        if (fileCountEl) fileCountEl.textContent = `已上传文件：${batchFiles.length}份`;
+    }
+
+    function buildDraftBatchFiles(context) {
+        const files = Array.isArray(context?.files) ? context.files : [];
+        return files.map((item, index) => ({
+            id: index + 1,
+            file: createMockUploadFile(item.name),
+            name: item.name,
+            aiType: item.aiType ?? '其他资料',
+            title: item.title || item.name.replace(/\.[^/.]+$/, ''),
+            author: item.author || '',
+            date: item.date || '',
+            pages: item.pages || 1,
+            level: item.level || '无密级',
+            category: item.category || '',
+            categoryLevel3: Object.prototype.hasOwnProperty.call(item, 'categoryLevel3') ? item.categoryLevel3 : undefined,
+            materialTypePendingText: item.materialTypePendingText || '',
+            showManualTypeTag: !!item.showManualTypeTag,
+            materialTypeSource: item.materialTypeSource || '',
+            materialTypeTagText: item.materialTypeTagText || '',
+            materialTypeTagTone: item.materialTypeTagTone || '',
+            materialTypeTagTooltip: item.materialTypeTagTooltip || '',
+            confidence: item.confidence || 96,
+            projectName: context.project || ''
+        }));
+    }
+
+    function openUploadDraftDetail(presetKey = 'empty') {
+        const context = uploadDraftPresets[presetKey] || uploadDraftPresets.empty;
+        resetAICheckState();
+        showPage('upload-files');
+        applyUploadDraftContext(context);
+        batchFiles = buildDraftBatchFiles(context);
+        aiProcessing = false;
+        const input = document.getElementById('batch-file-input');
+        const progressBar = document.getElementById('ai-processing-bar');
+        if (input) input.value = '';
+        if (progressBar) progressBar.classList.add('hidden');
+        renderBatchTable();
     }
 
     function openArchiveDetail(mode = 'pending-normal') {
@@ -9020,11 +9434,12 @@ let currentReplacingPendingRow = null;
         document.getElementById('ai-recognized-count').textContent = batchFiles.length;
         const submitCountEl = document.getElementById('batch-submit-count');
         if (submitCountEl) submitCountEl.textContent = batchFiles.length;
+        updateUploadDraftSummary();
         
         if (batchFiles.length === 0) {
             tbody.innerHTML = `
                 <tr class="text-center text-gray-500 dark:text-gray-400" id="empty-batch-tip">
-                    <td colspan="15" class="py-8">
+                    <td colspan="13" class="py-8">
                         <i class="fas fa-inbox text-4xl mb-2 text-gray-300 dark:text-gray-600"></i>
                         <p>请上传文件，AI将自动识别分类</p>
                     </td>
@@ -9042,30 +9457,35 @@ let currentReplacingPendingRow = null;
                 <td class="dark:text-gray-300">
                     <a href="#" onclick="openPreview(); return false;" class="text-primary hover:underline text-xs">${item.name}</a>
                 </td>
-                    <td class="dark:text-gray-300">
-                    <div class="flex items-center gap-1 cursor-pointer hover:opacity-80" onclick="openMaterialTypeModalForBatch(${item.id})" title="点击修改资料类型">
-                        <span class="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-xs dark:bg-purple-900 dark:text-purple-300" id="batch-ai-type-${item.id}">
-                            <i class="fas fa-robot mr-1"></i>${item.aiType}
-                        </span>
-                        <span class="text-xs text-success">${item.confidence}%</span>
-                        <i class="fas fa-edit text-xs text-gray-400 ml-1 dark:text-gray-500"></i>
+                <td class="dark:text-gray-300">
+                    <div class="flex items-center gap-2">
+                        <div class="relative">
+                            ${isBatchMaterialTypePending(item) ? '<span class="absolute left-2 inset-y-0 flex items-center pointer-events-none"><i class="fas fa-spinner fa-spin text-xs text-primary dark:text-blue-400"></i></span>' : ''}
+                            <input
+                                type="text"
+                                value="${escapeHtml(getBatchMaterialTypeDisplay(item))}"
+                                readonly
+                                id="batch-ai-type-${item.id}"
+                                class="max-w-full bg-white border border-gray-300 rounded-lg px-3 py-2 pr-8 text-xs cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 ${getBatchMaterialTypeInputClass(item)}"
+                                style="${getBatchMaterialTypeInputStyle(item)}"
+                                onclick="openMaterialTypeModalForBatch(${item.id})"
+                                placeholder="点击选择">
+                            <i class="fas fa-search absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-400 dark:text-gray-500 pointer-events-none"></i>
+                        </div>
+                        ${getBatchMaterialTypeTagHtml(item)}
                     </div>
                 </td>
-                <td><input type="text" value="${item.title}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                <td><input type="text" value="${item.author}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                <td><input type="date" value="${item.date}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                <td><input type="text" placeholder="请输入文号" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
+                <td class="text-xs text-gray-500 dark:text-gray-400">${escapeHtml(item.categoryLevel3 !== undefined ? item.categoryLevel3 : getBatchCategoryLevel3(item.category))}</td>
+                <td><input type="text" value="${escapeHtml(item.title)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
                 <td>
                     <div class="relative">
-                        <input type="text" value="成都某水厂改扩建项目" readonly 
+                        <input type="text" value="${escapeHtml(item.projectName || currentUploadDraftContext?.project || '成都某水厂改扩建项目')}" readonly 
                             class="w-full bg-white border border-gray-300 rounded px-2 py-1 text-xs cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white project-select-input"
                             onclick="openProjectSelectModal(this)"
                             placeholder="点击选择项目">
                         <i class="fas fa-search absolute right-2 top-1.5 text-gray-400 text-xs"></i>
                     </div>
                 </td>
-                <td><select class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>-</option><option>项目启动会</option><option>周例会</option></select></td>
-                <td><select class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"><option>-</option><option>施工方案确认</option></select></td>
                 <td>
                     <select class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <option ${item.level === '无密级' ? 'selected' : ''}>无密级</option>
@@ -9073,8 +9493,10 @@ let currentReplacingPendingRow = null;
                         <option ${item.level === '机密级' ? 'selected' : ''}>机密级</option>
                     </select>
                 </td>
+                <td><input type="date" value="${item.date}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
+                <td><input type="text" value="${escapeHtml(item.author)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
+                <td><input type="text" placeholder="请输入文号" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
                 <td><input type="number" value="${item.pages}" class="w-full text-center border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                <td class="text-xs text-gray-500 dark:text-gray-400">${item.category}</td>
                 <td class="text-center table-sticky-action-cell">
                     <div class="batch-action-group">
                         <button type="button" onclick="previewBatchFile(${item.id})" class="batch-action-btn batch-action-view" title="预览">
