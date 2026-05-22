@@ -281,6 +281,12 @@
         // 资料类型
         const materialInput = page.querySelector('input[placeholder="请输入资料名称"]');
         if (materialInput) materialInput.value = materialType;
+
+        const keywordsInput = document.getElementById('directory-keywords');
+        if (keywordsInput) {
+            const keywords = (row.dataset && row.dataset.keywords ? row.dataset.keywords : '').trim();
+            keywordsInput.value = keywords || deriveDirectoryKeywords(materialType);
+        }
         
         // 业务含义 (第2个输入框，假设列表中没有，这里留空或模拟)
         const businessMeaningInput = page.querySelector('input[placeholder="描述业务含义"]');
@@ -3386,7 +3392,7 @@
             </div>
 
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
-                <h3 class="text-base md:text-lg font-semibold text-gray-900 mb-6 border-b border-gray-200 pb-4 dark:text-white dark:border-gray-700">目录基本信息</h3>
+                <h3 class="text-base md:text-lg font-semibold text-gray-900 mb-6 border-b border-gray-200 pb-4 dark:text-white dark:border-gray-700">分类基本信息</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     <div class="col-span-1 sm:col-span-2 lg:col-span-3">
                         <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案分类 <span class="text-danger">*</span></label>
@@ -3416,6 +3422,10 @@
                         </div>
                     </div>
 
+                    <div id="directory-field-topic" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业 <span class="text-danger">*</span></label>
+                        <input id="directory-input-topic" type="text" placeholder="请输入专题/专业" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
                     <div id="directory-field-subfunction" class="hidden">
                         <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">业务/职能细分 <span class="text-danger">*</span></label>
                         <input id="directory-input-subfunction" type="text" placeholder="请输入业务/职能细分" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
@@ -3423,10 +3433,6 @@
                     <div id="directory-field-process" class="hidden">
                         <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">业务活动/流程 <span class="text-danger">*</span></label>
                         <input id="directory-input-process" type="text" placeholder="请输入业务活动/流程" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    </div>
-                    <div id="directory-field-topic" class="hidden">
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业 <span class="text-danger">*</span></label>
-                        <input id="directory-input-topic" type="text" placeholder="请输入专题/专业" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
 
                     <div>
@@ -3437,7 +3443,24 @@
                         <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">业务含义</label>
                         <input type="text" placeholder="描述业务含义" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">关键词</label>
+                        <input id="directory-keywords" type="text" placeholder="请输入资料类型的关键词" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                    <div class="sm:col-span-2 lg:col-span-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">文件别名</label>
+                        <input id="directory-file-alias" type="text" placeholder="请填写该资料类型的常见别称或非标准名称" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                    <div class="sm:col-span-2 lg:col-span-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">冲突规则</label>
+                        <textarea id="directory-conflict-rule" rows="2" placeholder="请填写最容易混淆的类目，并说明区分方式" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white resize-y"></textarea>
+                    </div>
+                </div>
 
+                <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <h3 class="text-base md:text-lg font-semibold text-gray-900 mb-6 border-b border-gray-200 pb-4 dark:text-white dark:border-gray-700">业务规则信息</h3>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">归档层级</label>
                         <div class="cascader-container" id="archive-level-cascader">
@@ -3705,20 +3728,6 @@
 
 
 
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
-                <h3 class="text-base md:text-lg font-semibold text-gray-900 mb-6 border-b border-gray-200 pb-4 dark:text-white dark:border-gray-700">AI分类信息</h3>
-                <div class="grid grid-cols-1 gap-4 md:gap-6">
-                    <div class="lg:w-1/2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">文件别名</label>
-                        <input id="directory-file-alias" type="text" placeholder="请填写该资料类型的常见别称或非标准名称" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    </div>
-                    <div class="lg:w-1/2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">冲突规则</label>
-                        <textarea id="directory-conflict-rule" rows="2" placeholder="请填写最容易混淆的类目，并说明区分方式" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white resize-y"></textarea>
-                    </div>
                 </div>
             </div>
         </div>
@@ -4218,8 +4227,12 @@
 
             <!-- 批量文件列表（AI分类结果） -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+                <div class="flex flex-col sm:flex-row sm:items-center mb-4 gap-2 sm:gap-3">
                     <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (<span id="ai-recognized-count">0</span>份)</h3>
+                    <div class="flex items-center gap-1 text-xs text-red-500 dark:text-red-400">
+                        <i class="fas fa-lightbulb text-[11px] text-red-500 dark:text-red-400"></i>
+                        <span>建议提交前人工复核AI识别字段</span>
+                    </div>
                 </div>
 
                 <div class="table-container mobile-scroll-x">
@@ -4262,19 +4275,6 @@
                 </div>
                 <input id="batch-replace-file-input" type="file" class="hidden" onchange="handleReplaceBatchFile(this)">
 
-                <!-- 智能提示 -->
-                <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4 dark:bg-blue-900/20 dark:border-blue-800">
-                    <h4 class="text-sm font-semibold text-blue-900 mb-2 flex items-center gap-2 dark:text-blue-200">
-                        <i class="fas fa-lightbulb"></i>
-                        AI识别说明
-                    </h4>
-                    <ul class="text-xs text-blue-800 space-y-1 list-disc list-inside dark:text-blue-200">
-                        <li>AI将根据文件内容自动匹配最合适的"资料类型"（基于档案目录管理中的归档范围）</li>
-                        <li>自动提取文件中的关键信息：题名、成文日期、文号等</li>
-                        <li>识别准确率约95%，建议提交前人工复核标红字段</li>
-                        <!-- <li>支持批量修改：选中多个文件后可批量设置密级、保管期限等字段</li> -->
-                    </ul>
-                </div>
             </div>
         </div>
 
@@ -7886,10 +7886,37 @@ const aiRuleRules = [
         return '<span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs dark:bg-gray-700 dark:text-gray-300">或有</span>';
     }
 
+    function deriveDirectoryKeywords(materialType) {
+        const text = (materialType || '').trim();
+        if (!text || text === '-') return '';
+
+        const separatorParts = text
+            .split(/[\/,，、;；|\s_-]+/)
+            .map(part => part.trim())
+            .filter(Boolean);
+        if (separatorParts.length > 1) {
+            return Array.from(new Set(separatorParts)).join(',');
+        }
+
+        if (/^[\u4e00-\u9fa5]{4,}$/.test(text)) {
+            const words = [];
+            let rest = text;
+            while (rest.length > 3) {
+                words.push(rest.slice(0, 2));
+                rest = rest.slice(2);
+            }
+            if (rest) words.push(rest);
+            return words.join(',');
+        }
+
+        return text;
+    }
+
     function collectDirectoryFormData() {
         const page = document.getElementById('page-archive-directory-new');
         const selects = page ? page.querySelectorAll('select') : [];
         const materialType = page?.querySelector('input[placeholder="请输入资料名称"]')?.value?.trim() || '';
+        const keywords = document.getElementById('directory-keywords')?.value?.trim() || deriveDirectoryKeywords(materialType);
         const conditionDesc = page?.querySelector('input[placeholder="描述条件必有说明"]')?.value?.trim() || '';
         const rule = page?.querySelector('input[placeholder="描述归档规则"]')?.value?.trim() || '';
         const fileAlias = document.getElementById('directory-file-alias')?.value?.trim() || '';
@@ -7903,6 +7930,7 @@ const aiRuleRules = [
             businessProcess: document.getElementById('directory-input-process')?.value?.trim() || '',
             topicProfessional: document.getElementById('directory-input-topic')?.value?.trim() || '',
             materialType,
+            keywords,
             archiveLevel: archiveLevelSelections.join('/'),
             archiveDimension: selects[1]?.value?.trim() || '',
             archiveRule: rule,
@@ -7931,6 +7959,7 @@ const aiRuleRules = [
         row.dataset.archiveLevel = data.archiveLevel || '';
         row.dataset.archiveRule = data.archiveRule || '';
         row.dataset.conflictRule = data.conflictRule || '';
+        row.dataset.keywords = data.keywords || '';
 
         const businessSubfunction = data.businessSubfunction || '-';
         const businessProcess = data.businessProcess || '-';
