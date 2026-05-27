@@ -577,6 +577,10 @@
                     <i class="fas fa-robot w-5"></i>
                     <span>AI校验规则库</span>
                 </a>
+                <a href="#" onclick="showPage('ai-extract-library')" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:text-primary font-medium transition dark:text-gray-300 dark:hover:text-blue-400">
+                    <i class="fas fa-wand-magic-sparkles w-5"></i>
+                    <span>AI提取规则库</span>
+                </a>
             </nav>
         </div>
 
@@ -1009,6 +1013,27 @@
                                     </span>
                                 </td>
                             </tr>
+                            <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20" onclick="openUploadDraftDetail('draft-uploaded-3')">
+                                <td class="text-center font-medium text-gray-900 sticky left-0 bg-white dark:bg-gray-800 dark:text-white z-10">9</td>
+                                <td class="font-medium text-primary">20260130-KJ003-000016</td>
+                                <td class="text-xs">
+                                    <span class="block font-medium dark:text-white">科技档案</span>
+                                    <span class="text-gray-500 dark:text-gray-400">投资档案</span>
+                                </td>
+                                <td class="text-gray-600 dark:text-gray-300">无锡太湖新城供排水一体化工程</td>
+                                <td class="text-gray-600 dark:text-gray-300">无锡清源水务有限公司</td>
+                                <td class="text-gray-600 dark:text-gray-300">手工录入移交</td>
+                                <td class="text-gray-600 dark:text-gray-300">非结构化数据统一服务</td>
+                                <td class="dark:text-gray-300">沈越</td>
+                                <td class="text-gray-500 dark:text-gray-400">2026-01-30</td>
+                                <td class="text-center dark:text-gray-300">3</td>
+                                <td>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                        <i class="fas fa-plus-circle mr-1"></i>
+                                        新建
+                                    </span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -1151,7 +1176,18 @@
 
                     <!-- 文件清单（表格形式只读展示） -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
-                        <h3 class="text-base md:text-lg font-semibold text-gray-900 mb-4 dark:text-white">文件清单 (7份)</h3>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                                <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (7份)</h3>
+                                <div class="file-list-ai-tip">
+                                    <i class="fas fa-lightbulb text-[11px]"></i>
+                                    <span>建议提交前人工复核AI识别字段</span>
+                                </div>
+                            </div>
+                            <button type="button" onclick="triggerDetailAIExtract('approved')" class="px-3 py-2 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-blue-50 transition dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30">
+                                <i class="fas fa-wand-magic-sparkles mr-1.5"></i>AI提取
+                            </button>
+                        </div>
 
                         <div class="table-container mobile-scroll-x">
                             <table class="data-table readonly-table sticky-action-table" id="file-list-archived-table">
@@ -1480,7 +1516,16 @@
                     <!-- 可编辑的文件清单（表格形式） -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
-                            <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (2份)</h3>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                                <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (2份)</h3>
+                                <div class="file-list-ai-tip">
+                                    <i class="fas fa-lightbulb text-[11px]"></i>
+                                    <span>建议提交前人工复核AI识别字段</span>
+                                </div>
+                            </div>
+                            <button type="button" onclick="triggerDetailAIExtract('rejected')" class="px-3 py-2 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-blue-50 transition dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30">
+                                <i class="fas fa-wand-magic-sparkles mr-1.5"></i>AI提取
+                            </button>
                         </div>
 
                         <!-- 拖拽区域 -->
@@ -1777,7 +1822,18 @@
 
                     <!-- 文件清单（表格形式只读） -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
-                        <h3 id="pending-detail-file-list-title" class="text-base md:text-lg font-semibold text-gray-900 mb-4 dark:text-white">文件清单 (7份)</h3>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                                <h3 id="pending-detail-file-list-title" class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (7份)</h3>
+                                <div class="file-list-ai-tip">
+                                    <i class="fas fa-lightbulb text-[11px]"></i>
+                                    <span>建议提交前人工复核AI识别字段</span>
+                                </div>
+                            </div>
+                            <button type="button" onclick="triggerPendingDetailAIExtract()" class="px-3 py-2 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-blue-50 transition dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30">
+                                <i class="fas fa-wand-magic-sparkles mr-1.5"></i>AI提取
+                            </button>
+                        </div>
 
                         <div class="table-container mobile-scroll-x">
                             <table class="data-table readonly-table sticky-action-table" id="file-list-pending-table">
@@ -4056,6 +4112,130 @@
 
         </div>
 
+<!-- 文件详情编辑弹窗 -->
+<div id="file-detail-edit-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4" style="z-index: 90;" onclick="closeFileDetailEditModal(event)">
+    <div class="bg-white rounded-xl shadow-2xl w-[96%] max-w-[980px] max-h-[92vh] flex flex-col dark:bg-gray-800" onclick="event.stopPropagation()">
+        <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between bg-gray-50 rounded-t-xl dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">文件详情编辑</h3>
+            <button type="button" onclick="closeFileDetailEditModal()" class="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <div class="px-6 py-5 overflow-y-auto space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">文件名称</label>
+                    <input id="file-detail-edit-file-name" type="text" readonly class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300"><span class="text-danger mr-1">*</span>资料类型</label>
+                    <div class="relative">
+                        <input id="file-detail-edit-material-type" type="text" readonly class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 pr-10 text-sm cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white" onclick="openMaterialTypeModal(this)" placeholder="点击选择资料类型">
+                        <i id="file-detail-edit-material-icon" class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400 pointer-events-none"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">三级分类</label>
+                    <input id="file-detail-edit-level3" type="text" readonly class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                </div>
+                <div>
+                    <label class="flex items-center gap-1 text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300"><span class="text-danger">*</span>档案题名 <i class="fas fa-circle-info text-[12px] text-gray-400"></i></label>
+                    <div class="relative">
+                        <input id="file-detail-edit-title" type="text" maxlength="200" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 pr-20 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" oninput="updateFileDetailTitleCount()">
+                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-primary"><span id="file-detail-edit-title-count">0</span> / 200</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="flex items-center gap-1 text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300"><span class="text-danger">*</span>责任者 <i class="fas fa-circle-info text-[12px] text-gray-400"></i></label>
+                    <div class="ai-extract-field">
+                        <input id="file-detail-edit-author" type="text" oninput="clearAIExtractPendingState(this)" onchange="clearAIExtractPendingState(this)" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="请输入责任者">
+                    </div>
+                </div>
+                <div>
+                    <label class="flex items-center gap-1 text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300"><span class="text-danger">*</span>成文日期 <i class="fas fa-circle-info text-[12px] text-gray-400"></i></label>
+                    <div class="ai-extract-field">
+                        <input id="file-detail-edit-date" type="date" oninput="clearAIExtractPendingState(this)" onchange="clearAIExtractPendingState(this)" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="flex items-center gap-1 text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">文号 <i class="fas fa-circle-info text-[12px] text-gray-400"></i></label>
+                    <input id="file-detail-edit-doc-no" type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="请输入文号">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300"><span class="text-danger mr-1">*</span>密级</label>
+                    <select id="file-detail-edit-level" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <option>无密级</option>
+                        <option>秘密级</option>
+                        <option>机密级</option>
+                        <option>绝密级</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-4 dark:border-gray-700">
+                <div class="text-base font-semibold text-gray-900 dark:text-white text-left">项目信息</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否关联项目</label>
+                    <input id="file-detail-edit-linked-project" type="text" readonly class="w-full border border-green-200 bg-green-50 text-green-700 rounded-lg px-3 py-2.5 text-sm font-medium dark:border-green-800 dark:bg-green-900/30 dark:text-green-300">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">关联项目分类</label>
+                    <input id="file-detail-edit-related-project-category" type="text" readonly class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">项目名称 <span class="text-danger">*</span></label>
+                    <div class="relative">
+                        <input id="file-detail-edit-project-name" type="text" readonly class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 pr-10 text-sm cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white project-select-input" onclick="openProjectSelectModal(this)" placeholder="点击选择项目">
+                        <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400 pointer-events-none"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">当前项目分类</label>
+                    <input id="file-detail-edit-current-project-category" type="text" readonly class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">管理组织</label>
+                    <input id="file-detail-edit-manage-org" type="text" readonly class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">法人主体</label>
+                    <input id="file-detail-edit-legal-org" type="text" readonly class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-4 dark:border-gray-700">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="text-base font-semibold text-gray-900 dark:text-white text-left">AI提取信息</div>
+                    <button type="button" onclick="triggerCurrentFileAIExtract()" class="px-3 py-1.5 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-blue-50 transition dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30">AI提取当前文件</button>
+                </div>
+            </div>
+
+            <div class="table-container mobile-scroll-x">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="min-w-[70px]">序号<div class="resize-handle"></div></th>
+                            <th class="min-w-[140px]">字段名称<div class="resize-handle"></div></th>
+                            <th class="min-w-[220px]">AI提取结果<div class="resize-handle"></div></th>
+                            <th class="min-w-[140px]">是否反填表单<div class="resize-handle"></div></th>
+                        </tr>
+                    </thead>
+                    <tbody id="file-detail-edit-ai-info-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-xl flex justify-end gap-3 dark:bg-gray-800 dark:border-gray-700">
+            <button type="button" onclick="closeFileDetailEditModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">取消</button>
+            <button type="button" onclick="saveFileDetailEditModal()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">确定</button>
+        </div>
+    </div>
+</div>
+
         <!-- 批量上传文件页（批量上传+AI分类+自动提取） -->
         <div id="page-upload-files" class="hidden fade-in p-4 md:p-6 space-y-4 md:space-y-6">
             
@@ -4227,12 +4407,17 @@
 
             <!-- 批量文件列表（AI分类结果） -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex flex-col sm:flex-row sm:items-center mb-4 gap-2 sm:gap-3">
-                    <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (<span id="ai-recognized-count">0</span>份)</h3>
-                    <div class="flex items-center gap-1 text-xs text-red-500 dark:text-red-400">
-                        <i class="fas fa-lightbulb text-[11px] text-red-500 dark:text-red-400"></i>
-                        <span>建议提交前人工复核AI识别字段</span>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                        <h3 class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">文件清单 (<span id="ai-recognized-count">0</span>份)</h3>
+                        <div class="flex items-center gap-1 text-xs text-red-500 dark:text-red-400">
+                            <i class="fas fa-lightbulb text-[11px] text-red-500 dark:text-red-400"></i>
+                            <span>建议提交前人工复核AI识别字段</span>
+                        </div>
                     </div>
+                    <button type="button" onclick="triggerDetailAIExtract('new')" class="px-3 py-2 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-blue-50 transition dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30">
+                        <i class="fas fa-wand-magic-sparkles mr-1.5"></i>AI提取
+                    </button>
                 </div>
 
                 <div class="table-container mobile-scroll-x">
@@ -4253,8 +4438,8 @@
                                 <th class="min-w-[150px]">档案题名 <span class="text-danger">*</span><div class="resize-handle"></div></th>
                                 <th class="min-w-[100px]">项目名称<div class="resize-handle"></div></th>
                                 <th class="min-w-[80px]">密级<div class="resize-handle"></div></th>
-                                <th class="min-w-[100px]">成文日期 <span class="text-danger">*</span><div class="resize-handle"></div></th>
-                                <th class="min-w-[100px]">责任者 <span class="text-danger">*</span><div class="resize-handle"></div></th>
+                                <th class="min-w-[80px]">成文日期 <span class="text-danger">*</span><div class="resize-handle"></div></th>
+                                <th class="min-w-[80px]">责任者 <span class="text-danger">*</span><div class="resize-handle"></div></th>
                                 <th class="min-w-[80px]">文号<div class="resize-handle"></div></th>
                                 <th class="min-w-[60px]">页数<div class="resize-handle"></div></th>
                                 <th class="min-w-[140px] text-center table-sticky-action">操作<div class="resize-handle"></div></th>
@@ -4876,6 +5061,339 @@
                     </div>
 
                 </div>
+                <!-- AI提取规则库 -->
+<div id="page-ai-extract-library" class="hidden fade-in p-4 md:p-6 space-y-4 md:space-y-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mt-1 dark:text-white">AI提取规则库</h2>
+                        <p class="text-sm text-gray-500 mt-2 max-w-4xl dark:text-gray-400">覆盖 AI 提取规则维护、结果查看与人工修正等典型场景。</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                        <div class="px-5 pt-4 border-b border-gray-200 dark:border-gray-700">
+                            <div class="flex items-end gap-8 text-[17px] leading-none border-b border-gray-200 dark:border-gray-700">
+                                <button id="ai-extract-tab-btn-rules" type="button" onclick="aiExtractSwitchTab('rules')" class="px-0 py-3 text-primary border-b-[3px] border-primary font-medium -mb-px">AI提取规则</button>
+                                <button id="ai-extract-tab-btn-results" type="button" onclick="aiExtractSwitchTab('results')" class="px-0 py-3 text-gray-800 border-b-[3px] border-transparent font-medium dark:text-gray-200">AI提取结果</button>
+                            </div>
+                        </div>
+
+                        <div id="ai-extract-tab-rules" class="p-5">
+                            <div id="subpage-ai-extract-rule-library" class="space-y-4">
+                                <div id="ai-extract-rule-list-header" class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">AI提取规则维护</h3>
+                                        <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">统一维护 AI 提取规则，支持筛选、启停与编辑。</p>
+                                    </div>
+                                    <div id="ai-extract-rule-header-actions" class="flex flex-wrap gap-3">
+                                        <button onclick="aiExtractOpenCreatePage()" class="px-4 py-2.5 border border-primary text-primary rounded-lg font-medium hover:bg-blue-50 transition dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/30"><i class="fas fa-plus mr-2"></i>新增规则</button>
+                                    </div>
+                                </div>
+
+                                <div id="ai-extract-rule-list-page" class="bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                                    <div class="p-5 space-y-4">
+                                        <div class="flex flex-wrap items-center gap-2 text-xs">
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-blue-50 text-primary dark:bg-blue-900/20 dark:text-blue-300">规则总数 <span id="ai-extract-rule-chip-total" class="mx-1 font-semibold">0</span>条</span>
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-green-50 text-success dark:bg-green-900/20 dark:text-green-300">启用中 <span id="ai-extract-rule-chip-enabled" class="mx-1 font-semibold">0</span>条</span>
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-200">前端展示 <span id="ai-extract-rule-chip-display" class="mx-1 font-semibold">0</span>条</span>
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-200">反填表单 <span id="ai-extract-rule-chip-backfill" class="mx-1 font-semibold">0</span>条</span>
+                                        </div>
+
+                                        <div class="table-container max-h-[560px] overflow-auto border border-gray-200 rounded-xl dark:border-gray-700">
+                                            <table class="data-table min-w-[2200px]">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="min-w-[120px]">规则ID</th>
+                                                        <th class="min-w-[100px] text-center">启用状态</th>
+                                                        <th class="min-w-[220px]">档案分类</th>
+                                                        <th class="min-w-[180px]"><span class="block">专题/专业</span><span class="block">业务/职能细分</span></th>
+                                                        <th class="min-w-[160px]">资料类型</th>
+                                                        <th class="min-w-[120px]">是否引用系统字典</th>
+                                                        <th class="min-w-[160px]">字段中文名称</th>
+                                                        <th class="min-w-[180px]">字段别名</th>
+                                                        <th class="min-w-[180px]">提取位置</th>
+                                                        <th class="min-w-[420px]">Agent提取规则</th>
+                                                        <th class="min-w-[100px]">字段类型</th>
+                                                        <th class="min-w-[120px]">前端展示</th>
+                                                        <th class="min-w-[120px]">高质量数据集</th>
+                                                        <th class="min-w-[150px]">前置业务系统提取</th>
+                                                        <th class="min-w-[120px]">反填表单</th>
+                                                        <th class="min-w-[120px]">更新人</th>
+                                                        <th class="min-w-[150px]">更新时间</th>
+                                                        <th class="min-w-[160px]">操作</th>
+                                                    </tr>
+                                                    <tr class="bg-gray-50 dark:bg-gray-900/50">
+                                                        <th><input id="ai-extract-rule-filter-keyword" oninput="aiExtractRenderRules()" type="text" placeholder="规则ID/字段名" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                                                        <th><select id="ai-extract-rule-filter-enabled" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="启用">启用</option><option value="禁用">禁用</option></select></th>
+                                                        <th><select id="ai-extract-rule-filter-classification" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option></select></th>
+                                                        <th><input id="ai-extract-rule-filter-special" oninput="aiExtractRenderRules()" type="text" placeholder="专题/业务" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                                                        <th><input id="ai-extract-rule-filter-material" oninput="aiExtractRenderRules()" type="text" placeholder="资料类型" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                                                        <th><select id="ai-extract-rule-filter-use-dict" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
+                                                        <th><input id="ai-extract-rule-filter-field-name" oninput="aiExtractRenderRules()" type="text" placeholder="字段名称" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th><select id="ai-extract-rule-filter-field-type" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="文本">文本</option><option value="日期">日期</option><option value="数字">数字</option></select></th>
+                                                        <th><select id="ai-extract-rule-filter-display" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
+                                                        <th><select id="ai-extract-rule-filter-quality" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
+                                                        <th><select id="ai-extract-rule-filter-prepose" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
+                                                        <th><select id="ai-extract-rule-filter-backfill" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
+                                                        <th><input id="ai-extract-rule-filter-updater" oninput="aiExtractRenderRules()" type="text" placeholder="更新人" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="ai-extract-rule-table-body"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="ai-extract-rule-editor-page" class="hidden bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                                    <div class="p-5 space-y-4">
+                                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+                                            <div>
+                                                <h3 id="ai-extract-editor-page-title" class="text-lg font-semibold text-gray-900 dark:text-white">新增规则</h3>
+                                                <p id="ai-extract-editor-page-desc" class="text-sm text-gray-500 mt-1 dark:text-gray-400">填写规则字段并保存。</p>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <button onclick="aiExtractBackToRuleList()" class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">返回</button>
+                                                <button id="ai-extract-editor-save-btn" onclick="aiExtractSaveRuleForm()" class="px-4 py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 transition">保存</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">规则ID</label>
+                                                <input id="ai-extract-editor-id" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-gray-400 dark:bg-gray-900 dark:border-gray-600 dark:text-gray-500" readonly>
+                                            </div>
+                                            <div class="md:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案分类 <span class="text-danger">*</span></label>
+                                                <input id="ai-extract-editor-classification" type="hidden">
+                                                <div class="cascader-container" id="ai-extract-editor-classification-cascader">
+                                                    <div class="cascader-input" onclick="aiExtractToggleClassificationCascader()">
+                                                        <span id="ai-extract-editor-classification-text">请选择档案分类</span>
+                                                        <i class="fas fa-chevron-down text-gray-400"></i>
+                                                    </div>
+                                                    <div class="cascader-dropdown">
+                                                        <div class="cascader-menu">
+                                                            <div class="cascader-column" id="ai-extract-editor-classification-level1"></div>
+                                                            <div class="cascader-column" id="ai-extract-editor-classification-level2"></div>
+                                                            <div class="cascader-column" id="ai-extract-editor-classification-level3"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label id="ai-extract-editor-special-label" class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业 <span class="text-danger">*</span></label>
+                                                <input id="ai-extract-editor-special" type="text" class="w-full bg-gray-100 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400" readonly disabled>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">资料类型 <span class="text-danger">*</span></label>
+                                                <select id="ai-extract-editor-material" onchange="aiExtractSyncRuleMaterialMeta()" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否引用系统字典 <span class="text-danger">*</span></label>
+                                                <select id="ai-extract-editor-use-dict" onchange="aiExtractToggleDictField()" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                                    <option value="否">否</option>
+                                                    <option value="是">是</option>
+                                                </select>
+                                            </div>
+                                            <div id="ai-extract-editor-field-name-manual-wrap">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段中文名称 <span class="text-danger">*</span></label>
+                                                <input id="ai-extract-editor-field-name-manual" type="text" placeholder="请输入字段中文名称" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                            </div>
+                                            <div id="ai-extract-editor-field-name-dict-wrap" class="hidden">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段中文名称 <span class="text-danger">*</span></label>
+                                                <select id="ai-extract-editor-field-name-dict" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段别名</label>
+                                                <input id="ai-extract-editor-alias" type="text" placeholder="多个别名用英文,分隔" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段类型 <span class="text-danger">*</span></label>
+                                                <select id="ai-extract-editor-field-type" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                                    <option value="文本">文本</option>
+                                                    <option value="日期">日期</option>
+                                                    <option value="数字">数字</option>
+                                                </select>
+                                            </div>
+                                            <div class="md:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">提取位置 <span class="text-danger">*</span></label>
+                                                <div id="ai-extract-editor-locations" class="flex flex-wrap gap-x-4 gap-y-2 rounded-lg border border-gray-200 p-3 dark:border-gray-700"></div>
+                                            </div>
+                                            <div class="md:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">Agent提取规则 <span class="text-danger">*</span></label>
+                                                <textarea id="ai-extract-editor-agent-logic" rows="4" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="用于填写 AI 提取规则"></textarea>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否在前端页面展示 <span class="text-danger">*</span></label>
+                                                <select id="ai-extract-editor-display" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                                    <option value="是">是</option>
+                                                    <option value="否">否</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否高质量数据集 <span class="text-danger">*</span></label>
+                                                <select id="ai-extract-editor-high-quality" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                                    <option value="否">否</option>
+                                                    <option value="是">是</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否前置业务系统提取 <span class="text-danger">*</span></label>
+                                                <select id="ai-extract-editor-prepose" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                                    <option value="否">否</option>
+                                                    <option value="是">是</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否反填表单 <span class="text-danger">*</span></label>
+                                                <select id="ai-extract-editor-backfill" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                                                    <option value="否">否</option>
+                                                    <option value="是">是</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">启用开关 <span class="text-danger">*</span></label>
+                                                <div class="flex items-center">
+                                                    <label class="switch">
+                                                        <input type="checkbox" id="ai-extract-editor-enabled" checked>
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                    <span id="ai-extract-editor-enabled-text" class="ml-3 text-sm text-gray-700 dark:text-gray-300">启用</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="ai-extract-rule-detail-page" class="hidden bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                                    <div class="p-5 space-y-4">
+                                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+                                            <div>
+                                                <h4 class="text-lg font-semibold text-gray-900 dark:text-white">规则详情</h4>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <button onclick="aiExtractBackToRuleList()" class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">返回</button>
+                                                <button onclick="aiExtractOpenEditPage(aiExtractDetailRuleId)" class="px-4 py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 transition">编辑</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">规则ID</label><input id="ai-extract-detail-id" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div class="md:col-span-2"><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案分类</label><input id="ai-extract-detail-classification" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label id="ai-extract-detail-special-label" class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业</label><input id="ai-extract-detail-special" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">资料类型</label><input id="ai-extract-detail-material" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否引用系统字典</label><input id="ai-extract-detail-use-dict" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段中文名称</label><input id="ai-extract-detail-field-name" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段别名</label><input id="ai-extract-detail-alias" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">提取位置</label><input id="ai-extract-detail-locations" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段类型</label><input id="ai-extract-detail-field-type" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">前端展示</label><input id="ai-extract-detail-display" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">高质量数据集</label><input id="ai-extract-detail-high-quality" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">前置业务系统提取</label><input id="ai-extract-detail-prepose" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">反填表单</label><input id="ai-extract-detail-backfill" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">启用状态</label><div id="ai-extract-detail-enabled" class="w-full min-h-[42px] flex items-center"></div></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新人</label><input id="ai-extract-detail-updater" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新时间</label><input id="ai-extract-detail-updated-at" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div class="md:col-span-2"><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">Agent提取规则</label><textarea id="ai-extract-detail-agent-logic" rows="4" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></textarea></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ai-extract-tab-results" class="hidden p-5">
+                            <div class="space-y-4">
+                                <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">AI提取结果</h3>
+                                        <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">查看提取结果、提取状态与人工修正结果。</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-3">
+                                        <button onclick="aiExtractTriggerImport('result')" class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">导入结果</button>
+                                        <button onclick="aiExtractExportResults()" class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">导出结果</button>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                                    <div class="p-5 space-y-4">
+                                        <div class="flex flex-wrap items-center gap-2 text-xs">
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-blue-50 text-primary dark:bg-blue-900/20 dark:text-blue-300">结果总数 <span id="ai-extract-result-chip-total" class="mx-1 font-semibold">0</span>条</span>
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-green-50 text-success dark:bg-green-900/20 dark:text-green-300">提取成功 <span id="ai-extract-result-chip-success" class="mx-1 font-semibold">0</span>条</span>
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-red-50 text-danger dark:bg-red-900/20 dark:text-red-300">提取失败 <span id="ai-extract-result-chip-fail" class="mx-1 font-semibold">0</span>条</span>
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-200">已修正 <span id="ai-extract-result-chip-corrected" class="mx-1 font-semibold">0</span>条</span>
+                                        </div>
+
+                                        <div class="table-container max-h-[560px] overflow-auto border border-gray-200 rounded-xl dark:border-gray-700">
+                                            <table class="data-table min-w-[1900px]">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="min-w-[180px]">文件名称</th>
+                                                        <th class="min-w-[120px]">规则ID</th>
+                                                        <th class="min-w-[220px]">档案分类</th>
+                                                        <th class="min-w-[140px]">资料类型</th>
+                                                        <th class="min-w-[140px]">字段名称</th>
+                                                        <th class="min-w-[120px]">高质量数据集</th>
+                                                        <th class="min-w-[140px]">前置业务系统提取</th>
+                                                        <th class="min-w-[120px]">提取状态</th>
+                                                        <th class="min-w-[200px]">AI提取结果</th>
+                                                        <th class="min-w-[320px]">结果说明</th>
+                                                        <th class="min-w-[120px]">是否反填表单</th>
+                                                        <th class="min-w-[200px]">人工修改提交结果</th>
+                                                        <th class="min-w-[120px]">提交结果类型</th>
+                                                        <th class="min-w-[140px]">操作</th>
+                                                    </tr>
+                                                    <tr class="bg-gray-50 dark:bg-gray-900/50">
+                                                        <th><input id="ai-extract-result-filter-file" oninput="aiExtractRenderResults()" type="text" placeholder="文件名称" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                                                        <th></th>
+                                                        <th><select id="ai-extract-result-filter-classification" onchange="aiExtractRenderResults()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option></select></th>
+                                                        <th><input id="ai-extract-result-filter-material" oninput="aiExtractRenderResults()" type="text" placeholder="资料类型" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                                                        <th><input id="ai-extract-result-filter-field" oninput="aiExtractRenderResults()" type="text" placeholder="字段名称" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
+                                                        <th><select id="ai-extract-result-filter-quality" onchange="aiExtractRenderResults()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
+                                                        <th><select id="ai-extract-result-filter-prepose" onchange="aiExtractRenderResults()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
+                                                        <th><select id="ai-extract-result-filter-status" onchange="aiExtractRenderResults()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="成功">成功</option><option value="失败">失败</option></select></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="ai-extract-result-table-body"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="ai-extract-result-correct-card" class="hidden bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                                    <div class="p-5 space-y-4">
+                                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+                                            <div>
+                                                <h4 class="text-lg font-semibold text-gray-900 dark:text-white">提取结果修正</h4>
+                                                <p class="text-sm text-gray-500 mt-1 dark:text-gray-400">仅对“是否反填表单=否”的结果开放修正入口，用于后续规则调优。</p>
+                                            </div>
+                                            <div class="flex flex-wrap gap-2">
+                                                <button onclick="aiExtractCloseResultCorrection()" class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">返回</button>
+                                                <button onclick="aiExtractSaveResultCorrection()" class="px-4 py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 transition">保存修正</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">文件名称</label><input id="ai-extract-correct-file" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段名称</label><input id="ai-extract-correct-field" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">AI提取结果</label><input id="ai-extract-correct-ai-result" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否反填表单</label><input id="ai-extract-correct-backfill" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div class="md:col-span-2"><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">结果说明</label><textarea id="ai-extract-correct-desc" rows="3" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></textarea></div>
+                                            <div class="md:col-span-2"><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">修正结果</label><input id="ai-extract-correct-value" type="text" placeholder="请输入修正后的提取结果" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Toast 提示 -->
 <div id="toast" class="fixed top-20 right-6 toast-hidden bg-white border-l-4 border-primary text-gray-800 px-6 py-4 rounded shadow-2xl transition-transform duration-300 z-50 flex items-center gap-3 dark:bg-gray-800 dark:border-blue-500 dark:text-white">
     <i id="toast-icon" class="fas fa-check-circle text-success text-xl"></i>
@@ -4921,6 +5439,7 @@
         'archive-directory-new': '新增档案目录',
         'permission': '权限管理',
         'ai-rule-library': 'AI校验规则库',
+        'ai-extract-library': 'AI提取规则库',
         'upload-files': '批量上传文件',
         'file-approval': '文件审批',
         'file-list': '文件清单'
@@ -6338,11 +6857,18 @@ const aiRuleRules = [
             return '';
         }
 
+        function isBatchAIExtractLocked(item) {
+            return !!item?.aiExtractTriggered;
+        }
+
         function isBatchMaterialTypePending(item) {
             return !item?.aiType && !!item?.materialTypePendingText;
         }
 
         function getBatchMaterialTypeInputClass(item) {
+            if (isBatchAIExtractLocked(item)) {
+                return 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-500';
+            }
             return isBatchMaterialTypePending(item) ? 'text-primary dark:text-blue-400' : 'dark:text-white';
         }
 
@@ -6352,23 +6878,40 @@ const aiRuleRules = [
                 : 'width: 114px;';
         }
 
-        function getBatchMaterialTypeTagHtml(item) {
-            if (item?.showManualTypeTag && item?.materialTypeSource === 'manual') {
-                return '<span class="inline-flex items-center px-1 py-0.5 rounded border border-gray-200 bg-gray-50 text-[10px] leading-none text-gray-500 whitespace-nowrap dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400">人工</span>';
-            }
-            if (!item?.materialTypeTagText) return '';
-
+        function getBatchTagHtml(tagText, tagTone, tooltipText = '') {
             const toneClassMap = {
                 green: 'border-green-200 bg-green-50 text-green-600 dark:border-green-800 dark:bg-green-900/30 dark:text-green-300',
                 yellow: 'border-yellow-200 bg-yellow-50 text-yellow-700 dark:border-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300',
                 red: 'border-red-200 bg-red-50 text-red-600 dark:border-red-800 dark:bg-red-900/30 dark:text-red-300'
             };
-            const toneClass = toneClassMap[item.materialTypeTagTone] || toneClassMap.green;
-            const tooltipText = escapeHtml(item.materialTypeTagTooltip || '');
+            const toneClass = toneClassMap[tagTone] || toneClassMap.green;
+            const tooltip = escapeHtml(tooltipText || '');
             return `<span class="relative inline-flex group">
-                <span class="inline-flex items-center px-1 py-0.5 rounded border text-[10px] leading-none whitespace-nowrap cursor-help ${toneClass}">${escapeHtml(item.materialTypeTagText)}</span>
-                <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-2 hidden -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 px-2 py-1 text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">${tooltipText}</span>
+                <span class="inline-flex items-center px-1 py-0.5 rounded border text-[10px] leading-none whitespace-nowrap cursor-help ${toneClass}">${escapeHtml(tagText)}</span>
+                <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-2 hidden -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 px-2 py-1 text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">${tooltip}</span>
             </span>`;
+        }
+
+        function getBatchManualTagHtml() {
+            return '<span class="inline-flex items-center px-1 py-0.5 rounded border border-gray-200 bg-gray-50 text-[10px] leading-none text-gray-500 whitespace-nowrap dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400">人工</span>';
+        }
+
+        function getBatchMaterialTypeTagHtml(item) {
+            if (item?.showManualTypeTag && item?.materialTypeSource === 'manual') {
+                return getBatchManualTagHtml();
+            }
+            if (!item?.materialTypeTagText) return '';
+            return getBatchTagHtml(item.materialTypeTagText, item.materialTypeTagTone, item.materialTypeTagTooltip || '');
+        }
+
+        function getBatchFieldSourceTagHtml(item, fieldKey) {
+            const sourceKey = `${fieldKey}Source`;
+            const textKey = `${fieldKey}TagText`;
+            const toneKey = `${fieldKey}TagTone`;
+            const tooltipKey = `${fieldKey}TagTooltip`;
+            if (item?.[sourceKey] === 'manual') return getBatchManualTagHtml();
+            if (!item?.[textKey]) return '';
+            return getBatchTagHtml(item[textKey], item[toneKey], item[tooltipKey] || '');
         }
 
         function renderBatchTable() {
@@ -7416,6 +7959,765 @@ const aiRuleRules = [
             }, 2200);
         }
 
+        const aiExtractRuleLocations = ['标题', '封面', '页眉页脚', '正文', '表格', '落款'];
+        const aiExtractDictFieldOptions = ['投资模式', '文种', '密级', '责任单位', '项目类型'];
+        const aiExtractClassificationTree = {
+            '科技档案': {
+                '基建档案': {
+                    '施工资料': [
+                        { name: '施工组织设计', special: '施工资料', specialLabel: '专题/专业' },
+                        { name: '监理通知单', special: '施工资料', specialLabel: '专题/专业' }
+                    ],
+                    '设计资料': [
+                        { name: '初步设计文件', special: '设计资料', specialLabel: '专题/专业' }
+                    ]
+                },
+                '投资项目实施文件': {
+                    '立项资料': [
+                        { name: '项目建议书及批复', special: '投资项目', specialLabel: '专题/专业' },
+                        { name: '项目可行性研究报告及批复', special: '投资项目', specialLabel: '专题/专业' }
+                    ]
+                }
+            },
+            '文书档案': {
+                '行政文书': {
+                    '行政发文': [
+                        { name: '请示', special: '行政文书', specialLabel: '业务/职能细分' },
+                        { name: '批复', special: '行政文书', specialLabel: '业务/职能细分' }
+                    ],
+                    '行政收文': [
+                        { name: '来文登记表', special: '行政文书', specialLabel: '业务/职能细分' }
+                    ]
+                },
+                '市场投资管理': {
+                    '市场与客户管理': [
+                        { name: '客户信息', special: '市场投资管理', specialLabel: '业务/职能细分' },
+                        { name: '市场调研报告', special: '市场投资管理', specialLabel: '业务/职能细分' }
+                    ]
+                }
+            }
+        };
+        let aiExtractCurrentTab = 'rules';
+        let aiExtractCurrentRulePage = 'list';
+        let aiExtractEditingRuleId = '';
+        let aiExtractDetailRuleId = '';
+        let aiExtractCorrectingResultId = '';
+        let aiExtractClassificationSelection = { level1: '', level2: '', level3: '' };
+        const aiExtractRules = [
+            {
+                id: 'EXT-R-001',
+                level1: '科技档案',
+                level2: '投资项目实施文件',
+                level3: '立项资料',
+                specialLabel: '专题/专业',
+                special: '投资项目',
+                material: '项目建议书及批复',
+                useDict: '否',
+                fieldName: '批复金额',
+                alias: '投资金额,批复投资',
+                locations: ['正文', '表格', '落款'],
+                agentRule: '识别批复正文、附表及落款中的投资金额，以正式批复金额为准；若存在多个金额，优先取“批复”“同意”语义最近的金额。',
+                fieldType: '数字',
+                enabled: true,
+                display: '是',
+                highQuality: '是',
+                prepose: '否',
+                backfill: '是',
+                updater: '张三',
+                updatedAt: '2026-05-22 09:40'
+            },
+            {
+                id: 'EXT-R-002',
+                level1: '科技档案',
+                level2: '基建档案',
+                level3: '施工资料',
+                specialLabel: '专题/专业',
+                special: '施工资料',
+                material: '施工组织设计',
+                useDict: '否',
+                fieldName: '责任者',
+                alias: '编制单位,编制人',
+                locations: ['封面', '正文'],
+                agentRule: '优先读取封面、扉页及正文首页的编制单位或责任单位字段，若同时出现个人与单位名称，以单位作为最终结果。',
+                fieldType: '文本',
+                enabled: true,
+                display: '是',
+                highQuality: '否',
+                prepose: '否',
+                backfill: '是',
+                updater: '李四',
+                updatedAt: '2026-05-22 10:15'
+            },
+            {
+                id: 'EXT-R-003',
+                level1: '文书档案',
+                level2: '市场投资管理',
+                level3: '市场与客户管理',
+                specialLabel: '业务/职能细分',
+                special: '市场投资管理',
+                material: '客户信息',
+                useDict: '是',
+                fieldName: '项目类型',
+                alias: '客户类型,业务类别',
+                locations: ['标题', '正文', '表格'],
+                agentRule: '识别客户信息表、正文描述中的项目类型表述，并优先映射系统字典中的标准值；若无法映射则返回失败原因。',
+                fieldType: '文本',
+                enabled: false,
+                display: '否',
+                highQuality: '否',
+                prepose: '是',
+                backfill: '否',
+                updater: '王五',
+                updatedAt: '2026-05-22 11:00'
+            }
+        ];
+        const aiExtractResults = [
+            {
+                id: 'EXT-RES-001',
+                fileName: '项目建议书及批复-北水厂扩建.pdf',
+                ruleId: 'EXT-R-001',
+                level1: '科技档案',
+                level2: '投资项目实施文件',
+                level3: '立项资料',
+                material: '项目建议书及批复',
+                fieldName: '批复金额',
+                highQuality: '是',
+                prepose: '否',
+                status: '成功',
+                aiResult: '1.25亿元',
+                resultDesc: '候选结果：1.25亿元(95%)，1.20亿元(72%)；已按最高置信度结果展示',
+                backfill: '是',
+                manualSubmitResult: '',
+                submitType: 'AI提取',
+                correctedResult: ''
+            },
+            {
+                id: 'EXT-RES-002',
+                fileName: '施工组织设计-泵站工程.docx',
+                ruleId: 'EXT-R-002',
+                level1: '科技档案',
+                level2: '基建档案',
+                level3: '施工资料',
+                material: '施工组织设计',
+                fieldName: '责任者',
+                highQuality: '否',
+                prepose: '否',
+                status: '成功',
+                aiResult: '中建安装集团有限公司',
+                resultDesc: '候选结果：中建安装集团有限公司(88%)，项目经理部(66%)；已自动反填最高置信度结果',
+                backfill: '是',
+                manualSubmitResult: '项目经理部',
+                submitType: '人工',
+                correctedResult: ''
+            },
+            {
+                id: 'EXT-RES-003',
+                fileName: '客户信息采集表.xlsx',
+                ruleId: 'EXT-R-003',
+                level1: '文书档案',
+                level2: '市场投资管理',
+                level3: '市场与客户管理',
+                material: '客户信息',
+                fieldName: '项目类型',
+                highQuality: '否',
+                prepose: '是',
+                status: '失败',
+                aiResult: '提取失败',
+                resultDesc: '未能将原文“城镇供水项目”映射到系统字典，请补充字典值或优化规则',
+                backfill: '否',
+                manualSubmitResult: '',
+                submitType: '',
+                correctedResult: ''
+            }
+        ];
+
+        function aiExtractInit() {
+            aiExtractRenderEditorLocations();
+            aiExtractBindRuleFormEvents();
+            aiExtractSwitchTab(aiExtractCurrentTab, true);
+            aiExtractUpdateRulePageUI();
+            aiExtractRenderRules();
+            aiExtractRenderResults();
+        }
+
+        function aiExtractBindRuleFormEvents() {
+            const enabledEl = document.getElementById('ai-extract-editor-enabled');
+            if (enabledEl && !enabledEl.dataset.bound) {
+                enabledEl.addEventListener('change', () => {
+                    const textEl = document.getElementById('ai-extract-editor-enabled-text');
+                    if (textEl) textEl.textContent = enabledEl.checked ? '启用' : '禁用';
+                });
+                enabledEl.dataset.bound = 'true';
+            }
+        }
+
+        function aiExtractGetNowText() {
+            return new Date().toLocaleString('sv-SE').replace(' ', ' ');
+        }
+
+        function aiExtractRenderEditorLocations(selected = []) {
+            const container = document.getElementById('ai-extract-editor-locations');
+            if (!container) return;
+            const selectedSet = new Set(selected);
+            container.innerHTML = aiExtractRuleLocations.map(location => `
+                <label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                    <input type="checkbox" value="${location}" ${selectedSet.has(location) ? 'checked' : ''} class="w-4 h-4 text-primary rounded focus:ring-primary">
+                    <span>${location}</span>
+                </label>
+            `).join('');
+        }
+
+        function aiExtractSwitchTab(tab, keepCurrent = false) {
+            aiExtractCurrentTab = tab;
+            const rulesTab = document.getElementById('ai-extract-tab-rules');
+            const resultsTab = document.getElementById('ai-extract-tab-results');
+            const rulesBtn = document.getElementById('ai-extract-tab-btn-rules');
+            const resultsBtn = document.getElementById('ai-extract-tab-btn-results');
+            if (rulesTab) rulesTab.classList.toggle('hidden', tab !== 'rules');
+            if (resultsTab) resultsTab.classList.toggle('hidden', tab !== 'results');
+            if (rulesBtn) rulesBtn.className = `px-0 py-3 font-medium border-b-[3px] -mb-px ${tab === 'rules' ? 'text-primary border-primary' : 'text-gray-800 border-transparent dark:text-gray-200'}`;
+            if (resultsBtn) resultsBtn.className = `px-0 py-3 font-medium border-b-[3px] -mb-px ${tab === 'results' ? 'text-primary border-primary' : 'text-gray-800 border-transparent dark:text-gray-200'}`;
+            if (!keepCurrent && tab === 'rules') aiExtractRenderRules();
+            if (!keepCurrent && tab === 'results') aiExtractRenderResults();
+        }
+
+        function aiExtractUpdateRulePageUI() {
+            const listPage = document.getElementById('ai-extract-rule-list-page');
+            const editorPage = document.getElementById('ai-extract-rule-editor-page');
+            const detailPage = document.getElementById('ai-extract-rule-detail-page');
+            const listHeader = document.getElementById('ai-extract-rule-list-header');
+            const actions = document.getElementById('ai-extract-rule-header-actions');
+            const editorTitle = document.getElementById('ai-extract-editor-page-title');
+            const editorDesc = document.getElementById('ai-extract-editor-page-desc');
+            if (listPage) listPage.classList.toggle('hidden', aiExtractCurrentRulePage !== 'list');
+            if (editorPage) editorPage.classList.toggle('hidden', aiExtractCurrentRulePage === 'list' || aiExtractCurrentRulePage === 'detail');
+            if (detailPage) detailPage.classList.toggle('hidden', aiExtractCurrentRulePage !== 'detail');
+            if (listHeader) listHeader.classList.toggle('hidden', aiExtractCurrentRulePage !== 'list');
+            if (actions) actions.classList.toggle('hidden', aiExtractCurrentRulePage !== 'list');
+            if (editorTitle) {
+                editorTitle.textContent = aiExtractCurrentRulePage === 'edit' ? '编辑规则' : '新增规则';
+            }
+            if (editorDesc) {
+                editorDesc.textContent = aiExtractCurrentRulePage === 'edit' ? '修改规则字段并保存。' : '填写规则字段并保存。';
+            }
+        }
+
+        function aiExtractFormatClassification(item) {
+            return [item.level1, item.level2, item.level3].filter(Boolean).join(' / ');
+        }
+
+        function aiExtractRenderYesNoTag(value) {
+            const yes = value === '是';
+            return `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs ${yes ? 'bg-blue-50 text-primary dark:bg-blue-900/20 dark:text-blue-300' : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'}">${escapeHtml(value || '-')}</span>`;
+        }
+
+        function aiExtractRenderStatusTag(enabled) {
+            return `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs ${enabled ? 'bg-green-50 text-success dark:bg-green-900/20 dark:text-green-300' : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'}">${enabled ? '启用' : '禁用'}</span>`;
+        }
+
+        function aiExtractRenderResultStatusTag(status) {
+            const success = status === '成功';
+            return `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs ${success ? 'bg-green-50 text-success dark:bg-green-900/20 dark:text-green-300' : 'bg-red-50 text-danger dark:bg-red-900/20 dark:text-red-300'}">${escapeHtml(status || '-')}</span>`;
+        }
+
+        function aiExtractGenerateRuleId() {
+            return `EXT-R-${String(aiExtractRules.length + 1).padStart(3, '0')}`;
+        }
+
+        function aiExtractGetClassificationSelection() {
+            return { ...aiExtractClassificationSelection };
+        }
+
+        function aiExtractSetClassificationSelection(selection, preserveMaterial = true) {
+            aiExtractClassificationSelection = {
+                level1: selection?.level1 || '',
+                level2: selection?.level2 || '',
+                level3: selection?.level3 || ''
+            };
+            aiExtractRenderClassificationColumns();
+            aiExtractSyncClassificationDisplay(preserveMaterial);
+        }
+
+        function aiExtractToggleClassificationCascader() {
+            toggleCascader('ai-extract-editor-classification-cascader');
+        }
+
+        function aiExtractRenderClassificationColumns() {
+            const selection = aiExtractGetClassificationSelection();
+            const level1El = document.getElementById('ai-extract-editor-classification-level1');
+            const level2El = document.getElementById('ai-extract-editor-classification-level2');
+            const level3El = document.getElementById('ai-extract-editor-classification-level3');
+            if (!level1El || !level2El || !level3El) return;
+            level1El.innerHTML = Object.keys(aiExtractClassificationTree).map(item => `
+                <div class="cascader-item ${selection.level1 === item ? 'active' : ''}" onclick="aiExtractSelectClassification(1, '${item}', this)">
+                    ${item} <i class="fas fa-chevron-right"></i>
+                </div>
+            `).join('');
+            const level2Options = selection.level1 ? Object.keys(aiExtractClassificationTree[selection.level1] || {}) : [];
+            level2El.innerHTML = level2Options.map(item => `
+                <div class="cascader-item ${selection.level2 === item ? 'active' : ''}" onclick="aiExtractSelectClassification(2, '${item}', this)">
+                    ${item} <i class="fas fa-chevron-right"></i>
+                </div>
+            `).join('');
+            const level3Options = selection.level1 && selection.level2 ? Object.keys(aiExtractClassificationTree[selection.level1]?.[selection.level2] || {}) : [];
+            level3El.innerHTML = level3Options.map(item => `
+                <div class="cascader-item ${selection.level3 === item ? 'active' : ''}" onclick="aiExtractSelectClassification(3, '${item}', this)">${item}</div>
+            `).join('');
+        }
+
+        function aiExtractSelectClassification(level, value) {
+            event.stopPropagation();
+            const selection = aiExtractGetClassificationSelection();
+            if (level === 1) {
+                selection.level1 = value;
+                selection.level2 = '';
+                selection.level3 = '';
+                aiExtractSetClassificationSelection(selection, false);
+                return;
+            }
+            if (level === 2) {
+                selection.level2 = value;
+                selection.level3 = '';
+                aiExtractSetClassificationSelection(selection, false);
+                return;
+            }
+            selection.level3 = value;
+            aiExtractSetClassificationSelection(selection, false);
+            document.querySelector('#ai-extract-editor-classification-cascader .cascader-dropdown')?.classList.remove('active');
+        }
+
+        function aiExtractSyncClassificationDisplay(preserveMaterial = true) {
+            const selection = aiExtractGetClassificationSelection();
+            const hiddenEl = document.getElementById('ai-extract-editor-classification');
+            const textEl = document.getElementById('ai-extract-editor-classification-text');
+            const currentMaterial = preserveMaterial ? (document.getElementById('ai-extract-editor-material')?.value || '') : '';
+            const display = [selection.level1, selection.level2, selection.level3].filter(Boolean).join(' / ');
+            if (hiddenEl) hiddenEl.value = display;
+            if (textEl) textEl.textContent = display || '请选择档案分类';
+            const materials = selection.level1 && selection.level2 && selection.level3
+                ? (aiExtractClassificationTree[selection.level1]?.[selection.level2]?.[selection.level3] || []).map(item => item.name)
+                : [];
+            aiExtractPopulateSelect(document.getElementById('ai-extract-editor-material'), materials, currentMaterial, '请选择资料类型');
+            aiExtractSyncRuleMaterialMeta();
+        }
+
+        function aiExtractPopulateSelect(selectEl, options, value = '', placeholder = '请选择') {
+            if (!selectEl) return;
+            const values = [''].concat(options || []);
+            selectEl.innerHTML = values.map(option => `<option value="${escapeHtml(option)}">${option ? escapeHtml(option) : placeholder}</option>`).join('');
+            selectEl.value = values.includes(value) ? value : '';
+        }
+
+        function aiExtractSyncRuleMaterialMeta() {
+            const selection = aiExtractGetClassificationSelection();
+            const level1 = selection.level1;
+            const level2 = selection.level2;
+            const level3 = selection.level3;
+            const material = document.getElementById('ai-extract-editor-material')?.value || '';
+            const materialList = aiExtractClassificationTree[level1]?.[level2]?.[level3] || [];
+            const current = materialList.find(item => item.name === material);
+            const label = current?.specialLabel || (level1 === '文书档案' ? '业务/职能细分' : '专题/专业');
+            const labelEl = document.getElementById('ai-extract-editor-special-label');
+            const specialEl = document.getElementById('ai-extract-editor-special');
+            if (labelEl) labelEl.innerHTML = `${label} <span class="text-danger">*</span>`;
+            if (specialEl) specialEl.value = current?.special || '';
+        }
+
+        function aiExtractToggleDictField() {
+            const useDict = document.getElementById('ai-extract-editor-use-dict')?.value || '否';
+            const manualWrap = document.getElementById('ai-extract-editor-field-name-manual-wrap');
+            const dictWrap = document.getElementById('ai-extract-editor-field-name-dict-wrap');
+            if (manualWrap) manualWrap.classList.toggle('hidden', useDict === '是');
+            if (dictWrap) dictWrap.classList.toggle('hidden', useDict !== '是');
+            aiExtractPopulateSelect(document.getElementById('ai-extract-editor-field-name-dict'), aiExtractDictFieldOptions, document.getElementById('ai-extract-editor-field-name-dict')?.value || '', '请选择字典值');
+        }
+
+        function aiExtractFillEditorForm(rule) {
+            document.getElementById('ai-extract-editor-id').value = rule.id || aiExtractGenerateRuleId();
+            document.getElementById('ai-extract-editor-use-dict').value = rule.useDict || '否';
+            aiExtractSetClassificationSelection({
+                level1: rule.level1 || '',
+                level2: rule.level2 || '',
+                level3: rule.level3 || ''
+            }, false);
+            document.getElementById('ai-extract-editor-material').value = rule.material || '';
+            document.getElementById('ai-extract-editor-field-name-manual').value = rule.useDict === '是' ? '' : (rule.fieldName || '');
+            document.getElementById('ai-extract-editor-field-name-dict').value = rule.useDict === '是' ? (rule.fieldName || '') : '';
+            document.getElementById('ai-extract-editor-alias').value = rule.alias || '';
+            document.getElementById('ai-extract-editor-field-type').value = rule.fieldType || '文本';
+            document.getElementById('ai-extract-editor-display').value = rule.display || '是';
+            document.getElementById('ai-extract-editor-high-quality').value = rule.highQuality || '否';
+            document.getElementById('ai-extract-editor-prepose').value = rule.prepose || '否';
+            document.getElementById('ai-extract-editor-backfill').value = rule.backfill || '否';
+            document.getElementById('ai-extract-editor-enabled').checked = !!rule.enabled;
+            document.getElementById('ai-extract-editor-enabled-text').textContent = rule.enabled ? '启用' : '禁用';
+            document.getElementById('ai-extract-editor-agent-logic').value = rule.agentRule || '';
+            aiExtractRenderEditorLocations(rule.locations || []);
+            aiExtractToggleDictField();
+            aiExtractSyncRuleMaterialMeta();
+        }
+
+        function aiExtractFillDetailPage(rule) {
+            document.getElementById('ai-extract-detail-id').value = rule.id || '';
+            document.getElementById('ai-extract-detail-use-dict').value = rule.useDict || '-';
+            document.getElementById('ai-extract-detail-classification').value = aiExtractFormatClassification(rule);
+            const detailLabel = document.getElementById('ai-extract-detail-special-label');
+            if (detailLabel) detailLabel.textContent = rule.specialLabel || '专题/专业';
+            document.getElementById('ai-extract-detail-special').value = rule.special || '-';
+            document.getElementById('ai-extract-detail-material').value = rule.material || '-';
+            document.getElementById('ai-extract-detail-field-name').value = rule.fieldName || '-';
+            document.getElementById('ai-extract-detail-alias').value = rule.alias || '-';
+            document.getElementById('ai-extract-detail-locations').value = (rule.locations || []).join('、') || '-';
+            document.getElementById('ai-extract-detail-field-type').value = rule.fieldType || '-';
+            document.getElementById('ai-extract-detail-display').value = rule.display || '-';
+            document.getElementById('ai-extract-detail-high-quality').value = rule.highQuality || '-';
+            document.getElementById('ai-extract-detail-prepose').value = rule.prepose || '-';
+            document.getElementById('ai-extract-detail-backfill').value = rule.backfill || '-';
+            document.getElementById('ai-extract-detail-updater').value = rule.updater || '-';
+            document.getElementById('ai-extract-detail-updated-at').value = rule.updatedAt || '-';
+            document.getElementById('ai-extract-detail-agent-logic').value = rule.agentRule || '-';
+            document.getElementById('ai-extract-detail-enabled').innerHTML = aiExtractRenderStatusTag(rule.enabled);
+        }
+
+        function aiExtractOpenCreatePage() {
+            aiExtractCurrentRulePage = 'create';
+            aiExtractEditingRuleId = '';
+            aiExtractDetailRuleId = '';
+            aiExtractFillEditorForm({
+                id: aiExtractGenerateRuleId(),
+                level1: '',
+                level2: '',
+                level3: '',
+                special: '',
+                material: '',
+                useDict: '否',
+                fieldName: '',
+                alias: '',
+                locations: [],
+                agentRule: '',
+                fieldType: '文本',
+                enabled: true,
+                display: '是',
+                highQuality: '否',
+                prepose: '否',
+                backfill: '否',
+                updater: '张三',
+                updatedAt: aiExtractGetNowText()
+            });
+            aiExtractUpdateRulePageUI();
+        }
+
+        function aiExtractOpenEditPage(ruleId) {
+            const rule = aiExtractRules.find(item => item.id === ruleId);
+            if (!rule) return showToast('未找到规则', 'warning');
+            aiExtractCurrentRulePage = 'edit';
+            aiExtractEditingRuleId = ruleId;
+            aiExtractDetailRuleId = '';
+            aiExtractFillEditorForm(rule);
+            aiExtractUpdateRulePageUI();
+        }
+
+        function aiExtractOpenDetailPage(ruleId) {
+            const rule = aiExtractRules.find(item => item.id === ruleId);
+            if (!rule) return showToast('未找到规则', 'warning');
+            aiExtractCurrentRulePage = 'detail';
+            aiExtractEditingRuleId = '';
+            aiExtractDetailRuleId = ruleId;
+            aiExtractFillDetailPage(rule);
+            aiExtractUpdateRulePageUI();
+        }
+
+        function aiExtractBackToRuleList() {
+            aiExtractCurrentRulePage = 'list';
+            aiExtractEditingRuleId = '';
+            aiExtractDetailRuleId = '';
+            aiExtractUpdateRulePageUI();
+        }
+
+        function aiExtractCollectRuleFormData() {
+            const useDict = document.getElementById('ai-extract-editor-use-dict')?.value || '否';
+            const fieldName = useDict === '是'
+                ? (document.getElementById('ai-extract-editor-field-name-dict')?.value || '')
+                : (document.getElementById('ai-extract-editor-field-name-manual')?.value || '').trim();
+            const locations = Array.from(document.querySelectorAll('#ai-extract-editor-locations input[type="checkbox"]:checked')).map(el => el.value);
+            const specialLabelText = (document.getElementById('ai-extract-editor-special-label')?.textContent || '专题/专业').replace('*', '').trim();
+            const classificationSelection = aiExtractGetClassificationSelection();
+            return {
+                id: document.getElementById('ai-extract-editor-id')?.value || aiExtractGenerateRuleId(),
+                level1: classificationSelection.level1,
+                level2: classificationSelection.level2,
+                level3: classificationSelection.level3,
+                specialLabel: specialLabelText,
+                special: document.getElementById('ai-extract-editor-special')?.value || '',
+                material: document.getElementById('ai-extract-editor-material')?.value || '',
+                useDict,
+                fieldName,
+                alias: (document.getElementById('ai-extract-editor-alias')?.value || '').trim(),
+                locations,
+                agentRule: (document.getElementById('ai-extract-editor-agent-logic')?.value || '').trim(),
+                fieldType: document.getElementById('ai-extract-editor-field-type')?.value || '文本',
+                enabled: !!document.getElementById('ai-extract-editor-enabled')?.checked,
+                display: document.getElementById('ai-extract-editor-display')?.value || '是',
+                highQuality: document.getElementById('ai-extract-editor-high-quality')?.value || '否',
+                prepose: document.getElementById('ai-extract-editor-prepose')?.value || '否',
+                backfill: document.getElementById('ai-extract-editor-backfill')?.value || '否',
+                updater: '张三',
+                updatedAt: aiExtractGetNowText()
+            };
+        }
+
+        function aiExtractGetClassificationOptions() {
+            return Array.from(new Set(aiExtractRules.map(rule => aiExtractFormatClassification(rule)).filter(Boolean)));
+        }
+
+        function aiExtractGetResultClassificationOptions() {
+            return Array.from(new Set(aiExtractResults.map(item => aiExtractFormatClassification(item)).filter(Boolean)));
+        }
+
+        function aiExtractSaveRuleForm() {
+            const data = aiExtractCollectRuleFormData();
+            if (!data.level1 || !data.level2 || !data.level3 || !data.material || !data.fieldName || !data.agentRule || !data.locations.length) {
+                return showToast('请补齐规则必填字段后再保存', 'warning');
+            }
+            if (aiExtractCurrentRulePage === 'edit') {
+                const index = aiExtractRules.findIndex(item => item.id === aiExtractEditingRuleId);
+                if (index > -1) aiExtractRules[index] = { ...aiExtractRules[index], ...data };
+                showToast('AI提取规则已更新', 'success');
+            } else {
+                aiExtractRules.unshift(data);
+                showToast('AI提取规则已新增', 'success');
+            }
+            aiExtractBackToRuleList();
+            aiExtractRenderRules();
+        }
+
+        function aiExtractRenderRules() {
+            const body = document.getElementById('ai-extract-rule-table-body');
+            if (!body) return;
+            const classificationSelect = document.getElementById('ai-extract-rule-filter-classification');
+            const classificationValue = classificationSelect?.value || '';
+            aiExtractPopulateSelect(classificationSelect, aiExtractGetClassificationOptions(), classificationValue, '全部');
+            const filters = {
+                keyword: document.getElementById('ai-extract-rule-filter-keyword')?.value?.trim() || '',
+                enabled: document.getElementById('ai-extract-rule-filter-enabled')?.value || '',
+                classification: classificationSelect?.value || '',
+                special: document.getElementById('ai-extract-rule-filter-special')?.value?.trim() || '',
+                material: document.getElementById('ai-extract-rule-filter-material')?.value?.trim() || '',
+                useDict: document.getElementById('ai-extract-rule-filter-use-dict')?.value || '',
+                fieldName: document.getElementById('ai-extract-rule-filter-field-name')?.value?.trim() || '',
+                fieldType: document.getElementById('ai-extract-rule-filter-field-type')?.value || '',
+                display: document.getElementById('ai-extract-rule-filter-display')?.value || '',
+                quality: document.getElementById('ai-extract-rule-filter-quality')?.value || '',
+                prepose: document.getElementById('ai-extract-rule-filter-prepose')?.value || '',
+                backfill: document.getElementById('ai-extract-rule-filter-backfill')?.value || '',
+                updater: document.getElementById('ai-extract-rule-filter-updater')?.value?.trim() || ''
+            };
+            const list = aiExtractRules.filter(rule => {
+                const enabledText = rule.enabled ? '启用' : '禁用';
+                return (!filters.keyword || [rule.id, rule.fieldName, rule.alias].join(' ').includes(filters.keyword))
+                    && (!filters.enabled || enabledText === filters.enabled)
+                    && (!filters.classification || aiExtractFormatClassification(rule) === filters.classification)
+                    && (!filters.special || (rule.special || '').includes(filters.special))
+                    && (!filters.material || (rule.material || '').includes(filters.material))
+                    && (!filters.useDict || rule.useDict === filters.useDict)
+                    && (!filters.fieldName || (rule.fieldName || '').includes(filters.fieldName))
+                    && (!filters.fieldType || rule.fieldType === filters.fieldType)
+                    && (!filters.display || rule.display === filters.display)
+                    && (!filters.quality || rule.highQuality === filters.quality)
+                    && (!filters.prepose || rule.prepose === filters.prepose)
+                    && (!filters.backfill || rule.backfill === filters.backfill)
+                    && (!filters.updater || (rule.updater || '').includes(filters.updater));
+            });
+            body.innerHTML = list.map(rule => `
+                <tr class="hover:bg-blue-50 transition cursor-pointer dark:hover:bg-blue-900/20 ${aiExtractDetailRuleId === rule.id ? 'rule-row-active' : ''}" onclick="aiExtractOpenDetailPage('${rule.id}')">
+                    <td class="font-medium text-primary"><button onclick="event.stopPropagation(); aiExtractOpenDetailPage('${rule.id}')" class="text-primary hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-2">${escapeHtml(rule.id)}</button></td>
+                    <td class="text-center">${rule.enabled ? aiExtractRenderStatusTag(rule.enabled) : '<span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-red-50 text-danger dark:bg-red-900/20 dark:text-red-300">禁用</span>'}</td>
+                    <td>${escapeHtml(aiExtractFormatClassification(rule))}</td>
+                    <td>${escapeHtml(rule.special || '-')}</td>
+                    <td>${escapeHtml(rule.material || '-')}</td>
+                    <td>${aiExtractRenderYesNoTag(rule.useDict)}</td>
+                    <td>${escapeHtml(rule.fieldName || '-')}</td>
+                    <td>${escapeHtml(rule.alias || '-')}</td>
+                    <td>${escapeHtml((rule.locations || []).join('、') || '-')}</td>
+                    <td class="rule-logic-cell max-w-[320px] leading-5">${escapeHtml(rule.agentRule || '-')}</td>
+                    <td>${escapeHtml(rule.fieldType || '-')}</td>
+                    <td>${aiExtractRenderYesNoTag(rule.display)}</td>
+                    <td>${aiExtractRenderYesNoTag(rule.highQuality)}</td>
+                    <td>${aiExtractRenderYesNoTag(rule.prepose)}</td>
+                    <td>${aiExtractRenderYesNoTag(rule.backfill)}</td>
+                    <td>${escapeHtml(rule.updater || '-')}</td>
+                    <td>${escapeHtml(rule.updatedAt || '-')}</td>
+                    <td>
+                        <div class="flex items-center gap-3">
+                            <button onclick="event.stopPropagation(); aiExtractOpenEditPage('${rule.id}')" class="text-primary hover:text-blue-700 dark:hover:text-blue-300">编辑</button>
+                            <button onclick="event.stopPropagation(); aiExtractToggleRuleEnabled('${rule.id}')" class="${rule.enabled ? 'text-danger' : 'text-success'} hover:underline">${rule.enabled ? '禁用' : '启用'}</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            document.getElementById('ai-extract-rule-chip-total').textContent = String(aiExtractRules.length);
+            document.getElementById('ai-extract-rule-chip-enabled').textContent = String(aiExtractRules.filter(item => item.enabled).length);
+            document.getElementById('ai-extract-rule-chip-display').textContent = String(aiExtractRules.filter(item => item.display === '是').length);
+            document.getElementById('ai-extract-rule-chip-backfill').textContent = String(aiExtractRules.filter(item => item.backfill === '是').length);
+        }
+
+        function aiExtractToggleRuleEnabled(ruleId) {
+            const rule = aiExtractRules.find(item => item.id === ruleId);
+            if (!rule) return;
+            rule.enabled = !rule.enabled;
+            rule.updatedAt = aiExtractGetNowText();
+            aiExtractRenderRules();
+            if (aiExtractDetailRuleId === ruleId) aiExtractFillDetailPage(rule);
+            showToast(`规则已${rule.enabled ? '启用' : '禁用'}`, 'success');
+        }
+
+        function aiExtractResetRuleFilters() {
+            [
+                'ai-extract-rule-filter-keyword',
+                'ai-extract-rule-filter-classification',
+                'ai-extract-rule-filter-special',
+                'ai-extract-rule-filter-material',
+                'ai-extract-rule-filter-field-name',
+                'ai-extract-rule-filter-updater'
+            ].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            [
+                'ai-extract-rule-filter-enabled',
+                'ai-extract-rule-filter-use-dict',
+                'ai-extract-rule-filter-field-type',
+                'ai-extract-rule-filter-display',
+                'ai-extract-rule-filter-quality',
+                'ai-extract-rule-filter-prepose',
+                'ai-extract-rule-filter-backfill'
+            ].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            aiExtractRenderRules();
+        }
+
+        function aiExtractRenderResults() {
+            const body = document.getElementById('ai-extract-result-table-body');
+            if (!body) return;
+            const classificationSelect = document.getElementById('ai-extract-result-filter-classification');
+            const classificationValue = classificationSelect?.value || '';
+            aiExtractPopulateSelect(classificationSelect, aiExtractGetResultClassificationOptions(), classificationValue, '全部');
+            const file = document.getElementById('ai-extract-result-filter-file')?.value?.trim() || '';
+            const classification = classificationSelect?.value || '';
+            const material = document.getElementById('ai-extract-result-filter-material')?.value?.trim() || '';
+            const field = document.getElementById('ai-extract-result-filter-field')?.value?.trim() || '';
+            const status = document.getElementById('ai-extract-result-filter-status')?.value || '';
+            const quality = document.getElementById('ai-extract-result-filter-quality')?.value || '';
+            const prepose = document.getElementById('ai-extract-result-filter-prepose')?.value || '';
+            const list = aiExtractResults.filter(item =>
+                (!file || item.fileName.includes(file))
+                && (!classification || aiExtractFormatClassification(item) === classification)
+                && (!material || item.material.includes(material))
+                && (!field || item.fieldName.includes(field))
+                && (!status || item.status === status)
+                && (!quality || item.highQuality === quality)
+                && (!prepose || item.prepose === prepose)
+            );
+            body.innerHTML = list.map(item => {
+                const desc = item.correctedResult ? `${item.resultDesc}；修正结果：${item.correctedResult}` : item.resultDesc;
+                const canCorrect = item.backfill === '否';
+                return `
+                    <tr>
+                        <td><span class="text-primary dark:text-blue-300">${escapeHtml(item.fileName)}</span></td>
+                        <td class="font-medium text-primary">${escapeHtml(item.ruleId)}</td>
+                        <td>${escapeHtml(aiExtractFormatClassification(item))}</td>
+                        <td>${escapeHtml(item.material)}</td>
+                        <td>${escapeHtml(item.fieldName)}</td>
+                        <td>${aiExtractRenderYesNoTag(item.highQuality)}</td>
+                        <td>${aiExtractRenderYesNoTag(item.prepose)}</td>
+                        <td>${aiExtractRenderResultStatusTag(item.status)}</td>
+                        <td>${escapeHtml(item.aiResult)}</td>
+                        <td class="rule-logic-cell max-w-[320px] leading-5">${escapeHtml(desc)}</td>
+                        <td>${aiExtractRenderYesNoTag(item.backfill)}</td>
+                        <td>${aiExtractCorrectingResultId === item.id ? `<input id="ai-extract-inline-correct-${item.id}" type="text" value="${escapeHtml(item.manualSubmitResult || '')}" placeholder="请输入提交结果后按回车保存" onkeydown="aiExtractHandleResultInlineKeydown(event, '${item.id}')" class="w-full bg-white border border-primary rounded-lg px-2.5 py-1.5 text-xs focus:outline-none dark:bg-gray-800 dark:border-blue-400 dark:text-white">` : escapeHtml(item.manualSubmitResult || '-')}</td>
+                        <td>${escapeHtml(item.submitType || '-')}</td>
+                        <td>${canCorrect ? `<button onclick="aiExtractOpenResultCorrection('${item.id}')" class="text-primary hover:text-blue-700 dark:hover:text-blue-300">${item.correctedResult ? '再次修正' : '结果修正'}</button>` : '<span class="text-xs text-gray-400 dark:text-gray-500">跟随表单提交</span>'}</td>
+                    </tr>
+                `;
+            }).join('');
+            if (aiExtractCorrectingResultId) {
+                requestAnimationFrame(() => {
+                    const input = document.getElementById(`ai-extract-inline-correct-${aiExtractCorrectingResultId}`);
+                    if (input) {
+                        input.focus();
+                        input.select();
+                    }
+                });
+            }
+            document.getElementById('ai-extract-result-chip-total').textContent = String(aiExtractResults.length);
+            document.getElementById('ai-extract-result-chip-success').textContent = String(aiExtractResults.filter(item => item.status === '成功').length);
+            document.getElementById('ai-extract-result-chip-fail').textContent = String(aiExtractResults.filter(item => item.status === '失败').length);
+            document.getElementById('ai-extract-result-chip-corrected').textContent = String(aiExtractResults.filter(item => item.correctedResult).length);
+        }
+
+        function aiExtractResetResultFilters() {
+            ['ai-extract-result-filter-file', 'ai-extract-result-filter-material', 'ai-extract-result-filter-field'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            ['ai-extract-result-filter-classification', 'ai-extract-result-filter-status', 'ai-extract-result-filter-quality', 'ai-extract-result-filter-prepose'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            aiExtractRenderResults();
+        }
+
+        function aiExtractTriggerImport(type) {
+            showToast(type === 'rule' ? '已模拟导入 AI 提取规则' : '已模拟导入 AI 提取结果修正文件', 'success');
+        }
+
+        function aiExtractExportRules() {
+            showToast('已模拟导出 AI 提取规则库', 'success');
+        }
+
+        function aiExtractExportResults() {
+            showToast('已模拟导出 AI 提取结果中心数据', 'success');
+        }
+
+        function aiExtractOpenResultCorrection(resultId) {
+            const item = aiExtractResults.find(result => result.id === resultId);
+            if (!item) return;
+            aiExtractCorrectingResultId = resultId;
+            aiExtractRenderResults();
+        }
+
+        function aiExtractHandleResultInlineKeydown(event, resultId) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                aiExtractSaveResultCorrection(resultId);
+                return;
+            }
+            if (event.key === 'Escape') {
+                aiExtractCloseResultCorrection();
+            }
+        }
+
+        function aiExtractSaveResultCorrection(resultId = aiExtractCorrectingResultId) {
+            const item = aiExtractResults.find(result => result.id === resultId);
+            const value = document.getElementById(`ai-extract-inline-correct-${resultId}`)?.value?.trim() || '';
+            if (!item) return;
+            if (!value) return showToast('请输入修正结果后再保存', 'warning');
+            item.manualSubmitResult = value;
+            item.submitType = '人工';
+            item.correctedResult = value;
+            aiExtractCloseResultCorrection();
+            aiExtractRenderResults();
+            showToast('保存成功', 'success');
+        }
+
+        function aiExtractCloseResultCorrection() {
+            const card = document.getElementById('ai-extract-result-correct-card');
+            if (card) card.classList.add('hidden');
+            aiExtractCorrectingResultId = '';
+        }
+
         
 
     // 页面切换（标签页模式）
@@ -7472,6 +8774,7 @@ const aiRuleRules = [
         setTimeout(() => {
             initTableResizing();
         aiRuleInit();
+        aiExtractInit();
         }, 100);
     }
 
@@ -8448,6 +9751,584 @@ let selectedMaterialTypeRow = null;
 let currentBatchEditId = null; // 当前批量上传编辑的行ID
 let currentReplacingRejectedRow = null;
 let currentReplacingPendingRow = null;
+let currentFileDetailEditContext = null;
+
+    function isFileDetailEditModalOpen() {
+        const modal = document.getElementById('file-detail-edit-modal');
+        return !!modal && !modal.classList.contains('hidden');
+    }
+
+    function updateFileDetailTitleCount() {
+        const titleInput = document.getElementById('file-detail-edit-title');
+        const countEl = document.getElementById('file-detail-edit-title-count');
+        if (!titleInput || !countEl) return;
+        countEl.textContent = String((titleInput.value || '').length);
+    }
+
+    function getEstimatedFileSizeText(record = {}) {
+        if (record.fileSize) return String(record.fileSize);
+        if (record.fileSizeLabel) return String(record.fileSizeLabel);
+        if (record.file && typeof record.file.size === 'number' && record.file.size > 1024) {
+            const size = record.file.size;
+            if (size >= 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(1)} MB`;
+            return `${(size / 1024).toFixed(1)} KB`;
+        }
+        const pages = Number(record.pages || 0);
+        if (pages > 0) return `${Math.max(12, pages * 1.2).toFixed(1)} KB`;
+        return '33.8 KB';
+    }
+
+    function getCurrentFileDetailDefaults() {
+        if (currentTab === 'upload-files' && currentUploadDraftContext) {
+            return {
+                linkedProject: '是',
+                relatedProjectCategory: '建设项目',
+                currentProjectCategory: currentUploadDraftContext.categoryText ? currentUploadDraftContext.categoryText.replaceAll(' / ', '-') : '主营业务项目-重资产项目-建设项目',
+                projectName: currentUploadDraftContext.project || '',
+                manageOrg: currentUploadDraftContext.manageOrg || '',
+                legalOrg: currentUploadDraftContext.legalOrg || ''
+            };
+        }
+        if (currentTab === 'archive-detail-pending') {
+            const detail = pendingDetailConfigs[currentPendingDetailMode]?.detailFields || {};
+            return {
+                linkedProject: '是',
+                relatedProjectCategory: '建设项目',
+                currentProjectCategory: `${detail.categoryLevel1 || '科技档案'}-${detail.categoryLevel2 || '基建档案'}-建设项目`,
+                projectName: detail.project || '',
+                manageOrg: detail.manageOrg || '',
+                legalOrg: detail.legalOrg || ''
+            };
+        }
+        if (currentTab === 'archive-detail-rejected') {
+            return {
+                linkedProject: '是',
+                relatedProjectCategory: '建设项目',
+                currentProjectCategory: '科技档案-投资档案-建设项目',
+                projectName: '北京某TOT项目',
+                manageOrg: '华北大区-北京区域公司-项目管理部',
+                legalOrg: '北京清源污水净化有限公司'
+            };
+        }
+        return {
+            linkedProject: '是',
+            relatedProjectCategory: '建设项目',
+            currentProjectCategory: '主营业务项目-重资产项目-建设项目',
+            projectName: '成都某水厂改扩建项目',
+            manageOrg: '东部大区-项目管理部',
+            legalOrg: '北控水务发展有限公司'
+        };
+    }
+
+    function getFileListRowById(id) {
+        const checkbox = document.querySelector(`#file-list-table .file-list-checkbox[value="${id}"]`);
+        return checkbox ? checkbox.closest('tr') : null;
+    }
+
+    function getFileDetailModalFormValues() {
+        return {
+            fileName: document.getElementById('file-detail-edit-file-name')?.value.trim() || '',
+            materialType: document.getElementById('file-detail-edit-material-type')?.value.trim() || '',
+            level3Category: document.getElementById('file-detail-edit-level3')?.value.trim() || '',
+            title: document.getElementById('file-detail-edit-title')?.value.trim() || '',
+            author: document.getElementById('file-detail-edit-author')?.value.trim() || '',
+            date: document.getElementById('file-detail-edit-date')?.value || '',
+            docNo: document.getElementById('file-detail-edit-doc-no')?.value.trim() || '',
+            linkedProject: document.getElementById('file-detail-edit-linked-project')?.value.trim() || '是',
+            relatedProjectCategory: document.getElementById('file-detail-edit-related-project-category')?.value.trim() || '',
+            projectName: document.getElementById('file-detail-edit-project-name')?.value.trim() || '',
+            currentProjectCategory: document.getElementById('file-detail-edit-current-project-category')?.value.trim() || '',
+            manageOrg: document.getElementById('file-detail-edit-manage-org')?.value.trim() || '',
+            legalOrg: document.getElementById('file-detail-edit-legal-org')?.value.trim() || '',
+            level: document.getElementById('file-detail-edit-level')?.value || '无密级'
+        };
+    }
+
+    function getFileDetailAIBackfillHtml(isBackfilled) {
+        if (isBackfilled === null || isBackfilled === undefined) {
+            return '';
+        }
+        if (isBackfilled) {
+            return '<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">是</span>';
+        }
+        return '<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">否</span>';
+    }
+
+    function buildFileDetailAIExtractRows(source = {}) {
+        const rows = [];
+        const pushRow = (fieldName, resultHtml, isBackfilled) => {
+            rows.push({
+                fieldName,
+                resultHtml,
+                backfillHtml: getFileDetailAIBackfillHtml(isBackfilled)
+            });
+        };
+
+        if (source.datePending) {
+            pushRow('成文日期', `<div class="ai-extract-field min-h-[20px]">${getAIExtractStatusHtml()}</div>`, null);
+        } else if (source.dateSource === 'ai' && source.date) {
+            const tagHtml = source.dateTagText ? getBatchTagHtml(source.dateTagText, source.dateTagTone, source.dateTagTooltip || '') : '';
+            pushRow('成文日期', `<div class="flex items-center gap-2"><span>${escapeHtml(source.date)}</span>${tagHtml}</div>`, true);
+        }
+
+        if (source.authorPending) {
+            pushRow('责任者', `<div class="ai-extract-field min-h-[20px]">${getAIExtractStatusHtml()}</div>`, null);
+        } else if (source.authorSource === 'ai' && source.author) {
+            const tagHtml = source.authorTagText ? getBatchTagHtml(source.authorTagText, source.authorTagTone, source.authorTagTooltip || '') : '';
+            pushRow('责任者', `<div class="flex items-center gap-2"><span>${escapeHtml(source.author)}</span>${tagHtml}</div>`, true);
+        }
+
+        return rows;
+    }
+
+    function renderFileDetailAIExtractTable(rows = []) {
+        const tbody = document.getElementById('file-detail-edit-ai-info-tbody');
+        if (!tbody) return;
+        tbody.innerHTML = rows.map((row, index) => `
+            <tr>
+                <td class="text-center">${index + 1}</td>
+                <td>${escapeHtml(row.fieldName)}</td>
+                <td>${row.resultHtml}</td>
+                <td>${row.backfillHtml}</td>
+            </tr>
+        `).join('');
+    }
+
+    function isCurrentFileDetailAIExtractPending() {
+        if (!currentFileDetailEditContext) return false;
+        if (currentFileDetailEditContext.type === 'batch') {
+            const item = batchFiles.find(file => file.id === currentFileDetailEditContext.id);
+            return !!item && (isBatchFieldAIExtractPending(item, 'date') || isBatchFieldAIExtractPending(item, 'author'));
+        }
+        if (currentFileDetailEditContext.type === 'rejected-row') {
+            const row = currentFileDetailEditContext.row;
+            return isRowFieldAIExtractPending(row, 7) || isRowFieldAIExtractPending(row, 8);
+        }
+        if (currentFileDetailEditContext.type === 'pending-row') {
+            const row = currentFileDetailEditContext.row;
+            return isRowFieldAIExtractPending(row, 8) || isRowFieldAIExtractPending(row, 9);
+        }
+        if (currentFileDetailEditContext.type === 'file-list-row') {
+            const row = currentFileDetailEditContext.row;
+            return row?.dataset.datePending === 'true' || row?.dataset.authorPending === 'true';
+        }
+        return false;
+    }
+
+    function triggerCurrentFileAIExtract() {
+        if (!currentFileDetailEditContext) return;
+        const materialType = document.getElementById('file-detail-edit-material-type')?.value.trim() || '';
+        if (!materialType) {
+            showToast('请先选择资料类型在发起AI校验', 'warning');
+            return;
+        }
+        if (isCurrentFileDetailAIExtractPending()) {
+            showToast('当前AI提取未完成，不能重复提取。', 'warning');
+            return;
+        }
+
+        if (currentFileDetailEditContext.type === 'batch') {
+            const item = batchFiles.find(file => file.id === currentFileDetailEditContext.id);
+            if (!item) return;
+            item.aiType = materialType;
+            item.aiExtractTriggered = true;
+            item.date = '';
+            item.dateSource = '';
+            item.dateTagText = '';
+            item.dateTagTone = '';
+            item.dateTagTooltip = '';
+            item.author = '';
+            item.authorSource = '';
+            item.authorTagText = '';
+            item.authorTagTone = '';
+            item.authorTagTooltip = '';
+            renderBatchTable();
+        } else if (currentFileDetailEditContext.type === 'rejected-row') {
+            const row = currentFileDetailEditContext.row;
+            if (!row) return;
+            const materialInput = row.querySelector('td:nth-child(4) input');
+            const materialIcon = row.querySelector('td:nth-child(4) .fa-search');
+            const dateInput = row.querySelector('td:nth-child(7) input');
+            const authorInput = row.querySelector('td:nth-child(8) input');
+            if (materialInput) {
+                materialInput.value = materialType;
+                materialInput.disabled = true;
+                materialInput.dataset.aiExtractLocked = 'true';
+                materialInput.onclick = null;
+                materialInput.classList.add('bg-gray-100', 'text-gray-400', 'cursor-not-allowed', 'dark:bg-gray-800', 'dark:text-gray-500');
+            }
+            if (materialIcon) {
+                materialIcon.classList.add('text-gray-300', 'dark:text-gray-600');
+            }
+            if (dateInput) {
+                dateInput.type = 'date';
+                applyAIExtractPendingState(dateInput);
+            }
+            if (authorInput) {
+                applyAIExtractPendingState(authorInput);
+            }
+        } else if (currentFileDetailEditContext.type === 'pending-row') {
+            const row = currentFileDetailEditContext.row;
+            if (!row) return;
+            const materialInput = ensurePendingRowEditable(row);
+            if (materialInput && materialInput.dataset.aiExtractLocked !== 'true') {
+                materialInput.value = materialType;
+            }
+            lockPendingRowAfterAIExtract(row);
+        } else if (currentFileDetailEditContext.type === 'file-list-row') {
+            const row = currentFileDetailEditContext.row;
+            if (!row) return;
+            row.querySelector('td:nth-child(5)').textContent = materialType;
+            row.dataset.aiExtractLocked = 'true';
+            row.dataset.date = '';
+            row.dataset.author = '';
+            row.dataset.datePending = 'true';
+            row.dataset.authorPending = 'true';
+            row.dataset.dateSource = '';
+            row.dataset.authorSource = '';
+            row.dataset.dateTagText = '';
+            row.dataset.authorTagText = '';
+            row.dataset.dateTagTone = '';
+            row.dataset.authorTagTone = '';
+            row.dataset.dateTagTooltip = '';
+            row.dataset.authorTagTooltip = '';
+        }
+
+        openFileDetailEditModal(currentFileDetailEditContext);
+        showToast('触发AI校验成功', 'success');
+    }
+
+    function fillFileDetailEditModal(data) {
+        const fieldMap = {
+            'file-detail-edit-file-name': data.fileName || '',
+            'file-detail-edit-material-type': data.materialType || '',
+            'file-detail-edit-level3': data.level3Category || '',
+            'file-detail-edit-title': data.title || '',
+            'file-detail-edit-author': data.author || '',
+            'file-detail-edit-date': data.date || '',
+            'file-detail-edit-doc-no': data.docNo || '',
+            'file-detail-edit-linked-project': data.linkedProject || '是',
+            'file-detail-edit-related-project-category': data.relatedProjectCategory || '',
+            'file-detail-edit-project-name': data.projectName || '',
+            'file-detail-edit-current-project-category': data.currentProjectCategory || '',
+            'file-detail-edit-manage-org': data.manageOrg || '',
+            'file-detail-edit-legal-org': data.legalOrg || ''
+        };
+        Object.entries(fieldMap).forEach(([id, value]) => {
+            const el = document.getElementById(id);
+            if (el) el.value = value;
+        });
+        const levelSelect = document.getElementById('file-detail-edit-level');
+        if (levelSelect) levelSelect.value = data.level || '无密级';
+
+        const materialInput = document.getElementById('file-detail-edit-material-type');
+        const materialIcon = document.getElementById('file-detail-edit-material-icon');
+        if (materialInput) {
+            materialInput.disabled = !!data.materialReadonly;
+            materialInput.dataset.aiExtractLocked = data.materialReadonly ? 'true' : 'false';
+            materialInput.classList.toggle('bg-gray-50', !!data.materialReadonly);
+            materialInput.classList.toggle('text-gray-400', !!data.materialReadonly);
+            materialInput.classList.toggle('cursor-not-allowed', !!data.materialReadonly);
+            materialInput.classList.toggle('dark:bg-gray-800', !!data.materialReadonly);
+            materialInput.classList.toggle('dark:text-gray-500', !!data.materialReadonly);
+            if (data.materialReadonly) {
+                materialInput.onclick = null;
+            } else {
+                materialInput.onclick = function () { openMaterialTypeModal(this); };
+            }
+        }
+        if (materialIcon) {
+            materialIcon.classList.toggle('text-gray-300', !!data.materialReadonly);
+            materialIcon.classList.toggle('dark:text-gray-600', !!data.materialReadonly);
+        }
+        const dateInput = document.getElementById('file-detail-edit-date');
+        const authorInput = document.getElementById('file-detail-edit-author');
+        if (dateInput) {
+            clearAIExtractPendingState(dateInput);
+            if (data.datePending) {
+                applyAIExtractPendingState(dateInput);
+            }
+        }
+        if (authorInput) {
+            clearAIExtractPendingState(authorInput);
+            if (data.authorPending) {
+                applyAIExtractPendingState(authorInput);
+            }
+        }
+        renderFileDetailAIExtractTable(data.aiExtractRows || []);
+        updateFileDetailTitleCount();
+    }
+
+    function closeFileDetailEditModal(event) {
+        if (event && event.target !== event.currentTarget) return;
+        const modal = document.getElementById('file-detail-edit-modal');
+        if (!modal) return;
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        currentFileDetailEditContext = null;
+    }
+
+    function getFileDetailRowCellText(row, index) {
+        return row?.querySelector(`td:nth-child(${index})`)?.textContent?.trim() || '';
+    }
+
+    function openFileDetailEditModal(context) {
+        if (!context) return;
+        const defaults = getCurrentFileDetailDefaults();
+        let modalData = null;
+
+        if (context.type === 'batch') {
+            const item = batchFiles.find(file => file.id === context.id);
+            if (!item) return;
+            modalData = {
+                fileName: item.name,
+                fileSize: getEstimatedFileSizeText(item),
+                materialType: getBatchMaterialTypeDisplay(item),
+                level3Category: item.categoryLevel3 !== undefined ? item.categoryLevel3 : getBatchCategoryLevel3(item.category),
+                title: item.title || '',
+                author: item.author || '',
+                date: item.date || '',
+                docNo: item.docNo || '',
+                linkedProject: item.linkedProject || defaults.linkedProject,
+                relatedProjectCategory: item.relatedProjectCategory || defaults.relatedProjectCategory,
+                projectName: item.projectName || defaults.projectName,
+                currentProjectCategory: item.currentProjectCategory || defaults.currentProjectCategory,
+                manageOrg: item.manageOrg || defaults.manageOrg,
+                legalOrg: item.legalOrg || defaults.legalOrg,
+                level: item.level || '无密级',
+                materialReadonly: !!item.aiExtractTriggered,
+                datePending: !!item.aiExtractTriggered && !String(item.date || '').trim(),
+                authorPending: !!item.aiExtractTriggered && !String(item.author || '').trim(),
+                dateSource: item.dateSource || '',
+                dateTagText: item.dateTagText || '',
+                dateTagTone: item.dateTagTone || '',
+                dateTagTooltip: item.dateTagTooltip || '',
+                authorSource: item.authorSource || '',
+                authorTagText: item.authorTagText || '',
+                authorTagTone: item.authorTagTone || '',
+                authorTagTooltip: item.authorTagTooltip || ''
+            };
+            modalData.aiExtractRows = buildFileDetailAIExtractRows(modalData);
+        } else if (context.type === 'rejected-row') {
+            const row = context.row;
+            if (!row) return;
+            modalData = {
+                fileName: row.querySelector('td:nth-child(2) a')?.textContent?.trim() || '',
+                fileSize: row.dataset.fileSize || '33.8 KB',
+                materialType: row.querySelector('td:nth-child(4) input')?.value.trim() || '',
+                level3Category: row.dataset.level3Category || '-',
+                title: row.querySelector('td:nth-child(3) input')?.value.trim() || '',
+                author: row.querySelector('td:nth-child(8) input')?.value.trim() || '',
+                date: row.querySelector('td:nth-child(7) input')?.value || '',
+                docNo: row.querySelector('td:nth-child(9) input')?.value.trim() || '',
+                linkedProject: row.dataset.linkedProject || defaults.linkedProject,
+                relatedProjectCategory: row.dataset.relatedProjectCategory || defaults.relatedProjectCategory,
+                projectName: row.querySelector('td:nth-child(5) input')?.value.trim() || defaults.projectName,
+                currentProjectCategory: row.dataset.currentProjectCategory || defaults.currentProjectCategory,
+                manageOrg: row.dataset.manageOrg || defaults.manageOrg,
+                legalOrg: row.dataset.legalOrg || defaults.legalOrg,
+                level: row.querySelector('td:nth-child(6) select')?.value || '无密级',
+                materialReadonly: row.querySelector('td:nth-child(4) input')?.dataset.aiExtractLocked === 'true',
+                datePending: row.querySelector('td:nth-child(7) input')?.dataset.aiExtractPending === 'true',
+                authorPending: row.querySelector('td:nth-child(8) input')?.dataset.aiExtractPending === 'true'
+            };
+            modalData.aiExtractRows = buildFileDetailAIExtractRows(modalData);
+        } else if (context.type === 'pending-row') {
+            const row = context.row;
+            if (!row) return;
+            const materialInput = row.querySelector('td:nth-child(5) input');
+            const dateInput = row.querySelector('td:nth-child(8) input');
+            const authorInput = row.querySelector('td:nth-child(9) input');
+            modalData = {
+                fileName: row.querySelector('td:nth-child(2) a')?.textContent?.trim() || '',
+                fileSize: row.dataset.fileSize || getEstimatedFileSizeText({ pages: getFileDetailRowCellText(row, 11) }),
+                materialType: materialInput ? materialInput.value.trim() : getFileDetailRowCellText(row, 5),
+                level3Category: row.dataset.level3Category || '-',
+                title: getFileDetailRowCellText(row, 3),
+                author: authorInput ? authorInput.value.trim() : getFileDetailRowCellText(row, 9),
+                date: dateInput ? dateInput.value : getFileDetailRowCellText(row, 8),
+                docNo: getFileDetailRowCellText(row, 10),
+                linkedProject: row.dataset.linkedProject || defaults.linkedProject,
+                relatedProjectCategory: row.dataset.relatedProjectCategory || defaults.relatedProjectCategory,
+                projectName: row.dataset.projectName || getFileDetailRowCellText(row, 6) || defaults.projectName,
+                currentProjectCategory: row.dataset.currentProjectCategory || defaults.currentProjectCategory,
+                manageOrg: row.dataset.manageOrg || defaults.manageOrg,
+                legalOrg: row.dataset.legalOrg || defaults.legalOrg,
+                level: row.dataset.level || getFileDetailRowCellText(row, 7) || '无密级',
+                materialReadonly: materialInput?.dataset.aiExtractLocked === 'true',
+                datePending: dateInput?.dataset.aiExtractPending === 'true',
+                authorPending: authorInput?.dataset.aiExtractPending === 'true'
+            };
+            modalData.aiExtractRows = buildFileDetailAIExtractRows(modalData);
+        } else if (context.type === 'file-list-row') {
+            const row = context.row;
+            if (!row) return;
+            const categoryLines = Array.from(row.querySelectorAll('td:nth-child(4) span')).map(el => el.textContent.trim()).filter(Boolean);
+            modalData = {
+                fileName: row.querySelector('td:nth-child(3) a')?.textContent?.trim() || '',
+                fileSize: row.dataset.fileSize || '33.8 KB',
+                materialType: getFileDetailRowCellText(row, 5),
+                level3Category: row.dataset.level3Category || '-',
+                title: getFileDetailRowCellText(row, 6),
+                author: row.dataset.author || '',
+                date: row.dataset.date || '',
+                docNo: row.dataset.docNo || '',
+                linkedProject: row.dataset.linkedProject || (categoryLines[0] === '文书档案' ? '否' : defaults.linkedProject),
+                relatedProjectCategory: row.dataset.relatedProjectCategory || (categoryLines[0] === '文书档案' ? '-' : defaults.relatedProjectCategory),
+                projectName: row.dataset.projectName || (categoryLines[0] === '文书档案' ? '-' : defaults.projectName),
+                currentProjectCategory: row.dataset.currentProjectCategory || (categoryLines.join('-') || defaults.currentProjectCategory),
+                manageOrg: row.dataset.manageOrg || defaults.manageOrg,
+                legalOrg: row.dataset.legalOrg || defaults.legalOrg,
+                level: row.dataset.level || getFileDetailRowCellText(row, 7) || '无密级',
+                materialReadonly: row.dataset.aiExtractLocked === 'true',
+                datePending: row.dataset.datePending === 'true',
+                authorPending: row.dataset.authorPending === 'true',
+                dateSource: row.dataset.dateSource || '',
+                dateTagText: row.dataset.dateTagText || '',
+                dateTagTone: row.dataset.dateTagTone || '',
+                dateTagTooltip: row.dataset.dateTagTooltip || '',
+                authorSource: row.dataset.authorSource || '',
+                authorTagText: row.dataset.authorTagText || '',
+                authorTagTone: row.dataset.authorTagTone || '',
+                authorTagTooltip: row.dataset.authorTagTooltip || ''
+            };
+            modalData.aiExtractRows = buildFileDetailAIExtractRows(modalData);
+        }
+
+        if (!modalData) return;
+        currentFileDetailEditContext = context;
+        fillFileDetailEditModal(modalData);
+        const modal = document.getElementById('file-detail-edit-modal');
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function applyFileLevelBadge(level) {
+        if (level === '秘密级') return '<span class="px-2 py-0.5 bg-red-100 text-red-700 rounded text-xs dark:bg-red-900 dark:text-red-200">秘密级</span>';
+        if (level === '机密级') return '<span class="px-2 py-0.5 bg-orange-100 text-orange-700 rounded text-xs dark:bg-orange-900/30 dark:text-orange-200">机密级</span>';
+        if (level === '绝密级') return '<span class="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-xs dark:bg-purple-900/30 dark:text-purple-200">绝密级</span>';
+        return '<span class="px-2 py-0.5 bg-gray-100 rounded text-xs dark:bg-gray-700">无密级</span>';
+    }
+
+    function saveFileDetailEditModal() {
+        if (!currentFileDetailEditContext) return;
+        const values = getFileDetailModalFormValues();
+        if (!values.materialType) {
+            showToast('请先选择资料类型', 'warning');
+            return;
+        }
+
+        if (currentFileDetailEditContext.type === 'batch') {
+            const item = batchFiles.find(file => file.id === currentFileDetailEditContext.id);
+            if (!item) return;
+            item.aiType = values.materialType;
+            item.title = values.title;
+            item.author = values.author;
+            item.date = values.date;
+            item.docNo = values.docNo;
+            item.projectName = values.projectName;
+            item.level = values.level;
+            item.linkedProject = values.linkedProject;
+            item.relatedProjectCategory = values.relatedProjectCategory;
+            item.currentProjectCategory = values.currentProjectCategory;
+            item.manageOrg = values.manageOrg;
+            item.legalOrg = values.legalOrg;
+            item.categoryLevel3 = values.level3Category;
+            if (item.showManualTypeTag && !item.aiExtractTriggered) item.materialTypeSource = 'manual';
+            if (values.date) {
+                item.dateSource = 'manual';
+                item.dateTagText = '';
+                item.dateTagTone = '';
+                item.dateTagTooltip = '';
+            }
+            if (values.author) {
+                item.authorSource = 'manual';
+                item.authorTagText = '';
+                item.authorTagTone = '';
+                item.authorTagTooltip = '';
+            }
+            renderBatchTable();
+        } else if (currentFileDetailEditContext.type === 'rejected-row') {
+            const row = currentFileDetailEditContext.row;
+            if (!row) return;
+            const titleInput = row.querySelector('td:nth-child(3) input');
+            const materialInput = row.querySelector('td:nth-child(4) input');
+            const projectInput = row.querySelector('td:nth-child(5) input');
+            const levelSelect = row.querySelector('td:nth-child(6) select');
+            const dateInput = row.querySelector('td:nth-child(7) input');
+            const authorInput = row.querySelector('td:nth-child(8) input');
+            const docInput = row.querySelector('td:nth-child(9) input');
+            if (titleInput) titleInput.value = values.title;
+            if (materialInput && materialInput.dataset.aiExtractLocked !== 'true') materialInput.value = values.materialType;
+            if (projectInput) projectInput.value = values.projectName;
+            if (levelSelect) levelSelect.value = values.level;
+            if (dateInput) dateInput.value = values.date;
+            if (authorInput) authorInput.value = values.author;
+            if (docInput) docInput.value = values.docNo;
+            row.dataset.level3Category = values.level3Category;
+            row.dataset.linkedProject = values.linkedProject;
+            row.dataset.relatedProjectCategory = values.relatedProjectCategory;
+            row.dataset.currentProjectCategory = values.currentProjectCategory;
+            row.dataset.manageOrg = values.manageOrg;
+            row.dataset.legalOrg = values.legalOrg;
+        } else if (currentFileDetailEditContext.type === 'pending-row') {
+            const row = currentFileDetailEditContext.row;
+            if (!row) return;
+            row.querySelector('td:nth-child(3)').textContent = values.title;
+            const materialInput = row.querySelector('td:nth-child(5) input');
+            if (materialInput && materialInput.dataset.aiExtractLocked !== 'true') {
+                materialInput.value = values.materialType;
+            } else if (!materialInput) {
+                row.querySelector('td:nth-child(5)').textContent = values.materialType;
+            }
+            row.querySelector('td:nth-child(6)').textContent = values.projectName;
+            row.querySelector('td:nth-child(7)').innerHTML = applyFileLevelBadge(values.level);
+            const dateInput = row.querySelector('td:nth-child(8) input');
+            if (dateInput) {
+                dateInput.value = values.date;
+                clearAIExtractPendingState(dateInput);
+            } else {
+                row.querySelector('td:nth-child(8)').textContent = values.date;
+            }
+            const authorInput = row.querySelector('td:nth-child(9) input');
+            if (authorInput) {
+                authorInput.value = values.author;
+                clearAIExtractPendingState(authorInput);
+            } else {
+                row.querySelector('td:nth-child(9)').textContent = values.author;
+            }
+            row.querySelector('td:nth-child(10)').textContent = values.docNo;
+            row.dataset.level3Category = values.level3Category;
+            row.dataset.linkedProject = values.linkedProject;
+            row.dataset.relatedProjectCategory = values.relatedProjectCategory;
+            row.dataset.projectName = values.projectName;
+            row.dataset.currentProjectCategory = values.currentProjectCategory;
+            row.dataset.manageOrg = values.manageOrg;
+            row.dataset.legalOrg = values.legalOrg;
+            row.dataset.level = values.level;
+        } else if (currentFileDetailEditContext.type === 'file-list-row') {
+            const row = currentFileDetailEditContext.row;
+            if (!row) return;
+            row.querySelector('td:nth-child(5)').textContent = values.materialType;
+            row.querySelector('td:nth-child(6)').textContent = values.title;
+            row.querySelector('td:nth-child(7)').innerHTML = applyFileLevelBadge(values.level);
+            row.dataset.level3Category = values.level3Category;
+            row.dataset.author = values.author;
+            row.dataset.date = values.date;
+            row.dataset.docNo = values.docNo;
+            row.dataset.linkedProject = values.linkedProject;
+            row.dataset.relatedProjectCategory = values.relatedProjectCategory;
+            row.dataset.projectName = values.projectName;
+            row.dataset.currentProjectCategory = values.currentProjectCategory;
+            row.dataset.manageOrg = values.manageOrg;
+            row.dataset.legalOrg = values.legalOrg;
+            row.dataset.level = values.level;
+        }
+
+        closeFileDetailEditModal();
+        showToast('保存成功', 'success');
+    }
 
     // 打开资料类型选择弹窗（带1秒延时动态效果）
     function openMaterialTypeModal(inputElement) {
@@ -8463,9 +10344,10 @@ let currentReplacingPendingRow = null;
             row.classList.remove('selected');
         });
 
-        // 如果文件清单放大编辑弹窗已打开，将资料类型弹窗层级设为最高
+        // 如果文件清单放大编辑弹窗或文件详情编辑弹窗已打开，将资料类型弹窗层级设为最高
         const expandedModal = document.getElementById('file-list-expanded-modal');
-        if (expandedModal && !expandedModal.classList.contains('hidden')) {
+        const fileDetailModal = document.getElementById('file-detail-edit-modal');
+        if ((expandedModal && !expandedModal.classList.contains('hidden')) || (fileDetailModal && !fileDetailModal.classList.contains('hidden'))) {
             modal.style.zIndex = '110';
         } else {
             modal.style.zIndex = '';
@@ -8482,6 +10364,11 @@ let currentReplacingPendingRow = null;
 
     // 打开资料类型选择弹窗（批量上传页面专用）
     function openMaterialTypeModalForBatch(id) {
+        const fileData = batchFiles.find(f => f.id === id);
+        if (fileData?.aiExtractTriggered) {
+            showToast('AI提取后，资料类型已锁定', 'warning');
+            return;
+        }
         currentBatchEditId = id;
         currentMaterialTypeInput = null; // 不是输入框模式
         selectedMaterialTypeValue = null;
@@ -8495,9 +10382,10 @@ let currentReplacingPendingRow = null;
             row.classList.remove('selected');
         });
         
-        // 如果文件清单放大编辑弹窗已打开，将资料类型弹窗层级设为最高
+        // 如果文件清单放大编辑弹窗或文件详情编辑弹窗已打开，将资料类型弹窗层级设为最高
         const expandedModal = document.getElementById('file-list-expanded-modal');
-        if (expandedModal && !expandedModal.classList.contains('hidden')) {
+        const fileDetailModal = document.getElementById('file-detail-edit-modal');
+        if ((expandedModal && !expandedModal.classList.contains('hidden')) || (fileDetailModal && !fileDetailModal.classList.contains('hidden'))) {
             modal.style.zIndex = '110';
         } else {
             modal.style.zIndex = '';
@@ -8591,7 +10479,8 @@ let currentReplacingPendingRow = null;
         const materialModal = document.getElementById('material-type-modal');
         const projectModal = document.getElementById('project-select-modal');
         
-        if (materialModal && !materialModal.classList.contains('hidden')) {
+        const fileDetailModal = document.getElementById('file-detail-edit-modal');
+        if ((materialModal && !materialModal.classList.contains('hidden')) || (fileDetailModal && !fileDetailModal.classList.contains('hidden'))) {
             projectModal.style.zIndex = '110';
         } else {
             projectModal.style.zIndex = '';
@@ -9049,9 +10938,9 @@ let currentReplacingPendingRow = null;
             uploader: '陈晓',
             createdDate: '2026-01-30 10:20:00',
             files: [
-                { name: '可研报告_提标改造一期.pdf', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/前期立项', categoryLevel3: '-', title: '南京某污水厂提标改造项目可行性研究报告', author: '华东市政设计院', date: '2026-01-18', pages: 46, level: '无密级' },
-                { name: '立项批复_发改委.pdf', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/前期立项', categoryLevel3: '-', title: '关于南京某污水厂提标改造项目立项的批复', author: '南京市发展和改革委员会', date: '2026-01-20', pages: 8, level: '无密级' },
-                { name: '初设评审意见.docx', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/设计文件', categoryLevel3: '-', title: '南京某污水厂提标改造项目初步设计评审意见', author: '项目管理部', date: '2026-01-22', pages: 12, level: '无密级' }
+                { name: '可研报告_提标改造一期.pdf', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/前期立项', categoryLevel3: '-', title: '南京某污水厂提标改造项目可行性研究报告', author: '', date: '', pages: 46, level: '无密级' },
+                { name: '立项批复_发改委.pdf', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/前期立项', categoryLevel3: '-', title: '关于南京某污水厂提标改造项目立项的批复', author: '', date: '', pages: 8, level: '无密级' },
+                { name: '初设评审意见.docx', aiType: '', materialTypePendingText: 'AI分类中...', showManualTypeTag: true, category: '科技档案/基建档案/设计文件', categoryLevel3: '-', title: '南京某污水厂提标改造项目初步设计评审意见', author: '', date: '', pages: 12, level: '无密级' }
             ]
         },
         'draft-uploaded-2': {
@@ -9064,10 +10953,25 @@ let currentReplacingPendingRow = null;
             uploader: '林悦',
             createdDate: '2026-01-30 11:05:00',
             files: [
-                { name: '项目建议书_供水管网完善.pdf', aiType: '项目建议书', showManualTypeTag: true, materialTypeTagText: 'AI: 95%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度95%', category: '科技档案/投资档案/项目决策', title: '苏州工业园区供水管网完善工程项目建议书', author: '投资发展部', date: '2026-01-12', pages: 25, level: '无密级' },
-                { name: '建议书批复_园区管委会.pdf', aiType: '项目建议书的批复文件', showManualTypeTag: true, materialTypeTagText: 'AI: 88%', materialTypeTagTone: 'yellow', materialTypeTagTooltip: 'AI分类结果，置信度88%', category: '科技档案/投资档案/项目决策', title: '关于苏州工业园区供水管网完善工程项目建议书的批复', author: '苏州工业园区管理委员会', date: '2026-01-15', pages: 6, level: '无密级' },
-                { name: '可研报告_供水管网完善工程.pdf', aiType: '可行性研究报告', showManualTypeTag: true, materialTypeTagText: 'AI: 73%', materialTypeTagTone: 'red', materialTypeTagTooltip: 'AI分类结果，置信度73%', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可行性研究报告', author: '华东市政设计研究院', date: '2026-01-18', pages: 38, level: '无密级' },
-                { name: '专家评审意见_供水管网项目.docx', aiType: '专家评审意见', showManualTypeTag: true, materialTypeSource: 'manual', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可研专家评审意见', author: '项目评审专家组', date: '2026-01-21', pages: 11, level: '无密级' }
+                { name: '项目建议书_供水管网完善.pdf', aiType: '项目建议书', showManualTypeTag: true, materialTypeTagText: 'AI: 95%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度95%', category: '科技档案/投资档案/项目决策', title: '苏州工业园区供水管网完善工程项目建议书', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: true, pages: 25, level: '无密级' },
+                { name: '建议书批复_园区管委会.pdf', aiType: '项目建议书的批复文件', showManualTypeTag: true, materialTypeTagText: 'AI: 88%', materialTypeTagTone: 'yellow', materialTypeTagTooltip: 'AI分类结果，置信度88%', category: '科技档案/投资档案/项目决策', title: '关于苏州工业园区供水管网完善工程项目建议书的批复', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: true, pages: 6, level: '无密级' },
+                { name: '可研报告_供水管网完善工程.pdf', aiType: '可行性研究报告', showManualTypeTag: true, materialTypeTagText: 'AI: 73%', materialTypeTagTone: 'red', materialTypeTagTooltip: 'AI分类结果，置信度73%', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可行性研究报告', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: true, pages: 38, level: '无密级' },
+                { name: '专家评审意见_供水管网项目.docx', aiType: '专家评审意见', showManualTypeTag: true, materialTypeSource: 'manual', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可研专家评审意见', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: true, pages: 11, level: '无密级' }
+            ]
+        },
+        'draft-uploaded-3': {
+            applicationNo: '20260130-KJ003-000016',
+            categoryText: '科技档案 / 投资档案',
+            project: '无锡太湖新城供排水一体化工程',
+            manageOrg: '华东大区-无锡区域公司-太湖新城项目组',
+            legalOrg: '无锡清源水务有限公司',
+            uploadDept: '无锡清源水务有限公司-投资建设部',
+            uploader: '沈越',
+            createdDate: '2026-01-30 13:40:00',
+            files: [
+                { name: '投资估算说明_太湖新城.pdf', aiType: '投资估算说明', showManualTypeTag: true, materialTypeTagText: 'AI: 98%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度98%', category: '科技档案/投资档案/项目决策', title: '无锡太湖新城供排水一体化工程投资估算说明', author: '江苏城建设计院', authorSource: 'ai', authorTagText: 'AI: 96%', authorTagTone: 'green', authorTagTooltip: 'AI提取结果，置信度96%', date: '2026-01-16', dateSource: 'ai', dateTagText: 'AI: 96%', dateTagTone: 'green', dateTagTooltip: 'AI提取结果，置信度96%', pages: 29, level: '无密级' },
+                { name: '可研批复_市发改委.pdf', aiType: '可行性研究报告批复', showManualTypeTag: true, materialTypeTagText: 'AI: 91%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度91%', category: '科技档案/投资档案/可研论证', title: '关于无锡太湖新城供排水一体化工程可行性研究报告的批复', author: '无锡市发展和改革委员会', authorSource: 'ai', authorTagText: 'AI: 94%', authorTagTone: 'green', authorTagTooltip: 'AI提取结果，置信度94%', date: '2026-01-19', dateSource: 'ai', dateTagText: 'AI: 83%', dateTagTone: 'yellow', dateTagTooltip: 'AI提取结果，置信度83%', pages: 7, level: '无密级' },
+                { name: '专家论证意见_一体化工程.docx', aiType: '专家论证意见', showManualTypeTag: true, materialTypeTagText: 'AI: 66%', materialTypeTagTone: 'red', materialTypeTagTooltip: 'AI分类结果，置信度66%', category: '科技档案/投资档案/可研论证', title: '无锡太湖新城供排水一体化工程专家论证意见', author: '项目评审委员会', authorSource: 'ai', authorTagText: 'AI: 86%', authorTagTone: 'yellow', authorTagTooltip: 'AI提取结果，置信度86%', date: '2026-01-22', dateSource: 'ai', dateTagText: 'AI: 86%', dateTagTone: 'yellow', dateTagTooltip: 'AI提取结果，置信度86%', pages: 14, level: '无密级' }
             ]
         }
     };
@@ -9197,6 +11101,15 @@ let currentReplacingPendingRow = null;
             materialTypeTagText: item.materialTypeTagText || '',
             materialTypeTagTone: item.materialTypeTagTone || '',
             materialTypeTagTooltip: item.materialTypeTagTooltip || '',
+            dateSource: item.dateSource || '',
+            dateTagText: item.dateTagText || '',
+            dateTagTone: item.dateTagTone || '',
+            dateTagTooltip: item.dateTagTooltip || '',
+            authorSource: item.authorSource || '',
+            authorTagText: item.authorTagText || '',
+            authorTagTone: item.authorTagTone || '',
+            authorTagTooltip: item.authorTagTooltip || '',
+            aiExtractTriggered: !!item.aiExtractTriggered,
             confidence: item.confidence || 96,
             projectName: context.project || ''
         }));
@@ -9214,6 +11127,312 @@ let currentReplacingPendingRow = null;
         if (input) input.value = '';
         if (progressBar) progressBar.classList.add('hidden');
         renderBatchTable();
+    }
+
+    function getRejectedTableRows() {
+        return Array.from(document.querySelectorAll('#file-list-rejected-table tbody tr'));
+    }
+
+    function getPendingEditableRows() {
+        return Array.from(document.querySelectorAll('#file-list-pending-table tbody tr')).filter(row => row.style.display !== 'none');
+    }
+
+    function getPendingRowMaterialValue(row) {
+        if (!row) return '';
+        const materialInput = row.querySelector('td:nth-child(5) input');
+        if (materialInput) return materialInput.value.trim();
+        return row.querySelector('td:nth-child(5)')?.textContent?.trim() || '';
+    }
+
+    function isBatchFieldAIExtractPending(item, fieldKey) {
+        return !!item?.aiExtractTriggered && !String(item?.[fieldKey] || '').trim();
+    }
+
+    function isRowFieldAIExtractPending(row, cellIndex) {
+        if (!row) return false;
+        return row.querySelector(`td:nth-child(${cellIndex}) input`)?.dataset.aiExtractPending === 'true';
+    }
+
+    function hasPendingAIExtract(status) {
+        if (status === 'new') {
+            return batchFiles.some(item => isBatchFieldAIExtractPending(item, 'date') || isBatchFieldAIExtractPending(item, 'author'));
+        }
+        if (status === 'rejected') {
+            return getRejectedTableRows().some(row => isRowFieldAIExtractPending(row, 7) || isRowFieldAIExtractPending(row, 8));
+        }
+        if (status === 'pending-block') {
+            return getPendingEditableRows().some(row => isRowFieldAIExtractPending(row, 8) || isRowFieldAIExtractPending(row, 9));
+        }
+        return false;
+    }
+
+    function getAIExtractStatusHtml() {
+        return `
+            <span class="ai-extract-status">
+                <span>AI提取中</span>
+                <span class="ai-extract-status-dots">
+                    <span class="ai-extract-status-dot">.</span>
+                    <span class="ai-extract-status-dot">.</span>
+                    <span class="ai-extract-status-dot">.</span>
+                </span>
+            </span>
+        `;
+    }
+
+    function clearAIExtractPendingState(input) {
+        if (!input) return;
+        const wrapper = input.closest('.ai-extract-field');
+        if (wrapper) {
+            const status = wrapper.querySelector('.ai-extract-status');
+            if (status) status.remove();
+        }
+        input.dataset.aiExtractPending = '';
+        if (Object.prototype.hasOwnProperty.call(input.dataset, 'originalPlaceholder')) {
+            input.placeholder = input.dataset.originalPlaceholder || '';
+        }
+    }
+
+    function ensureAIExtractFieldWrapper(input) {
+        if (!input) return null;
+        let wrapper = input.closest('.ai-extract-field');
+        if (wrapper) return wrapper;
+        wrapper = document.createElement('div');
+        wrapper.className = 'ai-extract-field';
+        const parent = input.parentNode;
+        if (!parent) return null;
+        parent.insertBefore(wrapper, input);
+        wrapper.appendChild(input);
+        return wrapper;
+    }
+
+    function applyAIExtractPendingState(input) {
+        if (!input) return;
+        const wrapper = ensureAIExtractFieldWrapper(input);
+        if (!wrapper) return;
+        clearAIExtractPendingState(input);
+        if (!Object.prototype.hasOwnProperty.call(input.dataset, 'originalPlaceholder')) {
+            input.dataset.originalPlaceholder = input.getAttribute('placeholder') || '';
+        }
+        input.value = '';
+        input.dataset.aiExtractPending = 'true';
+        input.placeholder = '';
+        input.oninput = () => clearAIExtractPendingState(input);
+        input.onchange = () => clearAIExtractPendingState(input);
+        wrapper.insertAdjacentHTML('beforeend', getAIExtractStatusHtml());
+    }
+
+    function handleBatchFieldManualChange(id, fieldKey, input) {
+        if (!input) return;
+        clearAIExtractPendingState(input);
+        const fileData = batchFiles.find(item => item.id === id);
+        if (!fileData) return;
+
+        const value = input.value.trim();
+        fileData[fieldKey] = value;
+        if (!value) {
+            fileData[`${fieldKey}Source`] = '';
+            fileData[`${fieldKey}TagText`] = '';
+            fileData[`${fieldKey}TagTone`] = '';
+            fileData[`${fieldKey}TagTooltip`] = '';
+        } else {
+            fileData[`${fieldKey}Source`] = 'manual';
+            fileData[`${fieldKey}TagText`] = '';
+            fileData[`${fieldKey}TagTone`] = '';
+            fileData[`${fieldKey}TagTooltip`] = '';
+        }
+        renderBatchTable();
+    }
+
+    function getBatchAITagMeta(confidence = 90) {
+        const score = Number(confidence) || 90;
+        return {
+            text: `AI: ${score}%`,
+            tone: score >= 90 ? 'green' : score >= 80 ? 'yellow' : 'red',
+            tooltip: `AI提取结果，置信度${score}%`
+        };
+    }
+
+    function ensurePendingRowEditable(row) {
+        if (!row) return null;
+        const materialCell = row.querySelector('td:nth-child(5)');
+        const dateCell = row.querySelector('td:nth-child(8)');
+        const authorCell = row.querySelector('td:nth-child(9)');
+        if (!materialCell || !dateCell || !authorCell) return null;
+
+        let materialInput = materialCell.querySelector('input');
+        if (!materialInput) {
+            const materialValue = materialCell.textContent.trim();
+            materialCell.innerHTML = `
+                <div class="relative">
+                    <input type="text" value="${escapeHtml(materialValue)}" readonly
+                        class="w-full bg-white border border-gray-300 rounded px-2 py-1 text-xs cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        onclick="openMaterialTypeModal(this)"
+                        placeholder="点击选择资料类型">
+                    <i class="fas fa-search absolute right-2 top-1.5 text-gray-400 text-sm"></i>
+                </div>
+            `;
+            materialInput = materialCell.querySelector('input');
+        }
+
+        if (!dateCell.querySelector('input')) {
+            const dateValue = dateCell.textContent.trim();
+            dateCell.innerHTML = `<input type="date" value="${escapeHtml(dateValue)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white">`;
+        }
+
+        if (!authorCell.querySelector('input')) {
+            const authorValue = authorCell.textContent.trim();
+            authorCell.innerHTML = `<input type="text" value="${escapeHtml(authorValue)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white">`;
+        }
+
+        return materialInput;
+    }
+
+    function lockPendingRowAfterAIExtract(row) {
+        if (!row) return;
+        const materialInput = ensurePendingRowEditable(row);
+        const materialIcon = row.querySelector('td:nth-child(5) .fa-search');
+        const dateInput = row.querySelector('td:nth-child(8) input');
+        const authorInput = row.querySelector('td:nth-child(9) input');
+
+        if (materialInput) {
+            materialInput.disabled = true;
+            materialInput.dataset.aiExtractLocked = 'true';
+            materialInput.onclick = null;
+            materialInput.classList.add('bg-gray-100', 'text-gray-400', 'cursor-not-allowed', 'dark:bg-gray-800', 'dark:text-gray-500');
+        }
+        if (materialIcon) {
+            materialIcon.classList.add('text-gray-300', 'dark:text-gray-600');
+        }
+        if (dateInput) {
+            dateInput.type = 'date';
+            applyAIExtractPendingState(dateInput);
+        }
+        if (authorInput) {
+            applyAIExtractPendingState(authorInput);
+        }
+    }
+
+    function validateMaterialTypeBeforeAIExtract(status) {
+        if (status === 'new') {
+            if (!batchFiles.length) {
+                showToast('请先上传文件', 'warning');
+                return false;
+            }
+            if (batchFiles.some(item => !String(item.aiType || '').trim())) {
+                showToast('请先选择资料类型在发起AI校验', 'warning');
+                return false;
+            }
+            return true;
+        }
+
+        if (status === 'rejected') {
+            const rows = getRejectedTableRows();
+            if (!rows.length) {
+                showToast('当前无可处理文件', 'warning');
+                return false;
+            }
+            if (rows.some(row => {
+                const input = row.querySelector('td:nth-child(4) input');
+                return !input || !input.value.trim();
+            })) {
+                showToast('请先选择资料类型在发起AI校验', 'warning');
+                return false;
+            }
+            return true;
+        }
+
+        if (status === 'pending-block') {
+            const rows = getPendingEditableRows();
+            if (!rows.length) {
+                showToast('当前无可处理文件', 'warning');
+                return false;
+            }
+            if (rows.some(row => !getPendingRowMaterialValue(row))) {
+                showToast('请先选择资料类型在发起AI校验', 'warning');
+                return false;
+            }
+            return true;
+        }
+
+        return true;
+    }
+
+    function triggerDetailAIExtract(status) {
+        if (hasPendingAIExtract(status)) {
+            showToast('当前AI提取未完成，不能重复提取。', 'warning');
+            return;
+        }
+        if (status === 'new') {
+            if (!validateMaterialTypeBeforeAIExtract('new')) return;
+            batchFiles = batchFiles.map(item => ({
+                ...item,
+                aiExtractTriggered: true,
+                date: '',
+                dateSource: '',
+                dateTagText: '',
+                dateTagTone: '',
+                dateTagTooltip: '',
+                author: '',
+                authorSource: '',
+                authorTagText: '',
+                authorTagTone: '',
+                authorTagTooltip: ''
+            }));
+            renderBatchTable();
+            showToast('触发AI校验成功', 'success');
+            return;
+        }
+
+        if (status === 'rejected') {
+            if (!validateMaterialTypeBeforeAIExtract('rejected')) return;
+            getRejectedTableRows().forEach(row => {
+                const materialInput = row.querySelector('td:nth-child(4) input');
+                const materialIcon = row.querySelector('td:nth-child(4) .fa-search');
+                const dateInput = row.querySelector('td:nth-child(7) input');
+                const authorInput = row.querySelector('td:nth-child(8) input');
+
+                if (materialInput) {
+                    materialInput.disabled = true;
+                    materialInput.dataset.aiExtractLocked = 'true';
+                    materialInput.onclick = null;
+                    materialInput.classList.add('bg-gray-100', 'text-gray-400', 'cursor-not-allowed', 'dark:bg-gray-800', 'dark:text-gray-500');
+                }
+                if (materialIcon) {
+                    materialIcon.classList.add('text-gray-300', 'dark:text-gray-600');
+                }
+                if (dateInput) {
+                    dateInput.type = 'date';
+                    applyAIExtractPendingState(dateInput);
+                }
+                if (authorInput) {
+                    applyAIExtractPendingState(authorInput);
+                }
+            });
+
+            showToast('触发AI校验成功', 'success');
+            return;
+        }
+
+        if (status === 'pending-block') {
+            if (!validateMaterialTypeBeforeAIExtract('pending-block')) return;
+            getPendingEditableRows().forEach(lockPendingRowAfterAIExtract);
+            showToast('触发AI校验成功', 'success');
+            return;
+        }
+
+        const messageMap = {
+            approved: '已审批状态不允许发起AI提取',
+            pending: '审批中状态不允许发起AI提取'
+        };
+        showToast(messageMap[status] || '当前状态不允许发起AI提取', 'warning');
+    }
+
+    function triggerPendingDetailAIExtract() {
+        if (currentPendingDetailMode === 'pending-block') {
+            triggerDetailAIExtract('pending-block');
+            return;
+        }
+        triggerDetailAIExtract('pending');
     }
 
     function openArchiveDetail(mode = 'pending-normal') {
@@ -9290,6 +11509,13 @@ let currentReplacingPendingRow = null;
         if (fileListTitleEl) fileListTitleEl.textContent = `文件清单 (${detailFields.fileCount || 0}份)`;
 
         if (pendingTable) {
+            const pendingTbody = pendingTable.querySelector('tbody');
+            if (pendingTbody && !pendingTbody.dataset.baseHtml) {
+                pendingTbody.dataset.baseHtml = pendingTbody.innerHTML;
+            }
+            if (pendingTbody && currentPendingDetailMode !== 'pending-block' && pendingTbody.dataset.baseHtml) {
+                pendingTbody.innerHTML = pendingTbody.dataset.baseHtml;
+            }
             const shouldDisablePendingActions = currentPendingDetailMode !== 'pending-block';
             pendingTable.querySelectorAll('.batch-action-edit, .batch-action-replace, .batch-action-delete').forEach(btn => {
                 btn.classList.toggle('is-disabled', shouldDisablePendingActions);
@@ -9455,6 +11681,15 @@ let currentReplacingPendingRow = null;
         // 生成随机日期（2026年1月内）
         const day = Math.floor(Math.random() * 28) + 1;
         fileData.date = `2026-01-${day.toString().padStart(2, '0')}`;
+        const aiTagMeta = getBatchAITagMeta(fileData.confidence);
+        fileData.dateSource = 'ai';
+        fileData.dateTagText = aiTagMeta.text;
+        fileData.dateTagTone = aiTagMeta.tone;
+        fileData.dateTagTooltip = aiTagMeta.tooltip;
+        fileData.authorSource = 'ai';
+        fileData.authorTagText = aiTagMeta.text;
+        fileData.authorTagTone = aiTagMeta.tone;
+        fileData.authorTagTooltip = aiTagMeta.tooltip;
     }
     
     // 渲染批量上传表格
@@ -9498,6 +11733,7 @@ let currentReplacingPendingRow = null;
                                 class="max-w-full bg-white border border-gray-300 rounded-lg px-3 py-2 pr-8 text-xs cursor-pointer hover:border-primary focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 ${getBatchMaterialTypeInputClass(item)}"
                                 style="${getBatchMaterialTypeInputStyle(item)}"
                                 onclick="openMaterialTypeModalForBatch(${item.id})"
+                                ${item.aiExtractTriggered ? 'disabled' : ''}
                                 placeholder="点击选择">
                             <i class="fas fa-search absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-400 dark:text-gray-500 pointer-events-none"></i>
                         </div>
@@ -9522,8 +11758,24 @@ let currentReplacingPendingRow = null;
                         <option ${item.level === '机密级' ? 'selected' : ''}>机密级</option>
                     </select>
                 </td>
-                <td><input type="date" value="${item.date}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
-                <td><input type="text" value="${escapeHtml(item.author)}" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
+                <td>
+                    <div class="flex items-center gap-2">
+                        <div class="ai-extract-field flex-1">
+                            <input type="date" value="${item.date}" ${item.aiExtractTriggered && !item.date ? 'data-ai-extract-pending="true"' : ''} oninput="clearAIExtractPendingState(this)" onchange="handleBatchFieldManualChange(${item.id}, 'date', this)" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            ${item.aiExtractTriggered && !item.date ? getAIExtractStatusHtml() : ''}
+                        </div>
+                        ${getBatchFieldSourceTagHtml(item, 'date')}
+                    </div>
+                </td>
+                <td>
+                    <div class="flex items-center gap-2">
+                        <div class="ai-extract-field flex-1">
+                            <input type="text" value="${escapeHtml(item.author)}" ${item.aiExtractTriggered && !item.author ? 'data-ai-extract-pending="true"' : ''} oninput="clearAIExtractPendingState(this)" onchange="handleBatchFieldManualChange(${item.id}, 'author', this)" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            ${item.aiExtractTriggered && !item.author ? getAIExtractStatusHtml() : ''}
+                        </div>
+                        ${getBatchFieldSourceTagHtml(item, 'author')}
+                    </div>
+                </td>
                 <td><input type="text" placeholder="请输入文号" class="w-full border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
                 <td><input type="number" value="${item.pages}" class="w-full text-center border border-gray-300 rounded px-2 py-1 text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white"></td>
                 <td class="text-center table-sticky-action-cell">
@@ -9578,7 +11830,7 @@ let currentReplacingPendingRow = null;
     }
 
     function editBatchFile(id) {
-        openMaterialTypeModalForBatch(id);
+        openFileDetailEditModal({ type: 'batch', id });
     }
 
     function triggerReplaceBatchFile(id) {
@@ -9624,8 +11876,7 @@ let currentReplacingPendingRow = null;
     function triggerEditRejectedFile(btn) {
         const row = btn.closest('tr');
         if (!row) return;
-        const targetInput = row.querySelector('input[placeholder="点击选择资料类型"]');
-        if (targetInput) openMaterialTypeModal(targetInput);
+        openFileDetailEditModal({ type: 'rejected-row', row });
     }
 
     function triggerReplaceRejectedFile(btn) {
@@ -9658,13 +11909,16 @@ let currentReplacingPendingRow = null;
     }
 
     function editPendingFile(btn) {
+        if (btn?.classList.contains('is-disabled')) return;
         const row = btn.closest('tr');
         if (!row) return;
-        const fileName = row.querySelector('td:nth-child(2) a')?.textContent?.trim() || '当前文件';
-        showToast(`可在当前节点继续人工处理：${fileName}`, 'success');
+        if (currentPendingDetailMode !== 'pending-block') return;
+        openFileDetailEditModal({ type: 'pending-row', row });
     }
 
     function triggerReplacePendingFile(btn) {
+        if (btn?.classList.contains('is-disabled')) return;
+        if (currentPendingDetailMode !== 'pending-block') return;
         currentReplacingPendingRow = btn.closest('tr');
         const input = document.getElementById('pending-replace-file-input');
         if (!input) return;
@@ -9921,9 +12175,9 @@ let currentReplacingPendingRow = null;
     }
 
     function editFile(id) {
-        showToast('进入文件编辑页面', 'success');
-        // 实际项目中这里应该跳转到编辑页面或打开编辑弹窗
-        // showPage('file-edit', id);
+        const row = getFileListRowById(id);
+        if (!row) return;
+        openFileDetailEditModal({ type: 'file-list-row', row, id });
     }
 
     function submitSingleFile(id) {
