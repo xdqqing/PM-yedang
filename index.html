@@ -764,7 +764,7 @@
                     </div>
                 </div>
 
-                <div class="table-container mobile-scroll-x">
+                <div class="table-container mobile-scroll-x" style="overflow-x: auto; overflow-y: visible;">
                     <table class="data-table" id="archive-list-table">
                         <thead>
                             <tr>
@@ -4221,7 +4221,6 @@
                             <th class="min-w-[70px]">序号<div class="resize-handle"></div></th>
                             <th class="min-w-[140px]">字段名称<div class="resize-handle"></div></th>
                             <th class="min-w-[220px]">AI提取结果<div class="resize-handle"></div></th>
-                            <th class="min-w-[140px]">是否反填表单<div class="resize-handle"></div></th>
                         </tr>
                     </thead>
                     <tbody id="file-detail-edit-ai-info-tbody"></tbody>
@@ -5093,8 +5092,7 @@
                                         <div class="flex flex-wrap items-center gap-2 text-xs">
                                             <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-blue-50 text-primary dark:bg-blue-900/20 dark:text-blue-300">规则总数 <span id="ai-extract-rule-chip-total" class="mx-1 font-semibold">0</span>条</span>
                                             <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-green-50 text-success dark:bg-green-900/20 dark:text-green-300">启用中 <span id="ai-extract-rule-chip-enabled" class="mx-1 font-semibold">0</span>条</span>
-                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-200">前端展示 <span id="ai-extract-rule-chip-display" class="mx-1 font-semibold">0</span>条</span>
-                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-200">反填表单 <span id="ai-extract-rule-chip-backfill" class="mx-1 font-semibold">0</span>条</span>
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-200">前端页面展示 <span id="ai-extract-rule-chip-display" class="mx-1 font-semibold">0</span>条</span>
                                         </div>
 
                                         <div class="table-container max-h-[560px] overflow-auto border border-gray-200 rounded-xl dark:border-gray-700">
@@ -5106,16 +5104,15 @@
                                                         <th class="min-w-[220px]">档案分类</th>
                                                         <th class="min-w-[180px]"><span class="block">专题/专业</span><span class="block">业务/职能细分</span></th>
                                                         <th class="min-w-[160px]">资料类型</th>
-                                                        <th class="min-w-[120px]">是否引用系统字典</th>
+                                                        <th class="min-w-[120px]">是否引用系统字段</th>
                                                         <th class="min-w-[160px]">字段中文名称</th>
                                                         <th class="min-w-[180px]">字段别名</th>
                                                         <th class="min-w-[180px]">提取位置</th>
                                                         <th class="min-w-[420px]">Agent提取规则</th>
                                                         <th class="min-w-[100px]">字段类型</th>
-                                                        <th class="min-w-[120px]">前端展示</th>
+                                                        <th class="min-w-[140px]">是否前端页面展示</th>
                                                         <th class="min-w-[120px]">高质量数据集</th>
                                                         <th class="min-w-[150px]">前置业务系统提取</th>
-                                                        <th class="min-w-[120px]">反填表单</th>
                                                         <th class="min-w-[120px]">更新人</th>
                                                         <th class="min-w-[150px]">更新时间</th>
                                                         <th class="min-w-[160px]">操作</th>
@@ -5135,7 +5132,6 @@
                                                         <th><select id="ai-extract-rule-filter-display" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
                                                         <th><select id="ai-extract-rule-filter-quality" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
                                                         <th><select id="ai-extract-rule-filter-prepose" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
-                                                        <th><select id="ai-extract-rule-filter-backfill" onchange="aiExtractRenderRules()" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"><option value="">全部</option><option value="是">是</option><option value="否">否</option></select></th>
                                                         <th><input id="ai-extract-rule-filter-updater" oninput="aiExtractRenderRules()" type="text" placeholder="更新人" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
                                                         <th></th>
                                                         <th></th>
@@ -5191,7 +5187,7 @@
                                                 <select id="ai-extract-editor-material" onchange="aiExtractSyncRuleMaterialMeta()" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"></select>
                                             </div>
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否引用系统字典 <span class="text-danger">*</span></label>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否引用系统字段 <span class="text-danger">*</span></label>
                                                 <select id="ai-extract-editor-use-dict" onchange="aiExtractToggleDictField()" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                                     <option value="否">否</option>
                                                     <option value="是">是</option>
@@ -5226,7 +5222,7 @@
                                                 <textarea id="ai-extract-editor-agent-logic" rows="4" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white" placeholder="用于填写 AI 提取规则"></textarea>
                                             </div>
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否在前端页面展示 <span class="text-danger">*</span></label>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否前端页面展示 <span class="text-danger">*</span></label>
                                                 <select id="ai-extract-editor-display" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                                     <option value="是">是</option>
                                                     <option value="否">否</option>
@@ -5242,13 +5238,6 @@
                                             <div>
                                                 <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否前置业务系统提取 <span class="text-danger">*</span></label>
                                                 <select id="ai-extract-editor-prepose" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
-                                                    <option value="否">否</option>
-                                                    <option value="是">是</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否反填表单 <span class="text-danger">*</span></label>
-                                                <select id="ai-extract-editor-backfill" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white">
                                                     <option value="否">否</option>
                                                     <option value="是">是</option>
                                                 </select>
@@ -5284,15 +5273,14 @@
                                             <div class="md:col-span-2"><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">档案分类</label><input id="ai-extract-detail-classification" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label id="ai-extract-detail-special-label" class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">专题/专业</label><input id="ai-extract-detail-special" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">资料类型</label><input id="ai-extract-detail-material" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
-                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否引用系统字典</label><input id="ai-extract-detail-use-dict" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否引用系统字段</label><input id="ai-extract-detail-use-dict" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段中文名称</label><input id="ai-extract-detail-field-name" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段别名</label><input id="ai-extract-detail-alias" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">提取位置</label><input id="ai-extract-detail-locations" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">字段类型</label><input id="ai-extract-detail-field-type" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
-                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">前端展示</label><input id="ai-extract-detail-display" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
+                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">是否前端页面展示</label><input id="ai-extract-detail-display" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">高质量数据集</label><input id="ai-extract-detail-high-quality" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">前置业务系统提取</label><input id="ai-extract-detail-prepose" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
-                                            <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">反填表单</label><input id="ai-extract-detail-backfill" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">启用状态</label><div id="ai-extract-detail-enabled" class="w-full min-h-[42px] flex items-center"></div></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新人</label><input id="ai-extract-detail-updater" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
                                             <div><label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-gray-300">更新时间</label><input id="ai-extract-detail-updated-at" type="text" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm dark:bg-gray-900 dark:border-gray-600 dark:text-white" readonly></div>
@@ -5332,7 +5320,6 @@
                                                         <th class="min-w-[120px]">提取状态</th>
                                                         <th class="min-w-[200px]">AI提取结果</th>
                                                         <th class="min-w-[320px]">结果说明</th>
-                                                        <th class="min-w-[120px]">是否反填表单</th>
                                                         <th class="min-w-[200px]">人工修改提交结果</th>
                                                         <th class="min-w-[120px]">提交结果类型</th>
                                                     </tr>
@@ -6845,7 +6832,7 @@ const aiRuleRules = [
                 : 'width: 114px;';
         }
 
-        function getBatchTagHtml(tagText, tagTone, tooltipText = '') {
+        function getBatchTagHtml(tagText, tagTone, tooltipText = '', placement = 'bottom') {
             const toneClassMap = {
                 green: 'border-green-200 bg-green-50 text-green-600 dark:border-green-800 dark:bg-green-900/30 dark:text-green-300',
                 yellow: 'border-yellow-200 bg-yellow-50 text-yellow-700 dark:border-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300',
@@ -6853,9 +6840,12 @@ const aiRuleRules = [
             };
             const toneClass = toneClassMap[tagTone] || toneClassMap.green;
             const tooltip = escapeHtml(tooltipText || '');
+            const tooltipPositionClass = placement === 'top'
+                ? 'left-1/2 bottom-full z-20 mb-2 hidden -translate-x-1/2'
+                : 'left-1/2 top-full z-20 mt-2 hidden -translate-x-1/2';
             return `<span class="relative inline-flex group">
                 <span class="inline-flex items-center px-1 py-0.5 rounded border text-[10px] leading-none whitespace-nowrap cursor-help ${toneClass}">${escapeHtml(tagText)}</span>
-                <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-2 hidden -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 px-2 py-1 text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">${tooltip}</span>
+                <span style="z-index:9999;" class="pointer-events-none absolute ${tooltipPositionClass} whitespace-nowrap rounded-md bg-gray-900 px-2 py-1 text-[12px] font-normal leading-5 text-white shadow-lg group-hover:block dark:bg-gray-700">${tooltip}</span>
             </span>`;
         }
 
@@ -6868,7 +6858,7 @@ const aiRuleRules = [
                 return getBatchManualTagHtml();
             }
             if (!item?.materialTypeTagText) return '';
-            return getBatchTagHtml(item.materialTypeTagText, item.materialTypeTagTone, item.materialTypeTagTooltip || '');
+            return getBatchTagHtml(item.materialTypeTagText, item.materialTypeTagTone, item.materialTypeTagTooltip || '', item.materialTypeTagPlacement || 'bottom');
         }
 
         function getBatchFieldSourceTagHtml(item, fieldKey) {
@@ -6876,9 +6866,10 @@ const aiRuleRules = [
             const textKey = `${fieldKey}TagText`;
             const toneKey = `${fieldKey}TagTone`;
             const tooltipKey = `${fieldKey}TagTooltip`;
+            const placementKey = `${fieldKey}TagPlacement`;
             if (item?.[sourceKey] === 'manual') return getBatchManualTagHtml();
             if (!item?.[textKey]) return '';
-            return getBatchTagHtml(item[textKey], item[toneKey], item[tooltipKey] || '');
+            return getBatchTagHtml(item[textKey], item[toneKey], item[tooltipKey] || '', item[placementKey] || 'bottom');
         }
 
         function renderBatchTable() {
@@ -7927,7 +7918,7 @@ const aiRuleRules = [
         }
 
         const aiExtractRuleLocations = ['标题', '封面', '页眉页脚', '正文', '表格', '落款'];
-        const aiExtractDictFieldOptions = ['投资模式', '文种', '密级', '责任单位', '项目类型'];
+        const aiExtractDictFieldOptions = ['责任者', '文号', '成文日期', '密级'];
         const aiExtractClassificationTree = {
             '科技档案': {
                 '基建档案': {
@@ -7961,6 +7952,11 @@ const aiRuleRules = [
                         { name: '客户信息', special: '市场投资管理', specialLabel: '业务/职能细分' },
                         { name: '市场调研报告', special: '市场投资管理', specialLabel: '业务/职能细分' }
                     ]
+                },
+                '采购管理': {
+                    '寻源定商管理': [
+                        { name: '中标通知书', special: '采购管理', specialLabel: '业务/职能细分' }
+                    ]
                 }
             }
         };
@@ -7979,7 +7975,7 @@ const aiRuleRules = [
                 specialLabel: '专题/专业',
                 special: '投资项目',
                 material: '项目建议书及批复',
-                useDict: '否',
+                useDict: '是',
                 fieldName: '批复金额',
                 alias: '投资金额,批复投资',
                 locations: ['正文', '表格', '落款'],
@@ -7987,7 +7983,7 @@ const aiRuleRules = [
                 fieldType: '数字',
                 enabled: true,
                 display: '是',
-                highQuality: '是',
+                highQuality: '否',
                 prepose: '否',
                 backfill: '是',
                 updater: '张三',
@@ -8001,7 +7997,7 @@ const aiRuleRules = [
                 specialLabel: '专题/专业',
                 special: '施工资料',
                 material: '施工组织设计',
-                useDict: '否',
+                useDict: '是',
                 fieldName: '责任者',
                 alias: '编制单位,编制人',
                 locations: ['封面', '正文'],
@@ -8023,7 +8019,7 @@ const aiRuleRules = [
                 specialLabel: '业务/职能细分',
                 special: '市场投资管理',
                 material: '客户信息',
-                useDict: '是',
+                useDict: '否',
                 fieldName: '项目类型',
                 alias: '客户类型,业务类别',
                 locations: ['标题', '正文', '表格'],
@@ -8032,10 +8028,32 @@ const aiRuleRules = [
                 enabled: false,
                 display: '否',
                 highQuality: '否',
-                prepose: '是',
+                prepose: '否',
                 backfill: '否',
                 updater: '王五',
                 updatedAt: '2026-05-22 11:00'
+            },
+            {
+                id: 'EXT-R-004',
+                level1: '文书档案',
+                level2: '采购管理',
+                level3: '寻源定商管理',
+                specialLabel: '业务/职能细分',
+                special: '采购管理',
+                material: '中标通知书',
+                useDict: '是',
+                fieldName: '文号',
+                alias: '发文字号/发文编号/红头编号',
+                locations: ['标题'],
+                agentRule: '提取红头文件下方或标题上方的标准机关代字和年份序号，如“X水发〔202X〕X号”；未命中时按“在标题中定位‘文号/发文编号/红头编号’等别名，提取其后对应字段值作为发文字号”提取',
+                fieldType: '文本',
+                enabled: true,
+                display: '是',
+                highQuality: '否',
+                prepose: '否',
+                backfill: '是',
+                updater: '张三',
+                updatedAt: '2026-06-01 09:00'
             }
         ];
         const aiExtractResults = [
@@ -8098,7 +8116,54 @@ const aiRuleRules = [
             }
         ];
 
+        function aiExtractBuildDefaultResult(rule) {
+            const sampleValue = rule.fieldName === '文号' ? 'X水发〔2026〕8号' : '示例提取结果';
+            return {
+                id: rule.id.replace('EXT-R-', 'EXT-RES-'),
+                fileName: `${rule.material || '示例文件'}-示例文件.pdf`,
+                ruleId: rule.id,
+                level1: rule.level1 || '',
+                level2: rule.level2 || '',
+                level3: rule.level3 || '',
+                material: rule.material || '',
+                fieldName: rule.fieldName || '',
+                highQuality: rule.highQuality || '否',
+                prepose: rule.prepose || '否',
+                status: '成功',
+                aiResult: sampleValue,
+                resultDesc: `已根据规则“${rule.fieldName || '字段'}”生成同步日志数据，可继续调整提取结果。`,
+                backfill: '是',
+                manualSubmitResult: '',
+                submitType: 'AI提取',
+                correctedResult: ''
+            };
+        }
+
+        function aiExtractSyncResultFromRule(rule, createIfMissing = true) {
+            if (!rule || !rule.id) return null;
+            const existing = aiExtractResults.find(item => item.ruleId === rule.id);
+            if (existing) {
+                existing.level1 = rule.level1 || '';
+                existing.level2 = rule.level2 || '';
+                existing.level3 = rule.level3 || '';
+                existing.material = rule.material || '';
+                existing.fieldName = rule.fieldName || '';
+                existing.highQuality = rule.highQuality || '否';
+                existing.prepose = rule.prepose || '否';
+                return existing;
+            }
+            if (!createIfMissing) return null;
+            const created = aiExtractBuildDefaultResult(rule);
+            aiExtractResults.push(created);
+            return created;
+        }
+
+        function aiExtractSyncAllResultsFromRules() {
+            aiExtractRules.forEach(rule => aiExtractSyncResultFromRule(rule, true));
+        }
+
         function aiExtractInit() {
+            aiExtractSyncAllResultsFromRules();
             aiExtractRenderEditorLocations();
             aiExtractBindRuleFormEvents();
             aiExtractSwitchTab(aiExtractCurrentTab, true);
@@ -8296,7 +8361,7 @@ const aiRuleRules = [
             const dictWrap = document.getElementById('ai-extract-editor-field-name-dict-wrap');
             if (manualWrap) manualWrap.classList.toggle('hidden', useDict === '是');
             if (dictWrap) dictWrap.classList.toggle('hidden', useDict !== '是');
-            aiExtractPopulateSelect(document.getElementById('ai-extract-editor-field-name-dict'), aiExtractDictFieldOptions, document.getElementById('ai-extract-editor-field-name-dict')?.value || '', '请选择字典值');
+            aiExtractPopulateSelect(document.getElementById('ai-extract-editor-field-name-dict'), aiExtractDictFieldOptions, document.getElementById('ai-extract-editor-field-name-dict')?.value || '', '请选择');
         }
 
         function aiExtractFillEditorForm(rule) {
@@ -8315,7 +8380,6 @@ const aiRuleRules = [
             document.getElementById('ai-extract-editor-display').value = rule.display || '是';
             document.getElementById('ai-extract-editor-high-quality').value = rule.highQuality || '否';
             document.getElementById('ai-extract-editor-prepose').value = rule.prepose || '否';
-            document.getElementById('ai-extract-editor-backfill').value = rule.backfill || '否';
             document.getElementById('ai-extract-editor-enabled').checked = !!rule.enabled;
             document.getElementById('ai-extract-editor-enabled-text').textContent = rule.enabled ? '启用' : '禁用';
             document.getElementById('ai-extract-editor-agent-logic').value = rule.agentRule || '';
@@ -8339,7 +8403,6 @@ const aiRuleRules = [
             document.getElementById('ai-extract-detail-display').value = rule.display || '-';
             document.getElementById('ai-extract-detail-high-quality').value = rule.highQuality || '-';
             document.getElementById('ai-extract-detail-prepose').value = rule.prepose || '-';
-            document.getElementById('ai-extract-detail-backfill').value = rule.backfill || '-';
             document.getElementById('ai-extract-detail-updater').value = rule.updater || '-';
             document.getElementById('ai-extract-detail-updated-at').value = rule.updatedAt || '-';
             document.getElementById('ai-extract-detail-agent-logic').value = rule.agentRule || '-';
@@ -8367,7 +8430,6 @@ const aiRuleRules = [
                 display: '是',
                 highQuality: '否',
                 prepose: '否',
-                backfill: '否',
                 updater: '张三',
                 updatedAt: aiExtractGetNowText()
             });
@@ -8427,7 +8489,6 @@ const aiRuleRules = [
                 display: document.getElementById('ai-extract-editor-display')?.value || '是',
                 highQuality: document.getElementById('ai-extract-editor-high-quality')?.value || '否',
                 prepose: document.getElementById('ai-extract-editor-prepose')?.value || '否',
-                backfill: document.getElementById('ai-extract-editor-backfill')?.value || '否',
                 updater: '张三',
                 updatedAt: aiExtractGetNowText()
             };
@@ -8446,16 +8507,23 @@ const aiRuleRules = [
             if (!data.level1 || !data.level2 || !data.level3 || !data.material || !data.fieldName || !data.agentRule || !data.locations.length) {
                 return showToast('请补齐规则必填字段后再保存', 'warning');
             }
+            let savedRule = data;
             if (aiExtractCurrentRulePage === 'edit') {
                 const index = aiExtractRules.findIndex(item => item.id === aiExtractEditingRuleId);
-                if (index > -1) aiExtractRules[index] = { ...aiExtractRules[index], ...data };
+                if (index > -1) {
+                    aiExtractRules[index] = { ...aiExtractRules[index], ...data };
+                    savedRule = aiExtractRules[index];
+                }
                 showToast('AI提取规则已更新', 'success');
             } else {
                 aiExtractRules.unshift(data);
+                savedRule = data;
                 showToast('AI提取规则已新增', 'success');
             }
+            aiExtractSyncResultFromRule(savedRule, true);
             aiExtractBackToRuleList();
             aiExtractRenderRules();
+            aiExtractRenderResults();
         }
 
         function aiExtractRenderRules() {
@@ -8476,7 +8544,6 @@ const aiRuleRules = [
                 display: document.getElementById('ai-extract-rule-filter-display')?.value || '',
                 quality: document.getElementById('ai-extract-rule-filter-quality')?.value || '',
                 prepose: document.getElementById('ai-extract-rule-filter-prepose')?.value || '',
-                backfill: document.getElementById('ai-extract-rule-filter-backfill')?.value || '',
                 updater: document.getElementById('ai-extract-rule-filter-updater')?.value?.trim() || ''
             };
             const list = aiExtractRules.filter(rule => {
@@ -8492,7 +8559,6 @@ const aiRuleRules = [
                     && (!filters.display || rule.display === filters.display)
                     && (!filters.quality || rule.highQuality === filters.quality)
                     && (!filters.prepose || rule.prepose === filters.prepose)
-                    && (!filters.backfill || rule.backfill === filters.backfill)
                     && (!filters.updater || (rule.updater || '').includes(filters.updater));
             });
             body.innerHTML = list.map(rule => `
@@ -8511,7 +8577,6 @@ const aiRuleRules = [
                     <td>${aiExtractRenderYesNoTag(rule.display)}</td>
                     <td>${aiExtractRenderYesNoTag(rule.highQuality)}</td>
                     <td>${aiExtractRenderYesNoTag(rule.prepose)}</td>
-                    <td>${aiExtractRenderYesNoTag(rule.backfill)}</td>
                     <td>${escapeHtml(rule.updater || '-')}</td>
                     <td>${escapeHtml(rule.updatedAt || '-')}</td>
                     <td>
@@ -8525,7 +8590,6 @@ const aiRuleRules = [
             document.getElementById('ai-extract-rule-chip-total').textContent = String(aiExtractRules.length);
             document.getElementById('ai-extract-rule-chip-enabled').textContent = String(aiExtractRules.filter(item => item.enabled).length);
             document.getElementById('ai-extract-rule-chip-display').textContent = String(aiExtractRules.filter(item => item.display === '是').length);
-            document.getElementById('ai-extract-rule-chip-backfill').textContent = String(aiExtractRules.filter(item => item.backfill === '是').length);
         }
 
         function aiExtractToggleRuleEnabled(ruleId) {
@@ -8556,8 +8620,7 @@ const aiRuleRules = [
                 'ai-extract-rule-filter-field-type',
                 'ai-extract-rule-filter-display',
                 'ai-extract-rule-filter-quality',
-                'ai-extract-rule-filter-prepose',
-                'ai-extract-rule-filter-backfill'
+                'ai-extract-rule-filter-prepose'
             ].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.value = '';
@@ -8589,7 +8652,6 @@ const aiRuleRules = [
             );
             body.innerHTML = list.map(item => {
                 const desc = item.correctedResult ? `${item.resultDesc}；修正结果：${item.correctedResult}` : item.resultDesc;
-                const canCorrect = item.backfill === '否';
                 return `
                     <tr>
                         <td><span class="text-primary dark:text-blue-300">${escapeHtml(item.fileName)}</span></td>
@@ -8602,7 +8664,6 @@ const aiRuleRules = [
                         <td>${aiExtractRenderResultStatusTag(item.status)}</td>
                         <td>${escapeHtml(item.aiResult)}</td>
                         <td class="rule-logic-cell max-w-[320px] leading-5">${escapeHtml(desc)}</td>
-                        <td>${aiExtractRenderYesNoTag(item.backfill)}</td>
                         <td>${escapeHtml(item.manualSubmitResult || '-')}</td>
                         <td>${escapeHtml(item.submitType || '-')}</td>
                     </tr>
@@ -9812,26 +9873,26 @@ let currentFileDetailEditContext = null;
 
     function buildFileDetailAIExtractRows(source = {}) {
         const rows = [];
-        const pushRow = (fieldName, resultHtml, isBackfilled) => {
+        const pushRow = (fieldName, resultHtml) => {
             rows.push({
                 fieldName,
-                resultHtml,
-                backfillHtml: getFileDetailAIBackfillHtml(isBackfilled)
+                resultHtml
             });
         };
 
-        if (source.datePending) {
-            pushRow('成文日期', `<div class="ai-extract-field min-h-[20px]">${getAIExtractStatusHtml()}</div>`, null);
-        } else if (source.dateSource === 'ai' && source.date) {
-            const tagHtml = source.dateTagText ? getBatchTagHtml(source.dateTagText, source.dateTagTone, source.dateTagTooltip || '') : '';
-            pushRow('成文日期', `<div class="flex items-center gap-2"><span>${escapeHtml(source.date)}</span>${tagHtml}</div>`, true);
+        if (source.datePending || source.authorPending) {
+            pushRow('批复金额', `<div class="ai-extract-field min-h-[20px]">${getAIExtractStatusHtml()}</div>`);
+            return rows;
         }
 
-        if (source.authorPending) {
-            pushRow('责任者', `<div class="ai-extract-field min-h-[20px]">${getAIExtractStatusHtml()}</div>`, null);
-        } else if (source.authorSource === 'ai' && source.author) {
-            const tagHtml = source.authorTagText ? getBatchTagHtml(source.authorTagText, source.authorTagTone, source.authorTagTooltip || '') : '';
-            pushRow('责任者', `<div class="flex items-center gap-2"><span>${escapeHtml(source.author)}</span>${tagHtml}</div>`, true);
+        const aiTagText = source.dateTagText || source.authorTagText || '';
+        const aiTagTone = source.dateTagTone || source.authorTagTone || 'green';
+        const aiTagTooltip = source.dateTagTooltip || source.authorTagTooltip || 'AI提取结果';
+        const hasAIResult = (source.dateSource === 'ai' && source.date) || (source.authorSource === 'ai' && source.author);
+
+        if (hasAIResult) {
+            const tagHtml = aiTagText ? getBatchTagHtml(aiTagText, aiTagTone, aiTagTooltip) : '';
+            pushRow('批复金额', `<div class="flex items-center gap-2"><span>1.25亿元</span>${tagHtml}</div>`);
         }
 
         return rows;
@@ -9845,7 +9906,6 @@ let currentFileDetailEditContext = null;
                 <td class="text-center">${index + 1}</td>
                 <td>${escapeHtml(row.fieldName)}</td>
                 <td>${row.resultHtml}</td>
-                <td>${row.backfillHtml}</td>
             </tr>
         `).join('');
     }
@@ -10909,10 +10969,10 @@ let currentFileDetailEditContext = null;
             uploader: '林悦',
             createdDate: '2026-01-30 11:05:00',
             files: [
-                { name: '项目建议书_供水管网完善.pdf', aiType: '项目建议书', showManualTypeTag: true, materialTypeTagText: 'AI: 95%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度95%', category: '科技档案/投资档案/项目决策', title: '苏州工业园区供水管网完善工程项目建议书', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: true, pages: 25, level: '无密级' },
-                { name: '建议书批复_园区管委会.pdf', aiType: '项目建议书的批复文件', showManualTypeTag: true, materialTypeTagText: 'AI: 88%', materialTypeTagTone: 'yellow', materialTypeTagTooltip: 'AI分类结果，置信度88%', category: '科技档案/投资档案/项目决策', title: '关于苏州工业园区供水管网完善工程项目建议书的批复', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: true, pages: 6, level: '无密级' },
-                { name: '可研报告_供水管网完善工程.pdf', aiType: '可行性研究报告', showManualTypeTag: true, materialTypeTagText: 'AI: 73%', materialTypeTagTone: 'red', materialTypeTagTooltip: 'AI分类结果，置信度73%', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可行性研究报告', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: true, pages: 38, level: '无密级' },
-                { name: '专家评审意见_供水管网项目.docx', aiType: '专家评审意见', showManualTypeTag: true, materialTypeSource: 'manual', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可研专家评审意见', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: true, pages: 11, level: '无密级' }
+                { name: '项目建议书_供水管网完善.pdf', aiType: '项目建议书', showManualTypeTag: true, materialTypeTagText: 'AI: 95%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度95%', category: '科技档案/投资档案/项目决策', title: '苏州工业园区供水管网完善工程项目建议书', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: false, pages: 25, level: '无密级' },
+                { name: '建议书批复_园区管委会.pdf', aiType: '项目建议书的批复文件', showManualTypeTag: true, materialTypeTagText: 'AI: 88%', materialTypeTagTone: 'yellow', materialTypeTagTooltip: 'AI分类结果，置信度88%', category: '科技档案/投资档案/项目决策', title: '关于苏州工业园区供水管网完善工程项目建议书的批复', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: false, pages: 6, level: '无密级' },
+                { name: '可研报告_供水管网完善工程.pdf', aiType: '可行性研究报告', showManualTypeTag: true, materialTypeTagText: 'AI: 73%', materialTypeTagTone: 'red', materialTypeTagTooltip: 'AI分类结果，置信度73%', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可行性研究报告', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: false, pages: 38, level: '无密级' },
+                { name: '专家评审意见_供水管网项目.docx', aiType: '专家评审意见', showManualTypeTag: true, materialTypeSource: 'manual', category: '科技档案/投资档案/可研论证', title: '苏州工业园区供水管网完善工程可研专家评审意见', author: '', authorSource: '', authorTagText: '', authorTagTone: '', authorTagTooltip: '', date: '', dateSource: '', dateTagText: '', dateTagTone: '', dateTagTooltip: '', aiExtractTriggered: false, pages: 11, level: '无密级' }
             ]
         },
         'draft-uploaded-3': {
@@ -10927,7 +10987,7 @@ let currentFileDetailEditContext = null;
             files: [
                 { name: '投资估算说明_太湖新城.pdf', aiType: '投资估算说明', showManualTypeTag: true, materialTypeTagText: 'AI: 98%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度98%', category: '科技档案/投资档案/项目决策', title: '无锡太湖新城供排水一体化工程投资估算说明', author: '江苏城建设计院', authorSource: 'ai', authorTagText: 'AI: 96%', authorTagTone: 'green', authorTagTooltip: 'AI提取结果，置信度96%', date: '2026-01-16', dateSource: 'ai', dateTagText: 'AI: 96%', dateTagTone: 'green', dateTagTooltip: 'AI提取结果，置信度96%', pages: 29, level: '无密级' },
                 { name: '可研批复_市发改委.pdf', aiType: '可行性研究报告批复', showManualTypeTag: true, materialTypeTagText: 'AI: 91%', materialTypeTagTone: 'green', materialTypeTagTooltip: 'AI分类结果，置信度91%', category: '科技档案/投资档案/可研论证', title: '关于无锡太湖新城供排水一体化工程可行性研究报告的批复', author: '无锡市发展和改革委员会', authorSource: 'ai', authorTagText: 'AI: 94%', authorTagTone: 'green', authorTagTooltip: 'AI提取结果，置信度94%', date: '2026-01-19', dateSource: 'ai', dateTagText: 'AI: 83%', dateTagTone: 'yellow', dateTagTooltip: 'AI提取结果，置信度83%', pages: 7, level: '无密级' },
-                { name: '专家论证意见_一体化工程.docx', aiType: '专家论证意见', showManualTypeTag: true, materialTypeTagText: 'AI: 66%', materialTypeTagTone: 'red', materialTypeTagTooltip: 'AI分类结果，置信度66%', category: '科技档案/投资档案/可研论证', title: '无锡太湖新城供排水一体化工程专家论证意见', author: '项目评审委员会', authorSource: 'ai', authorTagText: 'AI: 86%', authorTagTone: 'yellow', authorTagTooltip: 'AI提取结果，置信度86%', date: '2026-01-22', dateSource: 'ai', dateTagText: 'AI: 86%', dateTagTone: 'yellow', dateTagTooltip: 'AI提取结果，置信度86%', pages: 14, level: '无密级' }
+                { name: '专家论证意见_一体化工程.docx', aiType: '', showManualTypeTag: true, materialTypeTagText: 'AI:失败', materialTypeTagTone: 'red', materialTypeTagTooltip: 'AI分类失败，请人工选择', materialTypeTagPlacement: 'top', category: '科技档案/投资档案/可研论证', title: '无锡太湖新城供排水一体化工程专家论证意见', author: '', authorSource: '', authorTagText: 'AI:失败', authorTagTone: 'red', authorTagTooltip: 'AI提取失败，请人工填写', authorTagPlacement: 'top', date: '', dateSource: '', dateTagText: 'AI:失败', dateTagTone: 'red', dateTagTooltip: 'AI提取失败，请人工选择', dateTagPlacement: 'top', pages: 14, level: '无密级' }
             ]
         }
     };
