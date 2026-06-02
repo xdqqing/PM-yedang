@@ -1102,14 +1102,13 @@
                     <div>
                         <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
                             <i class="fas fa-robot text-primary"></i>
-                            AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示部分不通过项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>展示全部检查项并填写提交说明）</span>
+                            AI校验报告 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（请根据 AI 初审或人工复核结果处理异常项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>查看完整校验明细）</span>
                         </h3>
-                        <div class="mt-0.5 text-xs text-primary dark:text-blue-300">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
                     </div>
                     <button type="button" onclick="showAICheckDetail()" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-white text-primary text-sm font-medium shadow-sm hover:bg-blue-50 hover:border-blue-300 hover:shadow transition dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200 dark:hover:bg-blue-800/40 dark:hover:border-blue-500"><i class="fas fa-arrow-up-right-from-square text-[11px]"></i>查看详情</button>
                 </div>
-                <div class="text-sm text-blue-800 dark:text-blue-200">
-                    当前无不通过项
+                <div id="archived-ai-fail-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
+                    AI校验报告加载中...
                 </div>
             </div>
 
@@ -1192,7 +1191,7 @@
                         <div class="table-container mobile-scroll-x">
                             <table class="data-table readonly-table sticky-action-table" id="file-list-archived-table">
                                 <colgroup>
-                                    <col span="11">
+                                    <col span="12">
                                     <col class="table-sticky-action-col">
                                 </colgroup>
                                 <thead>
@@ -1393,14 +1392,13 @@
                     <div>
                         <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
                             <i class="fas fa-robot text-primary"></i>
-                            AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示部分不通过项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>展示全部检查项并填写提交说明）</span>
+                            AI校验报告 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（请根据 AI 初审或人工复核结果处理异常项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>查看完整校验明细）</span>
                         </h3>
-                        <div class="mt-0.5 text-xs text-primary dark:text-blue-300">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
                     </div>
                     <button type="button" onclick="showAICheckDetail()" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-white text-primary text-sm font-medium shadow-sm hover:bg-blue-50 hover:border-blue-300 hover:shadow transition dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200 dark:hover:bg-blue-800/40 dark:hover:border-blue-500"><i class="fas fa-arrow-up-right-from-square text-[11px]"></i>查看详情</button>
                 </div>
                 <div id="rejected-ai-fail-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-                    <div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>
+                    <div class="text-sm text-blue-800 dark:text-blue-200">AI校验报告加载中...</div>
                 </div>
             </div>
 
@@ -1543,7 +1541,7 @@
                         <div class="table-container mobile-scroll-x">
                             <table class="data-table editable-table sticky-action-table" id="file-list-rejected-table">
                                 <colgroup>
-                                    <col span="9">
+                                    <col span="10">
                                     <col class="table-sticky-action-col">
                                 </colgroup>
                                 <thead>
@@ -1751,14 +1749,13 @@
                     <div>
                         <h3 class="font-semibold text-blue-900 flex items-center gap-2 dark:text-blue-200">
                             <i class="fas fa-robot text-primary"></i>
-                            AI校验说明 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（页面仅展示部分不通过项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>展示全部检查项并填写提交说明）</span>
+                            AI校验报告 <span class="text-xs font-normal text-gray-500 dark:text-gray-400">（请根据 AI 初审或人工复核结果处理异常项，点击<span class="text-primary dark:text-blue-300">卡片</span>或<span class="text-primary dark:text-blue-300">查看详情</span>查看完整校验明细）</span>
                         </h3>
-                        <div class="mt-0.5 text-xs text-primary dark:text-blue-300">针对不通过文件，请填写提交说明或替换文件后再提交。</div>
                     </div>
                     <button type="button" onclick="showAICheckDetail()" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-white text-primary text-sm font-medium shadow-sm hover:bg-blue-50 hover:border-blue-300 hover:shadow transition dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200 dark:hover:bg-blue-800/40 dark:hover:border-blue-500"><i class="fas fa-arrow-up-right-from-square text-[11px]"></i>查看详情</button>
                 </div>
                 <div id="pending-ai-fail-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-                    <div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>
+                    <div class="text-sm text-blue-800 dark:text-blue-200">AI校验报告加载中...</div>
                 </div>
             </div>
 
@@ -1838,7 +1835,7 @@
                         <div class="table-container mobile-scroll-x">
                             <table class="data-table readonly-table sticky-action-table" id="file-list-pending-table">
                                 <colgroup>
-                                    <col span="11">
+                                    <col span="12">
                                     <col class="table-sticky-action-col">
                                 </colgroup>
                                 <thead>
@@ -2036,6 +2033,7 @@
                                     <div id="pending-ai-node-result" class="flex items-center gap-4 flex-wrap text-xs mt-1">
                                         <span id="pending-ai-node-pass-text" class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 8项</span>
                                         <span id="pending-ai-node-fail-text" class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 3项</span>
+                                        <span id="pending-ai-node-risk-text" class="text-amber-500 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i> 风险提示 0项</span>
                                     </div>
                                 </div>
                             </div>
@@ -2124,7 +2122,7 @@
                 <div class="table-container mobile-scroll-x">
                     <table class="data-table sticky-action-table" id="file-list-table">
                         <colgroup>
-                            <col span="9">
+                            <col span="10">
                             <col class="table-sticky-action-col">
                         </colgroup>
                         <thead>
@@ -2146,28 +2144,28 @@
                             <tr class="header-filter">
                                 <td class="sticky left-0 z-30 bg-gray-50 dark:bg-gray-800">-</td>
                                 <td class="sticky left-10 z-30 bg-gray-50 dark:bg-gray-800 text-center">-</td>
-                                <td><input type="text" placeholder="搜索文件名" class="w-full" oninput="filterFileList(this, 2)"></td>
+                                <td><input type="text" placeholder="搜索文件名" class="w-full" oninput="filterFileList(this, 3)"></td>
                                 <td>
-                                    <select class="w-full dark:bg-gray-700" onchange="filterFileList(this, 3)">
+                                    <select class="w-full dark:bg-gray-700" onchange="filterFileList(this, 4)">
                                         <option value="">全部</option>
                                         <option>科技档案/基建档案</option>
                                         <option>科技档案/投资档案</option>
                                         <option>文书档案/行政文书</option>
                                     </select>
                                 </td>
-                                <td><input type="text" placeholder="搜索资料类型" class="w-full" oninput="filterFileList(this, 4)"></td>
-                                <td><input type="text" placeholder="搜索题名" class="w-full" oninput="filterFileList(this, 5)"></td>
+                                <td><input type="text" placeholder="搜索资料类型" class="w-full" oninput="filterFileList(this, 5)"></td>
+                                <td><input type="text" placeholder="搜索题名" class="w-full" oninput="filterFileList(this, 6)"></td>
                                 <td>
-                                    <select class="w-full dark:bg-gray-700" onchange="filterFileList(this, 6)">
+                                    <select class="w-full dark:bg-gray-700" onchange="filterFileList(this, 7)">
                                         <option value="">全部</option>
                                         <option>无密级</option>
                                         <option>秘密级</option>
                                         <option>机密级</option>
                                     </select>
                                 </td>
-                                <td><input type="text" placeholder="日期" class="w-full" oninput="filterFileList(this, 7)"></td>
+                                <td><input type="text" placeholder="日期" class="w-full" oninput="filterFileList(this, 8)"></td>
                                 <td>
-                                    <select class="w-full dark:bg-gray-700" onchange="filterFileList(this, 8)">
+                                    <select class="w-full dark:bg-gray-700" onchange="filterFileList(this, 9)">
                                         <option value="">全部</option>
                                         <option>待提交</option>
                                         <option>审批中</option>
@@ -4215,7 +4213,7 @@
             </div>
 
             <div class="table-container mobile-scroll-x">
-                <table class="data-table">
+                    <table class="data-table" id="file-detail-edit-ai-info-table">
                     <thead>
                         <tr>
                             <th class="min-w-[70px]">序号<div class="resize-handle"></div></th>
@@ -4422,7 +4420,7 @@
                 <div class="table-container mobile-scroll-x">
                     <table class="data-table editable-table sticky-action-table" id="batch-upload-table">
                         <colgroup>
-                            <col span="12">
+                            <col span="13">
                             <col class="table-sticky-action-col">
                         </colgroup>
                         <thead>
@@ -4472,7 +4470,7 @@
             <button onclick="closeAICheckModal()" class="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"><i class="fas fa-times text-xl"></i></button>
         </div>
         <div class="p-4 md:p-6 overflow-y-auto flex-1">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
                 <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 dark:bg-blue-900/20 dark:border-blue-800">
                     <div class="text-sm text-gray-500 dark:text-gray-400">总检查项</div>
                     <div id="ai-detail-enabled-count" class="text-3xl font-bold text-primary mt-1">11</div>
@@ -4480,6 +4478,10 @@
                 <div id="ai-detail-fail-card" onclick="setAIDetailResultFilter('不通过')" class="bg-red-50 border border-red-100 rounded-xl p-4 cursor-pointer transition hover:border-red-300 hover:shadow-sm dark:bg-red-900/20 dark:border-red-800 dark:hover:border-red-600">
                     <div class="text-sm text-gray-500 dark:text-gray-400">不通过项</div>
                     <div id="ai-detail-fail-count" class="text-3xl font-bold text-danger mt-1">0</div>
+                </div>
+                <div id="ai-detail-risk-card" onclick="setAIDetailResultFilter('风险提示')" class="bg-amber-50 border border-amber-100 rounded-xl p-4 cursor-pointer transition hover:border-amber-300 hover:shadow-sm dark:bg-amber-900/20 dark:border-amber-800 dark:hover:border-amber-600">
+                    <div class="text-sm text-gray-500 dark:text-gray-400">风险提示项</div>
+                    <div id="ai-detail-risk-count" class="text-3xl font-bold text-amber-500 mt-1">0</div>
                 </div>
                 <div id="ai-detail-pass-card" onclick="setAIDetailResultFilter('通过')" class="bg-green-50 border border-green-100 rounded-xl p-4 cursor-pointer transition hover:border-green-300 hover:shadow-sm dark:bg-green-900/20 dark:border-green-800 dark:hover:border-green-600">
                     <div class="text-sm text-gray-500 dark:text-gray-400">通过项</div>
@@ -4507,6 +4509,7 @@
                                     <option value="">全部</option>
                                     <option value="通过">通过</option>
                                     <option value="不通过">不通过</option>
+                                    <option value="风险提示">风险提示</option>
                                 </select>
                             </th>
                             <th><input id="ai-detail-filter-submit-remark" oninput="aiDetailApplyFilters()" placeholder="提交说明" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
@@ -4516,6 +4519,7 @@
                                     <option value="高">高</option>
                                     <option value="中">中</option>
                                     <option value="低">低</option>
+                                    <option value="风险提示">风险提示</option>
                                 </select>
                             </th>
                             <th><input id="ai-detail-filter-location" oninput="aiDetailApplyFilters()" placeholder="校验定位" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"></th>
@@ -4742,6 +4746,7 @@
                                                     <option value="高">高</option>
                                                     <option value="中">中</option>
                                                     <option value="低">低</option>
+                                                    <option value="风险提示">风险提示</option>
                                                 </select>
                                             </th>
                                             <th class="min-w-[120px]">
@@ -4847,6 +4852,7 @@
                                         <option>高</option>
                                         <option selected>中</option>
                                         <option>低</option>
+                                        <option>风险提示</option>
                                     </select>
                                 </div>
                                 <div>
@@ -4950,6 +4956,7 @@
                                         <option>高</option>
                                         <option>中</option>
                                         <option>低</option>
+                                        <option>风险提示</option>
                                     </select>
                                 </div>
                                 <div>
@@ -5510,7 +5517,7 @@ const aiRuleRules = [
                 dimension: '页码 / 附件完整性',
                 item: '6.2. 附件齐全',
                 logic: '当文档内容出现“附件”关键词时，检测附件材料是否齐全；若未触发前置条件，则不校验并按通过处理。',
-                risk: '低',
+                risk: '风险提示',
                 strongControl: '否',
                 owner: 'Agent',
                 status: '优化中',
@@ -6298,6 +6305,9 @@ const aiRuleRules = [
             if (risk === '中') {
                 return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-200">中</span>';
             }
+            if (risk === '风险提示') {
+                return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">风险提示</span>';
+            }
             return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">低</span>';
         }
 
@@ -7078,6 +7088,7 @@ const aiRuleRules = [
             renderValidationSummary();
             renderValidationReport();
             refreshPendingAICheckPanel();
+            renderAllFileListAICheckResultColumns();
             if (openModal) openValidationReportModal();
             if (withToast) {
                 showToast(validationReport.blocked ? 'AI校验完成，存在强控拦截项' : 'AI校验完成，可查看AI校验说明', validationReport.blocked ? 'warning' : 'success');
@@ -7199,9 +7210,10 @@ const aiRuleRules = [
                 return;
             }
             summary.classList.remove('hidden');
+            const summaryData = getAICheckSummary(report);
             text.textContent = report.blocked
-                ? `本次启用 ${report.enabledRuleCount} 条规则，命中 ${report.strongBlockCount} 条强控拦截项，提交将被阻止。`
-                : `本次启用 ${report.enabledRuleCount} 条规则，通过 ${report.passCount} 项，待人工复核 ${report.reviewCount} 项，可查看详细报告。`;
+                ? `本次启用 ${summaryData.enabledRuleCount} 条规则，命中 ${summaryData.strongBlockCount} 条强控拦截项，提交将被阻止。`
+                : `本次启用 ${summaryData.enabledRuleCount} 条规则，通过 ${summaryData.passCount} 项，不通过 ${summaryData.notPassCount} 项，风险提示 ${summaryData.riskTipCount} 项，可查看详细报告。`;
         }
 
         function shouldUseLiveValidationReport() {
@@ -7311,48 +7323,384 @@ const aiRuleRules = [
             return fallbackValidationResultsMap.pendingNormal;
         }
 
+        function getValidationDisplayResult(item) {
+            if (String(item?.risk || '').trim() === '风险提示') return '风险提示';
+            return String(item?.result || '') === 'PASS' ? '通过' : '不通过';
+        }
+
+        function getValidationResultsSummary(results = []) {
+            const checkSummary = {
+                totalCount: results.length,
+                passCount: 0,
+                failCount: 0,
+                riskTipCount: 0
+            };
+            const fileStatusMap = new Map();
+            const resultPriorityMap = {
+                通过: 0,
+                风险提示: 1,
+                不通过: 2
+            };
+
+            results.forEach(item => {
+                const displayResult = getValidationDisplayResult(item);
+                if (displayResult === '通过') checkSummary.passCount++;
+                if (displayResult === '不通过') checkSummary.failCount++;
+                if (displayResult === '风险提示') checkSummary.riskTipCount++;
+
+                const fileName = String(item?.fileName || '').trim() || '未命名文件';
+                const currentFileStatus = fileStatusMap.get(fileName);
+                if (!currentFileStatus || (resultPriorityMap[displayResult] ?? -1) > (resultPriorityMap[currentFileStatus] ?? -1)) {
+                    fileStatusMap.set(fileName, displayResult);
+                }
+            });
+
+            const fileSummary = {
+                totalCount: fileStatusMap.size,
+                passCount: 0,
+                failCount: 0,
+                riskTipCount: 0
+            };
+            fileStatusMap.forEach(status => {
+                if (status === '通过') fileSummary.passCount++;
+                if (status === '不通过') fileSummary.failCount++;
+                if (status === '风险提示') fileSummary.riskTipCount++;
+            });
+
+            return {
+                checkSummary,
+                fileSummary
+            };
+        }
+
+        function getValidationReportResults(report) {
+            const source = report || getValidationReportSafe();
+            if (source && Array.isArray(source.results) && source.results.length) {
+                return source.results;
+            }
+            return getFallbackValidationResults(currentTab);
+        }
+
+        function getValidationResultsForContext(pageContext) {
+            if (pageContext === 'archive-detail-archived') {
+                return getFallbackValidationResults('archive-detail-archived');
+            }
+            if (pageContext === 'archive-detail-rejected') {
+                return getFallbackValidationResults('archive-detail-rejected');
+            }
+            if (pageContext === 'archive-detail-pending') {
+                if (currentPendingDetailMode === 'pending-ai-processing') {
+                    return [];
+                }
+                return getFallbackValidationResults('archive-detail-pending');
+            }
+            if (pageContext === 'upload-files') {
+                return validationReport && Array.isArray(validationReport.results) ? validationReport.results : [];
+            }
+            return [];
+        }
+
+        function getFileValidationDisplayStatus(fileName, pageContext) {
+            const normalizedFileName = String(fileName || '').trim();
+            if (!normalizedFileName) return '';
+            const results = getValidationResultsForContext(pageContext);
+            if (!results.length) return '';
+            const matchedResults = results.filter(item => String(item?.fileName || '').trim() === normalizedFileName);
+            if (!matchedResults.length) return '';
+            const statusPriorityMap = {
+                通过: 0,
+                风险提示: 1,
+                不通过: 2
+            };
+            return matchedResults.reduce((currentStatus, item) => {
+                const nextStatus = getValidationDisplayResult(item);
+                return (statusPriorityMap[nextStatus] ?? -1) > (statusPriorityMap[currentStatus] ?? -1)
+                    ? nextStatus
+                    : currentStatus;
+            }, '');
+        }
+
+        function renderFileAICheckStatusButton(fileName, pageContext) {
+            const status = getFileValidationDisplayStatus(fileName, pageContext);
+            if (!status) {
+                return '<span class="text-gray-400">-</span>';
+            }
+            const toneClassMap = {
+                通过: 'border-green-300 bg-green-50 text-green-600 dark:border-green-700 dark:bg-green-900/20 dark:text-green-300',
+                不通过: 'border-red-300 bg-red-50 text-red-600 dark:border-red-700 dark:bg-red-900/20 dark:text-red-300',
+                风险提示: 'border-amber-300 bg-amber-50 text-amber-600 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-300'
+            };
+            const iconClassMap = {
+                通过: 'fa-circle-check',
+                不通过: 'fa-circle-xmark',
+                风险提示: 'fa-circle-exclamation'
+            };
+            return `
+                <button type="button"
+                    onclick='openAICheckDetailForFile(${JSON.stringify(String(fileName || ''))})'
+                    class="inline-flex items-center gap-1 min-w-[84px] justify-center rounded-full border px-2.5 py-1 text-xs font-medium leading-none transition hover:shadow-sm ${toneClassMap[status]}">
+                    <i class="fas ${iconClassMap[status]} text-[12px]"></i>
+                    <span>${status}</span>
+                    <i class="fas fa-angle-right text-[10px] opacity-70"></i>
+                </button>
+            `;
+        }
+
+        function getValidationContextFileNames(pageContext) {
+            const results = getValidationResultsForContext(pageContext);
+            const uniqueFileNames = [];
+            results.forEach(item => {
+                const fileName = String(item?.fileName || '').trim();
+                if (fileName && !uniqueFileNames.includes(fileName)) {
+                    uniqueFileNames.push(fileName);
+                }
+            });
+            return uniqueFileNames;
+        }
+
+        function renderFileListAICheckResultColumn(tableId, pageContext) {
+            const table = document.getElementById(tableId);
+            if (!table) return;
+            const theadRows = table.tHead ? Array.from(table.tHead.rows) : [];
+            const headerRow = theadRows[0];
+            if (headerRow && !headerRow.querySelector('[data-ai-check-result-header="true"]')) {
+                const attachmentHeader = Array.from(headerRow.cells).find(cell => cell.textContent.includes('附件名称'));
+                if (attachmentHeader) {
+                    const th = document.createElement('th');
+                    th.dataset.aiCheckResultHeader = 'true';
+                    th.innerHTML = 'AI校验结果<div class="resize-handle"></div>';
+                    headerRow.insertBefore(th, attachmentHeader);
+                }
+            }
+
+            const filterRow = table.tHead?.querySelector('tr.header-filter');
+            if (filterRow) {
+                filterRow.remove();
+            }
+
+            const bodyRows = Array.from(table.tBodies[0]?.rows || []);
+            const validationFileNames = getValidationContextFileNames(pageContext);
+            let matchedRowIndex = 0;
+            bodyRows.forEach(row => {
+                const emptyCell = row.querySelector('td[colspan]');
+                if (emptyCell) {
+                    if (tableId === 'batch-upload-table') {
+                        emptyCell.colSpan = 14;
+                    }
+                    return;
+                }
+                const fileLink = row.querySelector('a');
+                const fileNameCell = fileLink ? fileLink.closest('td') : null;
+                if (!fileNameCell) return;
+                const displayedFileName = fileLink.textContent.trim();
+                const directStatus = getFileValidationDisplayStatus(displayedFileName, pageContext);
+                const mappedFileName = row.dataset.aiCheckFileName || validationFileNames[matchedRowIndex] || '';
+                const effectiveFileName = directStatus ? displayedFileName : mappedFileName;
+                if (effectiveFileName) {
+                    row.dataset.aiCheckFileName = effectiveFileName;
+                    if (!directStatus && mappedFileName && fileLink.textContent.trim() !== mappedFileName) {
+                        fileLink.textContent = mappedFileName;
+                    }
+                } else {
+                    delete row.dataset.aiCheckFileName;
+                }
+                let aiCell = row.querySelector('td.ai-check-result-cell');
+                if (!aiCell) {
+                    aiCell = document.createElement('td');
+                    aiCell.className = 'ai-check-result-cell text-center whitespace-nowrap';
+                    row.insertBefore(aiCell, fileNameCell);
+                }
+                aiCell.innerHTML = renderFileAICheckStatusButton(effectiveFileName, pageContext);
+                matchedRowIndex += 1;
+            });
+        }
+
+        function syncFileListTitleWithVisibleRows(tableId, titleSelector = 'h3') {
+            const table = document.getElementById(tableId);
+            if (!table) return;
+            const section = table.closest('.bg-white');
+            const titleEl = section?.querySelector(titleSelector);
+            if (!titleEl) return;
+            const visibleRows = Array.from(table.tBodies[0]?.rows || []).filter(row => row.style.display !== 'none' && !row.querySelector('td[colspan]'));
+            titleEl.textContent = `文件清单 (${visibleRows.length}份)`;
+        }
+
+        function syncStaticDetailTableRowsWithValidationResults(tableId, pageContext) {
+            const validationFileNames = getValidationContextFileNames(pageContext);
+            if (!validationFileNames.length) return;
+            const table = document.getElementById(tableId);
+            const tbody = table?.tBodies?.[0];
+            if (!tbody) return;
+            let rows = Array.from(tbody.rows).filter(row => !row.querySelector('td[colspan]'));
+            if (!rows.length) return;
+            const templateRow = rows[rows.length - 1].cloneNode(true);
+            while (rows.length < validationFileNames.length) {
+                const clonedRow = templateRow.cloneNode(true);
+                tbody.appendChild(clonedRow);
+                rows.push(clonedRow);
+            }
+            rows.forEach((row, index) => {
+                const visible = index < validationFileNames.length;
+                row.style.display = visible ? '' : 'none';
+                if (!visible) return;
+                const fileName = validationFileNames[index];
+                const indexCell = row.querySelector('td');
+                if (indexCell) indexCell.textContent = String(index + 1);
+                const fileLink = row.querySelector('a');
+                if (fileLink) {
+                    fileLink.textContent = fileName;
+                }
+                row.dataset.aiCheckFileName = fileName;
+            });
+        }
+
+        function syncAllFileListTitles() {
+            syncFileListTitleWithVisibleRows('file-list-archived-table');
+            syncFileListTitleWithVisibleRows('file-list-rejected-table');
+            syncFileListTitleWithVisibleRows('file-list-pending-table', '#pending-detail-file-list-title');
+        }
+
+        function renderAllFileListAICheckResultColumns() {
+            syncStaticDetailTableRowsWithValidationResults('file-list-archived-table', 'archive-detail-archived');
+            syncStaticDetailTableRowsWithValidationResults('file-list-rejected-table', 'archive-detail-rejected');
+            if (currentPendingDetailMode !== 'pending-ai-processing') {
+                syncStaticDetailTableRowsWithValidationResults('file-list-pending-table', 'archive-detail-pending');
+            }
+            renderFileListAICheckResultColumn('file-list-archived-table', 'archive-detail-archived');
+            renderFileListAICheckResultColumn('file-list-rejected-table', 'archive-detail-rejected');
+            renderFileListAICheckResultColumn('file-list-pending-table', 'archive-detail-pending');
+            renderFileListAICheckResultColumn('file-list-table', 'file-list');
+            renderFileListAICheckResultColumn('batch-upload-table', 'upload-files');
+            syncAllFileListTitles();
+        }
+
+        function resetAICheckDetailFilters(fileName = '') {
+            const fieldMap = {
+                'ai-detail-filter-file': fileName || '',
+                'ai-detail-filter-logic': '',
+                'ai-detail-filter-result': '',
+                'ai-detail-filter-submit-remark': '',
+                'ai-detail-filter-risk': '',
+                'ai-detail-filter-location': '',
+                'ai-detail-filter-message': '',
+                'ai-detail-filter-advice': ''
+            };
+            Object.entries(fieldMap).forEach(([id, value]) => {
+                const el = document.getElementById(id);
+                if (el) el.value = value;
+            });
+        }
+
+        function renderValidationReportMetric(label, count, tone = 'green', unit = '项') {
+            const toneClassMap = {
+                green: {
+                    box: 'bg-green-50 border-green-100 dark:bg-green-900/20 dark:border-green-800',
+                    icon: 'text-green-500',
+                    text: 'text-green-500'
+                },
+                red: {
+                    box: 'bg-red-50 border-red-100 dark:bg-red-900/20 dark:border-red-800',
+                    icon: 'text-red-500',
+                    text: 'text-red-500'
+                },
+                amber: {
+                    box: 'bg-amber-50 border-amber-100 dark:bg-amber-900/20 dark:border-amber-800',
+                    icon: 'text-amber-500',
+                    text: 'text-amber-500'
+                }
+            };
+            const toneConfig = toneClassMap[tone] || toneClassMap.green;
+            const iconHtml = label === '通过'
+                ? '<i class="fas fa-check-circle"></i>'
+                : label === '不通过'
+                    ? '<i class="fas fa-times-circle"></i>'
+                    : '<i class="fas fa-exclamation-circle"></i>';
+            return `
+                <div class="rounded-xl border px-4 py-3 text-center ${toneConfig.box}">
+                    <div class="flex items-center justify-center gap-1 text-sm font-medium ${toneConfig.icon}">
+                        ${iconHtml}
+                        <span>${label}</span>
+                    </div>
+                    <div class="mt-2 flex items-end justify-center gap-1">
+                        <span class="text-4xl leading-none font-semibold ${toneConfig.text}">${count}</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">${unit}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildValidationReportCardHtml(results = []) {
+            const summary = getValidationResultsSummary(results);
+            return `
+                <div onclick="showAICheckDetail()" class="bg-white border border-blue-100 rounded-xl p-4 cursor-pointer transition hover:border-primary hover:shadow-sm dark:bg-gray-800/80 dark:border-blue-900/40 dark:hover:border-blue-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center dark:bg-blue-900/30 dark:text-blue-200">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-semibold text-gray-900 dark:text-white">文件检查</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">共检查文件：${summary.fileSummary.totalCount} 份</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+                        ${renderValidationReportMetric('通过', summary.fileSummary.passCount, 'green', '份')}
+                        ${renderValidationReportMetric('不通过', summary.fileSummary.failCount, 'red', '份')}
+                        ${renderValidationReportMetric('风险提示', summary.fileSummary.riskTipCount, 'amber', '份')}
+                    </div>
+                </div>
+                <div onclick="showAICheckDetail()" class="bg-white border border-blue-100 rounded-xl p-4 cursor-pointer transition hover:border-primary hover:shadow-sm dark:bg-gray-800/80 dark:border-blue-900/40 dark:hover:border-blue-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-violet-50 text-violet-500 flex items-center justify-center dark:bg-violet-900/30 dark:text-violet-300">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-semibold text-gray-900 dark:text-white">检查项</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">共涉及检查项：${summary.checkSummary.totalCount} 项</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+                        ${renderValidationReportMetric('通过', summary.checkSummary.passCount, 'green')}
+                        ${renderValidationReportMetric('不通过', summary.checkSummary.failCount, 'red')}
+                        ${renderValidationReportMetric('风险提示', summary.checkSummary.riskTipCount, 'amber')}
+                    </div>
+                </div>
+            `;
+        }
+
         function getAICheckSummary(report) {
             const source = report || getValidationReportSafe();
-            if (!source) {
-                const fallbackResults = getFallbackValidationResults(currentTab);
-                const passCount = fallbackResults.filter(item => item.result === 'PASS').length;
-                const notPassCount = fallbackResults.length - passCount;
-                const strongBlockCount = fallbackResults.filter(item => item.result !== 'PASS' && item.strongControl === '是').length;
-                return {
-                    enabledRuleCount: fallbackResults.length,
-                    passCount,
-                    notPassCount,
-                    strongBlockCount,
-                    blocked: strongBlockCount > 0 || notPassCount > 0
-                };
-            }
-            const passCount = Number(source.passCount || 0);
-            const notPassCount = Number(source.notPassCount || (Number(source.reviewCount || 0) + Number(source.failCount || 0)));
-            const enabledRuleCount = passCount + notPassCount;
+            const results = getValidationReportResults(source);
+            const summary = getValidationResultsSummary(results);
+            const strongBlockCount = source
+                ? Number(source.strongBlockCount || 0)
+                : results.filter(item => getValidationDisplayResult(item) === '不通过' && item.strongControl === '是').length;
             return {
-                enabledRuleCount: enabledRuleCount || Number(source.enabledRuleCount || 0),
-                passCount,
-                notPassCount,
-                strongBlockCount: Number(source.strongBlockCount || 0),
-                blocked: !!source.blocked
+                enabledRuleCount: summary.checkSummary.totalCount || Number(source?.enabledRuleCount || 0),
+                passCount: summary.checkSummary.passCount,
+                notPassCount: summary.checkSummary.failCount,
+                riskTipCount: summary.checkSummary.riskTipCount,
+                fileTotalCount: summary.fileSummary.totalCount,
+                filePassCount: summary.fileSummary.passCount,
+                fileNotPassCount: summary.fileSummary.failCount,
+                fileRiskTipCount: summary.fileSummary.riskTipCount,
+                strongBlockCount,
+                blocked: source ? !!source.blocked : strongBlockCount > 0 || summary.checkSummary.failCount > 0
             };
         }
 
         function refreshPendingAICheckPanel() {
             const summary = getAICheckSummary();
             const nodeResultEl = document.getElementById('pending-ai-node-result');
-            const nodePassEl = document.getElementById('pending-ai-node-pass-text');
-            const nodeFailEl = document.getElementById('pending-ai-node-fail-text');
             const nodeTimeEl = document.getElementById('pending-ai-node-time');
             const isPendingDetailPage = currentTab === 'archive-detail-pending';
-            const failListEl = isPendingDetailPage
-                ? document.getElementById('pending-ai-fail-list')
-                : document.getElementById('rejected-ai-fail-list');
+            const failListEl = currentTab === 'archive-detail-archived'
+                ? document.getElementById('archived-ai-fail-list')
+                : isPendingDetailPage
+                    ? document.getElementById('pending-ai-fail-list')
+                    : document.getElementById('rejected-ai-fail-list');
             const aiCard = isPendingDetailPage ? document.getElementById('pending-ai-card') : null;
             const report = getValidationReportSafe();
-            const fallbackResults = getFallbackValidationResults(currentTab);
-            const allResults = report && Array.isArray(report.results) && report.results.length ? report.results : fallbackResults;
-            const failResults = allResults.filter(item => item.result !== 'PASS');
+            const allResults = getValidationReportResults(report);
             const isAIProcessingMode = isPendingDetailPage && currentPendingDetailMode === 'pending-ai-processing';
 
             if (isAIProcessingMode) {
@@ -7373,74 +7721,30 @@ const aiRuleRules = [
 
             if (nodeResultEl) {
                 nodeResultEl.className = 'flex items-center gap-4 flex-wrap text-xs mt-1';
-                if (!document.getElementById('pending-ai-node-pass-text') || !document.getElementById('pending-ai-node-fail-text')) {
+                if (!document.getElementById('pending-ai-node-pass-text') || !document.getElementById('pending-ai-node-fail-text') || !document.getElementById('pending-ai-node-risk-text')) {
                     nodeResultEl.innerHTML = `
                         <span id="pending-ai-node-pass-text" class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 0项</span>
                         <span id="pending-ai-node-fail-text" class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 0项</span>
+                        <span id="pending-ai-node-risk-text" class="text-amber-500 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i> 风险提示 0项</span>
                     `;
                 }
             }
             const latestNodePassEl = document.getElementById('pending-ai-node-pass-text');
             const latestNodeFailEl = document.getElementById('pending-ai-node-fail-text');
+            const latestNodeRiskEl = document.getElementById('pending-ai-node-risk-text');
             if (latestNodePassEl) {
                 latestNodePassEl.innerHTML = `<i class="fas fa-check-circle"></i> 通过 ${summary.passCount}项`;
             }
             if (latestNodeFailEl) {
                 latestNodeFailEl.innerHTML = `<i class="fas fa-times-circle"></i> 不通过 ${summary.notPassCount}项`;
             }
+            if (latestNodeRiskEl) {
+                latestNodeRiskEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> 风险提示 ${summary.riskTipCount}项`;
+            }
 
             if (failListEl) {
-                if (!failResults.length) {
-                    failListEl.innerHTML = '<div class="text-sm text-blue-800 dark:text-blue-200">当前无不通过项</div>';
-                } else {
-                    failListEl.innerHTML = failResults.map((item, index) => {
-                        const riskBadge = renderAICheckCardRiskBadge(item.risk || '-');
-                        const adviceRaw = String(getValidationAdviceForCard(item) || '').trim();
-                        const adviceValue = escapeHtml(adviceRaw || '-');
-                        const adviceTitle = escapeHtml(adviceRaw || '-');
-                        const submitRemarkRaw = String(item.submissionRemark || item.submissionComment || '').trim();
-                        const submitRemarkValue = escapeHtml(submitRemarkRaw);
-                        const submitRemarkTitle = escapeHtml(submitRemarkRaw || '-');
-                        const submitRemarkPlaceholder = item.result === 'PASS'
-                            ? '校验通过项无需填写'
-                            : '校验不通过，请填写提交说明。';
-                        const submitRemarkClass = item.result === 'PASS'
-                            ? 'w-full bg-gray-100 border border-gray-200 rounded-lg px-2 py-1 text-xs text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-500'
-                            : 'w-full bg-white border border-gray-300 rounded-lg px-2 py-1 text-xs placeholder:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500';
-                        return `
-                            <div onclick="showAICheckDetail()" class="bg-white border border-blue-100 rounded-lg p-2.5 cursor-pointer transition hover:border-primary hover:shadow-sm dark:bg-gray-800/80 dark:border-blue-900/40 dark:hover:border-blue-500">
-                                <div class="flex items-start justify-between gap-2 mb-2">
-                                    <div class="min-w-0">
-                                        <div class="text-sm font-medium text-gray-900 break-all dark:text-white">${escapeHtml(item.fileName || '-')}</div>
-                                    </div>
-                                    <div class="shrink-0">
-                                        <div class="flex justify-end">${riskBadge}</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <div>
-                                        <div class="text-xs text-gray-500 mb-0.5 dark:text-gray-400">检查项</div>
-                                        <div class="text-sm text-gray-900 break-words dark:text-white">${escapeHtml(item.item || '-')}</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-gray-500 mb-0.5 dark:text-gray-400">结果说明</div>
-                                        <div class="text-sm text-gray-900 leading-5 break-words dark:text-white">${escapeHtml(item.message || '校验未通过。')}</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-gray-500 mb-0.5 dark:text-gray-400">修改建议</div>
-                                        <div title="${adviceTitle}" class="text-sm text-gray-900 leading-5 break-words dark:text-white">${adviceValue}</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-gray-500 mb-0.5 dark:text-gray-400">提交说明</div>
-                                        <div title="${submitRemarkTitle}">
-                                            <textarea disabled class="${submitRemarkClass} ai-card-click-through" rows="2" placeholder="${submitRemarkPlaceholder}">${submitRemarkValue}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    }).join('');
-                }
+                failListEl.className = 'grid grid-cols-1 xl:grid-cols-2 gap-3';
+                failListEl.innerHTML = buildValidationReportCardHtml(allResults);
             }
             if (nodeTimeEl) {
                 const now = new Date();
@@ -7455,6 +7759,9 @@ const aiRuleRules = [
             }
             if (risk === '中') {
                 return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-200">中风险</span>';
+            }
+            if (risk === '风险提示') {
+                return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">风险提示</span>';
             }
             return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">低风险</span>';
         }
@@ -7540,12 +7847,14 @@ const aiRuleRules = [
         }
 
         function renderValidationSubmitRemarkCell(item) {
-            const pass = item.result === 'PASS';
+            const displayResult = getValidationDisplayResult(item);
+            const pass = displayResult === '通过';
+            const riskTip = displayResult === '风险提示';
             const isPendingNormalReadonly = currentTab === 'archive-detail-pending' && currentPendingDetailMode === 'pending-normal';
             const rejectedApplicationNo = (document.getElementById('rejected-detail-application-no')?.textContent || '').trim();
             const isRejectedDetailReadonly = currentTab === 'archive-detail-rejected'
                 && !rejectedApplicationNo.includes('20260126-KJ003-000012');
-            const readonly = pass || isPendingNormalReadonly || isRejectedDetailReadonly;
+            const readonly = pass || riskTip || isPendingNormalReadonly || isRejectedDetailReadonly;
             const value = escapeHtml(item.submissionRemark || item.submissionComment || '');
             const commonClass = pass
                 ? 'w-full bg-gray-100 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-500'
@@ -7555,6 +7864,8 @@ const aiRuleRules = [
                 : commonClass;
             const placeholder = pass
                 ? '校验通过项无需填写'
+                : riskTip
+                    ? '风险提示项无需填写'
                 : readonly
                     ? ''
                     : '校验不通过，请填写提交说明。';
@@ -7586,6 +7897,7 @@ const aiRuleRules = [
             const resultFilter = document.getElementById('ai-detail-filter-result')?.value || '';
             const passCard = document.getElementById('ai-detail-pass-card');
             const failCard = document.getElementById('ai-detail-fail-card');
+            const riskCard = document.getElementById('ai-detail-risk-card');
             if (passCard) {
                 passCard.classList.toggle('ring-2', resultFilter === '通过');
                 passCard.classList.toggle('ring-green-400', resultFilter === '通过');
@@ -7593,6 +7905,10 @@ const aiRuleRules = [
             if (failCard) {
                 failCard.classList.toggle('ring-2', resultFilter === '不通过');
                 failCard.classList.toggle('ring-red-400', resultFilter === '不通过');
+            }
+            if (riskCard) {
+                riskCard.classList.toggle('ring-2', resultFilter === '风险提示');
+                riskCard.classList.toggle('ring-amber-400', resultFilter === '风险提示');
             }
         }
 
@@ -7609,17 +7925,11 @@ const aiRuleRules = [
 
         function renderValidationReport() {
             const report = getValidationReportSafe();
-            const summary = getAICheckSummary(report);
-
             const enabledEl = document.getElementById('ai-detail-enabled-count');
             const passEl = document.getElementById('ai-detail-pass-count');
             const failEl = document.getElementById('ai-detail-fail-count');
+            const riskEl = document.getElementById('ai-detail-risk-count');
             const tbody = document.getElementById('ai-detail-result-body');
-
-            if (enabledEl) enabledEl.textContent = String(summary.enabledRuleCount);
-            if (passEl) passEl.textContent = String(summary.passCount);
-            if (failEl) failEl.textContent = String(summary.notPassCount);
-            updateAIDetailSummaryCardState();
 
             if (!tbody) return;
             const fileFilter = (document.getElementById('ai-detail-filter-file')?.value || '').trim().toLowerCase();
@@ -7634,6 +7944,11 @@ const aiRuleRules = [
                 ? report.results
                 : getFallbackValidationResults(currentTab);
             if (!results.length) {
+                if (enabledEl) enabledEl.textContent = '0';
+                if (passEl) passEl.textContent = '0';
+                if (failEl) failEl.textContent = '0';
+                if (riskEl) riskEl.textContent = '0';
+                updateAIDetailSummaryCardState();
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无可展示的 AI 校验明细</td>
@@ -7749,7 +8064,7 @@ const aiRuleRules = [
             }
 
             const filteredResults = results.filter(item => {
-                const resultText = item.result === 'PASS' ? '通过' : '不通过';
+                const resultText = getValidationDisplayResult(item);
                 const submitRemarkText = String(item.submissionRemark || item.submissionComment || '').toLowerCase();
                 const locationText = String(getValidationLocation(item) || '').toLowerCase();
                 const messageText = String(item.message || '').toLowerCase();
@@ -7764,6 +8079,12 @@ const aiRuleRules = [
                     && (!messageFilter || messageText.includes(messageFilter))
                     && (!adviceFilter || adviceText.includes(adviceFilter));
             });
+            const filteredSummary = getValidationResultsSummary(filteredResults);
+            if (enabledEl) enabledEl.textContent = String(filteredSummary.checkSummary.totalCount);
+            if (passEl) passEl.textContent = String(filteredSummary.checkSummary.passCount);
+            if (failEl) failEl.textContent = String(filteredSummary.checkSummary.failCount);
+            if (riskEl) riskEl.textContent = String(filteredSummary.checkSummary.riskTipCount);
+            updateAIDetailSummaryCardState();
             if (!filteredResults.length) {
                 tbody.innerHTML = '<tr><td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">暂无匹配数据</td></tr>';
                 return;
@@ -7784,8 +8105,9 @@ const aiRuleRules = [
                 高: 0,
                 中: 1,
                 低: 2,
-                '-': 3,
-                '': 4
+                风险提示: 3,
+                '-': 4,
+                '': 5
             };
             const sortedResults = filteredResults
                 .map((item, index) => ({ item, index }))
@@ -7803,15 +8125,19 @@ const aiRuleRules = [
                 })
                 .map(entry => entry.item);
             tbody.innerHTML = sortedResults.map((item, index) => {
-                const pass = item.result === 'PASS';
+                const displayResult = getValidationDisplayResult(item);
+                const pass = displayResult === '通过';
+                const riskTip = displayResult === '风险提示';
                 const agentLogic = getValidationAgentLogic(item);
                 const advice = pass ? '' : getValidationAdvice(item);
                 const location = getValidationLocation(item);
-                const message = item.message || (pass ? '校验通过。' : '校验不通过。');
+                const message = item.message || (pass ? '校验通过。' : riskTip ? '存在风险提示。' : '校验不通过。');
                 const detailHintText = `${message} 点击查看详细结果说明`;
                 const resultBadge = pass
                     ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">通过</span>'
-                    : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">不通过</span>';
+                    : riskTip
+                        ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-200">风险提示</span>'
+                        : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200">不通过</span>';
                 const riskText = pass ? '-' : aiRuleRenderRiskBadge(item.risk);
                 return `
                     <tr>
@@ -8761,9 +9087,10 @@ const aiRuleRules = [
         currentTab = pageId;
         renderTabs();
 
-        if (pageId === 'archive-detail-pending' || pageId === 'archive-detail-rejected') {
+        if (pageId === 'archive-detail-pending' || pageId === 'archive-detail-rejected' || pageId === 'archive-detail-archived') {
             refreshPendingAICheckPanel();
         }
+        renderAllFileListAICheckResultColumns();
 
         // 更新侧边栏状态（仅高亮，不改变行为）
         document.querySelectorAll('.sidebar-item').forEach(el => {
@@ -8831,9 +9158,10 @@ const aiRuleRules = [
 
         renderTabs();
 
-        if (tabId === 'archive-detail-pending' || tabId === 'archive-detail-rejected') {
+        if (tabId === 'archive-detail-pending' || tabId === 'archive-detail-rejected' || tabId === 'archive-detail-archived') {
             refreshPendingAICheckPanel();
         }
+        renderAllFileListAICheckResultColumns();
 
         // 更新侧边栏
         document.querySelectorAll('.sidebar-item').forEach(el => {
@@ -9388,7 +9716,13 @@ const aiRuleRules = [
     }
 
     // AI检查弹窗
-    function showAICheckDetail() {
+    function openAICheckDetailForFile(fileName) {
+        if (!String(fileName || '').trim()) return;
+        showAICheckDetail(String(fileName || '').trim());
+    }
+
+    function showAICheckDetail(fileName = '') {
+        resetAICheckDetailFilters(fileName);
         renderValidationReport();
         document.getElementById('ai-check-modal').classList.remove('hidden');
     }
@@ -9962,10 +10296,10 @@ let currentFileDetailEditContext = null;
         } else if (currentFileDetailEditContext.type === 'rejected-row') {
             const row = currentFileDetailEditContext.row;
             if (!row) return;
-            const materialInput = row.querySelector('td:nth-child(4) input');
-            const materialIcon = row.querySelector('td:nth-child(4) .fa-search');
-            const dateInput = row.querySelector('td:nth-child(7) input');
-            const authorInput = row.querySelector('td:nth-child(8) input');
+            const materialInput = row.querySelector('td:nth-child(5) input');
+            const materialIcon = row.querySelector('td:nth-child(5) .fa-search');
+            const dateInput = row.querySelector('td:nth-child(8) input');
+            const authorInput = row.querySelector('td:nth-child(9) input');
             if (materialInput) {
                 materialInput.value = materialType;
                 materialInput.disabled = true;
@@ -9994,7 +10328,7 @@ let currentFileDetailEditContext = null;
         } else if (currentFileDetailEditContext.type === 'file-list-row') {
             const row = currentFileDetailEditContext.row;
             if (!row) return;
-            row.querySelector('td:nth-child(5)').textContent = materialType;
+            row.querySelector('td:nth-child(6)').textContent = materialType;
             row.dataset.aiExtractLocked = 'true';
             row.dataset.date = '';
             row.dataset.author = '';
@@ -10129,48 +10463,48 @@ let currentFileDetailEditContext = null;
             const row = context.row;
             if (!row) return;
             modalData = {
-                fileName: row.querySelector('td:nth-child(2) a')?.textContent?.trim() || '',
+                fileName: row.querySelector('td:nth-child(3) a')?.textContent?.trim() || '',
                 fileSize: row.dataset.fileSize || '33.8 KB',
-                materialType: row.querySelector('td:nth-child(4) input')?.value.trim() || '',
+                materialType: row.querySelector('td:nth-child(5) input')?.value.trim() || '',
                 level3Category: row.dataset.level3Category || '-',
-                title: row.querySelector('td:nth-child(3) input')?.value.trim() || '',
-                author: row.querySelector('td:nth-child(8) input')?.value.trim() || '',
-                date: row.querySelector('td:nth-child(7) input')?.value || '',
-                docNo: row.querySelector('td:nth-child(9) input')?.value.trim() || '',
+                title: row.querySelector('td:nth-child(4) input')?.value.trim() || '',
+                author: row.querySelector('td:nth-child(9) input')?.value.trim() || '',
+                date: row.querySelector('td:nth-child(8) input')?.value || '',
+                docNo: row.querySelector('td:nth-child(10) input')?.value.trim() || '',
                 linkedProject: row.dataset.linkedProject || defaults.linkedProject,
                 relatedProjectCategory: row.dataset.relatedProjectCategory || defaults.relatedProjectCategory,
-                projectName: row.querySelector('td:nth-child(5) input')?.value.trim() || defaults.projectName,
+                projectName: row.querySelector('td:nth-child(6) input')?.value.trim() || defaults.projectName,
                 currentProjectCategory: row.dataset.currentProjectCategory || defaults.currentProjectCategory,
                 manageOrg: row.dataset.manageOrg || defaults.manageOrg,
                 legalOrg: row.dataset.legalOrg || defaults.legalOrg,
-                level: row.querySelector('td:nth-child(6) select')?.value || '无密级',
-                materialReadonly: row.querySelector('td:nth-child(4) input')?.dataset.aiExtractLocked === 'true',
-                datePending: row.querySelector('td:nth-child(7) input')?.dataset.aiExtractPending === 'true',
-                authorPending: row.querySelector('td:nth-child(8) input')?.dataset.aiExtractPending === 'true'
+                level: row.querySelector('td:nth-child(7) select')?.value || '无密级',
+                materialReadonly: row.querySelector('td:nth-child(5) input')?.dataset.aiExtractLocked === 'true',
+                datePending: row.querySelector('td:nth-child(8) input')?.dataset.aiExtractPending === 'true',
+                authorPending: row.querySelector('td:nth-child(9) input')?.dataset.aiExtractPending === 'true'
             };
             modalData.aiExtractRows = buildFileDetailAIExtractRows(modalData);
         } else if (context.type === 'pending-row') {
             const row = context.row;
             if (!row) return;
-            const materialInput = row.querySelector('td:nth-child(5) input');
-            const dateInput = row.querySelector('td:nth-child(8) input');
-            const authorInput = row.querySelector('td:nth-child(9) input');
+            const materialInput = row.querySelector('td:nth-child(6) input');
+            const dateInput = row.querySelector('td:nth-child(9) input');
+            const authorInput = row.querySelector('td:nth-child(10) input');
             modalData = {
-                fileName: row.querySelector('td:nth-child(2) a')?.textContent?.trim() || '',
-                fileSize: row.dataset.fileSize || getEstimatedFileSizeText({ pages: getFileDetailRowCellText(row, 11) }),
-                materialType: materialInput ? materialInput.value.trim() : getFileDetailRowCellText(row, 5),
+                fileName: row.querySelector('td:nth-child(3) a')?.textContent?.trim() || '',
+                fileSize: row.dataset.fileSize || getEstimatedFileSizeText({ pages: getFileDetailRowCellText(row, 12) }),
+                materialType: materialInput ? materialInput.value.trim() : getFileDetailRowCellText(row, 6),
                 level3Category: row.dataset.level3Category || '-',
-                title: getFileDetailRowCellText(row, 3),
-                author: authorInput ? authorInput.value.trim() : getFileDetailRowCellText(row, 9),
-                date: dateInput ? dateInput.value : getFileDetailRowCellText(row, 8),
-                docNo: getFileDetailRowCellText(row, 10),
+                title: getFileDetailRowCellText(row, 4),
+                author: authorInput ? authorInput.value.trim() : getFileDetailRowCellText(row, 10),
+                date: dateInput ? dateInput.value : getFileDetailRowCellText(row, 9),
+                docNo: getFileDetailRowCellText(row, 11),
                 linkedProject: row.dataset.linkedProject || defaults.linkedProject,
                 relatedProjectCategory: row.dataset.relatedProjectCategory || defaults.relatedProjectCategory,
-                projectName: row.dataset.projectName || getFileDetailRowCellText(row, 6) || defaults.projectName,
+                projectName: row.dataset.projectName || getFileDetailRowCellText(row, 7) || defaults.projectName,
                 currentProjectCategory: row.dataset.currentProjectCategory || defaults.currentProjectCategory,
                 manageOrg: row.dataset.manageOrg || defaults.manageOrg,
                 legalOrg: row.dataset.legalOrg || defaults.legalOrg,
-                level: row.dataset.level || getFileDetailRowCellText(row, 7) || '无密级',
+                level: row.dataset.level || getFileDetailRowCellText(row, 8) || '无密级',
                 materialReadonly: materialInput?.dataset.aiExtractLocked === 'true',
                 datePending: dateInput?.dataset.aiExtractPending === 'true',
                 authorPending: authorInput?.dataset.aiExtractPending === 'true'
@@ -10179,13 +10513,13 @@ let currentFileDetailEditContext = null;
         } else if (context.type === 'file-list-row') {
             const row = context.row;
             if (!row) return;
-            const categoryLines = Array.from(row.querySelectorAll('td:nth-child(4) span')).map(el => el.textContent.trim()).filter(Boolean);
+            const categoryLines = Array.from(row.querySelectorAll('td:nth-child(5) span')).map(el => el.textContent.trim()).filter(Boolean);
             modalData = {
-                fileName: row.querySelector('td:nth-child(3) a')?.textContent?.trim() || '',
+                fileName: row.querySelector('td:nth-child(4) a')?.textContent?.trim() || '',
                 fileSize: row.dataset.fileSize || '33.8 KB',
-                materialType: getFileDetailRowCellText(row, 5),
+                materialType: getFileDetailRowCellText(row, 6),
                 level3Category: row.dataset.level3Category || '-',
-                title: getFileDetailRowCellText(row, 6),
+                title: getFileDetailRowCellText(row, 7),
                 author: row.dataset.author || '',
                 date: row.dataset.date || '',
                 docNo: row.dataset.docNo || '',
@@ -10195,7 +10529,7 @@ let currentFileDetailEditContext = null;
                 currentProjectCategory: row.dataset.currentProjectCategory || (categoryLines.join('-') || defaults.currentProjectCategory),
                 manageOrg: row.dataset.manageOrg || defaults.manageOrg,
                 legalOrg: row.dataset.legalOrg || defaults.legalOrg,
-                level: row.dataset.level || getFileDetailRowCellText(row, 7) || '无密级',
+                level: row.dataset.level || getFileDetailRowCellText(row, 8) || '无密级',
                 materialReadonly: row.dataset.aiExtractLocked === 'true',
                 datePending: row.dataset.datePending === 'true',
                 authorPending: row.dataset.authorPending === 'true',
@@ -10268,13 +10602,13 @@ let currentFileDetailEditContext = null;
         } else if (currentFileDetailEditContext.type === 'rejected-row') {
             const row = currentFileDetailEditContext.row;
             if (!row) return;
-            const titleInput = row.querySelector('td:nth-child(3) input');
-            const materialInput = row.querySelector('td:nth-child(4) input');
-            const projectInput = row.querySelector('td:nth-child(5) input');
-            const levelSelect = row.querySelector('td:nth-child(6) select');
-            const dateInput = row.querySelector('td:nth-child(7) input');
-            const authorInput = row.querySelector('td:nth-child(8) input');
-            const docInput = row.querySelector('td:nth-child(9) input');
+            const titleInput = row.querySelector('td:nth-child(4) input');
+            const materialInput = row.querySelector('td:nth-child(5) input');
+            const projectInput = row.querySelector('td:nth-child(6) input');
+            const levelSelect = row.querySelector('td:nth-child(7) select');
+            const dateInput = row.querySelector('td:nth-child(8) input');
+            const authorInput = row.querySelector('td:nth-child(9) input');
+            const docInput = row.querySelector('td:nth-child(10) input');
             if (titleInput) titleInput.value = values.title;
             if (materialInput && materialInput.dataset.aiExtractLocked !== 'true') materialInput.value = values.materialType;
             if (projectInput) projectInput.value = values.projectName;
@@ -10291,30 +10625,30 @@ let currentFileDetailEditContext = null;
         } else if (currentFileDetailEditContext.type === 'pending-row') {
             const row = currentFileDetailEditContext.row;
             if (!row) return;
-            row.querySelector('td:nth-child(3)').textContent = values.title;
-            const materialInput = row.querySelector('td:nth-child(5) input');
+            row.querySelector('td:nth-child(4)').textContent = values.title;
+            const materialInput = row.querySelector('td:nth-child(6) input');
             if (materialInput && materialInput.dataset.aiExtractLocked !== 'true') {
                 materialInput.value = values.materialType;
             } else if (!materialInput) {
-                row.querySelector('td:nth-child(5)').textContent = values.materialType;
+                row.querySelector('td:nth-child(6)').textContent = values.materialType;
             }
-            row.querySelector('td:nth-child(6)').textContent = values.projectName;
-            row.querySelector('td:nth-child(7)').innerHTML = applyFileLevelBadge(values.level);
-            const dateInput = row.querySelector('td:nth-child(8) input');
+            row.querySelector('td:nth-child(7)').textContent = values.projectName;
+            row.querySelector('td:nth-child(8)').innerHTML = applyFileLevelBadge(values.level);
+            const dateInput = row.querySelector('td:nth-child(9) input');
             if (dateInput) {
                 dateInput.value = values.date;
                 clearAIExtractPendingState(dateInput);
             } else {
-                row.querySelector('td:nth-child(8)').textContent = values.date;
+                row.querySelector('td:nth-child(9)').textContent = values.date;
             }
-            const authorInput = row.querySelector('td:nth-child(9) input');
+            const authorInput = row.querySelector('td:nth-child(10) input');
             if (authorInput) {
                 authorInput.value = values.author;
                 clearAIExtractPendingState(authorInput);
             } else {
-                row.querySelector('td:nth-child(9)').textContent = values.author;
+                row.querySelector('td:nth-child(10)').textContent = values.author;
             }
-            row.querySelector('td:nth-child(10)').textContent = values.docNo;
+            row.querySelector('td:nth-child(11)').textContent = values.docNo;
             row.dataset.level3Category = values.level3Category;
             row.dataset.linkedProject = values.linkedProject;
             row.dataset.relatedProjectCategory = values.relatedProjectCategory;
@@ -10326,9 +10660,9 @@ let currentFileDetailEditContext = null;
         } else if (currentFileDetailEditContext.type === 'file-list-row') {
             const row = currentFileDetailEditContext.row;
             if (!row) return;
-            row.querySelector('td:nth-child(5)').textContent = values.materialType;
-            row.querySelector('td:nth-child(6)').textContent = values.title;
-            row.querySelector('td:nth-child(7)').innerHTML = applyFileLevelBadge(values.level);
+            row.querySelector('td:nth-child(6)').textContent = values.materialType;
+            row.querySelector('td:nth-child(7)').textContent = values.title;
+            row.querySelector('td:nth-child(8)').innerHTML = applyFileLevelBadge(values.level);
             row.dataset.level3Category = values.level3Category;
             row.dataset.author = values.author;
             row.dataset.date = values.date;
@@ -11057,6 +11391,7 @@ let currentFileDetailEditContext = null;
         validationReport = null;
         validationSnapshotKey = '';
         refreshPendingAICheckPanel();
+        renderAllFileListAICheckResultColumns();
     }
 
     function createMockUploadFile(fileName) {
@@ -11155,9 +11490,9 @@ let currentFileDetailEditContext = null;
 
     function getPendingRowMaterialValue(row) {
         if (!row) return '';
-        const materialInput = row.querySelector('td:nth-child(5) input');
+        const materialInput = row.querySelector('td:nth-child(6) input');
         if (materialInput) return materialInput.value.trim();
-        return row.querySelector('td:nth-child(5)')?.textContent?.trim() || '';
+        return row.querySelector('td:nth-child(6)')?.textContent?.trim() || '';
     }
 
     function isBatchFieldAIExtractPending(item, fieldKey) {
@@ -11270,9 +11605,9 @@ let currentFileDetailEditContext = null;
 
     function ensurePendingRowEditable(row) {
         if (!row) return null;
-        const materialCell = row.querySelector('td:nth-child(5)');
-        const dateCell = row.querySelector('td:nth-child(8)');
-        const authorCell = row.querySelector('td:nth-child(9)');
+        const materialCell = row.querySelector('td:nth-child(6)');
+        const dateCell = row.querySelector('td:nth-child(9)');
+        const authorCell = row.querySelector('td:nth-child(10)');
         if (!materialCell || !dateCell || !authorCell) return null;
 
         let materialInput = materialCell.querySelector('input');
@@ -11306,9 +11641,9 @@ let currentFileDetailEditContext = null;
     function lockPendingRowAfterAIExtract(row) {
         if (!row) return;
         const materialInput = ensurePendingRowEditable(row);
-        const materialIcon = row.querySelector('td:nth-child(5) .fa-search');
-        const dateInput = row.querySelector('td:nth-child(8) input');
-        const authorInput = row.querySelector('td:nth-child(9) input');
+        const materialIcon = row.querySelector('td:nth-child(6) .fa-search');
+        const dateInput = row.querySelector('td:nth-child(9) input');
+        const authorInput = row.querySelector('td:nth-child(10) input');
 
         if (materialInput) {
             materialInput.disabled = true;
@@ -11348,7 +11683,7 @@ let currentFileDetailEditContext = null;
                 return false;
             }
             if (rows.some(row => {
-                const input = row.querySelector('td:nth-child(4) input');
+                const input = row.querySelector('td:nth-child(5) input');
                 return !input || !input.value.trim();
             })) {
                 showToast('请先选择资料类型在发起AI校验', 'warning');
@@ -11402,10 +11737,10 @@ let currentFileDetailEditContext = null;
         if (status === 'rejected') {
             if (!validateMaterialTypeBeforeAIExtract('rejected')) return;
             getRejectedTableRows().forEach(row => {
-                const materialInput = row.querySelector('td:nth-child(4) input');
-                const materialIcon = row.querySelector('td:nth-child(4) .fa-search');
-                const dateInput = row.querySelector('td:nth-child(7) input');
-                const authorInput = row.querySelector('td:nth-child(8) input');
+                const materialInput = row.querySelector('td:nth-child(5) input');
+                const materialIcon = row.querySelector('td:nth-child(5) .fa-search');
+                const dateInput = row.querySelector('td:nth-child(8) input');
+                const authorInput = row.querySelector('td:nth-child(9) input');
 
                 if (materialInput) {
                     materialInput.disabled = true;
@@ -11542,6 +11877,7 @@ let currentFileDetailEditContext = null;
                 row.style.display = index < visibleCount ? '' : 'none';
             });
         }
+        renderAllFileListAICheckResultColumns();
 
         if (deptNode) deptNode.classList.toggle('hidden', isBlockMode || isAIProcessingMode);
         if (areaNode) areaNode.classList.toggle('hidden', isBlockMode || isAIProcessingMode);
@@ -11572,6 +11908,7 @@ let currentFileDetailEditContext = null;
             aiNodeResult.innerHTML = `
                 <span id="pending-ai-node-pass-text" class="text-success flex items-center gap-1"><i class="fas fa-check-circle"></i> 通过 0项</span>
                 <span id="pending-ai-node-fail-text" class="text-danger flex items-center gap-1"><i class="fas fa-times-circle"></i> 不通过 0项</span>
+                <span id="pending-ai-node-risk-text" class="text-amber-500 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i> 风险提示 0项</span>
             `;
         }
 
@@ -11719,12 +12056,13 @@ let currentFileDetailEditContext = null;
         if (batchFiles.length === 0) {
             tbody.innerHTML = `
                 <tr class="text-center text-gray-500 dark:text-gray-400" id="empty-batch-tip">
-                    <td colspan="13" class="py-8">
+                    <td colspan="14" class="py-8">
                         <i class="fas fa-inbox text-4xl mb-2 text-gray-300 dark:text-gray-600"></i>
                         <p>请上传文件，AI将自动识别分类</p>
                     </td>
                 </tr>
             `;
+            renderAllFileListAICheckResultColumns();
             return;
         }
         
@@ -11814,6 +12152,7 @@ let currentFileDetailEditContext = null;
         `).join('');
         
         updateBatchSubmitCount();
+        renderAllFileListAICheckResultColumns();
     }
     
     // 更新批量提交计数
@@ -11912,8 +12251,8 @@ let currentFileDetailEditContext = null;
     function handleReplaceRejectedFile(input) {
         const file = input.files && input.files[0];
         if (!file || !currentReplacingRejectedRow) return;
-        const link = currentReplacingRejectedRow.querySelector('td:nth-child(2) a');
-        const titleInput = currentReplacingRejectedRow.querySelector('td:nth-child(3) input');
+        const link = currentReplacingRejectedRow.querySelector('td:nth-child(3) a');
+        const titleInput = currentReplacingRejectedRow.querySelector('td:nth-child(4) input');
         if (link) link.textContent = file.name;
         if (titleInput && !titleInput.value.trim()) {
             titleInput.value = file.name.replace(/\.[^/.]+$/, '');
@@ -11945,7 +12284,7 @@ let currentFileDetailEditContext = null;
     function handleReplacePendingFile(input) {
         const file = input.files && input.files[0];
         if (!file || !currentReplacingPendingRow) return;
-        const link = currentReplacingPendingRow.querySelector('td:nth-child(2) a');
+        const link = currentReplacingPendingRow.querySelector('td:nth-child(3) a');
         if (link) link.textContent = file.name;
         showFileReplacedBadge(currentReplacingPendingRow);
         showToast(`已替换文件为：${file.name}`, 'success');
@@ -12178,7 +12517,7 @@ let currentFileDetailEditContext = null;
                 rows[i].style.display = '';
                 continue;
             }
-            const statusCell = rows[i].cells[8]; // 审批状态列
+            const statusCell = rows[i].cells[9]; // 审批状态列
             if (statusCell) {
                 const statusText = statusCell.textContent.toLowerCase();
                 const match = (status === 'draft' && statusText.includes('待提交')) ||
